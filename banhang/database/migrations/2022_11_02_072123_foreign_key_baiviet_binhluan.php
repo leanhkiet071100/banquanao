@@ -13,8 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('sanpham_binhluans', function ($table) {      
-            $table->foreign('ma_san_pham')->references('id')->on('sanphams');
+        Schema::table('baiviet_binhluans', function ($table) {      
+            $table->foreign('ma_bai_viet')->references('id')->on('baiviets');
             $table->foreign('ma_nguoi_dung')->references('id')->on('nguoidungs');
         });
     }
@@ -26,9 +26,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('sanpham_binhluans', function (Blueprint $table) {
-            $table->dropForeign('sanpham_binhluans_ma_san_pham_foreign');
-            $table->dropForeign('sanpham_binhluans_ma_nguoi_dung_foreign');
+         Schema::table('baiviet_binhluans', function (Blueprint $table) {
+            $table->dropForeign('baiviet_binhluans_ma_bai_viet_foreign');
+            $table->dropForeign('baiviet_binhluans_ma_nguoi_dung_foreign');
         });
     }
 };

@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('nguoidung_diachis', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
+            $table->foreignId('ma_nguoi_dung');
             $table->string('tinh')->nullable();
             $table->string('huyen')->nullable();
             $table->string('xa')->nullable();
