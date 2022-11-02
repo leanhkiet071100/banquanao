@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\baiviet_chitiet;
-use App\Http\Requests\Storebaiviet_chitietRequest;
-use App\Http\Requests\Updatebaiviet_chitietRequest;
+use App\Models\baiviet_binhluan;
+use App\Http\Requests\Storebaiviet_binhluanRequest;
+use App\Http\Requests\Updatebaiviet_binhluanRequest;
 
-class BaivietChitietController extends Controller
+class BaivietBinhluanController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -31,10 +31,10 @@ class BaivietChitietController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\Storebaiviet_chitietRequest  $request
+     * @param  \App\Http\Requests\Storebaiviet_binhluanRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Storebaiviet_chitietRequest $request)
+    public function store(Storebaiviet_binhluanRequest $request)
     {
         //
     }
@@ -42,10 +42,10 @@ class BaivietChitietController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\baiviet_chitiet  $baiviet_chitiet
+     * @param  \App\Models\baiviet_binhluan  $baiviet_binhluan
      * @return \Illuminate\Http\Response
      */
-    public function show(baiviet_chitiet $baiviet_chitiet)
+    public function show(baiviet_binhluan $baiviet_binhluan)
     {
         //
     }
@@ -53,10 +53,10 @@ class BaivietChitietController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\baiviet_chitiet  $baiviet_chitiet
+     * @param  \App\Models\baiviet_binhluan  $baiviet_binhluan
      * @return \Illuminate\Http\Response
      */
-    public function edit(baiviet_chitiet $baiviet_chitiet)
+    public function edit(baiviet_binhluan $baiviet_binhluan)
     {
         //
     }
@@ -64,11 +64,11 @@ class BaivietChitietController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\Updatebaiviet_chitietRequest  $request
-     * @param  \App\Models\baiviet_chitiet  $baiviet_chitiet
+     * @param  \App\Http\Requests\Updatebaiviet_binhluanRequest  $request
+     * @param  \App\Models\baiviet_binhluan  $baiviet_binhluan
      * @return \Illuminate\Http\Response
      */
-    public function update(Updatebaiviet_chitietRequest $request, baiviet_chitiet $baiviet_chitiet)
+    public function update(Updatebaiviet_binhluanRequest $request, baiviet_binhluan $baiviet_binhluan)
     {
         //
     }
@@ -76,10 +76,10 @@ class BaivietChitietController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\baiviet_chitiet  $baiviet_chitiet
+     * @param  \App\Models\baiviet_binhluan  $baiviet_binhluan
      * @return \Illuminate\Http\Response
      */
-    public function destroy(baiviet_chitiet $baiviet_chitiet)
+    public function destroy(baiviet_binhluan $baiviet_binhluan)
     {
         //
     }

@@ -15,7 +15,13 @@ return new class extends Migration
     {
         Schema::create('nhan_hieus', function (Blueprint $table) {
             $table->id();
+            $table->string('ten_nhan_hieu');
+            $table->boolean('moi')->nullable();
+            $table->boolean('noi_bat')->nullable();
+            $table->boolean('hien')->nullable();
+            $table->string('trang_thai')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -15,7 +15,13 @@ return new class extends Migration
     {
         Schema::create('hoadons', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('ma_nguoi_dung');
+            $table->foreignId('ma_giam_gia')->nullable();
+            $table->double('tien_hoa_don')->nullable();
+            $table->boolean('moi')->nullable();
+            $table->string('trang_thai')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

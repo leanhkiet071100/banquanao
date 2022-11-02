@@ -15,8 +15,24 @@ return new class extends Migration
     {
         Schema::create('sanphams', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('ma_nhan_hieu');
+            $table->foreignId('ma_loai_san_pham');
+            $table->string('ten_san_pham');
+            $table->text('mo_ta')->nullable();
+            $table->text('noi_dung')->nullable();
+            $table->double('gia'); 
+            $table->integer('so_luong_kho'); // số lượng tồn kho
+            $table->double('tien_giam')->nullable();
+            $table->double('chiều_cao')->nullable();
+            $table->double('trong_luong')->nullable();
+            $table->string('tag')->nullable();
+            $table->string('SKU')->nullable(); // SKU chính là 1 dạng mã số quy ước giúp phân loại mẫu sản phẩm, dịch vụ 
+            $table->boolean('moi')->nullable();
+            $table->boolean('noi_bat')->nullable();
+            $table->boolean('hien')->nullable();
+            $table->text('trang_thai')->nullable();
             $table->timestamps();
-             $table->softDeletes();
+            $table->softDeletes();
         });
     }
 
