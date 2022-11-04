@@ -15,7 +15,7 @@ class NhanHieuController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**

@@ -1,6 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\BaivietBinhluanController;
+use App\Http\Controllers\Admin\BaivietController;
+use App\Http\Controllers\Admin\HoadonController;
+use App\Http\Controllers\Admin\HoadonChitietController;
+use App\Http\Controllers\Admin\LoaiSanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -71,6 +76,22 @@ Route::prefix('admin')->group(function(){
         Route::get('/sua-bai-viet', function () {
             return view('admin.baiviet.baiviet-sua');
         });
+
+        // nhãn hiệu
+        Route::get('/nhan-hieu', function () {
+            return view('admin.nhanhieu.nhanhieu-ds');
+        });
+
+        Route::get('/nhan-hieu-sua', function () {
+            return view('admin.nhanhieu.nhanhieu-sua');
+        });
+
+
+        Route::get('/nhan-hieu-them', function () {
+            return view('admin.nhanhieu.nhanhieu-them');
+        });
+
+
     });
         
 });

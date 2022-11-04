@@ -12,7 +12,7 @@
                         <i class="pe-7s-ticket icon-gradient bg-mean-fruit"></i>
                     </div>
                     <div>
-                        Brand
+                        NHÃN HIỆU
                         <div class="page-title-subheading">
                             View, create, update, delete and manage.
                         </div>
@@ -62,8 +62,11 @@
                             <thead>
                                 <tr>
                                     <th class="text-center">ID</th>
-                                    <th>Name</th>
-                                    <th class="text-center">Actions</th>
+                                    <th>Tên nhãn hiệu</th>
+                                    <th>Nổi bật </th>
+                                    <th>Mới</th>
+                                    <th>Hiệu</th>
+                                    <th class="text-center">Hoạt động</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -77,6 +80,24 @@
                                                     <div class="widget-heading">Calvin Klein</div>
                                                 </div>
                                             </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check check-magana">
+                                            <input class="form-check-input" type="checkbox" value=""
+                                                id="defaultCheck1">
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check check-magana">
+                                            <input class="form-check-input" type="checkbox" value=""
+                                                id="defaultCheck1">
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check check-magana">
+                                            <input class="form-check-input" type="checkbox" value=""
+                                                id="defaultCheck1">
                                         </div>
                                     </td>
 
