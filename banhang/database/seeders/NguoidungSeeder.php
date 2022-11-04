@@ -4,6 +4,10 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+//use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Str;
+use DB;
 
 class NguoidungSeeder extends Seeder
 {
@@ -14,6 +18,52 @@ class NguoidungSeeder extends Seeder
      */
     public function run()
     {
-        //
+         DB::table('nguoidungs')->insert([
+            [
+                'id' => 1,
+                'ten' => 'CodeLean',
+                'email' => 'CodeLean@gmail.com',
+                'mat_khau' => Hash::make('123456'),
+                'hinh_dai_dien' => null,
+                'cap' => 0,
+                'mo_ta' => null,
+            ],
+            [
+                'id' => 2,
+                'ten' => 'admin',
+                'email' => 'admin@gmail.com',
+                'mat_khau' => Hash::make('123456'),
+                'hinh_dai_dien' => null,
+                'cap' => 0,
+                'mo_ta' => null,
+            ],
+            [
+                'id' => 3,
+                'ten' => 'Shane Lynch',
+                'email' => 'ShaneLynch@gmail.com',
+                'mat_khau' => Hash::make('123456'),
+                'hinh_dai_dien' => 'avatar-0.png',
+                'cap' => 1,
+                'mo_ta' => 'Aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum bore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud amodo'
+            ],
+            [
+                'id' => 4,
+                'ten' => 'Brandon Kelley',
+                'email' => 'BrandonKelley@gmail.com',
+                'mat_khau' => Hash::make('123456'),
+                'hinh_dai_dien' => 'avatar-1.png',
+                'cap' => 1,
+                'mo_ta' => null,
+            ],
+            [
+                'id' => 5,
+                'ten' => 'Roy Banks',
+                'email' => 'RoyBanks@gmail.com',
+                'mat_khau' => Hash::make('123456'),
+                'hinh_dai_dien' => 'avatar-2.png',
+                'cap' => 1,
+                'mo_ta' => null,
+            ],
+        ]);
     }
 }

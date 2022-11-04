@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('mat_khau');
             $table->rememberToken(); // token người dùng
             $table->string('hinh_dai_dien')->nullable();
-            $table->tinyInteger('level'); // 0: host, 1: admin, 2: người dùng
+            $table->tinyInteger('cap'); // 0: host, 1: admin, 2: người dùng
             $table->text('mo_ta')->nullable();
             $table->boolean('moi')->nullable();
             $table->boolean('noi_bat')->nullable();

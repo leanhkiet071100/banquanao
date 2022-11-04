@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use DB;
 
 class NhanHieuSeeder extends Seeder
 {
@@ -14,6 +15,19 @@ class NhanHieuSeeder extends Seeder
      */
     public function run()
     {
-        //
+        DB::table('nhan_hieus')->insert([
+            [
+                'ten_nhan_hieu' => 'Calvin Klein',
+            ],
+            [
+                'ten_nhan_hieu' => 'Diesel',
+            ],
+            [
+                'ten_nhan_hieu' => 'Polo',
+            ],
+            [
+                'ten_nhan_hieu' => 'Tommy Hilfiger',
+            ],
+        ]);
     }
 }

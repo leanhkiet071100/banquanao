@@ -23,7 +23,6 @@ return new class extends Migration
             $table->double('gia'); 
             $table->integer('so_luong_kho'); // số lượng tồn kho
             $table->double('tien_giam')->nullable();
-            $table->double('chiều_cao')->nullable();
             $table->double('trong_luong')->nullable();
             $table->string('tag')->nullable();
             $table->string('SKU')->nullable(); // SKU chính là 1 dạng mã số quy ước giúp phân loại mẫu sản phẩm, dịch vụ 

@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use DB;
 
 class SanphamChitietSeeder extends Seeder
 {
@@ -14,6 +15,44 @@ class SanphamChitietSeeder extends Seeder
      */
     public function run()
     {
-        //
+        DB::table('sanpham_chitiets')->insert([
+            [
+                'ma_san_pham' => 1,
+                'mau' => 'blue',
+                'kich_thuoc' => 'S',
+                'so_luong_kho' => 5,
+            ],
+            [
+                'ma_san_pham' => 1,
+                'mau' => 'blue',
+                'kich_thuoc' => 'M',
+                'so_luong_kho' => 5,
+            ],
+            [
+                'ma_san_pham' => 1,
+                'mau' => 'blue',
+                'kich_thuoc' => 'L',
+                'so_luong_kho' => 5,
+            ],
+            [
+                'ma_san_pham' => 1,
+                'mau' => 'blue',
+                'kich_thuoc' => 'XS',
+                'so_luong_kho' => 5,
+            ],
+            [
+                'ma_san_pham' => 1,
+                'mau' => 'yellow',
+                'kich_thuoc' => 'S',
+                'so_luong_kho' => 0,
+            ],
+            [
+                'ma_san_pham' => 1,
+                'mau' => 'violet',
+                'kich_thuoc' => 'S',
+                'so_luong_kho' => 0,
+            ],
+        ]);
+
     }
 }
