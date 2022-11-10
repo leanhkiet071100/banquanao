@@ -48,7 +48,7 @@ class SanphamSeeder extends Seeder
             ],
             [
                 'id' => 3,
-                'ma_nhan_hieu' => 3,
+                'ma_nhan_hieu' => 1,
                 'ma_loai_san_pham' => 2,
                 'ten_san_pham' => 'Guangzhou sweater',
                 'mo_ta' => null,
@@ -63,7 +63,7 @@ class SanphamSeeder extends Seeder
             ],
             [
                 'id' => 4,
-                'ma_nhan_hieu' => 4,
+                'ma_nhan_hieu' => 1,
                 'ma_loai_san_pham' => 1,
                 'ten_san_pham' => 'Microfiber Wool Scarf',
                 'mo_ta' => null,

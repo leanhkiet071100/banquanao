@@ -25,11 +25,12 @@ ul {
 
 /* button delete */
 .tabs-animated .delete .nav-link::before {
-    background-color: #d92550; /*--danger*/
+    background-color: #d92550;
+    /*--danger*/
 }
 
 /* pagination */
-nav[aria-label="Pagination Navigation"] span[aria-current=page] > span {
+nav[aria-label="Pagination Navigation"] span[aria-current=page]>span {
     background-color: #3f6ad8f0 !important;
     border: 1px solid #3f6ad8 !important;
     /*opacity: 0.9;*/
@@ -62,4 +63,55 @@ nav[aria-label="Pagination Navigation"] a:hover {
 /* icon setting */
 .ui-theme-settings .btn-open-options {
     bottom: 48px;
+}
+
+td.td-radio {
+    margin: 0 auto;
+}
+
+.create-nhan-hieu {
+    display: none;
+    position: absolute;
+    width: 50%;
+    /* height: 100%; */
+    top: 25%;
+    /*background-color: #d92550;*/
+    left: 35%;
+    z-index: 100;
+}
+
+.title {
+    font-size: 24px;
+    font-family: cursive;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: red;
+}
+
+.nhan-hieu-hinh {
+    display: block;
+    /* position: absolute; */
+    /* top: 0; */
+    /* height: 100%; */
+    /* width: 100%; */
+}
+
+.hinh-nhan-hieu {
+    position: relative;
+}
+
+.widget-content-center {
+    text-align: center;
+}
+
+.error{
+    display: block;
+}
+
+a.btn.btn-outline-warning.border-0.btn-sm {
+    color: #f7c95b;
+}
+
+a.btn.btn-outline-warning.border-0.btn-sm:hover {
+    color: #070707;
 }

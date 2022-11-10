@@ -13,7 +13,7 @@ class Storenhan_hieuRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,27 @@ class Storenhan_hieuRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'ten_nhan_hieu' => 'required|unique:nhan_hieus,ten_nhan_hieu',
+            'hinh_nhan_hieu' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+        ];
+    }
+
+     public function messages()
+    {
+        return [
+            'required' => ':attribute không được để trống',
+            'min' => ':attribute không được nhỏ hơn :min',
+            'max' => ':attribute không được lớn hơn :max',
+            'numeric' => ':attribute phải là số',
+            'unique' => ':attribute đã tồn tại',
+                //'Hinh.mimes' => 'Hình ảnh phải có định dạng jpeg,png,jpg,gif,svg',
+        ];
+    }
+
+    public function attributes(){
+        return [
+            'ten_nhan_hieu' => 'Tên  nhãn hiệu',
+            'hinh_nhan_hieu' => 'hình nhãn hiệu'
         ];
     }
 }

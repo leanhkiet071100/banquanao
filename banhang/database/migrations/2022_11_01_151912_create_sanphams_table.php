@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('sanphams', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('ma_nhan_hieu');
+            $table->foreignId('ma_nhan_hieu')->nullable();
             $table->foreignId('ma_loai_san_pham');
             $table->string('ten_san_pham');
             $table->text('mo_ta')->nullable();

@@ -176,6 +176,10 @@
     <!-- End Main -->
 @endsection
 
-@section('content')
-    <p>This is my body content.</p>
+@section('js')
+  
 @endsection
+
+<script>
+    
+</script>

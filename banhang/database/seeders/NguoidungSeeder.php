@@ -20,7 +20,7 @@ class NguoidungSeeder extends Seeder
     {
          DB::table('nguoidungs')->insert([
             [
-                'id' => 1,
+                
                 'ten' => 'CodeLean',
                 'email' => 'CodeLean@gmail.com',
                 'mat_khau' => Hash::make('123456'),
@@ -29,7 +29,7 @@ class NguoidungSeeder extends Seeder
                 'mo_ta' => null,
             ],
             [
-                'id' => 2,
+                
                 'ten' => 'admin',
                 'email' => 'admin@gmail.com',
                 'mat_khau' => Hash::make('123456'),
@@ -38,7 +38,7 @@ class NguoidungSeeder extends Seeder
                 'mo_ta' => null,
             ],
             [
-                'id' => 3,
+                
                 'ten' => 'Shane Lynch',
                 'email' => 'ShaneLynch@gmail.com',
                 'mat_khau' => Hash::make('123456'),
@@ -47,7 +47,7 @@ class NguoidungSeeder extends Seeder
                 'mo_ta' => 'Aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum bore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud amodo'
             ],
             [
-                'id' => 4,
+                
                 'ten' => 'Brandon Kelley',
                 'email' => 'BrandonKelley@gmail.com',
                 'mat_khau' => Hash::make('123456'),
@@ -56,7 +56,7 @@ class NguoidungSeeder extends Seeder
                 'mo_ta' => null,
             ],
             [
-                'id' => 5,
+                
                 'ten' => 'Roy Banks',
                 'email' => 'RoyBanks@gmail.com',
                 'mat_khau' => Hash::make('123456'),

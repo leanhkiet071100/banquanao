@@ -1,11 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\BaivietBinhluanController;
-use App\Http\Controllers\Admin\BaivietController;
-use App\Http\Controllers\Admin\HoadonController;
-use App\Http\Controllers\Admin\HoadonChitietController;
-use App\Http\Controllers\Admin\LoaiSanController;
+use App\Http\Controllers\Admin\AdminNhanHieuController;
+use App\Http\Controllers\Admin\AdminLoaiSanPhamController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -64,6 +62,9 @@ Route::middleware('auth')->group(function(){});
 
 Route::prefix('admin')->group(function(){
     Route::name('admin.')->group(function(){ 
+        Route::get('/san-pham', function () {
+            return view('admin.sanpham.sanpham-ds');
+        });
         //bài viết
         Route::get('/bai-viet', function () {
             return view('admin.baiviet.baiviet-ds');
@@ -77,21 +78,21 @@ Route::prefix('admin')->group(function(){
             return view('admin.baiviet.baiviet-sua');
         });
 
+        Route::get('/san-pham-hinh', function () {
+            return view('admin.sanpham.sanpham-hinh');
+        });
+
         // nhãn hiệu
-        Route::get('/nhan-hieu', function () {
-            return view('admin.nhanhieu.nhanhieu-ds');
-        });
+        Route::get('/nhan-hieu', [AdminNhanHieuController::class, 'get_nhan_hieu'])->name('get-nhan-hieu');
+        Route::get('/load-nhan-hieu', [AdminNhanHieuController::class, 'load_nhan_hieu'])->name('load-nhan-hieu');
+        Route::delete('/xoa-nhan-hieu/{id}', [AdminNhanHieuController::class, 'xoa_nhan_hieu'])->name('xoa-nhan-hieu');
+        Route::post('/post-nhan-hieu-them',[AdminNhanHieuController::class, 'post_them_nhan_hieu'])->name('post-nhan-hieu-them');
+        Route::get('/get-nhan-hieu-them',[AdminNhanHieuController::class, 'get_them_nhan_hieu'])->name('get-nhan-hieu-them');
+        Route::get('/get-nhan-hieu-sua/{id}', [AdminNhanHieuController::class, 'get_sua_nhan_hieu'])->name('get-nhan-hieu-sua');
+        Route::post('/post-nhan-hieu-sua/{id}',[AdminNhanHieuController::class, 'post_sua_nhan_hieu'])->name('post-nhan-hieu-sua');
 
-        Route::get('/nhan-hieu-sua', function () {
-            return view('admin.nhanhieu.nhanhieu-sua');
-        });
-
-
-        Route::get('/nhan-hieu-them', function () {
-            return view('admin.nhanhieu.nhanhieu-them');
-        });
-
-
+        // loại sản phẩm
+         Route::get('/loai-san-pham', [AdminLoaiSanPhamController::class, 'get_loai_san_pham'])->name('get-loai-san-pham');
     });
         
 });
