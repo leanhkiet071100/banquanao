@@ -226,7 +226,7 @@
                     url: url,
                     type: "DELETE",
                     success: function(data) {
-                        console.log(data);
+                        
                         alert(data.mess);
                         loadnhanhieu();
                     }
@@ -300,7 +300,7 @@
                 console.log(data);
                 $('#table-dsnhanhieu').html("");
                 $.each(data.lsnhanhieu, function(key, item) {
-                    $('#table-dsnhanhieu').append('<tr>\
+                $('#table-dsnhanhieu').append('<tr>\
                                         <td class="text-center text-muted">' + (key + 1) + '</td>\
                                         <td class="td-hinh">\
                                             <div class="widget-content-center ">\

@@ -20,11 +20,11 @@
                 </div>
 
                 <div class="page-title-actions">
-                    <a href="./category-create.html" class="btn-shadow btn-hover-shine mr-3 btn btn-primary">
+                    <a  class="btn-shadow btn-hover-shine mr-3 btn btn-primary" style="color: white" onclick="hienformthem()">
                         <span class="btn-icon-wrapper pr-2 opacity-7">
                             <i class="fa fa-plus fa-w-20"></i>
                         </span>
-                        Create
+                        Thêm
                     </a>
                 </div>
             </div>
@@ -61,43 +61,15 @@
                         <table class="align-middle mb-0 table table-borderless table-striped table-hover">
                             <thead>
                                 <tr>
-                                    <th class="text-center">ID</th>
-                                    <th>Name</th>
-                                    <th class="text-center">Actions</th>
+                                    <th class="text-center" width="5%">ID</th>
+                                    <th class="text-center" width="50%">Tên</th>
+                                    <th class="text-center">nổi bật</th>
+                                    <th class="text-center">mới</th>
+                                    <th class="text-center">Hiện</th>
+                                    <th class="text-center">Hoạt động</th>
                                 </tr>
                             </thead>
-                            <tbody>
-
-                                <tr>
-                                    <td class="text-center text-muted">#01</td>
-                                    <td>
-                                        <div class="widget-content p-0">
-                                            <div class="widget-content-wrapper">
-                                                <div class="widget-content-left flex2">
-                                                    <div class="widget-heading">Men</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="text-center">
-                                        <a href="./category-edit.html" data-toggle="tooltip" title="Edit"
-                                            data-placement="bottom" class="btn btn-outline-warning border-0 btn-sm">
-                                            <span class="btn-icon-wrapper opacity-8">
-                                                <i class="fa fa-edit fa-w-20"></i>
-                                            </span>
-                                        </a>
-                                        <form class="d-inline" action="" method="post">
-                                            <button class="btn btn-hover-shine btn-outline-danger border-0 btn-sm"
-                                                type="submit" data-toggle="tooltip" title="Delete" data-placement="bottom"
-                                                onclick="return confirm('Do you really want to delete this item?')">
-                                                <span class="btn-icon-wrapper opacity-8">
-                                                    <i class="fa fa-trash fa-w-20"></i>
-                                                </span>
-                                            </button>
-                                        </form>
-                                    </td>
-                                </tr>
-
+                            <tbody id="table-ds">
 
                             </tbody>
                         </table>
@@ -174,12 +146,158 @@
         </div>
     </div>
     <!-- End Main -->
+
+    <div class="create" id="create">
+
+    </div>
 @endsection
 
 @section('js')
-  
+    <script type="text/javascript">
+        $(document).ready(function() {
+            loadloaisanpham()
+        });
+        
+        $(document).on('click', '.edit_loaisanpham', function(e) {
+            e.preventDefault();
+            //var url = "{{ route('admin.xoa-nhan-hieu', '1') }}";
+            var url = $(this).attr('data-url');
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                url: url,
+                type: 'GET',
+                //data: formData,
+                contentType: false,
+                processData: false,
+                success: function(data) {
+                    //console.log(data);
+                    var create_nhan_hieu = document.getElementById('create');
+                    create_nhan_hieu.style.display = "block";
+                    $('#create').html('');
+                    $('#create').append(data);
+                }
+            });
+        });
+
+        $(document).on('click', '.delete_loaisanpham', function(e) {
+            e.preventDefault();
+            var r = confirm("Bạn có chắc chắn muốn xóa?");
+            if (r == true) {
+                var idnhanhieu = $(this).val();
+                //var url = "{{ route('admin.xoa-nhan-hieu', '1') }}";
+                var url = $(this).attr('data-url');
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+
+                $.ajax({
+                    url: url,
+                    type: "DELETE",
+                    success: function(data) {
+                        alert(data.mess);
+                        loadloaisanpham();
+                    }
+                });
+            }
+        });
+    </script>
 @endsection
 
-<script>
-    
+<script type="text/javascript">
+    function loadloaisanpham() {
+        $.ajax({
+            url: "{{ route('admin.load-loai-san-pham') }}",
+            type: "GET",
+            dataType: "json",
+            success: function(data) {
+                $('#table-ds').html("");
+                $.each(data.lsloaisanpham, function(key, item) {
+                    $('#table-ds').append('<tr>\
+                                    <td class="text-center text-muted">' + (key + 1) + '</td>\
+                                    <td>\
+                                        <div class="widget-content p-0">\
+                                            <div class="widget-content-wrapper">\
+                                                <div class="widget-content-left flex2">\
+                                                    <div class="widget-heading">' + item.ten_loai_san_pham + '</div>\
+                                                </div>\
+                                            </div>\
+                                        </div>\
+                                    </td>\
+                                    <td class="td-radio">\
+                                            <div class=" check-magana text-center td-radio">\
+                                                {{-- <input class="form-check-input" type="checkbox" value=""\
+                                                    id="defaultCheck1"> --}}\
+                                                <input class="" type="checkbox" value="" id="defaultCheck1">\
+                                            </div>\
+                                    </td>\
+                                    <td class="td-radio">\
+                                            <div class=" check-magana text-center td-radio">\
+                                                {{-- <input class="form-check-input" type="checkbox" value=""\
+                                                    id="defaultCheck1"> --}}\
+                                                <input class="" type="checkbox" value="" id="defaultCheck1">\
+                                            </div>\
+                                    </td>\
+                                    <td class="td-radio">\
+                                            <div class=" check-magana text-center td-radio">\
+                                                {{-- <input class="form-check-input" type="checkbox" value=""\
+                                                    id="defaultCheck1"> --}}\
+                                                <input class="" type="checkbox" value="" id="defaultCheck1">\
+                                            </div>\
+                                    </td>\
+                                    <td class="text-center">\
+                                        <a data-url="{{ route('admin.get-loai-san-pham-sua', '') }}\/' + item.id + '" data-toggle="tooltip" title="Edit"\
+                                            data-placement="bottom" class="edit_loaisanpham btn btn-outline-warning border-0 btn-sm">\
+                                            <span class="btn-icon-wrapper opacity-8">\
+                                                <i class="fa fa-edit fa-w-20"></i>\
+                                            </span>\
+                                        </a>\
+                                        <form class="d-inline " action="" method="post">\
+                                            <button class="delete_loaisanpham btn btn-hover-shine btn-outline-danger border-0 btn-sm"\
+                                                type="button" data-toggle="tooltip" title="Delete" data-placement="bottom" data-url="{{ route('admin.xoa-loai-san-pham', '') }}\/' + item.id + '">\
+                                                <span class="btn-icon-wrapper opacity-8">\
+                                                    <i class="fa fa-trash fa-w-20"></i>\
+                                                </span>\
+                                            </button>\
+                                        </form>\
+                                    </td>\
+                                </tr>');
+                });
+            }
+        })
+    }
+
+    function hienformthem() {
+        //  var formData = new FormData();
+        //  formData.append('idpost', idpost);
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+            url: "{{ route('admin.get-loai-san-pham-them') }}",
+            type: 'GET',
+            //data: formData,
+            contentType: false,
+            processData: false,
+            success: function(data) {
+                //console.log(data);
+                var create_nhan_hieu = document.getElementById('create');
+                create_nhan_hieu.style.display = "block";
+                $('#create').html('');
+                $('#create').append(data);
+            }
+        });
+    }
+
+    function huy() {
+        var create_nhan_hieu = document.getElementById('create');
+        create_nhan_hieu.style.display = "none";
+    }
 </script>

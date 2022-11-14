@@ -135,7 +135,6 @@
                         //console.log(data.errors.hinhnhanhieu);
                         
                         if (data.status == 400) {
-                            $('#saveform_errList').html("");
                             $('#error-tennhanhieu').html("");
                             $('#error-tennhanhieu').append(data.errors.tennhanhieu[0]);
                             $('#error-hinhnhanhieu').html("");

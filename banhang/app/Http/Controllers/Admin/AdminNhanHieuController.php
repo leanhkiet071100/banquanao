@@ -38,7 +38,7 @@ class AdminNhanHieuController extends Controller
     }
 
     public function load_nhan_hieu(){
-        $lsnhanhieu = nhan_hieu::all();
+        $lsnhanhieu = nhan_hieu::get();
         return response()->json(['lsnhanhieu' => $lsnhanhieu]);
     }
 

@@ -80,6 +80,17 @@ td.td-radio {
     z-index: 100;
 }
 
+.create {
+    display: none;
+    position: absolute;
+    width: 50%;
+    /* height: 100%; */
+    top: 38%;
+    /*background-color: #d92550;*/
+    left: 35%;
+    z-index: 100;
+}
+
 .title {
     font-size: 24px;
     font-family: cursive;
@@ -104,7 +115,7 @@ td.td-radio {
     text-align: center;
 }
 
-.error{
+.error {
     display: block;
 }
 
@@ -114,4 +125,12 @@ a.btn.btn-outline-warning.border-0.btn-sm {
 
 a.btn.btn-outline-warning.border-0.btn-sm:hover {
     color: #070707;
+}
+
+a.mr-1.nut-huy{
+    color: red;
+}
+
+a.mr-1.nut-huy:hover{
+    color: white;
 }
