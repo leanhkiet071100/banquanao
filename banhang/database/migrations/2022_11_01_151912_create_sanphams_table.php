@@ -26,6 +26,7 @@ return new class extends Migration
             $table->double('trong_luong')->nullable();
             $table->string('tag')->nullable();
             $table->string('SKU')->nullable(); // SKU chính là 1 dạng mã số quy ước giúp phân loại mẫu sản phẩm, dịch vụ 
+            $table->text('hinh_anh')->nullable();
             $table->boolean('moi')->nullable();
             $table->boolean('noi_bat')->nullable();
             $table->boolean('hien')->nullable();

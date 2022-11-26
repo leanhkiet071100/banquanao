@@ -20,11 +20,11 @@
                 </div>
 
                 <div class="page-title-actions">
-                    <a href="./product-detail-create.html" class="btn-shadow btn-hover-shine mr-3 btn btn-primary">
+                    <a href="{{route('admin.get-chi-tiet-san-pham-them',['id'=>$idsp])}}" class="btn-shadow btn-hover-shine mr-3 btn btn-primary">
                         <span class="btn-icon-wrapper pr-2 opacity-7">
                             <i class="fa fa-plus fa-w-20"></i>
                         </span>
-                        Create
+                        TẠO
                     </a>
                 </div>
             </div>
@@ -69,34 +69,34 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach ($chitietsp as $key => $value)
+                                    <tr>
+                                        <td class="pl-4 text-muted">{{$value->ten_san_pham}}</td>
 
-                                <tr>
-                                    <td class="pl-4 text-muted">Calvin Klein</td>
+                                        <td class="">{{$value->mau}}</td>
+                                        <td class="">{{$value->kich_thuoc}}</td>
+                                        <td class="">{{$value->so_luong_kho}}</td>
 
-                                    <td class="">Blue</td>
-                                    <td class="">L</td>
-                                    <td class="">5</td>
-
-                                    <td class="text-center">
-                                        <a href="./product-detail-edit.html" data-toggle="tooltip" title="Edit"
-                                            data-placement="bottom" class="btn btn-outline-warning border-0 btn-sm">
-                                            <span class="btn-icon-wrapper opacity-8">
-                                                <i class="fa fa-edit fa-w-20"></i>
-                                            </span>
-                                        </a>
-                                        <form class="d-inline" action="" method="post">
-                                            <button class="btn btn-hover-shine btn-outline-danger border-0 btn-sm"
-                                                type="submit" data-toggle="tooltip" title="Delete" data-placement="bottom"
-                                                onclick="return confirm('Do you really want to delete this item?')">
+                                        <td class="text-center">
+                                            <a href="{{route('admin.get-chi-tiet-san-pham-them',['id'=>$value->ma_san_pham])}}" data-toggle="tooltip" title="Edit"
+                                                data-placement="bottom" class="btn btn-outline-warning border-0 btn-sm">
                                                 <span class="btn-icon-wrapper opacity-8">
-                                                    <i class="fa fa-trash fa-w-20"></i>
+                                                    <i class="fa fa-edit fa-w-20"></i>
                                                 </span>
-                                            </button>
-                                        </form>
-                                    </td>
-                                </tr>
-
-
+                                            </a>
+                                            <form class="d-inline" action="" method="post">
+                                                <button class="btn btn-hover-shine btn-outline-danger border-0 btn-sm"
+                                                    type="submit" data-toggle="tooltip" title="Delete"
+                                                    data-placement="bottom"
+                                                    onclick="return confirm('Do you really want to delete this item?')">
+                                                    <span class="btn-icon-wrapper opacity-8">
+                                                        <i class="fa fa-trash fa-w-20"></i>
+                                                    </span>
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

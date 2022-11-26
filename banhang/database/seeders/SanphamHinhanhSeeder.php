@@ -18,47 +18,47 @@ class SanphamHinhanhSeeder extends Seeder
         DB::table('sanpham_hinhanhs')->insert([
             [
                 'ma_san_pham' => 1,
-                'luu' => 'product-1.jpg',
+                'hinh_san_pham' => 'hinh_test/test.jpg',
             ],
             [
                 'ma_san_pham' => 1,
-                'luu' => 'product-1-1.jpg',
+                'hinh_san_pham' => 'hinh_test/test.jpg',
             ],
             [
                 'ma_san_pham' => 1,
-                'luu' => 'product-1-2.jpg',
+                'hinh_san_pham' => 'hinh_test/test.jpg',
             ],
             [
                 'ma_san_pham' => 2,
-                'luu' => 'product-2.jpg',
+                'hinh_san_pham' => 'hinh_test/test.jpg',
             ],
             [
                 'ma_san_pham' => 3,
-                'luu' => 'product-3.jpg',
+                'hinh_san_pham' => 'hinh_test/test.jpg',
             ],
             [
                 'ma_san_pham' => 4,
-                'luu' => 'product-4.jpg',
+                'hinh_san_pham' => 'hinh_test/test.jpg',
             ],
             [
                 'ma_san_pham' => 5,
-                'luu' => 'product-5.jpg',
+                'hinh_san_pham' => 'hinh_test/test.jpg',
             ],
             [
                 'ma_san_pham' => 6,
-                'luu' => 'product-6.jpg',
+                'hinh_san_pham' => 'hinh_test/test.jpg',
             ],
             [
                 'ma_san_pham' => 7,
-                'luu' => 'product-7.jpg',
+                'hinh_san_pham' => 'hinh_test/test.jpg',
             ],
             [
                 'ma_san_pham' => 8,
-                'luu' => 'product-8.jpg',
+                'hinh_san_pham' => 'hinh_test/test.jpg',
             ],
             [
                 'ma_san_pham' => 9,
-                'luu' => 'product-9.jpg',
+                'hinh_san_pham' => 'hinh_test/test.jpg',
             ],
         ]);
     }

@@ -16,7 +16,7 @@ class sanpham_hinhanh extends Model
 
     protected $fillable = [
         'ma_san_pham',
-        'luu',
+        'hinh_san_pham',
         
     ];
 

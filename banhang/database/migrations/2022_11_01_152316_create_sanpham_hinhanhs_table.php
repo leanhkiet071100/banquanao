@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('sanpham_hinhanhs', function (Blueprint $table) {
             $table->id();
             $table->foreignId('ma_san_pham');
-            $table->string('luu');
+            $table->string('hinh_san_pham');
             $table->boolean('moi')->nullable();
             $table->boolean('hien')->nullable();
             $table->text('trang_thai')->nullable();

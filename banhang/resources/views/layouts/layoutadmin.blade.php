@@ -22,6 +22,7 @@
     <link href="{{ URL('admin/assets/css/my_style.css') }}" rel="stylesheet">
     <link href="{{ URL('assetsicon/Pe-icon-7-stroke.css') }}" rel="stylesheet">
     <link href="{{ URL('assetsicon/style.css') }}" rel="stylesheet">
+
     {{-- <link href="{{URL('bootstrap/css/bootstrap.min.css')}}" rel="stylesheet"> --}}
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -442,49 +443,49 @@
                                                                                 <div
                                                                                     class="avatar-icon-wrapper avatar-icon-sm">
                                                                                     <div class="avatar-icon">
-                                                                                        <img src="{{ URL('admin/assets/images/avatars/1.jpg') }}"
+                                                                                        <img src="{{URL('admin/assets/images/avatars/1.jpg')}}"
                                                                                             alt="">
                                                                                     </div>
                                                                                 </div>
                                                                                 <div
                                                                                     class="avatar-icon-wrapper avatar-icon-sm">
                                                                                     <div class="avatar-icon">
-                                                                                        <img src="{{ URL('admin/assets/images/avatars/2.jpg') }}"
+                                                                                        <img src="{{URL('admin/assets/images/avatars/2.jpg')}}"
                                                                                             alt="">
                                                                                     </div>
                                                                                 </div>
                                                                                 <div
                                                                                     class="avatar-icon-wrapper avatar-icon-sm">
                                                                                     <div class="avatar-icon">
-                                                                                        <img src="{{ URL('admin/assets/images/avatars/3.jpg') }}"
+                                                                                        <img src="{{URL('admin/assets/images/avatars/3.jpg')}}"
                                                                                             alt="">
                                                                                     </div>
                                                                                 </div>
                                                                                 <div
                                                                                     class="avatar-icon-wrapper avatar-icon-sm">
                                                                                     <div class="avatar-icon">
-                                                                                        <img src="{{ URL('admin/assets/images/avatars/4.jpg') }}"
+                                                                                        <img src="{{URL('admin/assets/images/avatars/4.jpg')}}"
                                                                                             alt="">
                                                                                     </div>
                                                                                 </div>
                                                                                 <div
                                                                                     class="avatar-icon-wrapper avatar-icon-sm">
                                                                                     <div class="avatar-icon">
-                                                                                        <img src="{{ URL('admin/assets/images/avatars/5.jpg') }}"
+                                                                                        <img src="{{URL('admin/assets/images/avatars/5.jpg')}}"
                                                                                             alt="">
                                                                                     </div>
                                                                                 </div>
                                                                                 <div
                                                                                     class="avatar-icon-wrapper avatar-icon-sm">
                                                                                     <div class="avatar-icon">
-                                                                                        <img src="{{ URL('admin/assets/images/avatars/9.jpg') }}"
+                                                                                        <img src="{{URL('admin/assets/images/avatars/9.jpg')}}"
                                                                                             alt="">
                                                                                     </div>
                                                                                 </div>
                                                                                 <div
                                                                                     class="avatar-icon-wrapper avatar-icon-sm">
                                                                                     <div class="avatar-icon">
-                                                                                        <img src="{{ URL('admin/assets/images/avatars/7.jpg') }}"
+                                                                                        <img src="{{URL('admin/assets/images/avatars/7.jpg')}}"
                                                                                             alt="">
                                                                                     </div>
                                                                                 </div>
@@ -1639,7 +1640,7 @@
                                                                                                 class="avatar-icon-wrapper avatar-icon-sm">
                                                                                                 <div
                                                                                                     class="avatar-icon">
-                                                                                                    <img src="assets/images/avatars/1.jpg"
+                                                                                                    <img src="{{URL('admin/assets/images/avatars/1.jpg')}}"
                                                                                                         alt="">
                                                                                                 </div>
                                                                                             </div>
@@ -1647,7 +1648,7 @@
                                                                                                 class="avatar-icon-wrapper avatar-icon-sm">
                                                                                                 <div
                                                                                                     class="avatar-icon">
-                                                                                                    <img src="assets/images/avatars/2.jpg"
+                                                                                                    <img src="{{URL('admin/assets/images/avatars/2.jpg')}}"
                                                                                                         alt="">
                                                                                                 </div>
                                                                                             </div>
@@ -1655,7 +1656,7 @@
                                                                                                 class="avatar-icon-wrapper avatar-icon-sm">
                                                                                                 <div
                                                                                                     class="avatar-icon">
-                                                                                                    <img src="assets/images/avatars/3.jpg"
+                                                                                                    <img src="{{URL('admin/assets/images/avatars/3.jpg')}}"
                                                                                                         alt="">
                                                                                                 </div>
                                                                                             </div>
@@ -1663,7 +1664,7 @@
                                                                                                 class="avatar-icon-wrapper avatar-icon-sm">
                                                                                                 <div
                                                                                                     class="avatar-icon">
-                                                                                                    <img src="assets/images/avatars/4.jpg"
+                                                                                                    <img src="{{URL('admin/assets/images/avatars/4.jpg')}}"
                                                                                                         alt="">
                                                                                                 </div>
                                                                                             </div>
@@ -1671,7 +1672,7 @@
                                                                                                 class="avatar-icon-wrapper avatar-icon-sm">
                                                                                                 <div
                                                                                                     class="avatar-icon">
-                                                                                                    <img src="assets/images/avatars/5.jpg"
+                                                                                                    <img src="{{URL('admin/assets/images/avatars/5.jpg')}}"
                                                                                                         alt="">
                                                                                                 </div>
                                                                                             </div>
@@ -1679,7 +1680,7 @@
                                                                                                 class="avatar-icon-wrapper avatar-icon-sm">
                                                                                                 <div
                                                                                                     class="avatar-icon">
-                                                                                                    <img src="assets/images/avatars/9.jpg"
+                                                                                                    <img src="{{URL('admin/assets/images/avatars/9.jpg')}}"
                                                                                                         alt="">
                                                                                                 </div>
                                                                                             </div>
@@ -1687,7 +1688,7 @@
                                                                                                 class="avatar-icon-wrapper avatar-icon-sm">
                                                                                                 <div
                                                                                                     class="avatar-icon">
-                                                                                                    <img src="assets/images/avatars/7.jpg"
+                                                                                                    <img src="{{URL('admin/assets/images/avatars/7.jpg')}}"
                                                                                                         alt="">
                                                                                                 </div>
                                                                                             </div>
@@ -1695,7 +1696,7 @@
                                                                                                 class="avatar-icon-wrapper avatar-icon-sm">
                                                                                                 <div
                                                                                                     class="avatar-icon">
-                                                                                                    <img src="assets/images/avatars/8.jpg"
+                                                                                                    <img src="{{URL('admin/assets/images/avatars/8.jpg')}}"
                                                                                                         alt="">
                                                                                                 </div>
                                                                                             </div>
@@ -2545,7 +2546,7 @@
                                         <div class="widget-content-left mr-3">
                                             <div class="widget-content-left">
                                                 <img width="42" class="rounded"
-                                                    src="assets/images/avatars/1.jpg" alt="" />
+                                                    src="{{URL('admin/assets/images/avatars/3.jpg')}}" alt="" />
                                             </div>
                                         </div>
                                         <div class="widget-content-left">
@@ -2719,14 +2720,17 @@
     </div>
     <div class="app-drawer-overlay d-none animated fadeIn"></div>
 
-  
+
 
     <script src="{{ URL('admin/assets/scripts/jquery-3.2.1.min.js') }}"></script>
+
+
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script href="{{ URL('assetsicon/demo-files/demo.js') }}" type="text/javascript"></script>
     <script type="text/javascript" src="{{ URL('admin/assets/scripts/main.js') }}"></script>
     <script type="text/javascript" src="{{ URL('admin/assets/scripts/my_script.js') }}"></script>
-    <script href="{{ URL('assetsicon/demo-files/demo.js') }}" type="text/javascript"></script>
-
+    <script src="{{ URL('ckeditor/ckeditor.js') }}"></script>
+    {{-- <script src="//cdn.ckeditor.com/4.20.0/standard/ckeditor.js"></script> --}}
     @yield('js')
 </body>
 

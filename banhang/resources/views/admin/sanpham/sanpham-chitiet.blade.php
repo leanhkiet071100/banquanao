@@ -13,7 +13,7 @@
                         <i class="pe-7s-ticket icon-gradient bg-mean-fruit"></i>
                     </div>
                     <div>
-                        Product
+                        SẢN PHẨM
                         <div class="page-title-subheading">
                             View, create, update, delete and manage.
                         </div>
@@ -26,113 +26,104 @@
             <div class="col-md-12">
                 <div class="main-card mb-3 card">
                     <div class="card-body display_data">
-
                         <div class="position-relative row form-group">
-                            <label for="" class="col-md-3 text-md-right col-form-label">Images</label>
+                            <label for="" class="col-md-3 text-md-right col-form-label">Hình ảnh</label>
                             <div class="col-md-9 col-xl-8">
                                 <ul class="text-nowrap overflow-auto" id="images">
                                     <li class="d-inline-block mr-1" style="position: relative;">
-                                        <img style="height: 150px;" src="assets/images/_default-product.jpg" alt="Image">
+                                        <img style="height: 150px;" src="{{URL($sanpham->hinh_anh)}}" alt="Image">
                                     </li>
                                 </ul>
                             </div>
                         </div>
-
                         <div class="position-relative row form-group">
-                            <label for="brand_id" class="col-md-3 text-md-right col-form-label">Product Images</label>
+                            <label for="brand_id" class="col-md-3 text-md-right col-form-label">Danh sách hình ảnh</label>
                             <div class="col-md-9 col-xl-8">
-                                <p><a href="./product-image.html">Manage images</a></p>
+                                <p><a href="{{route('admin.chi-tiet-san-pham-hinh-anh',['id'=>$sanpham->id])}}">Quản lí hình ảnh</a></p>
                             </div>
                         </div>
 
                         <div class="position-relative row form-group">
-                            <label for="brand_id" class="col-md-3 text-md-right col-form-label">Product Details</label>
+                            <label for="brand_id" class="col-md-3 text-md-right col-form-label">Chi tiết</label>
                             <div class="col-md-9 col-xl-8">
-                                <p><a href="./product-detail.html">Manage details</a></p>
+                                <p><a href="{{route('admin.chi-tiet-san-pham-ds',['id'=>$sanpham->id])}}">quản lí chi tiết</a></p>
                             </div>
                         </div>
 
                         <div class="position-relative row form-group">
-                            <label for="brand_id" class="col-md-3 text-md-right col-form-label">Brand</label>
+                            <label for="brand_id" class="col-md-3 text-md-right col-form-label">Nhãn hiệu</label>
                             <div class="col-md-9 col-xl-8">
-                                <p>Calvin Klein</p>
+                                <p>{{ $sanpham->ten_nhan_hieu }}</p>
                             </div>
                         </div>
 
                         <div class="position-relative row form-group">
-                            <label for="product_category_id" class="col-md-3 text-md-right col-form-label">Category</label>
+                            <label for="product_category_id" class="col-md-3 text-md-right col-form-label">Loại sản phẩm</label>
                             <div class="col-md-9 col-xl-8">
-                                <p>Men</p>
+                                <p>{{ $sanpham->ten_loai_san_pham }}</p>
                             </div>
                         </div>
 
                         <div class="position-relative row form-group">
-                            <label for="name" class="col-md-3 text-md-right col-form-label">Name</label>
+                            <label for="name" class="col-md-3 text-md-right col-form-label">Tên sản phẩm</label>
                             <div class="col-md-9 col-xl-8">
-                                <p>Pure Pineapple</p>
+                                <p>{{ $sanpham->ten_san_pham }}</p>
                             </div>
                         </div>
 
                         <div class="position-relative row form-group">
-                            <label for="content" class="col-md-3 text-md-right col-form-label">Content</label>
+                            <label for="price" class="col-md-3 text-md-right col-form-label">Giá</label>
                             <div class="col-md-9 col-xl-8">
-                                <p>High quality fabric, modern and youthful design</p>
+                                <p>{{ $sanpham->gia }}</p>
                             </div>
                         </div>
 
                         <div class="position-relative row form-group">
-                            <label for="price" class="col-md-3 text-md-right col-form-label">Price</label>
+                            <label for="discount" class="col-md-3 text-md-right col-form-label">Giảm giá</label>
                             <div class="col-md-9 col-xl-8">
-                                <p>$629.99</p>
+                                <p>{{ $sanpham->tien_giam }}</p>
                             </div>
                         </div>
 
                         <div class="position-relative row form-group">
-                            <label for="discount" class="col-md-3 text-md-right col-form-label">Discount</label>
+                            <label for="qty" class="col-md-3 text-md-right col-form-label">Số lượng kho</label>
                             <div class="col-md-9 col-xl-8">
-                                <p>$495.00</p>
+                                <p>{{ $sanpham->so_luong_kho }}</p>
                             </div>
                         </div>
 
                         <div class="position-relative row form-group">
-                            <label for="qty" class="col-md-3 text-md-right col-form-label">Qty</label>
+                            <label for="weight" class="col-md-3 text-md-right col-form-label">Cân nặng</label>
                             <div class="col-md-9 col-xl-8">
-                                <p>20</p>
-                            </div>
-                        </div>
-
-                        <div class="position-relative row form-group">
-                            <label for="weight" class="col-md-3 text-md-right col-form-label">Weight</label>
-                            <div class="col-md-9 col-xl-8">
-                                <p>1.3</p>
+                                <p>{{ $sanpham->trong_luong==null?'chưa có trọng lượng': $sanpham->trong_luong }}</p>
                             </div>
                         </div>
 
                         <div class="position-relative row form-group">
                             <label for="sku" class="col-md-3 text-md-right col-form-label">SKU</label>
                             <div class="col-md-9 col-xl-8">
-                                <p>00012</p>
+                                <p>{{$sanpham->SKU==null?'không có mã sku':$sanpham->SKU}} </p>
                             </div>
                         </div>
 
                         <div class="position-relative row form-group">
                             <label for="tag" class="col-md-3 text-md-right col-form-label">Tag</label>
                             <div class="col-md-9 col-xl-8">
-                                <p>Clothing</p>
+                                <p>{{$sanpham->tag==null?'không có tag':$sanpham->tag}}</p>
                             </div>
                         </div>
 
                         <div class="position-relative row form-group">
-                            <label for="featured" class="col-md-3 text-md-right col-form-label">Featured</label>
+                            <label for="content" class="col-md-3 text-md-right col-form-label">Nội dung</label>
                             <div class="col-md-9 col-xl-8">
-                                <p>Yes</p>
+                                <p id=>{!!$sanpham->noi_dung==null?'Chưa có nội dung':$sanpham->noi_dung!!}</p>
                             </div>
                         </div>
 
                         <div class="position-relative row form-group">
-                            <label for="description" class="col-md-3 text-md-right col-form-label">Description</label>
+                            <label for="description" class="col-md-3 text-md-right col-form-label">Mô tả</label>
                             <div class="col-md-9 col-xl-8">
-                                <p>Product description</p>
+                                <p>{!!$sanpham->mo_ta==null?'Chưa có mô tả':$sanpham->mo_ta!!}</p>
                             </div>
                         </div>
                     </div>
@@ -143,6 +134,8 @@
     <!-- End Main -->
 @endsection
 
-@section('content')
-    <p>This is my body content.</p>
+@section('js')
+    <script>
+        
+    </script>
 @endsection

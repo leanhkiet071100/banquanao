@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminNhanHieuController;
 use App\Http\Controllers\Admin\AdminLoaiSanPhamController;
+use App\Http\Controllers\Admin\AdminSanPhamController;
 
 
 /*
@@ -62,25 +63,22 @@ Route::middleware('auth')->group(function(){});
 
 Route::prefix('admin')->group(function(){
     Route::name('admin.')->group(function(){ 
-        Route::get('/san-pham', function () {
-            return view('admin.sanpham.sanpham-ds');
-        });
+
+        //sản phẩm
+        Route::get('/san-pham', [AdminSanPhamController::class, 'san_pham'])->name('san-pham');
+        Route::get('/san-pham-them', [AdminSanPhamController::class, 'get_them_san_pham'])->name('get-san-pham-them');
+        Route::post('/san-pham-them', [AdminSanPhamController::class, 'post_them_san_pham'])->name('post-san-pham-them');
+        //chi tiết sản phẩm
+        Route::get('/chi-tiet-san-pham/{id}', [AdminSanPhamController::class, 'chi_tiet_san_pham'])->name('chi-tiet-san-pham');
+        Route::get('/chi-tiet-san-pham-ds/{id}',[AdminSanPhamController::class, 'chi_tiet_san_pham_ds'])->name('chi-tiet-san-pham-ds');
+        Route::get('/chi-tiet-san-pham-them/{id}',[AdminSanPhamController::class, 'get_chi_tiet_san_pham_them'])->name('get-chi-tiet-san-pham-them');
+        //sản phẩm hình ảnh
+        Route::get('/chi-tiet-san-pham-hinh-anh/{id}',[AdminSanPhamController::class, 'chi_tiet_san_pham_hinh_anh'])->name('chi-tiet-san-pham-hinh-anh');
+        Route::post('/san-pham-them-hinh',[AdminSanPhamController::class, 'them_hinh_san_pham'])->name('them-hinh-san-pham');
+        Route::get('/load-hinh-anh-san-pham/{id}',[AdminSanPhamController::class, 'load_hinh_anh_san_pham'])->name('load-hinh-anh-san-pham');
+        Route::delete('/xoa-hinh-san-pham/{id}', [AdminSanPhamController::class, 'xoa_hinh_san_pham'])->name('xoa-hinh-san-pham');
         //bài viết
-        Route::get('/bai-viet', function () {
-            return view('admin.baiviet.baiviet-ds');
-        });
-
-        Route::get('/chi-tiet-bai-viet', function () {
-            return view('admin.baiviet.baiviet-chitiet');
-        });
-
-        Route::get('/sua-bai-viet', function () {
-            return view('admin.baiviet.baiviet-sua');
-        });
-
-        Route::get('/san-pham-hinh', function () {
-            return view('admin.sanpham.sanpham-hinh');
-        });
+        Route::get('/bai-viet', function () { return view('admin.baiviet.baiviet-ds');});
 
         // nhãn hiệu
         Route::get('/nhan-hieu', [AdminNhanHieuController::class, 'get_nhan_hieu'])->name('get-nhan-hieu');
