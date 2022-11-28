@@ -156,7 +156,7 @@ class SanphamSeeder extends Seeder
                 'tien_giam' => 34,
                 'trong_luong' => null,
                 'sku' => null,
-                'hinh_anh' => null,
+                'hinh_anh' => 'hinh_test/test.jpg',
                 //'featured' => true,
                 'tag' => 'Shoes',
             ],

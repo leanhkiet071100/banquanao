@@ -31,6 +31,7 @@ class sanpham extends Model
         'trong_luong',
         'tag',
         'SKU', 
+        'hinh_anh'
     ];
 
     protected $primayKey = 'id';

@@ -112,6 +112,10 @@
     <!-- End Main -->
 @endsection
 
-@section('content')
-    <p>This is my body content.</p>
+@section('js')
+    <script>
+        $(document).ready(function() {
+            $('#san-pham').addClass('mm-active');
+        });
+    </script>
 @endsection

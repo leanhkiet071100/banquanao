@@ -3,6 +3,11 @@
 @section('title', 'mạng xã hội')
 @section('sidebar')
     @parent
+    @if(session()->has('success'))
+        <script>
+            alert('{{session()->get('success')}}')
+        </script>
+    @endif
     <!-- Main -->
     <div class="app-main__inner">
         <div class="app-page-title">
@@ -76,15 +81,15 @@
                             <tbody>
                                 @foreach ($lssanpham as $key => $value)
                                     <tr>
-                                        <td class="text-center text-muted">{{ $value->id}}</td>
+                                        <td class="text-center text-muted">{{ $key + 1}}</td>
                                         <td>
                                             <div class="widget-content p-0">
                                                 <div class="widget-content-wrapper">
                                                     <div class="widget-content-left mr-3">
                                                         <div class="widget-content-left">
-                                                            <img style="height: 60px;" data-toggle="tooltip" title="Image"
+                                                            <img style="height: 60px; width:60px;" data-toggle="tooltip" title="Image"
                                                                 data-placement="bottom"
-                                                                src="assets/images/_default-product.jpg" alt="">
+                                                                src="{{URL($value->hinh_anh)}}" alt="">
                                                         </div>
                                                     </div>
                                                     <div class="widget-content-left flex2">
@@ -129,17 +134,19 @@
                                                 class="btn btn-hover-shine btn-outline-primary border-0 btn-sm">
                                                 Chi tiết
                                             </a>
-                                            <a href="./product-edit.html" data-toggle="tooltip" title="Edit"
+                                            <a href="{{route('admin.get-san-pham-sua',['id'=>$value->id])}}" data-toggle="tooltip" title="Edit"
                                                 data-placement="bottom" class="btn btn-outline-warning border-0 btn-sm">
                                                 <span class="btn-icon-wrapper opacity-8">
                                                     <i class="fa fa-edit fa-w-20"></i>
                                                 </span>
                                             </a>
-                                            <form class="d-inline" action="" method="post">
+                                            <form class="d-inline" action="{{route('admin.san-pham-xoa',['id'=>$value->id])}}" method="POST">
+                                                @method('DELETE')
+                                                @csrf
                                                 <button class="btn btn-hover-shine btn-outline-danger border-0 btn-sm"
                                                     type="submit" data-toggle="tooltip" title="Delete"
                                                     data-placement="bottom"
-                                                    onclick="return confirm('Do you really want to delete this item?')">
+                                                    onclick="return confirm('Bạn có chắc muốn xóa?')">
                                                     <span class="btn-icon-wrapper opacity-8">
                                                         <i class="fa fa-trash fa-w-20"></i>
                                                     </span>
@@ -198,9 +205,7 @@
                                             <span
                                                 class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium text-gray-500 bg-white border border-gray-300 cursor-default leading-5">1</span>
                                         </span>
-                                        <a href="#page=2"
-                                            class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium text-gray-700 bg-white border border-gray-300 leading-5 hover:text-gray-500 focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150"
-                                            aria-label="Go to page 2">
+                                        <a href="#page=2" class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium text-gray-700 bg-white border border-gray-300 leading-5 hover:text-gray-500 focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150"  aria-label="Go to page 2">
                                             2
                                         </a>
 
@@ -226,6 +231,10 @@
     <!-- End Main -->
 @endsection
 
-@section('content')
-    <p>This is my body content.</p>
+@section('js')
+    <script>
+        $(document).ready(function() {
+            $('#san-pham').addClass('mm-active');
+        });
+    </script>
 @endsection

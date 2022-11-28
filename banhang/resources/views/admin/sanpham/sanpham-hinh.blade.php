@@ -105,6 +105,7 @@
 @section('js')
     <script type="text/javascript">
         $(document).ready(function() {
+             $('#san-pham').addClass('mm-active');
             loadhinhsp()
         });
 

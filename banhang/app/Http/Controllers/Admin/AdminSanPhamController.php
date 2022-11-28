@@ -22,14 +22,17 @@ use Illuminate\Support\Facades\Validator;
 
 class AdminSanPhamController extends Controller
 {
+    //sản phẩm
     public function san_pham(){
         $lssanpham = sanpham::join('loai_san_phams','loai_san_phams.id', '=','sanphams.ma_loai_san_pham')
-                    ->select('sanphams.id','loai_san_phams.ten_loai_san_pham','sanphams.ten_san_pham','sanphams.gia','sanphams.so_luong_kho','sanphams.moi','sanphams.noi_bat','sanphams.hien')
+                    ->select('sanphams.id','loai_san_phams.ten_loai_san_pham','sanphams.ten_san_pham','sanphams.gia','sanphams.so_luong_kho','sanphams.moi','sanphams.noi_bat','sanphams.hien','sanphams.hinh_anh')
+                    ->orderby('sanphams.ten_san_pham')
                     ->get();
         //dd($lssanpham);
         return view('admin.sanpham.sanpham-ds')->with(['lssanpham'=>$lssanpham]);
     }
 
+    //thêm sản phẩm
     public function get_them_san_pham(){
         $lsloaisanpham = loai_san_pham::all();
         $lsnhanhieu = nhan_hieu::all();
@@ -41,8 +44,8 @@ class AdminSanPhamController extends Controller
             'nhanhieu_id' => 'required',
             'loaisp_id'=>'required',
             'tensp' => 'required|unique:sanphams,ten_san_pham',
-            'mota' => 'required',
-            'noidung' => 'required',
+            // 'mota' => 'required',
+            // 'noidung' => 'required',
             'giasp' => 'required|numeric',
             'soluongkho' => 'required|numeric',
             'trongluong' => 'required|numeric',
@@ -62,8 +65,8 @@ class AdminSanPhamController extends Controller
             'nhanhieu_id' => 'nhãn hiệu',
             'loaisp_id'=>'loại sản phẩm',
             'tensp' => 'Tên sản phẩm',
-            'mota' => 'Mô tả',
-            'noidung' => 'Nội dung',
+            // 'mota' => 'Mô tả',
+            // 'noidung' => 'Nội dung',
             'giasp' => 'Giá sản phẩm',
             'soluongkho' => 'Số lượng kho',
             'trongluong' => 'Trọng lượng',
@@ -84,7 +87,6 @@ class AdminSanPhamController extends Controller
         $trongluong = $request->input('trongluong');
         $tag = $request->input('tag');
         $SKU = $request->input('sku');
-
         $sanphammoi = new sanpham;
         $sanphammoi->fill([
             'ma_nhan_hieu'=> $nhanhieu_id,
@@ -97,12 +99,14 @@ class AdminSanPhamController extends Controller
             'tien_giam'=> $tiengiam,
             'trong_luong'=> $trongluong,
             'tag'=>$tag,
-            'sku'=>$SKU,
+            'SKU'=>$SKU,
+            'hinh_anh'=>'hinh_test/no-img.jpg'
         ]);
         $sanphammoi->save();
         return Redirect::route('admin.san-pham');
     }
 
+    //chi tiết sản phẩm
     public function chi_tiet_san_pham($id){
         $sanpham = sanpham::join('loai_san_phams','loai_san_phams.id', '=','sanphams.ma_loai_san_pham')
                             ->join('nhan_hieus','nhan_hieus.id', '=','sanphams.ma_nhan_hieu')
@@ -118,12 +122,14 @@ class AdminSanPhamController extends Controller
         return view('admin.sanpham.chitietsanpham-ds')->with(['chitietsp'=>$chitietsp,'idsp'=>$id]);
     }
 
+    //hình sản phẩm
     public function chi_tiet_san_pham_hinh_anh($id){
         $sanpham = sanpham::find($id);
         $sanphamhinh = sanpham_hinhanh::where('ma_san_pham','=',$id)->get();
         return view('admin.sanpham.sanpham-hinh')->with(['sanpham'=>$sanpham,'sanphamhinh'=>$sanphamhinh]);
     }
 
+    //load hình sản phẩm
     public function load_hinh_anh_san_pham($id){
         $sanphamhinh = sanpham_hinhanh::where('ma_san_pham','=',$id)->get();
         return response()->json(['sanphamhinh' => $sanphamhinh]);
@@ -143,6 +149,7 @@ class AdminSanPhamController extends Controller
         return view('admin.sanpham.chitietsanpham-them')->with(['sanpham'=>$sanpham]);
     }
 
+    //hình ảnh sản phẩm
     public function them_hinh_san_pham(Request $request){
         $validator = Validator::make($request->all(), [
             'hinhsp' => 'required',
@@ -191,6 +198,124 @@ class AdminSanPhamController extends Controller
                 'mess'=>'thêm hình ảnh thành công',
             ]);
         }
+    }
+
+    public function hinh_anh_san_pham(Request $request, $id){
+       $hinhanhsp = $request->file('hinhanhsp');
+       $allowedfileExtension=['jpg','png', 'jpeg', 'svg', 'PNG', 'JPG', 'JPEG','SVG'];
+       if($hinhanhsp!=null)
+       {
+            $typefile = $hinhanhsp->getClientOriginalExtension();
+            $check=in_array($typefile,$allowedfileExtension);
+            if(!$check){
+                    return response()->json([
+                        'status'=>400,
+                        'mess'=>'Đây không phải hình ảnh',
+                    ]);
+                } else{
+                    $file_name = time().Str::random(10).'.'.$hinhanhsp->getClientOriginalExtension();
+                    $imagePath = $hinhanhsp->move(public_path('hinh_anh_san_pham/'.$id.'/'), $file_name);
+                    $ten_file = 'hinh_anh_san_pham/'.$id.'/'.$file_name;
+                    $sanpham = sanpham::find($id);
+                    $sanpham->hinh_anh = $ten_file;
+                    $sanpham->save();
+                    return response()->json([
+                        'status'=>200,
+                        'mess'=>'Sửa hình ảnh thành công',
+                    ]);
+                }
+        } else {
+            return response()->json([
+                'status'=>400,
+                'mess'=>'Không được bỏ trống hình ảnh',
+            ]);
+        }
+
+    }
+
+    //sửa sản phẩm
+    public function get_san_pham_sua($id){
+        $sanpham = sanpham::join('loai_san_phams','loai_san_phams.id', '=','sanphams.ma_loai_san_pham')
+                    ->join('nhan_hieus','nhan_hieus.id','=','sanphams.ma_nhan_hieu')
+                    ->select('sanphams.*','loai_san_phams.ten_loai_san_pham','nhan_hieus.ten_nhan_hieu')
+                    ->find($id);
+                    //dd( $sanpham);
+        $lsloaisanpham = loai_san_pham::all();
+        $lsnhanhieu = nhan_hieu::all();
+        return view('admin.sanpham.sanpham-sua')->with(['sanpham'=>$sanpham, 'lsloaisanpham'=>$lsloaisanpham,'lsnhanhieu'=>$lsnhanhieu]);
+    }
+
+    public function post_san_pham_sua(Request $request,$id){
+         $rule = [
+            'nhanhieu_id' => 'required',
+            'loaisp_id'=>'required',
+            'tensp' => 'required',
+            // 'mota' => 'required',
+            // 'noidung' => 'required',
+            'giasp' => 'required|numeric',
+            'soluongkho' => 'required|numeric',
+            'trongluong' => 'required|numeric',
+            'sku' =>'required|numeric',
+        ];
+        $message =[
+            'required' => ':attribute không được để trống',
+            'min' => ':attribute phải lớn hơn :min', // lớn hơn  (không phải độ dài)
+            'max' => ':attribute phải nhỏ hơn :max', // nhỏ hơn
+            'numeric' => ':attribute phải là số',
+            'unique' => ':attribute đã tồn tại',
+            //'image' => ':attribute không đúng định dạng',
+            'mimes' => ':attribute không đúng định dạng',
+
+        ];
+        $attribute = [
+            'nhanhieu_id' => 'nhãn hiệu',
+            'loaisp_id'=>'loại sản phẩm',
+            'tensp' => 'Tên sản phẩm',
+            // 'mota' => 'Mô tả',
+            // 'noidung' => 'Nội dung',
+            'giasp' => 'Giá sản phẩm',
+            'soluongkho' => 'Số lượng kho',
+            'trongluong' => 'Trọng lượng',
+            'sku' =>'SKU',
+        ];
+
+        $request->validate($rule, $message, $attribute);
+
+        $nhanhieu_id = $request->input('nhanhieu_id');
+        $loaisp_id = $request->input('loaisp_id');
+        $tensp = $request->input('tensp');
+        $mota = $request->input('mota');
+        $noidung = $request->input('noidung');
+        $gia = $request->input('giasp');
+        $soluongkho = $request->input('soluongkho');
+        $tiengiam = $request->input('giamgia');
+        $trongluong = $request->input('trongluong');
+        $tag = $request->input('tag');
+        $SKU = $request->input('sku');
+
+        $sanpham = sanpham::find($id);
+        $sanpham->fill([
+            'ma_nhan_hieu'=> $nhanhieu_id,
+            'ma_loai_san_pham'=> $loaisp_id,
+            'ten_san_pham'=> $tensp,
+            'mo_ta'=>$mota,
+            'noi_dung'=>$noidung,
+            'gia'=> $gia,
+            'so_luong_kho'=> $soluongkho,
+            'tien_giam'=> $tiengiam,
+            'trong_luong'=> $trongluong,
+            'tag'=>$tag,
+            'SKU'=>$SKU,
+        ]);
+        $sanpham->save();
+        session()->flash('success','sửa thành công');
+        return Redirect::route('admin.san-pham')->with('success','sửa thành công');
+    }
+
+    public function san_pham_xoa(Request $request,$id){
+        $sanpham = sanpham::find($id);
+        $sanpham->delete();
+        return Redirect::route('admin.san-pham')->with('success','Xóa thành công');
     }
 
 }

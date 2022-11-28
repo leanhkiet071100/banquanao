@@ -156,3 +156,7 @@ a.mr-1.nut-huy:hover {
 .hinhanh {
     text-align: end;
 }
+
+li#hinh-anh-san-pham {
+    display: none;
+}

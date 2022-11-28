@@ -68,6 +68,10 @@ Route::prefix('admin')->group(function(){
         Route::get('/san-pham', [AdminSanPhamController::class, 'san_pham'])->name('san-pham');
         Route::get('/san-pham-them', [AdminSanPhamController::class, 'get_them_san_pham'])->name('get-san-pham-them');
         Route::post('/san-pham-them', [AdminSanPhamController::class, 'post_them_san_pham'])->name('post-san-pham-them');
+        Route::post('/hinh-anh-san-pham/{id}',[AdminSanPhamController::class, 'hinh_anh_san_pham'])->name('hinh-anh-san-pham');
+        Route::get('/san-pham-sua/{id}',[AdminSanPhamController::class, 'get_san_pham_sua'])->name('get-san-pham-sua');
+        Route::post('/san-pham-sua/{id}',[AdminSanPhamController::class, 'post_san_pham_sua'])->name('post-san-pham-sua');
+        Route::delete('/san-pham-xoa/{id}',[AdminSanPhamController::class, 'san_pham_xoa'])->name('san-pham-xoa');
         //chi tiết sản phẩm
         Route::get('/chi-tiet-san-pham/{id}', [AdminSanPhamController::class, 'chi_tiet_san_pham'])->name('chi-tiet-san-pham');
         Route::get('/chi-tiet-san-pham-ds/{id}',[AdminSanPhamController::class, 'chi_tiet_san_pham_ds'])->name('chi-tiet-san-pham-ds');

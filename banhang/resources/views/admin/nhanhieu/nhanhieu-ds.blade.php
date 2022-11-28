@@ -206,6 +206,7 @@
 @section('js')
     <script>
         $(document).ready(function() {
+            $('#nhan-hieu').addClass('mm-active');
             loadnhanhieu()
         });
 

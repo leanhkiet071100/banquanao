@@ -39,7 +39,7 @@
                                             </option>
                                         @endforeach
                                     </select>
-                                      <div class="text-center">
+                                    <div class="text-center">
                                         @error('nhanhieu_id')
                                             <span style="color:red"> {{ $message }}</span>
                                         @enderror
@@ -59,7 +59,7 @@
                                             </option>
                                         @endforeach
                                     </select>
-                                     <div class="text-center">
+                                    <div class="text-center">
                                         @error('loaisp_id')
                                             <span style="color:red"> {{ $message }}</span>
                                         @enderror
@@ -67,7 +67,7 @@
                                 </div>
                             </div>
 
-                            <div  class="position-relative row form-group">
+                            <div class="position-relative row form-group">
                                 <label for="tensp" class="col-md-3 text-md-right col-form-label">Tên sản phẩm</label>
                                 <div class="col-md-9 col-xl-8">
                                     <input required name="tensp" id="tensp" placeholder="Tên sản phẩm" type="text"
@@ -85,7 +85,7 @@
                                 <label for="giasp" class="col-md-3 text-md-right col-form-label">Giá</label>
                                 <div class="col-md-9 col-xl-8">
                                     <input required name="giasp" id="giasp" placeholder="giá" type="text"
-                                        class="form-control" value="{{ old('tensp') }}">
+                                        class="form-control" value="{{ old('giasp') }}">
                                     <div class="text-center">
                                         @error('giasp')
                                             <span style="color:red"> {{ $message }}</span>
@@ -97,8 +97,8 @@
                             <div class="position-relative row form-group">
                                 <label for="trongluong" class="col-md-3 text-md-right col-form-label">Trọng lượng</label>
                                 <div class="col-md-9 col-xl-8">
-                                    <input required name="trongluong" id="trongluong" placeholder="Trọng lượng" type="text"
-                                        class="form-control" value="{{ old('trongluong') }}">
+                                    <input required name="trongluong" id="trongluong" placeholder="Trọng lượng"
+                                        type="text" class="form-control" value="{{ old('trongluong') }}">
                                     <div class="text-center">
                                         @error('trongluong')
                                             <span style="color:red"> {{ $message }}</span>
@@ -109,8 +109,8 @@
                             <div class="position-relative row form-group">
                                 <label for="soluongkho" class="col-md-3 text-md-right col-form-label">Số lượng kho</label>
                                 <div class="col-md-9 col-xl-8">
-                                    <input required name="soluongkho" id="soluongkho" placeholder="Số lượng kho" type="text"
-                                        class="form-control" value="{{ old('soluongkho') }}">
+                                    <input required name="soluongkho" id="soluongkho" placeholder="Số lượng kho"
+                                        type="text" class="form-control" value="{{ old('soluongkho') }}">
                                     <div class="text-center">
                                         @error('soluongkho')
                                             <span style="color:red"> {{ $message }}</span>
@@ -161,7 +161,8 @@
                             <div class="position-relative row form-group">
                                 <label for="noidung" class="col-md-3 text-md-right col-form-label">Nội dung</label>
                                 <div class="col-md-9 col-xl-8">
-                                    <textarea required class="form-control" name="noidung" id="noidung" placeholder="Nội dung" value="{{ old('noidung') }}"></textarea>
+                                    <textarea required class="form-control" name="noidung" id="noidung" placeholder="Nội dung"
+                                        value="{{ old('noidung') }}">{{ old('noidung') }}</textarea>
                                     <div class="text-center">
                                         @error('noidung')
                                             <span style="color:red"> {{ $message }}</span>
@@ -173,7 +174,8 @@
                             <div class="position-relative row form-group">
                                 <label for="mota" class="col-md-3 text-md-right col-form-label">Mô tả</label>
                                 <div class="col-md-9 col-xl-8">
-                                    <textarea required class="form-control ckeditor1" id="mota" name="mota" placeholder="Mô tả"  value="{{ old('mota') }}"></textarea>
+                                    <textarea required class="form-control ckeditor1" id="mota" name="mota" placeholder="Mô tả"
+                                        value="{{ old('mota') }}">{{ old('mota') }}</textarea>
                                     <div class="text-center">
                                         @error('mota')
                                             <span style="color:red"> {{ $message }}</span>
@@ -210,6 +212,10 @@
 
 @section('js')
     <script type="text/javascript">
+        $(document).ready(function() {
+            $('#san-pham').addClass('mm-active');
+            loadhinhsp()
+        });
         CKEDITOR.replace('mota');
         CKEDITOR.replace('noidung');
     </script>

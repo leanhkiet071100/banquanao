@@ -155,6 +155,7 @@
 @section('js')
     <script type="text/javascript">
         $(document).ready(function() {
+            $('#loai-san-pham').addClass('mm-active');
             loadloaisanpham()
         });
         
