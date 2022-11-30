@@ -16,7 +16,9 @@ class loai_san_pham extends Model
 
     protected $fillable = [
         'ten_loai_san_pham',
-        
+        'hien',
+        'noi_bat',
+        'moi',
     ];
 
     public function sanpham(){

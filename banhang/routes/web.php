@@ -72,15 +72,26 @@ Route::prefix('admin')->group(function(){
         Route::get('/san-pham-sua/{id}',[AdminSanPhamController::class, 'get_san_pham_sua'])->name('get-san-pham-sua');
         Route::post('/san-pham-sua/{id}',[AdminSanPhamController::class, 'post_san_pham_sua'])->name('post-san-pham-sua');
         Route::delete('/san-pham-xoa/{id}',[AdminSanPhamController::class, 'san_pham_xoa'])->name('san-pham-xoa');
+        Route::post('/san-pham-hien/{id}',[AdminSanPhamController::class, 'san_pham_hien'])->name('san-pham-hien');
+        Route::post('/san-pham-moi/{id}',[AdminSanPhamController::class, 'san_pham_moi'])->name('san-pham-moi');
+        Route::post('/san-pham-noi-bat/{id}',[AdminSanPhamController::class, 'san_pham_noi_bat'])->name('san-pham-noi-bat');
+        
         //chi tiết sản phẩm
         Route::get('/chi-tiet-san-pham/{id}', [AdminSanPhamController::class, 'chi_tiet_san_pham'])->name('chi-tiet-san-pham');
         Route::get('/chi-tiet-san-pham-ds/{id}',[AdminSanPhamController::class, 'chi_tiet_san_pham_ds'])->name('chi-tiet-san-pham-ds');
         Route::get('/chi-tiet-san-pham-them/{id}',[AdminSanPhamController::class, 'get_chi_tiet_san_pham_them'])->name('get-chi-tiet-san-pham-them');
+        Route::post('/chi-tiet-san-pham-them/{id}',[AdminSanPhamController::class, 'post_chi_tiet_san_pham_them'])->name('post-chi-tiet-san-pham-them');
+        Route::get('/chi-tiet-san-pham-sua/{id}',[AdminSanPhamController::class, 'get_chi_tiet_san_pham_sua'])->name('get-chi-tiet-san-pham-sua');
+        Route::post('/chi-tiet-san-pham-sua/{id}',[AdminSanPhamController::class, 'post_chi_tiet_san_pham_sua'])->name('post-chi-tiet-san-pham-sua');
+        Route::delete('/chi-tiet-san-pham-xoa/{id}',[AdminSanPhamController::class, 'chi_tiet_san_pham_xoa'])->name('chi-tiet-san-pham-xoa');
+        Route::post('/chi-tiet-san-pham-hien/{id}',[AdminSanPhamController::class, 'chi_tiet_san_pham_hien'])->name('chi-tiet-san-pham-hien');
+        
         //sản phẩm hình ảnh
         Route::get('/chi-tiet-san-pham-hinh-anh/{id}',[AdminSanPhamController::class, 'chi_tiet_san_pham_hinh_anh'])->name('chi-tiet-san-pham-hinh-anh');
         Route::post('/san-pham-them-hinh',[AdminSanPhamController::class, 'them_hinh_san_pham'])->name('them-hinh-san-pham');
         Route::get('/load-hinh-anh-san-pham/{id}',[AdminSanPhamController::class, 'load_hinh_anh_san_pham'])->name('load-hinh-anh-san-pham');
         Route::delete('/xoa-hinh-san-pham/{id}', [AdminSanPhamController::class, 'xoa_hinh_san_pham'])->name('xoa-hinh-san-pham');
+
         //bài viết
         Route::get('/bai-viet', function () { return view('admin.baiviet.baiviet-ds');});
 
@@ -92,6 +103,7 @@ Route::prefix('admin')->group(function(){
         Route::get('/get-nhan-hieu-them',[AdminNhanHieuController::class, 'get_them_nhan_hieu'])->name('get-nhan-hieu-them');
         Route::get('/get-nhan-hieu-sua/{id}', [AdminNhanHieuController::class, 'get_sua_nhan_hieu'])->name('get-nhan-hieu-sua');
         Route::post('/post-nhan-hieu-sua/{id}',[AdminNhanHieuController::class, 'post_sua_nhan_hieu'])->name('post-nhan-hieu-sua');
+        Route::post('/nhan-hieu-hien/{id}',[AdminNhanHieuController::class, 'nhan_hieu_hien'])->name('nhan-hieu-hien');
 
         // loại sản phẩm
         Route::get('/loai-san-pham', [AdminLoaiSanPhamController::class, 'get_loai_san_pham'])->name('get-loai-san-pham');
@@ -101,6 +113,9 @@ Route::prefix('admin')->group(function(){
         Route::get('/get-loai-san-pham-sua/{id}', [AdminLoaiSanPhamController::class, 'get_sua_loai_san_pham'])->name('get-loai-san-pham-sua');
         Route::post('/post-loai-san-pham-sua/{id}', [AdminLoaiSanPhamController::class, 'post_sua_loai_san_pham'])->name('post-loai-san-pham-sua');
         Route::delete('/xoa-loai-san-pham/{id}', [AdminLoaiSanPhamController::class, 'xoa_loai_san_pham'])->name('xoa-loai-san-pham');
+        Route::post('/loai-san-pham-hien/{id}',[AdminLoaiSanPhamController::class, 'loai_san_pham_hien'])->name('loai-san-pham-hien');
+        Route::post('/loai-san-pham-moi/{id}',[AdminLoaiSanPhamController::class, 'loai_san_pham_moi'])->name('loai-san-pham-moi');
+        Route::post('/loai-san-pham-noi-bat/{id}',[AdminLoaiSanPhamController::class, 'loai_san_pham_noi_bat'])->name('loai-san-pham-noi-bat');
     });
 
         

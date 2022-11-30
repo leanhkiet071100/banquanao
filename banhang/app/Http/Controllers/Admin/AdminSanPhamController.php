@@ -117,9 +117,118 @@ class AdminSanPhamController extends Controller
 
     public function chi_tiet_san_pham_ds($id){
         $chitietsp = sanpham_chitiet::join('sanphams','sanphams.id','=','sanpham_chitiets.ma_san_pham')
+                    ->select('sanpham_chitiets.*','sanphams.ten_san_pham')
                     ->where('sanpham_chitiets.ma_san_pham','=',$id)->get();
         $idsp = $id;
         return view('admin.sanpham.chitietsanpham-ds')->with(['chitietsp'=>$chitietsp,'idsp'=>$id]);
+    }
+
+    public function get_chi_tiet_san_pham_them($id){
+        $sanpham = sanpham::find($id);
+        return view('admin.sanpham.chitietsanpham-them')->with(['sanpham'=>$sanpham]);
+    }
+
+     public function post_chi_tiet_san_pham_them(Request $request,$id){
+         $rule = [
+            'mau' => 'required',
+            'size'=>'required',
+            'soluongkho' => 'required|numeric',
+
+        ];
+        $message =[
+            'required' => ':attribute không được để trống',
+            'min' => ':attribute phải lớn hơn :min', // lớn hơn  (không phải độ dài)
+            'max' => ':attribute phải nhỏ hơn :max', // nhỏ hơn
+            'numeric' => ':attribute phải là số',
+        ];
+        $attribute = [
+            'mau' => 'Màu',
+            'size'=>'Kích thước',
+            'soluongkho' => 'Số lượng kho',
+         
+        ];
+
+        $request->validate($rule, $message, $attribute);
+
+        $sanpham = sanpham::find($id);
+        $masp= $id;
+        $mau = $request->input('mau');
+        $kichthuoc = $request->input('size');
+        $soluongkho = $request->input('soluongkho');
+        $sanphamchitietmoi = new sanpham_chitiet;
+        $sanphamchitietmoi->fill([
+            'ma_san_pham'=>$masp,
+            'mau'=>$mau,
+            'kich_thuoc'=>$kichthuoc,
+            'so_luong_kho'=>$soluongkho,
+        ]);
+        $sanphamchitietmoi->save();
+        return Redirect::route('admin.chi-tiet-san-pham-ds',['id'=>$id])->with('success','Thêm thành công');
+    }
+
+    public function get_chi_tiet_san_pham_sua($id){
+        $sanphamchitiet = sanpham_chitiet::join('sanphams','sanphams.id','=','sanpham_chitiets.ma_san_pham')
+                    ->select('sanpham_chitiets.*','sanphams.ten_san_pham')
+                    ->find($id);
+        return view('admin.sanpham.chitietsanpham-sua')->with(['sanphamchitiet'=>$sanphamchitiet]);
+    }
+
+    public function post_chi_tiet_san_pham_sua(Request $request,$id){
+         $rule = [
+            'mau' => 'required',
+            'size'=>'required',
+            'soluongkho' => 'required|numeric',
+
+        ];
+        $message =[
+            'required' => ':attribute không được để trống',
+            'min' => ':attribute phải lớn hơn :min', // lớn hơn  (không phải độ dài)
+            'max' => ':attribute phải nhỏ hơn :max', // nhỏ hơn
+            'numeric' => ':attribute phải là số',
+        ];
+        $attribute = [
+            'mau' => 'Màu',
+            'size'=>'Kích thước',
+            'soluongkho' => 'Số lượng kho',
+        ];
+
+        $request->validate($rule, $message, $attribute);
+        $mau = $request->input('mau');
+        $kichthuoc = $request->input('size');
+        $soluongkho = $request->input('soluongkho');
+        $sanphamchitietmoi = sanpham_chitiet::find($id);
+        $sanphamchitietmoi->fill([
+            'mau'=>$mau,
+            'kich_thuoc'=>$kichthuoc,
+            'so_luong_kho'=>$soluongkho,
+        ]);
+        $sanphamchitietmoi->save();
+        return Redirect::route('admin.chi-tiet-san-pham-ds',['id'=>$sanphamchitietmoi->ma_san_pham])->with('success','Sửa thành công');
+    }
+
+    public function chi_tiet_san_pham_xoa($id){
+        $sanphamchitiet = sanpham_chitiet::find($id);
+        $sanphamchitiet->delete();
+        return  Redirect::route('admin.chi-tiet-san-pham-ds',['id'=>$sanphamchitiet->ma_san_pham])->with('success','Xóa thành công');
+    }
+
+    public function chi_tiet_san_pham_hien(Request $request,$id){
+        $check = $request->check;
+        $chitietsp = sanpham_chitiet::find($id);
+        if($check=="true"){
+            $chitietsp->fill([
+                'hien'=>1
+            ]);
+        }else{
+            $chitietsp->fill([
+                'hien'=>0
+            ]);
+        }
+        $chitietsp->save();
+        return response()->json([
+            'status'=>200,
+            'mess'=>  'sửa thành công',
+        ]);
     }
 
     //hình sản phẩm
@@ -144,11 +253,6 @@ class AdminSanPhamController extends Controller
         ]);
     }
     
-    public function get_chi_tiet_san_pham_them($id){
-        $sanpham = sanpham::find($id);
-        return view('admin.sanpham.chitietsanpham-them')->with(['sanpham'=>$sanpham]);
-    }
-
     //hình ảnh sản phẩm
     public function them_hinh_san_pham(Request $request){
         $validator = Validator::make($request->all(), [
@@ -317,5 +421,65 @@ class AdminSanPhamController extends Controller
         $sanpham->delete();
         return Redirect::route('admin.san-pham')->with('success','Xóa thành công');
     }
+
+    // radio
+
+    public function san_pham_hien(Request $request,$id){
+        $check = $request->check;
+        $sanpham = sanpham::find($id);
+        if($check=="true"){
+            $sanpham->fill([
+                'hien'=>1
+            ]);
+        }else{
+            $sanpham->fill([
+                'hien'=>0
+            ]);
+        }
+        $sanpham->save();
+        return response()->json([
+            'status'=>200,
+            'mess'=>  'sửa thành công',
+        ]);
+    }
+
+    public function san_pham_moi(Request $request,$id){
+        $check = $request->check;
+        $sanpham = sanpham::find($id);
+        if($check=="true"){
+            $sanpham->fill([
+                'moi'=>1
+            ]);
+        }else{
+            $sanpham->fill([
+                'moi'=>0
+            ]);
+        }
+        $sanpham->save();
+        return response()->json([
+            'status'=>200,
+            'mess'=>  'sửa thành công',
+        ]);
+    }
+
+    public function san_pham_noi_bat(Request $request,$id){
+        $check = $request->check;
+        $sanpham = sanpham::find($id);
+        if($check=="true"){
+            $sanpham->fill([
+                'noi_bat'=>1
+            ]);
+        }else{
+            $sanpham->fill([
+                'noi_bat'=>0
+            ]);
+        }
+        $sanpham->save();
+        return response()->json([
+            'status'=>200,
+            'mess'=>  'sửa thành công',
+        ]);
+    }
+
 
 }

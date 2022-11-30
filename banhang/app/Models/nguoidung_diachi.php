@@ -20,7 +20,10 @@ class nguoidung_diachi extends Model
         'huyen',
         'xa',
         'dia_chi_noi_chon',
-        'noi'
+        'noi',
+        'hien',
+        'noi_bat',
+        'moi',
     ];
 
     public function nguoidung(){

@@ -101,7 +101,7 @@ class AdminLoaiSanPhamController extends Controller
 
     }
 
-     public function xoa_loai_san_pham($id){
+    public function xoa_loai_san_pham($id){
         $loaisanpham  = loai_san_pham::find($id);
         $loaisanpham->delete();
         return response()->json([
@@ -109,6 +109,63 @@ class AdminLoaiSanPhamController extends Controller
             'mess'=> 'Xóa thành công',
         ]);
 
+    }
+
+    public function loai_san_pham_hien(Request $request,$id){
+        $check = $request->check;
+        $loaisanpham = loai_san_pham::find($id);
+        if($check=="true"){
+            $loaisanpham->fill([
+                'hien'=>1
+            ]);
+        }else{
+            $loaisanpham->fill([
+                'hien'=>0
+            ]);
+        }
+        $loaisanpham->save();
+        return response()->json([
+            'status'=>200,
+            'mess'=>  'sửa thành công',
+        ]);
+    }
+
+     public function loai_san_pham_moi(Request $request,$id){
+        $check = $request->check;
+        $loaisanpham = loai_san_pham::find($id);
+        if($check=="true"){
+            $loaisanpham->fill([
+                'moi'=>1
+            ]);
+        }else{
+            $loaisanpham->fill([
+                'moi'=>0
+            ]);
+        }
+        $loaisanpham->save();
+        return response()->json([
+            'status'=>200,
+            'mess'=>  'sửa thành công',
+        ]);
+    }
+
+     public function loai_san_pham_noi_bat(Request $request,$id){
+        $check = $request->check;
+        $loaisanpham = loai_san_pham::find($id);
+        if($check=="true"){
+            $loaisanpham->fill([
+                'noi_bat'=>1
+            ]);
+        }else{
+            $loaisanpham->fill([
+                'noi_bat'=>0
+            ]);
+        }
+        $loaisanpham->save();
+        return response()->json([
+            'status'=>200,
+            'mess'=>  'sửa thành công',
+        ]);
     }
 
    

@@ -191,4 +191,23 @@ class AdminNhanHieuController extends Controller
         ]);
 
     }
+
+    public function nhan_hieu_hien(Request $request,$id){
+        $check = $request->check;
+        $nhanhieu = nhan_hieu::find($id);
+        if($check=="true"){
+            $nhanhieu->fill([
+                'hien'=>1
+            ]);
+        }else{
+            $nhanhieu->fill([
+                'hien'=>0
+            ]);
+        }
+        $nhanhieu->save();
+        return response()->json([
+            'status'=>200,
+            'mess'=>  'sửa thành công',
+        ]);
+    }
 }

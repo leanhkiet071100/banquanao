@@ -116,9 +116,9 @@
                 var formData = new FormData();
                 formData.append('tennhanhieu', tennhanhieu);
                 formData.append('hinhnhanhieu', hinhnhanhieu);
-                for (const value of formData.values()) {
-                    console.log(value);
-                }
+                // for (const value of formData.values()) {
+                //     console.log(value);
+                // }
                 $.ajaxSetup({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

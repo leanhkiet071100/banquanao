@@ -25,6 +25,9 @@ class nguoidung extends Model
         'hinh_dai_dien',
         'cap',
         'mo_ta',
+        'hien',
+        'noi_bat',
+        'moi',
     ];
 
     public function baiviet_binhluan(){

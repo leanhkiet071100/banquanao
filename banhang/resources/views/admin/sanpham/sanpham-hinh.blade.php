@@ -79,7 +79,7 @@
                             <div class="col-md-9 col-xl-8 offset-md-3">
 
                                 <a onclick="themhinhsp({{ $sanpham->id }})" style="color: white"
-                                    class="btn-shadow btn-hover-shine btn btn-primary">
+                                    class="btn-shadow btn-hover-shine btn btn-primary btn-them" id="btn-them">
                                     <span class="btn-icon-wrapper pr-2 opacity-8">
                                         <i class="fa fa-check fa-w-20"></i>
                                     </span>
@@ -105,7 +105,7 @@
 @section('js')
     <script type="text/javascript">
         $(document).ready(function() {
-             $('#san-pham').addClass('mm-active');
+            $('#san-pham').addClass('mm-active');
             loadhinhsp()
         });
 
@@ -136,6 +136,8 @@
             document.getElementById('preview-upload').innerHTML = "";
             var hinhmoi = document.getElementById('label-hinh-moi');
             hinhmoi.style.display = "block";
+            var them = document.getElementById('btn-them');
+            them.style.display = "initial";
             var url = $(this).attr('data-url');
             if (file.length > 0) {
                 for (var i = 0; i < file.length; i++) {
@@ -148,12 +150,13 @@
                         newImage.src = srcData;
                         var hinh = newImage.outerHTML; // xuất ra file html
                         //console.log(hinh);
-                        document.getElementById('preview-upload').innerHTML += '<li class="float-left d-inline-block mr-2 mb-2" style="position: relative; width: 30%;">\
-                                                                                    <div style="width: 100%; height: 220px; overflow: hidden;" class="hinhanh">\
-                                                                                                                        ' +
+                        document.getElementById('preview-upload').innerHTML +=
+                            '<li class="float-left d-inline-block mr-2 mb-2" style="position: relative; width: 30%;">\
+                                                                                        <div style="width: 100%; height: 220px; overflow: hidden;" class="hinhanh">\
+                                                                                                                            ' +
                             hinh + '\
-                                                                                                                    </div>\
-                                                                                                                </li>';
+                                                                                                                        </div>\
+                                                                                                                    </li>';
                     }
                     fileReader.readAsDataURL(fileToLoad);
                 }
@@ -162,7 +165,6 @@
 
         function themhinhsp(idsp) {
             var hinhsp = $('#hinhsp')[0].files;
-
             //console.log(hinhsp);
             var formData = new FormData();
             formData.append('idsp', idsp);
@@ -190,8 +192,12 @@
                         document.getElementById('preview-upload').innerHTML = "";
                         var hinhmoi = document.getElementById('label-hinh-moi');
                         hinhmoi.style.display = "none";
+                        var them = document.getElementById('btn-them');
+                        them.style.display = "none";
                         alert(data.mess);
+
                     }
+
                     loadhinhsp();
                 }
             });
@@ -209,17 +215,18 @@
                     $.each(data.sanphamhinh, function(key, item) {
                         $('#images').append(
                             '<li class="float-left d-inline-block mr-2 mb-2"\
-                                                            style="position: relative; width: 30%;">\
-                                                            <form action="" method="post">\
-                                                                <button data-url="{{ route('admin.xoa-hinh-san-pham', '') }}\/' + item
+                                                                style="position: relative; width: 30%;">\
+                                                                <form action="" method="post">\
+                                                                    <button data-url="{{ route('admin.xoa-hinh-san-pham', '') }}\/' +
+                            item
                             .id + '" type="button" onclick="" class="delete_hinh_sanpham btn btn-sm btn-outline-danger border-0 position-absolute">\
-                                                                    <i class="fas fa-times"></i>\
-                                                                </button>\
-                                                            </form>\
-                                                            <div style="width: 100%; height: 200px; overflow: hidden;" class="hinhanhsp">\
-                                                                <img src="{{ URL('') }}/' + item.hinh_san_pham + '"" alt="Image">\
-                                                            </div>\
-                                                        </li>')
+                                                                        <i class="fas fa-times"></i>\
+                                                                    </button>\
+                                                                </form>\
+                                                                <div style="width: 100%; height: 200px; overflow: hidden;" class="hinhanhsp">\
+                                                                    <img src="{{ URL('') }}/' + item.hinh_san_pham + '"" alt="Image">\
+                                                                </div>\
+                                                            </li>')
                     });
                 }
             })

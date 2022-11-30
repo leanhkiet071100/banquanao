@@ -19,6 +19,9 @@ class sanpham_binhluan extends Model
         'ma_nguoi_dung',
         'noi_dung',
         'danh_gia',
+        'hien',
+        'noi_bat',
+        'moi',
     ];
 
     public function sanpham(){

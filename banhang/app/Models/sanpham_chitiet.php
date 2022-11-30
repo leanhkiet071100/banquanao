@@ -19,6 +19,9 @@ class sanpham_chitiet extends Model
         'mau',
         'kich_thuoc',
         'so_luong_kho',
+        'hien',
+        'noi_bat',
+        'moi',
         
     ];
 

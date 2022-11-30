@@ -16,8 +16,10 @@ class hoadon extends Model
     protected $fillable = [
         'ma_nguoi_dung',
         'ma_giam_gia',
-        'ten_hoa_don'
-        
+        'ten_hoa_don',
+        'hien',
+        'noi_bat',
+        'moi',
     ];
 
     public function hoadon_chitiet(){

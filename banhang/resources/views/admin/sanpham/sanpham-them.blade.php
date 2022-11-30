@@ -85,7 +85,7 @@
                                 <label for="giasp" class="col-md-3 text-md-right col-form-label">Giá</label>
                                 <div class="col-md-9 col-xl-8">
                                     <input required name="giasp" id="giasp" placeholder="giá" type="text"
-                                        class="form-control" value="{{ old('giasp') }}">
+                                        class="form-control" value="{{ old('giasp') }}" onChange="format_curency(this);">
                                     <div class="text-center">
                                         @error('giasp')
                                             <span style="color:red"> {{ $message }}</span>
@@ -98,7 +98,7 @@
                                 <label for="trongluong" class="col-md-3 text-md-right col-form-label">Trọng lượng</label>
                                 <div class="col-md-9 col-xl-8">
                                     <input required name="trongluong" id="trongluong" placeholder="Trọng lượng"
-                                        type="text" class="form-control" value="{{ old('trongluong') }}">
+                                        type="number" class="form-control" value="{{ old('trongluong') }}">
                                     <div class="text-center">
                                         @error('trongluong')
                                             <span style="color:red"> {{ $message }}</span>
@@ -110,7 +110,7 @@
                                 <label for="soluongkho" class="col-md-3 text-md-right col-form-label">Số lượng kho</label>
                                 <div class="col-md-9 col-xl-8">
                                     <input required name="soluongkho" id="soluongkho" placeholder="Số lượng kho"
-                                        type="text" class="form-control" value="{{ old('soluongkho') }}">
+                                        type="number" class="form-control" value="{{ old('soluongkho') }}">
                                     <div class="text-center">
                                         @error('soluongkho')
                                             <span style="color:red"> {{ $message }}</span>
@@ -212,9 +212,16 @@
 
 @section('js')
     <script type="text/javascript">
+        function format_curency(a) {
+            //xóa dấu phẩy
+            a.value = a.value.replaceAll(',','');
+            // định dạng tiền
+            a.value = a.value.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+        }
+
         $(document).ready(function() {
             $('#san-pham').addClass('mm-active');
-            loadhinhsp()
+           
         });
         CKEDITOR.replace('mota');
         CKEDITOR.replace('noidung');

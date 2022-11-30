@@ -3,9 +3,9 @@
 @section('title', 'mạng xã hội')
 @section('sidebar')
     @parent
-    @if(session()->has('success'))
+    @if (session()->has('success'))
         <script>
-            alert('{{session()->get('success')}}')
+            alert('{{ session()->get('success') }}')
         </script>
     @endif
     <!-- Main -->
@@ -25,7 +25,7 @@
                 </div>
 
                 <div class="page-title-actions">
-                    <a href="{{route('admin.get-san-pham-them')}}" class="btn-shadow btn-hover-shine mr-3 btn btn-primary">
+                    <a href="{{ route('admin.get-san-pham-them') }}" class="btn-shadow btn-hover-shine mr-3 btn btn-primary">
                         <span class="btn-icon-wrapper pr-2 opacity-7">
                             <i class="fa fa-plus fa-w-20"></i>
                         </span>
@@ -67,7 +67,7 @@
                             <thead>
                                 <tr>
                                     <th class="text-center">ID</th>
-                                    <th>Tên và nhãn hiệu</th>
+                                    <th class="text-center">Tên và nhãn hiệu</th>
                                     <th class="text-center">Giá</th>
                                     <th class="text-center">số lượng kho</th>
                                     <th class="text-center">Hiện</th>
@@ -81,15 +81,15 @@
                             <tbody>
                                 @foreach ($lssanpham as $key => $value)
                                     <tr>
-                                        <td class="text-center text-muted">{{ $key + 1}}</td>
+                                        <td class="text-center text-muted">{{ $key + 1 }}</td>
                                         <td>
                                             <div class="widget-content p-0">
                                                 <div class="widget-content-wrapper">
                                                     <div class="widget-content-left mr-3">
                                                         <div class="widget-content-left">
-                                                            <img style="height: 60px; width:60px;" data-toggle="tooltip" title="Image"
-                                                                data-placement="bottom"
-                                                                src="{{URL($value->hinh_anh)}}" alt="">
+                                                            <img style="height: 60px; width:60px;" data-toggle="tooltip"
+                                                                title="Image" data-placement="bottom"
+                                                                src="{{ URL($value->hinh_anh) }}" alt="">
                                                         </div>
                                                     </div>
                                                     <div class="widget-content-left flex2">
@@ -101,7 +101,7 @@
                                                 </div>
                                             </div>
                                         </td>
-                                        <td class="text-center">{{ $value->gia }}</td>
+                                        <td class="text-center">{{ number_format($value->gia,2) }}</td>
                                         <td class="text-center">{{ $value->so_luong_kho }}</td>
                                         {{-- <td class="text-center">
                                         <div class="badge badge-success mt-2">
@@ -130,17 +130,20 @@
                                             </div>
                                         </td>
                                         <td class="text-center">
-                                            <a href="{{route('admin.chi-tiet-san-pham',['id'=>$value->id])}}"
+                                            <a href="{{ route('admin.chi-tiet-san-pham', ['id' => $value->id]) }}"
                                                 class="btn btn-hover-shine btn-outline-primary border-0 btn-sm">
                                                 Chi tiết
                                             </a>
-                                            <a href="{{route('admin.get-san-pham-sua',['id'=>$value->id])}}" data-toggle="tooltip" title="Edit"
-                                                data-placement="bottom" class="btn btn-outline-warning border-0 btn-sm">
+                                            <a href="{{ route('admin.get-san-pham-sua', ['id' => $value->id]) }}"
+                                                data-toggle="tooltip" title="Edit" data-placement="bottom"
+                                                class="btn btn-outline-warning border-0 btn-sm">
                                                 <span class="btn-icon-wrapper opacity-8">
                                                     <i class="fa fa-edit fa-w-20"></i>
                                                 </span>
                                             </a>
-                                            <form class="d-inline" action="{{route('admin.san-pham-xoa',['id'=>$value->id])}}" method="POST">
+                                            <form class="d-inline"
+                                                action="{{ route('admin.san-pham-xoa', ['id' => $value->id]) }}"
+                                                method="POST">
                                                 @method('DELETE')
                                                 @csrf
                                                 <button class="btn btn-hover-shine btn-outline-danger border-0 btn-sm"
@@ -205,7 +208,9 @@
                                             <span
                                                 class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium text-gray-500 bg-white border border-gray-300 cursor-default leading-5">1</span>
                                         </span>
-                                        <a href="#page=2" class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium text-gray-700 bg-white border border-gray-300 leading-5 hover:text-gray-500 focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150"  aria-label="Go to page 2">
+                                        <a href="#page=2"
+                                            class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium text-gray-700 bg-white border border-gray-300 leading-5 hover:text-gray-500 focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150"
+                                            aria-label="Go to page 2">
                                             2
                                         </a>
 
@@ -230,9 +235,16 @@
     </div>
     <!-- End Main -->
 @endsection
-
 @section('js')
     <script>
+        function format_curency(a) {
+            // định dạng tiền
+            a.value = a.value.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+        }
+
+        function format_money(n, currency) {
+            return currency + n.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
+        }
         $(document).ready(function() {
             $('#san-pham').addClass('mm-active');
         });

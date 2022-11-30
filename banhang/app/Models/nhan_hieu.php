@@ -16,6 +16,7 @@ class nhan_hieu extends Model
 
     protected $fillable = [
         'ten_nhan_hieu',
+        'hien',
     ];
 
     public function sanpham(){

@@ -227,7 +227,7 @@
                     url: url,
                     type: "DELETE",
                     success: function(data) {
-                        
+
                         alert(data.mess);
                         loadnhanhieu();
                     }
@@ -301,12 +301,13 @@
                 console.log(data);
                 $('#table-dsnhanhieu').html("");
                 $.each(data.lsnhanhieu, function(key, item) {
-                $('#table-dsnhanhieu').append('<tr>\
+                    $('#table-dsnhanhieu').append('<tr>\
                                         <td class="text-center text-muted">' + (key + 1) + '</td>\
                                         <td class="td-hinh">\
                                             <div class="widget-content-center ">\
                                                 <img style="height: 60px; width: 60px" data-toggle="tooltip" title="Image"\
-                                                    data-placement="bottom" src="{{ URL('') }}/' + item.hinh_nhan_hieu + '"\
+                                                    data-placement="bottom" src="{{ URL('') }}/' + item
+                        .hinh_nhan_hieu + '"\
                                                     alt="">\
                                             </div>\
                                         </td>\
@@ -323,7 +324,7 @@
                                             <div class=" check-magana text-center td-radio">\
                                                 {{-- <input class="form-check-input" type="checkbox" value=""\
                                                     id="defaultCheck1"> --}}\
-                                                <input class="" type="checkbox" value="" id="defaultCheck1">\
+                                                <input class="" type="checkbox" value="" id="checkhien' + item.id +  '" onchange="nhan_hieu_hien(' + item.id + ')"  ' + (item.hien == 1 ? "checked" : "") +'>\
                                             </div>\
                                         </td>\
                                         <td class="text-center">\
@@ -336,7 +337,7 @@
                                             <form class="d-inline" action="" method="post">\
                                                 <button class="delete_nhanhieu btn btn-hover-shine btn-outline-danger border-0 btn-sm "\
                                                     type="button" data-toggle="tooltip" title="Delete"\
-                                                    data-placement="bottom" value="' + item.id + '" id="delete_nhanhieu" data-url="{{ route('admin.xoa-nhan-hieu', '') }}\/' + item.id + '">\
+                                                    data-placement="bottom" value="' + item.id +'" id="delete_nhanhieu" data-url="{{ route('admin.xoa-nhan-hieu', '') }}\/' + item.id + '">\
                                                     <span class="btn-icon-wrapper opacity-8">\
                                                         <i class="fa fa-trash fa-w-20"></i>\
                                                     </span>\
@@ -347,5 +348,28 @@
                 });
             }
         })
+    }
+
+    function nhan_hieu_hien($id) {
+        var check = document.getElementById("checkhien" + $id).checked;
+        var formData = new FormData();
+        var url = "{{ route('admin.nhan-hieu-hien', '') }}" + '/' + $id;
+        formData.append('check', check);
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(data) {
+                //window.location.reload(); load lại trang
+                console.log(data)
+            }
+        });
     }
 </script>

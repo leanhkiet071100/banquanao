@@ -20,7 +20,7 @@
                 </div>
 
                 <div class="page-title-actions">
-                    <a  class="btn-shadow btn-hover-shine mr-3 btn btn-primary" style="color: white" onclick="hienformthem()">
+                    <a class="btn-shadow btn-hover-shine mr-3 btn btn-primary" style="color: white" onclick="hienformthem()">
                         <span class="btn-icon-wrapper pr-2 opacity-7">
                             <i class="fa fa-plus fa-w-20"></i>
                         </span>
@@ -158,7 +158,7 @@
             $('#loai-san-pham').addClass('mm-active');
             loadloaisanpham()
         });
-        
+
         $(document).on('click', '.edit_loaisanpham', function(e) {
             e.preventDefault();
             //var url = "{{ route('admin.xoa-nhan-hieu', '1') }}";
@@ -234,25 +234,26 @@
                                             <div class=" check-magana text-center td-radio">\
                                                 {{-- <input class="form-check-input" type="checkbox" value=""\
                                                     id="defaultCheck1"> --}}\
-                                                <input class="" type="checkbox" value="" id="defaultCheck1">\
+                                                <input class="" type="checkbox" value="" id="check-noi-bat'+item.id+'" onchange="loai_san_pham_noi_bat(' + item.id + ')"  ' + (item.noi_bat == 1 ? "checked" : "") +'>\
                                             </div>\
                                     </td>\
                                     <td class="td-radio">\
                                             <div class=" check-magana text-center td-radio">\
                                                 {{-- <input class="form-check-input" type="checkbox" value=""\
                                                     id="defaultCheck1"> --}}\
-                                                <input class="" type="checkbox" value="" id="defaultCheck1">\
+                                                <input class="" type="checkbox" value="" id="check-moi'+item.id+'" onchange="loai_san_pham_moi(' + item.id + ')"  ' + (item.moi == 1 ? "checked" : "") +'>\
                                             </div>\
                                     </td>\
                                     <td class="td-radio">\
                                             <div class=" check-magana text-center td-radio">\
                                                 {{-- <input class="form-check-input" type="checkbox" value=""\
                                                     id="defaultCheck1"> --}}\
-                                                <input class="" type="checkbox" value="" id="defaultCheck1">\
+                                                <input class="" type="checkbox" value="" id="check-hien'+item.id+'" onchange="loai_san_pham_hien(' + item.id + ')"  ' + (item.hien == 1 ? "checked" : "") +'>\
                                             </div>\
                                     </td>\
                                     <td class="text-center">\
-                                        <a data-url="{{ route('admin.get-loai-san-pham-sua', '') }}\/' + item.id + '" data-toggle="tooltip" title="Edit"\
+                                        <a data-url="{{ route('admin.get-loai-san-pham-sua', '') }}\/' + item.id +
+                        '" data-toggle="tooltip" title="Edit"\
                                             data-placement="bottom" class="edit_loaisanpham btn btn-outline-warning border-0 btn-sm">\
                                             <span class="btn-icon-wrapper opacity-8">\
                                                 <i class="fa fa-edit fa-w-20"></i>\
@@ -260,7 +261,8 @@
                                         </a>\
                                         <form class="d-inline " action="" method="post">\
                                             <button class="delete_loaisanpham btn btn-hover-shine btn-outline-danger border-0 btn-sm"\
-                                                type="button" data-toggle="tooltip" title="Delete" data-placement="bottom" data-url="{{ route('admin.xoa-loai-san-pham', '') }}\/' + item.id + '">\
+                                                type="button" data-toggle="tooltip" title="Delete" data-placement="bottom" data-url="{{ route('admin.xoa-loai-san-pham', '') }}\/' + item
+                        .id + '">\
                                                 <span class="btn-icon-wrapper opacity-8">\
                                                     <i class="fa fa-trash fa-w-20"></i>\
                                                 </span>\
@@ -300,5 +302,74 @@
     function huy() {
         var create_nhan_hieu = document.getElementById('create');
         create_nhan_hieu.style.display = "none";
+    }
+
+    function loai_san_pham_hien($id) {
+        var check = document.getElementById("check-hien" + $id).checked;
+        var formData = new FormData();
+        var url = "{{ route('admin.loai-san-pham-hien', '') }}" + '/' + $id;
+        formData.append('check', check);
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(data) {
+                //window.location.reload(); load lại trang
+                console.log(data)
+            }
+        });
+    }
+
+    function loai_san_pham_moi($id) {
+        var check = document.getElementById("check-moi" + $id).checked;
+        var formData = new FormData();
+        var url = "{{ route('admin.loai-san-pham-moi', '') }}" + '/' + $id;
+        formData.append('check', check);
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(data) {
+                //window.location.reload(); load lại trang
+                console.log(data)
+            }
+        });
+    }
+
+    function loai_san_pham_noi_bat($id) {
+        var check = document.getElementById("check-noi-bat" + $id).checked;
+        var formData = new FormData();
+        var url = "{{ route('admin.loai-san-pham-noi-bat', '') }}" + '/' + $id;
+        formData.append('check', check);
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(data) {
+                //window.location.reload(); load lại trang
+                console.log(data)
+            }
+        });
     }
 </script>
