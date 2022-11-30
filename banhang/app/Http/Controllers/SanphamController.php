@@ -15,7 +15,8 @@ class SanphamController extends Controller
      */
     public function index()
     {
-        //
+        $lsloaisanpham = 
+        return view('trangchu.index');
     }
 
     /**
