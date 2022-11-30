@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminNhanHieuController;
 use App\Http\Controllers\Admin\AdminLoaiSanPhamController;
 use App\Http\Controllers\Admin\AdminSanPhamController;
+use App\Http\Controllers\SanPhamController;
 
 
 /*
@@ -19,9 +20,8 @@ use App\Http\Controllers\Admin\AdminSanPhamController;
 
 
 // Trang chủ
-Route::get('/', function () {
-    return view('trangchu.index');
-});
+
+    Route::get('/', [SanPhamController::class, 'index'])->name('index');
 
 //sản phẩm
 Route::get('/san-pham', function () {

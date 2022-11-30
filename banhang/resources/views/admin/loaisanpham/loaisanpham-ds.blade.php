@@ -38,12 +38,12 @@
 
                         <form>
                             <div class="input-group">
-                                <input type="search" name="search" id="search" placeholder="Search everything"
+                                <input type="search" name="search" id="search" placeholder="tên loại sản phẩm"
                                     class="form-control">
                                 <span class="input-group-append">
                                     <button type="submit" class="btn btn-primary">
                                         <i class="fa fa-search"></i>&nbsp;
-                                        Search
+                                        TÌM
                                     </button>
                                 </span>
                             </div>

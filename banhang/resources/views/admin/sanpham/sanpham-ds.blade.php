@@ -41,14 +41,14 @@
 
                     <div class="card-header">
 
-                        <form>
+                        <form action="">
                             <div class="input-group">
                                 <input type="search" name="search" id="search" placeholder="Search everything"
                                     class="form-control">
                                 <span class="input-group-append">
                                     <button type="submit" class="btn btn-primary">
                                         <i class="fa fa-search"></i>&nbsp;
-                                        Search
+                                        Tìm kiếm
                                     </button>
                                 </span>
                             </div>
@@ -101,7 +101,7 @@
                                                 </div>
                                             </div>
                                         </td>
-                                        <td class="text-center">{{ number_format($value->gia,2) }}</td>
+                                        <td class="text-center">{{ number_format($value->gia, 2) }}</td>
                                         <td class="text-center">{{ $value->so_luong_kho }}</td>
                                         {{-- <td class="text-center">
                                         <div class="badge badge-success mt-2">
@@ -112,21 +112,21 @@
                                             <div class=" check-magana text-center td-radio">
                                                 {{-- <input class="form-check-input" type="checkbox" value=""\
                                                     id="defaultCheck1"> --}}
-                                                <input class="" type="checkbox" value="" id="defaultCheck1">
+                                                <input class="" type="checkbox" value="" id="check-hien{{$value->id}}"  @if ($value->hien == 1) checked @endif onchange="san_pham_hien({{$value->id}})">
                                             </div>
                                         </td>
                                         <td class="td-radio">
                                             <div class=" check-magana text-center td-radio">
                                                 {{-- <input class="form-check-input" type="checkbox" value=""\
                                                     id="defaultCheck1"> --}}
-                                                <input class="" type="checkbox" value="" id="defaultCheck1">
+                                                <input class="" type="checkbox" value="" id="check-moi{{$value->id}}"  @if ($value->moi == 1) checked @endif onchange="san_pham_moi({{$value->id}})">
                                             </div>
                                         </td>
                                         <td class="td-radio">
                                             <div class=" check-magana text-center td-radio">
                                                 {{-- <input class="form-check-input" type="checkbox" value=""\
                                                     id="defaultCheck1"> --}}
-                                                <input class="" type="checkbox" value="" id="defaultCheck1">
+                                                <input class="" type="checkbox" value="" id="check-noi-bat{{$value->id}}"  @if ($value->noi_bat == 1) checked @endif onchange="san_pham_noi_bat({{$value->id}})">
                                             </div>
                                         </td>
                                         <td class="text-center">
@@ -163,70 +163,9 @@
                         </table>
                     </div>
 
+
                     <div class="d-block card-footer">
-                        <nav role="navigation" aria-label="Pagination Navigation" class="flex items-center justify-between">
-                            <div class="flex justify-between flex-1 sm:hidden">
-                                <span
-                                    class="relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 cursor-default leading-5 rounded-md">
-                                    « Previous
-                                </span>
-
-                                <a href="#page=2"
-                                    class="relative inline-flex items-center px-4 py-2 ml-3 text-sm font-medium text-gray-700 bg-white border border-gray-300 leading-5 rounded-md hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150">
-                                    Next »
-                                </a>
-                            </div>
-
-                            <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
-                                <div>
-                                    <p class="text-sm text-gray-700 leading-5">
-                                        Showing
-                                        <span class="font-medium">1</span>
-                                        to
-                                        <span class="font-medium">5</span>
-                                        of
-                                        <span class="font-medium">9</span>
-                                        results
-                                    </p>
-                                </div>
-
-                                <div>
-                                    <span class="relative z-0 inline-flex shadow-sm rounded-md">
-                                        <span aria-disabled="true" aria-label="&amp;laquo; Previous">
-                                            <span
-                                                class="relative inline-flex items-center px-2 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 cursor-default rounded-l-md leading-5"
-                                                aria-hidden="true">
-                                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                                                    <path fill-rule="evenodd"
-                                                        d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-                                                        clip-rule="evenodd"></path>
-                                                </svg>
-                                            </span>
-                                        </span>
-
-                                        <span aria-current="page">
-                                            <span
-                                                class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium text-gray-500 bg-white border border-gray-300 cursor-default leading-5">1</span>
-                                        </span>
-                                        <a href="#page=2"
-                                            class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium text-gray-700 bg-white border border-gray-300 leading-5 hover:text-gray-500 focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150"
-                                            aria-label="Go to page 2">
-                                            2
-                                        </a>
-
-                                        <a href="#page=2" rel="next"
-                                            class="relative inline-flex items-center px-2 py-2 -ml-px text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-r-md leading-5 hover:text-gray-400 focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-500 transition ease-in-out duration-150"
-                                            aria-label="Next &amp;raquo;">
-                                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                                                <path fill-rule="evenodd"
-                                                    d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                                                    clip-rule="evenodd"></path>
-                                            </svg>
-                                        </a>
-                                    </span>
-                                </div>
-                            </div>
-                        </nav>
+                        {{ $lssanpham->appends(request()->all())->links() }}
                     </div>
 
                 </div>
@@ -248,5 +187,74 @@
         $(document).ready(function() {
             $('#san-pham').addClass('mm-active');
         });
+
+        function san_pham_hien($id) {
+            var check = document.getElementById("check-hien" + $id).checked;
+            var formData = new FormData();
+            var url = "{{ route('admin.san-pham-hien', '') }}" + '/' + $id;
+            formData.append('check', check);
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                url: url,
+                type: 'POST',
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function(data) {
+                    //window.location.reload(); load lại trang
+                    console.log(data)
+                }
+            });
+        }
+
+        function san_pham_moi($id) {
+            var check = document.getElementById("check-moi" + $id).checked;
+            var formData = new FormData();
+            var url = "{{ route('admin.san-pham-moi', '') }}" + '/' + $id;
+            formData.append('check', check);
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                url: url,
+                type: 'POST',
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function(data) {
+                    //window.location.reload(); load lại trang
+                    console.log(data)
+                }
+            });
+        }
+
+        function san_pham_noi_bat($id) {
+            var check = document.getElementById("check-noi-bat" + $id).checked;
+            var formData = new FormData();
+            var url = "{{ route('admin.san-pham-noi-bat', '') }}" + '/' + $id;
+            formData.append('check', check);
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                url: url,
+                type: 'POST',
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function(data) {
+                    //window.location.reload(); load lại trang
+                    console.log(data)
+                }
+            });
+        }
     </script>
 @endsection
