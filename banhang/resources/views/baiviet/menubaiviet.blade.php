@@ -19,7 +19,7 @@
              <h4>Các bản tin mới</h4>
              @if ($lsbaivietmoi->count() != null)
                  <div class="blog__sidebar__recent">
-                     @foreach ($lsbaiviet as $key => $value)
+                     @foreach ($lsbaivietmoi as $key => $value)
                          <a href="#" class="blog__sidebar__recent__item">
                              <div class="blog__sidebar__recent__item__pic bai-viet-moi">
                                  <img src="{{ URL($value->hinh_anh) }}" alt="">
@@ -36,7 +36,6 @@
                  <div>
                      KHÔNG CÓ BÀI VIẾT MỚI GẦN ĐÂY
                  </div>
-
              @endif
 
          </div>

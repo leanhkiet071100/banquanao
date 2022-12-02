@@ -175,7 +175,7 @@
 
 
                     <div class="d-block card-footer">
-                        {{ $lssanpham->appends(request()->all())->links() }}
+                        {{ $lssanpham->appends(request()->all())->links('phantrang.phantrang') }}
                     </div>
 
                 </div>

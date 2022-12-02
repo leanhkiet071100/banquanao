@@ -31,9 +31,8 @@
                             <div class="position-relative row form-group">
                                 <label class="col-md-3 text-md-right col-form-label">Tên sản phẩm</label>
                                 <div class="col-md-9 col-xl-8">
-                                    <input disabled placeholder="Product Name" type="text" class="form-control"
-                                        value="{{$sanpham->ten_san_pham}}">
-                                    
+                                        <input disabled placeholder="Product Name" type="text" class="form-control"
+                                            value="{{$sanpham->ten_san_pham}}">
                                 </div>
                             </div>
                             

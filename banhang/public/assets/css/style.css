@@ -1657,6 +1657,7 @@ ol {
 .product__pagination a:last-child,
 .blog__pagination a:last-child {
 	margin-right: 0;
+	color: #000;
 }
 
 /*---------------------
@@ -3607,8 +3608,12 @@ ol {
 	/* transform: translate(50%, 50%); */
 }
 
-.bai-viet-moi img{
+.bai-viet-moi img {
 	height: 70px;
 	width: 70px;
-	
+}
+
+.ds-bai-viet li.active {
+	background-color: #7fad39;
+	border-color: #7fad39;
 }

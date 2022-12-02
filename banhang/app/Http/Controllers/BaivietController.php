@@ -21,15 +21,14 @@ use Illuminate\Http\Request;
 
 class BaivietController extends Controller
 {
-    private $lsloaisanpham;
-    private $loaibaiviet;
-    private $lsbaivietmoi;
+    public $lsloaisanpham ;
+    public $loaibaiviet;
+    public $lsbaivietmoi;
     public function __contruct()
     {
         $lsloaisanpham = loai_san_pham::where('hien','=',1)->get();
         $loaibaiviet = baiviet::select('loai_bai_viet')->distinct('loai_bai_viet')->get();
         $lsbaivietmoi = baiviet::where('hien','=',1)->where('moi','=',1)->orderBy('create_at', 'DESC')->paginate(3);
-        return with(['lsloaisanpham'=>$lsloaisanpham,'loaibaiviet'=>$loaibaiviet,'lsbaivietmoi'=>$lsbaivietmoi]);
     }
 
     /**
@@ -43,7 +42,7 @@ class BaivietController extends Controller
         $loaibaiviet = baiviet::select('loai_bai_viet')->distinct('loai_bai_viet')->get();
         $lsbaivietmoi = baiviet::where('hien','=',1)->where('moi','=',1)->orderBy('created_at', 'DESC')->paginate(3);
         $lsbaiviet = baiviet::where('hien','=',1)->paginate(6);
-        $lsbaivietnb = baiviet::where('hien','=',1)->where('noi-bat','=',1)->orderBy('created_at', 'DESC')->paginate(3);
+        $lsbaivietnb = baiviet::where('hien','=',1)->where('noi_bat','=',1)->orderBy('created_at', 'DESC')->paginate(3);
         return view('baiviet.dsbaiviet')->with(['lsbaiviet'=>$lsbaiviet,'lsloaisanpham'=>$lsloaisanpham,'loaibaiviet'=>$loaibaiviet,'lsbaivietmoi'=>$lsbaivietmoi,'lsbaivietnb'=>$lsbaivietnb]);
     }
 

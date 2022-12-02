@@ -9,11 +9,7 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="breadcrumb__text">
-                        <h2>Blog</h2>
-                        <div class="breadcrumb__option">
-                            <a href="./index.html">Home</a>
-                            <span>Blog</span>
-                        </div>
+                        <h2>BÀI VIẾT</h2>
                     </div>
                 </div>
             </div>
@@ -49,14 +45,11 @@
                                     </div>
                                 </div>
                             @endforeach
-                            {{-- <div class="col-lg-12">
-                                <div class="product__pagination blog__pagination">
-                                    <a href="#">1</a>
-                                    <a href="#">2</a>
-                                    <a href="#">3</a>
-                                    <a href="#"><i class="fa fa-long-arrow-right"></i></a>
+                            <div class="col-lg-12">
+                                <div class="product__pagination blog__pagination ds-bai-viet">
+                                     {{ $lsbaiviet->appends(request()->all())->links('phantrang.phantrang') }}
                                 </div>
-                            </div> --}}
+                            </div>
                         </div>
                     </div>
                 @else

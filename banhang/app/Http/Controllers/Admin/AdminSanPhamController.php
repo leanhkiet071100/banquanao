@@ -32,16 +32,15 @@ class AdminSanPhamController extends Controller
             $lssanpham = sanpham::join('loai_san_phams','loai_san_phams.id', '=','sanphams.ma_loai_san_pham')
                     ->select('sanphams.id','loai_san_phams.ten_loai_san_pham','sanphams.ten_san_pham','sanphams.gia','sanphams.so_luong_kho','sanphams.moi','sanphams.noi_bat','sanphams.hien','sanphams.hinh_anh')
                     ->orderBy('sanphams.created_at','DESC')
-                    ->paginate(1);
+                    ->paginate(5);
             
         }else{
             $lssanpham = sanpham::join('loai_san_phams','loai_san_phams.id', '=','sanphams.ma_loai_san_pham')
                     ->select('sanphams.id','loai_san_phams.ten_loai_san_pham','sanphams.ten_san_pham','sanphams.gia','sanphams.so_luong_kho','sanphams.moi','sanphams.noi_bat','sanphams.hien','sanphams.hinh_anh')
                     ->where('sanphams.ten_san_pham','like','%'.$key.'%')
                     ->orderBy('sanphams.created_at','DESC')
-                    ->paginate(1);
+                    ->paginate(5);
         }
-           
         //dd($lssanpham);
         return view('admin.sanpham.sanpham-ds')->with(['lssanpham'=>$lssanpham]);
     }

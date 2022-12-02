@@ -83,7 +83,7 @@
 
                             <div class="position-relative row form-group">
                                 <label for="giasp" class="col-md-3 text-md-right col-form-label">Giá</label>
-                                <div class="col-md-9 col-xl-8">
+                                <div class="col-md-9 col-xl-7">
                                     <input required name="giasp" id="giasp" placeholder="giá" type="text"
                                         class="form-control" value="{{ old('giasp') }}" onChange="format_curency(this);">
                                     <div class="text-center">
@@ -92,11 +92,15 @@
                                         @enderror
                                     </div>
                                 </div>
+                                <div class="col-md-1 ">
+                                    <input disabled placeholder="Product Name" type="text"
+                                        class="form-control text-center" value="VNĐ">
+                                </div>
                             </div>
 
                             <div class="position-relative row form-group">
                                 <label for="trongluong" class="col-md-3 text-md-right col-form-label">Trọng lượng</label>
-                                <div class="col-md-9 col-xl-8">
+                                <div class="col-md-9 col-xl-7">
                                     <input required name="trongluong" id="trongluong" placeholder="Trọng lượng"
                                         type="number" class="form-control" value="{{ old('trongluong') }}">
                                     <div class="text-center">
@@ -104,6 +108,28 @@
                                             <span style="color:red"> {{ $message }}</span>
                                         @enderror
                                     </div>
+
+                                </div>
+                                <div class="col-md-1 ">
+                                    <input disabled placeholder="Product Name" type="text"
+                                        class="form-control text-center" value="KG">
+                                </div>
+                            </div>
+
+                            <div class="position-relative row form-group">
+                                <label for="giamgia" class="col-md-3 text-md-right col-form-label">Giảm giá</label>
+                                <div class="col-md-9 col-xl-7">
+                                    <input required name="giamgia" id="giamgia" placeholder="giảm giá" type="text"
+                                        class="form-control" value="{{ old('giamgia') }}">
+                                    <div class="text-center">
+                                        @error('giamgia')
+                                            <span style="color:red"> {{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-1 ">
+                                    <input disabled placeholder="Product Name" type="text"
+                                        class="form-control text-center" value="%">
                                 </div>
                             </div>
                             <div class="position-relative row form-group">
@@ -119,18 +145,7 @@
                                 </div>
                             </div>
 
-                            <div class="position-relative row form-group">
-                                <label for="giamgia" class="col-md-3 text-md-right col-form-label">Giảm giá</label>
-                                <div class="col-md-9 col-xl-8">
-                                    <input required name="giamgia" id="giamgia" placeholder="giảm giá" type="text"
-                                        class="form-control" value="{{ old('giamgia') }}">
-                                    <div class="text-center">
-                                        @error('giamgia')
-                                            <span style="color:red"> {{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                </div>
-                            </div>
+
 
                             <div class="position-relative row form-group">
                                 <label for="tag" class="col-md-3 text-md-right col-form-label">Tag</label>
@@ -214,15 +229,15 @@
     <script type="text/javascript">
         function format_curency(a) {
             //xóa dấu phẩy
-            a.value = a.value.replaceAll(',','');
+            a.value = a.value.replaceAll(',', '');
             // định dạng tiền
             a.value = a.value.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
         }
 
         $(document).ready(function() {
             $('#san-pham').addClass('mm-active');
-             $('#li-san-pham').addClass('mm-active');
-           
+            $('#li-san-pham').addClass('mm-active');
+
         });
         CKEDITOR.replace('mota');
         CKEDITOR.replace('noidung');
