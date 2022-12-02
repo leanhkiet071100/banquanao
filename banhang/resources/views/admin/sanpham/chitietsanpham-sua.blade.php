@@ -105,6 +105,7 @@
     <script>
         $(document).ready(function() {
             $('#san-pham').addClass('mm-active');
+             $('#li-san-pham').addClass('mm-active');
         });
     </script>
 @endsection

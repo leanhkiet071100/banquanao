@@ -45,7 +45,12 @@
 
 <script type="text/javascript">
     {
+
         $(document).ready(function() {
+
+            $('#loai-san-pham').addClass('mm-active');
+            $('#li-san-pham').addClass('mm-active');
+
             $("#formsua").submit(function(e) {
                 e.preventDefault();
                 var url = $(this).attr('data-url');

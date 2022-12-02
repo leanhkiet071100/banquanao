@@ -1476,9 +1476,9 @@
                         <ul class="vertical-nav-menu">
                             <li class="app-sidebar__heading">Menu</li>
 
-                            <li class="mm-active">
+                            <li class="" id="li-san-pham">
                                 <a href="#">
-                                    <i class="metismenu-icon pe-7s-plugin"></i>Applications
+                                    <i class="metismenu-icon pe-7s-plugin"></i>Sản phẩm
                                     <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                                 </a>
                                 <ul>
@@ -1492,24 +1492,29 @@
                                             <i class="metismenu-icon"></i>Sản phẩm
                                         </a>
                                     </li>
-                                    <li>
-                                        <a href="./user.html" id="nguoi-dung">
-                                            <i class="metismenu-icon"></i>Người dùng
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="./order.html" id="hoa-don">
-                                            <i class="metismenu-icon"></i>Hóa Đơn
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ Route('admin.get-nhan-hieu') }}" class=""
-                                            id="nhan-hieu">
-                                            <i class="metismenu-icon"></i>Nhãn Hiệu
-                                        </a>
-                                    </li>
+
                                 </ul>
                             </li>
+                            <li class="" id="li-bai-viet">
+                                <a href="#">
+                                    <i class="metismenu-icon pe-7s-plugin"></i>Bài viết
+                                    <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                                </a>
+                                <ul>
+                                    <li>
+                                        <a href="{{ Route('admin.bai-viet') }}" id="bai-viet">
+                                            <i class="metismenu-icon"></i>Bài viết
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </li>
+                            <li class="">
+                                <a href="{{ Route('admin.get-nhan-hieu') }}" class="" id="nhan-hieu">
+                                    <i class="metismenu-icon pe-7s-plugin"></i>Nhãn Hiệu
+                                </a>
+                            </li>
+
                         </ul>
                     </div>
                 </div>

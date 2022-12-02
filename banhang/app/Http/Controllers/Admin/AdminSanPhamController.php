@@ -9,8 +9,6 @@ use App\Models\nhan_hieu;
 use App\Models\loai_san_pham;
 use App\Models\sanpham_chitiet;
 use App\Models\sanpham_hinhanh;
-use App\Http\Requests\StoresanphamRequest;
-use App\Http\Requests\UpdatesanphamRequest;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -34,14 +32,14 @@ class AdminSanPhamController extends Controller
             $lssanpham = sanpham::join('loai_san_phams','loai_san_phams.id', '=','sanphams.ma_loai_san_pham')
                     ->select('sanphams.id','loai_san_phams.ten_loai_san_pham','sanphams.ten_san_pham','sanphams.gia','sanphams.so_luong_kho','sanphams.moi','sanphams.noi_bat','sanphams.hien','sanphams.hinh_anh')
                     ->orderBy('sanphams.created_at','DESC')
-                    ->paginate(5);
+                    ->paginate(1);
             
         }else{
             $lssanpham = sanpham::join('loai_san_phams','loai_san_phams.id', '=','sanphams.ma_loai_san_pham')
                     ->select('sanphams.id','loai_san_phams.ten_loai_san_pham','sanphams.ten_san_pham','sanphams.gia','sanphams.so_luong_kho','sanphams.moi','sanphams.noi_bat','sanphams.hien','sanphams.hinh_anh')
                     ->where('sanphams.ten_san_pham','like','%'.$key.'%')
                     ->orderBy('sanphams.created_at','DESC')
-                    ->paginate(5);
+                    ->paginate(1);
         }
            
         //dd($lssanpham);

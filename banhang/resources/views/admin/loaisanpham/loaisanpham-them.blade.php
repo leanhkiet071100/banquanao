@@ -41,6 +41,10 @@
 <!-- End Main -->
 
 <script type='text/javascript'>
+    $(document).ready(function() {
+        $('#loai-san-pham').addClass('mm-active');
+        $('#li-san-pham').addClass('mm-active');
+    });
     $("#formthem").submit(function(e) {
         e.preventDefault();
         var ten = $('#ten').val();

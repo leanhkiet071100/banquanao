@@ -62,7 +62,7 @@
                                 <tr>
                                     <th class="text-center" width="5%">ID</th>
 
-                                    <th class="text-center" width="20%">ID</th>
+                                    <th class="text-center" width="20%">Hình</th>
                                     <th class="text-center" width="50%">Tên nhãn hiệu</th>
 
                                     <th class="text-center">Hiện</th>

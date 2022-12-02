@@ -26,134 +26,113 @@
             <div class="col-md-12">
                 <div class="main-card mb-3 card">
                     <div class="card-body">
-                        <form method="post" enctype="multipart/form-data"></form>
-                        <div class="position-relative row form-group">
-                            <label for="brand_id" class="col-md-3 text-md-right col-form-label">Brand</label>
-                            <div class="col-md-9 col-xl-8">
-                                <select required name="brand_id" id="brand_id" class="form-control">
-                                    <option value="">-- Brand --</option>
-                                    <option value=0>
-                                        Calvin Klein
-                                    </option>
-                                    <option value=1>
-                                        Diesel
-                                    </option>
-                                    <option value=2>
-                                        Polo
-                                    </option>
-                                </select>
-                            </div>
-                        </div>
+                        <form method="post" enctype="multipart/form-data" action="{{ route('admin.post-bai-viet-sua',['id'=>$baiviet->id]) }}">
+                            @csrf
+                            <div class="position-relative row form-group">
+                                <label for="" class="col-md-3 text-md-right col-form-label">Hình ảnh</label>
+                                <div class="col-md-9 col-xl-8">
+                                    <ul class="text-nowrap" id="images">
+                                        <li class="float-left d-inline-block mr-2 mb-2" style="width: 32%;">
 
-                        <div class="position-relative row form-group">
-                            <label for="product_category_id" class="col-md-3 text-md-right col-form-label">Category</label>
-                            <div class="col-md-9 col-xl-8">
-                                <select required name="product_category_id" id="product_category_id" class="form-control">
-                                    <option value="">-- Category --</option>
-                                    <option value=0>
-                                        Men
-                                    </option>
-                                    <option value=1>
-                                        Women
-                                    </option>
-                                    <option value=2>
-                                        Kid
-                                    </option>
-                                </select>
-                            </div>
-                        </div>
+                                            <div style="width: 100%; max-height: 100%; overflow: hidden;"
+                                                class="hinh-bai-viet">
+                                                <img style="width: 100%; cursor: pointer;" class="thumbnail"
+                                                    data-toggle="tooltip" title="Click to add image" data-placement="bottom"
+                                                    src="{{ URL($baiviet->hinh_anh) ?? assets/images/add-image-icon.jpg}}" alt="Add Image">
 
-                        <div class="position-relative row form-group">
-                            <label for="name" class="col-md-3 text-md-right col-form-label">Name</label>
-                            <div class="col-md-9 col-xl-8">
-                                <input required name="name" id="name" placeholder="Name" type="text"
-                                    class="form-control" value="">
-                            </div>
-                        </div>
+                                                <input name="hinhbaiviet" type="file" onchange="changeImg(this);"
+                                                    accept="image/x-png,image/gif,image/jpeg" id="hinhbaiviet"
+                                                    class="image form-control-file bai-viet-hinh" style="display: none;">
+                                            </div>
 
-                        <div class="position-relative row form-group">
-                            <label for="content" class="col-md-3 text-md-right col-form-label">Content</label>
-                            <div class="col-md-9 col-xl-8">
-                                <input required name="content" id="content" placeholder="Content" type="text"
-                                    class="form-control" value="">
-                            </div>
-                        </div>
-
-                        <div class="position-relative row form-group">
-                            <label for="price" class="col-md-3 text-md-right col-form-label">Price</label>
-                            <div class="col-md-9 col-xl-8">
-                                <input required name="price" id="price" placeholder="Price" type="text"
-                                    class="form-control" value="">
-                            </div>
-                        </div>
-
-                        <div class="position-relative row form-group">
-                            <label for="discount" class="col-md-3 text-md-right col-form-label">Discount</label>
-                            <div class="col-md-9 col-xl-8">
-                                <input required name="discount" id="discount" placeholder="Discount" type="text"
-                                    class="form-control" value="">
-                            </div>
-                        </div>
-
-                        <div class="position-relative row form-group">
-                            <label for="weight" class="col-md-3 text-md-right col-form-label">Weight</label>
-                            <div class="col-md-9 col-xl-8">
-                                <input required name="weight" id="weight" placeholder="Weight" type="text"
-                                    class="form-control" value="">
-                            </div>
-                        </div>
-
-                        <div class="position-relative row form-group">
-                            <label for="sku" class="col-md-3 text-md-right col-form-label">SKU</label>
-                            <div class="col-md-9 col-xl-8">
-                                <input required name="sku" id="sku" placeholder="SKU" type="text"
-                                    class="form-control" value="">
-                            </div>
-                        </div>
-
-                        <div class="position-relative row form-group">
-                            <label for="tag" class="col-md-3 text-md-right col-form-label">Tag</label>
-                            <div class="col-md-9 col-xl-8">
-                                <input required name="tag" id="tag" placeholder="Tag" type="text"
-                                    class="form-control" value="">
-                            </div>
-                        </div>
-
-                        <div class="position-relative row form-group">
-                            <label for="featured" class="col-md-3 text-md-right col-form-label">Featured</label>
-                            <div class="col-md-9 col-xl-8">
-                                <div class="position-relative form-check pt-sm-2">
-                                    <input name="featured" id="featured" type="checkbox" value="1"
-                                        class="form-check-input">
-                                    <label for="featured" class="form-check-label">Featured</label>
+                                        </li>
+                                    </ul>
+                                    <div class="text-center">
+                                        @error('hinhbaiviet')
+                                            <span style="color:red"> {{ $message }}</span>
+                                        @enderror
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="position-relative row form-group">
-                            <label for="description" class="col-md-3 text-md-right col-form-label">Description</label>
-                            <div class="col-md-9 col-xl-8">
-                                <textarea class="form-control" name="description" id="description" placeholder="Description"></textarea>
+                            <div class="position-relative row form-group">
+                                <label for="product_category_id" class="col-md-3 text-md-right col-form-label">Loại bài
+                                    viết</label>
+                                <div class="col-md-9 col-xl-8">
+                                    {{-- <select required name="loaisp_id" id="product_category_id" class="form-control">
+                                        <option value="">-- Loại sản phẩm --</option>
+                                        @foreach ($lsloaisanpham as $key => $value)
+                                            <option value={{ $value->id }}>
+                                                {{ $value->ten_loai_san_pham }}
+                                            </option>
+                                        @endforeach
+                                    </select> --}}
+                                    <input required name="loaibaiviet" id="loaibaiviet" placeholder="Loại bài viêt"
+                                        type="text" class="form-control" value="{{ old('loaibaiviet') ?? $baiviet->loai_bai_viet }}">
+                                    <div class="text-center">
+                                        @error('loaibaiviet')
+                                            <span style="color:red"> {{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="position-relative row form-group mb-1">
-                            <div class="col-md-9 col-xl-8 offset-md-2">
-                                <a href="#" class="border-0 btn btn-outline-danger mr-1">
-                                    <span class="btn-icon-wrapper pr-1 opacity-8">
-                                        <i class="fa fa-times fa-w-20"></i>
-                                    </span>
-                                    <span>Cancel</span>
-                                </a>
+                            <div class="position-relative row form-group">
+                                <label for="tieude" class="col-md-3 text-md-right col-form-label">Tiêu đề</label>
+                                <div class="col-md-9 col-xl-8">
+                                    <input required name="tieude" id="tieude" placeholder="Tiêu đề" type="text"
+                                        class="form-control" value="{{ old('tieude') ?? $baiviet->tieu_de}}">
+                                    <div class="text-center">
+                                        @error('tieude')
+                                            <span style="color:red"> {{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
 
-                                <button type="submit" class="btn-shadow btn-hover-shine btn btn-primary">
-                                    <span class="btn-icon-wrapper pr-2 opacity-8">
-                                        <i class="fa fa-download fa-w-20"></i>
-                                    </span>
-                                    <span>Save</span>
-                                </button>
                             </div>
-                        </div>
+
+                            <div class="position-relative row form-group">
+                                <label for="phude" class="col-md-3 text-md-right col-form-label">Giá</label>
+                                <div class="col-md-9 col-xl-8">
+                                    <input required name="phude" id="phude" placeholder="Phụ đề" type="text"
+                                        class="form-control" value="{{ old('phude') ?? $baiviet->phu_de }}">
+                                    <div class="text-center">
+                                        @error('phude')
+                                            <span style="color:red"> {{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="position-relative row form-group">
+                                <label for="noidung" class="col-md-3 text-md-right col-form-label">Nội dung</label>
+                                <div class="col-md-9 col-xl-8">
+                                    <textarea required class="form-control" name="noidung" id="noidung" placeholder="Nội dung"
+                                        value="{{ old('noidung') }}">{{ old('noidung') ?? $baiviet->noi_dung }}</textarea>
+                                    <div class="text-center">
+                                        @error('noidung')
+                                            <span style="color:red"> {{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="position-relative row form-group mb-1">
+                                <div class="col-md-9 col-xl-8 offset-md-2">
+                                    <a href="{{ route('admin.bai-viet') }}" class="border-0 btn btn-outline-danger mr-1">
+                                        <span class="btn-icon-wrapper pr-1 opacity-8">
+                                            <i class="fa fa-times fa-w-20"></i>
+                                        </span>
+                                        <span>Hủy</span>
+                                    </a>
+
+                                    <button type="submit" class="btn-shadow btn-hover-shine btn btn-primary">
+                                        <span class="btn-icon-wrapper pr-2 opacity-8">
+                                            <i class="fa fa-download fa-w-20"></i>
+                                        </span>
+                                        <span>Lưu</span>
+                                    </button>
+                                </div>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -163,6 +142,13 @@
     <!-- End Main -->
 @endsection
 
-@section('content')
-    <p>This is my body content.</p>
+@section('js')
+    <script type="text/javascript">
+
+        $(document).ready(function() {
+            $('#bai-viet').addClass('mm-active');
+            $('#li-bai-viet').addClass('mm-active');
+        });
+        CKEDITOR.replace('noidung');
+    </script>
 @endsection

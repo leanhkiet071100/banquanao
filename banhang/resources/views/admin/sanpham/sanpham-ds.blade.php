@@ -66,7 +66,7 @@
                         <table class="align-middle mb-0 table table-borderless table-striped table-hover">
                             <thead>
                                 <tr>
-                                    <th class="text-center">ID</th>
+                                    <th class="text-center">STT</th>
                                     <th class="text-center">Tên và nhãn hiệu</th>
                                     <th class="text-center">Giá</th>
                                     <th class="text-center">số lượng kho</th>
@@ -112,23 +112,33 @@
                                             <div class=" check-magana text-center td-radio">
                                                 {{-- <input class="form-check-input" type="checkbox" value=""\
                                                     id="defaultCheck1"> --}}
-                                                <input class="" type="checkbox" value="" id="check-hien{{$value->id}}"  @if ($value->hien == 1) checked @endif onchange="san_pham_hien({{$value->id}})">
+                                                <input class="" type="checkbox" value=""
+                                                    id="check-hien{{ $value->id }}"
+                                                    @if ($value->hien == 1) checked @endif
+                                                    onchange="san_pham_hien({{ $value->id }})">
                                             </div>
                                         </td>
                                         <td class="td-radio">
                                             <div class=" check-magana text-center td-radio">
                                                 {{-- <input class="form-check-input" type="checkbox" value=""\
                                                     id="defaultCheck1"> --}}
-                                                <input class="" type="checkbox" value="" id="check-moi{{$value->id}}"  @if ($value->moi == 1) checked @endif onchange="san_pham_moi({{$value->id}})">
+                                                <input class="" type="checkbox" value=""
+                                                    id="check-noi-bat{{ $value->id }}"
+                                                    @if ($value->noi_bat == 1) checked @endif
+                                                    onchange="san_pham_noi_bat({{ $value->id }})">
                                             </div>
                                         </td>
                                         <td class="td-radio">
                                             <div class=" check-magana text-center td-radio">
                                                 {{-- <input class="form-check-input" type="checkbox" value=""\
                                                     id="defaultCheck1"> --}}
-                                                <input class="" type="checkbox" value="" id="check-noi-bat{{$value->id}}"  @if ($value->noi_bat == 1) checked @endif onchange="san_pham_noi_bat({{$value->id}})">
+                                                <input class="" type="checkbox" value=""
+                                                    id="check-moi{{ $value->id }}"
+                                                    @if ($value->moi == 1) checked @endif
+                                                    onchange="san_pham_moi({{ $value->id }})">
                                             </div>
                                         </td>
+
                                         <td class="text-center">
                                             <a href="{{ route('admin.chi-tiet-san-pham', ['id' => $value->id]) }}"
                                                 class="btn btn-hover-shine btn-outline-primary border-0 btn-sm">
@@ -176,6 +186,11 @@
 @endsection
 @section('js')
     <script>
+        $(document).ready(function() {
+            $('#san-pham').addClass('mm-active');
+            $('#li-san-pham').addClass('mm-active');
+        });
+
         function format_curency(a) {
             // định dạng tiền
             a.value = a.value.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
@@ -184,9 +199,7 @@
         function format_money(n, currency) {
             return currency + n.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
         }
-        $(document).ready(function() {
-            $('#san-pham').addClass('mm-active');
-        });
+
 
         function san_pham_hien($id) {
             var check = document.getElementById("check-hien" + $id).checked;

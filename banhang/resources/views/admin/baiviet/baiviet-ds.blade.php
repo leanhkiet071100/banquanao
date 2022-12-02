@@ -20,7 +20,7 @@
                 </div>
 
                 <div class="page-title-actions">
-                    <a href="./product-create.html" class="btn-shadow btn-hover-shine mr-3 btn btn-primary">
+                    <a href="{{ route('admin.get-bai-viet-them') }}" class="btn-shadow btn-hover-shine mr-3 btn btn-primary">
                         <span class="btn-icon-wrapper pr-2 opacity-7">
                             <i class="fa fa-plus fa-w-20"></i>
                         </span>
@@ -29,21 +29,29 @@
                 </div>
             </div>
         </div>
-
+        <div class="row">
+            <div class="col-md-12">
+                @if (session()->has('success'))
+                    <div class="alert alert-success success text-center" id="success" style="font-size:50px ">
+                        {{ session()->get('success') }}
+                    </div>
+                @endif
+            </div>
+        </div>
         <div class="row">
             <div class="col-md-12">
                 <div class="main-card mb-3 card">
 
                     <div class="card-header">
 
-                        <form>
+                        <form action="">
                             <div class="input-group">
                                 <input type="search" name="search" id="search" placeholder="Search everything"
                                     class="form-control">
                                 <span class="input-group-append">
                                     <button type="submit" class="btn btn-primary">
                                         <i class="fa fa-search"></i>&nbsp;
-                                        Search
+                                        Tìm kiếm
                                     </button>
                                 </span>
                             </div>
@@ -61,137 +69,110 @@
                         <table class="align-middle mb-0 table table-borderless table-striped table-hover">
                             <thead>
                                 <tr>
-                                    <th class="text-center">ID</th>
-                                    <th>Name / Brand</th>
-                                    <th class="text-center">Price</th>
-                                    <th class="text-center">Qty</th>
-                                    <th class="text-center">Featured</th>
-                                    <th class="text-center">Actions</th>
+                                    <th class="text-center">STT</th>
+                                    <th class="text-center">Tiêu đề</th>
+                                    <th class="text-center">Loại bài viết</th>
+                                    <th class="text-center">Hiện</th>
+                                    <th class="text-center">Nổi bật</th>
+                                    <th class="text-center">Mới</th>
+                                    {{-- <th class="text-center">Featured</th> --}}
+                                    <th class="text-center">Chức năng</th>
                                 </tr>
                             </thead>
 
                             <tbody>
-
-                                <tr>
-                                    <td class="text-center text-muted">#01</td>
-                                    <td>
-                                        <div class="widget-content p-0">
-                                            <div class="widget-content-wrapper">
-                                                <div class="widget-content-left mr-3">
-                                                    <div class="widget-content-left">
-                                                        <img style="height: 60px;" data-toggle="tooltip" title="Image"
-                                                            data-placement="bottom" src="assets/images/_default-product.jpg"
-                                                            alt="">
+                                @foreach ($lsbaiviet as $key => $value)
+                                    <tr>
+                                        <td class="text-center text-muted">{{ $key + 1 }}</td>
+                                        <td>
+                                            <div class="widget-content p-0">
+                                                <div class="widget-content-wrapper">
+                                                    <div class="widget-content-left mr-3">
+                                                        <div class="widget-content-left">
+                                                            <img style="height: 60px; width:60px;" data-toggle="tooltip"
+                                                                title="Image" data-placement="bottom"
+                                                                src="{{ URL($value->hinh_anh) }}" alt="">
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="widget-content-left flex2">
-                                                    <div class="widget-heading">Pure Pineapple</div>
-                                                    <div class="widget-subheading opacity-7">
-                                                        Calvin Klein
+                                                    <div class="widget-content-left flex2">
+                                                        <div class="widget-heading">{{ $value->tieu_de }}</div>
+                                                        {{-- <div class="widget-subheading opacity-7">
+                                                            {{ $value->ten_san_pham }}
+                                                        </div> --}}
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </td>
-                                    <td class="text-center">$599.00</td>
-                                    <td class="text-center">25</td>
-                                    <td class="text-center">
-                                        <div class="badge badge-success mt-2">
-                                            True
-                                        </div>
-                                    </td>
-                                    <td class="text-center">
-                                        <a href="./product-show.html"
-                                            class="btn btn-hover-shine btn-outline-primary border-0 btn-sm">
-                                            Details
-                                        </a>
-                                        <a href="./product-edit.html" data-toggle="tooltip" title="Edit"
-                                            data-placement="bottom" class="btn btn-outline-warning border-0 btn-sm">
-                                            <span class="btn-icon-wrapper opacity-8">
-                                                <i class="fa fa-edit fa-w-20"></i>
-                                            </span>
-                                        </a>
-                                        <form class="d-inline" action="" method="post">
-                                            <button class="btn btn-hover-shine btn-outline-danger border-0 btn-sm"
-                                                type="submit" data-toggle="tooltip" title="Delete" data-placement="bottom"
-                                                onclick="return confirm('Do you really want to delete this item?')">
-                                                <span class="btn-icon-wrapper opacity-8">
-                                                    <i class="fa fa-trash fa-w-20"></i>
-                                                </span>
-                                            </button>
-                                        </form>
-                                    </td>
-                                </tr>
+                                        </td>
+                                        <td class="text-center">{{ $value->loai_bai_viet }}</td>
+                                    
+                                        <td class="td-radio">
+                                            <div class=" check-magana text-center td-radio">
+                                                {{-- <input class="form-check-input" type="checkbox" value=""\
+                                                    id="defaultCheck1"> --}}
+                                                <input class="" type="checkbox" value=""
+                                                    id="check-hien{{ $value->id }}"
+                                                    @if ($value->hien == 1) checked @endif
+                                                    onchange="bai_viet_hien({{ $value->id }})">
+                                            </div>
+                                        </td>
+                                        <td class="td-radio">
+                                            <div class=" check-magana text-center td-radio">
+                                                {{-- <input class="form-check-input" type="checkbox" value=""\
+                                                    id="defaultCheck1"> --}}
+                                                <input class="" type="checkbox" value=""
+                                                    id="check-noi-bat{{ $value->id }}"
+                                                    @if ($value->noi_bat == 1) checked @endif
+                                                    onchange="bai_viet_noi_bat({{ $value->id }})">
+                                            </div>
+                                        </td>
+                                        <td class="td-radio">
+                                            <div class=" check-magana text-center td-radio">
+                                                {{-- <input class="form-check-input" type="checkbox" value=""\
+                                                    id="defaultCheck1"> --}}
+                                                <input class="" type="checkbox" value=""
+                                                    id="check-moi{{ $value->id }}"
+                                                    @if ($value->moi == 1) checked @endif
+                                                    onchange="bai_viet_moi({{ $value->id }})">
+                                            </div>
+                                        </td>
 
+                                        <td class="text-center">
+                                            <a href="{{ route('admin.chi-tiet-bai-viet', ['id' => $value->id]) }}"
+                                                class="btn btn-hover-shine btn-outline-primary border-0 btn-sm">
+                                                Chi tiết
+                                            </a>
+                                            <a href="{{ route('admin.get-bai-viet-sua', ['id' => $value->id]) }}"
+                                                data-toggle="tooltip" title="Edit" data-placement="bottom"
+                                                class="btn btn-outline-warning border-0 btn-sm">
+                                                <span class="btn-icon-wrapper opacity-8">
+                                                    <i class="fa fa-edit fa-w-20"></i>
+                                                </span>
+                                            </a>
+                                            <form class="d-inline"
+                                                action="{{ route('admin.bai-viet-xoa', ['id' => $value->id]) }}"
+                                                method="POST">
+                                                @method('DELETE')
+                                                @csrf
+                                                <button class="btn btn-hover-shine btn-outline-danger border-0 btn-sm"
+                                                    type="submit" data-toggle="tooltip" title="Delete"
+                                                    data-placement="bottom"
+                                                    onclick="return confirm('Bạn có chắc muốn xóa?')">
+                                                    <span class="btn-icon-wrapper opacity-8">
+                                                        <i class="fa fa-trash fa-w-20"></i>
+                                                    </span>
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
 
                             </tbody>
                         </table>
                     </div>
 
+
                     <div class="d-block card-footer">
-                        <nav role="navigation" aria-label="Pagination Navigation" class="flex items-center justify-between">
-                            <div class="flex justify-between flex-1 sm:hidden">
-                                <span
-                                    class="relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 cursor-default leading-5 rounded-md">
-                                    « Previous
-                                </span>
-
-                                <a href="#page=2"
-                                    class="relative inline-flex items-center px-4 py-2 ml-3 text-sm font-medium text-gray-700 bg-white border border-gray-300 leading-5 rounded-md hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150">
-                                    Next »
-                                </a>
-                            </div>
-
-                            <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
-                                <div>
-                                    <p class="text-sm text-gray-700 leading-5">
-                                        Showing
-                                        <span class="font-medium">1</span>
-                                        to
-                                        <span class="font-medium">5</span>
-                                        of
-                                        <span class="font-medium">9</span>
-                                        results
-                                    </p>
-                                </div>
-
-                                <div>
-                                    <span class="relative z-0 inline-flex shadow-sm rounded-md">
-                                        <span aria-disabled="true" aria-label="&amp;laquo; Previous">
-                                            <span
-                                                class="relative inline-flex items-center px-2 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 cursor-default rounded-l-md leading-5"
-                                                aria-hidden="true">
-                                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                                                    <path fill-rule="evenodd"
-                                                        d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-                                                        clip-rule="evenodd"></path>
-                                                </svg>
-                                            </span>
-                                        </span>
-
-                                        <span aria-current="page">
-                                            <span
-                                                class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium text-gray-500 bg-white border border-gray-300 cursor-default leading-5">1</span>
-                                        </span>
-                                        <a href="#page=2"
-                                            class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium text-gray-700 bg-white border border-gray-300 leading-5 hover:text-gray-500 focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150"
-                                            aria-label="Go to page 2">
-                                            2
-                                        </a>
-
-                                        <a href="#page=2" rel="next"
-                                            class="relative inline-flex items-center px-2 py-2 -ml-px text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-r-md leading-5 hover:text-gray-400 focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-500 transition ease-in-out duration-150"
-                                            aria-label="Next &amp;raquo;">
-                                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                                                <path fill-rule="evenodd"
-                                                    d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                                                    clip-rule="evenodd"></path>
-                                            </svg>
-                                        </a>
-                                    </span>
-                                </div>
-                            </div>
-                        </nav>
+                        {{ $lsbaiviet->appends(request()->all())->links() }}
                     </div>
 
                 </div>
@@ -200,7 +181,80 @@
     </div>
     <!-- End Main -->
 @endsection
+@section('js')
+    <script>
+        $(document).ready(function() {
+            $('#bai-viet').addClass('mm-active');
+            $('#li-bai-viet').addClass('mm-active');
+        });
 
-@section('content')
-    <p>This is my body content.</p>
+        function bai_viet_hien($id) {
+            var check = document.getElementById("check-hien" + $id).checked;
+            var formData = new FormData();
+            var url = "{{ route('admin.bai-viet-hien', '') }}" + '/' + $id;
+            formData.append('check', check);
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                url: url,
+                type: 'POST',
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function(data) {
+                    //window.location.reload(); load lại trang
+                    console.log(data)
+                }
+            });
+        }
+
+        function bai_viet_moi($id) {
+            var check = document.getElementById("check-moi" + $id).checked;
+            var formData = new FormData();
+            var url = "{{ route('admin.bai-viet-moi', '') }}" + '/' + $id;
+            formData.append('check', check);
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                url: url,
+                type: 'POST',
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function(data) {
+                    //window.location.reload(); load lại trang
+                    console.log(data)
+                }
+            });
+        }
+
+        function bai_viet_noi_bat($id) {
+            var check = document.getElementById("check-noi-bat" + $id).checked;
+            var formData = new FormData();
+            var url = "{{ route('admin.bai-viet-noi-bat', '') }}" + '/' + $id;
+            formData.append('check', check);
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                url: url,
+                type: 'POST',
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function(data) {
+                    //window.location.reload(); load lại trang
+                    console.log(data)
+                }
+            });
+        }
+    </script>
 @endsection

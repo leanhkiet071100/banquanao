@@ -3,8 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Models\sanpham_chitiet;
+use App\Models\nhan_hieu;
+use App\Models\loai_san_pham;
+use App\Models\sanpham;
+use App\Models\sanpham_hinhanh;
 use App\Http\Requests\Storesanpham_chitietRequest;
 use App\Http\Requests\Updatesanpham_chitietRequest;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Hash;
+use App\Http\Controllers\Extension\check;
+use Illuminate\Support\Facades\Redirect;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Request;
 
 class SanphamChitietController extends Controller
 {
@@ -13,9 +26,16 @@ class SanphamChitietController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function chi_tiet_san_pham($id)
     {
-        //
+        $sanpham =  sanpham::join('loai_san_phams','loai_san_phams.id', '=','sanphams.ma_loai_san_pham')
+                    ->join('nhan_hieus','Nhan_hieus.id', '=','sanphams.ma_nhan_hieu')
+                    ->select('nhan_hieus.ten_nhan_hieu','sanphams.*','loai_san_phams.ten_loai_san_pham')
+                    ->find($id);
+        $lsloaisanpham = loai_san_pham::where('hien','=',1)->get();
+        $lshinhanh = sanpham_hinhanh::where('ma_san_pham',$id)->get();
+
+        return view('sanpham.chitietsanpham')->with(['lsloaisanpham'=>$lsloaisanpham,'sanpham'=>$sanpham,'lshinhanh'=>$lshinhanh]);
     }
 
     /**

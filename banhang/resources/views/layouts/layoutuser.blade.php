@@ -43,8 +43,6 @@
     <!-- Hero Section End -->
     @section('sidebar')
     @show
-   
-
     <!-- Footer Section Begin -->
     <footer class="footer spad">
         <div class="container">
@@ -122,7 +120,7 @@
     <script src="{{ URL('assets/js/mixitup.min.js') }}"></script>
     <script src="{{ URL('assets/js/owl.carousel.min.js') }}"></script>
     <script src="{{ URL('assets/js/main.js') }}"></script>
-
+    @yield('js')
 
 
 </body>

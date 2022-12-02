@@ -45,18 +45,18 @@
                 <div class="col-lg-6">
                     <nav class="header__menu">
                         <ul>
-                            <li class="active"><a href="./index.html">Home</a></li>
-                            <li><a href="./shop-grid.html">Shop</a></li>
-                            <li><a href="#">Pages</a>
+                            <li class="active" id="home"><a href="{{route('index')}}" >Home</a></li>
+                            <li  id="san-pham"><a href="{{route('san-pham')}}">Sản phẩm</a></li>
+                            {{-- <li><a href="#">Pages</a>
                                 <ul class="header__menu__dropdown">
                                     <li><a href="./shop-details.html">Shop Details</a></li>
                                     <li><a href="./shoping-cart.html">Shoping Cart</a></li>
                                     <li><a href="./checkout.html">Check Out</a></li>
                                     <li><a href="./blog-details.html">Blog Details</a></li>
                                 </ul>
-                            </li>
-                            <li><a href="./blog.html">Blog</a></li>
-                            <li><a href="./contact.html">Contact</a></li>
+                            </li> --}}
+                            <li id="bai-viet"><a href="{{route('bai-viet')}}">Bài Viết</a></li>
+                            <li id="gioi-thieu"><a href="./contact.html">Giới thiệu</a></li>
                         </ul>
                     </nav>
                 </div>

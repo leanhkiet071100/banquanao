@@ -209,6 +209,7 @@
     <script type="text/javascript">
         $(document).ready(function() {
             $('#san-pham').addClass('mm-active');
+             $('#li-san-pham').addClass('mm-active');
             loadhinhsp()
         });
         CKEDITOR.replace('mota');

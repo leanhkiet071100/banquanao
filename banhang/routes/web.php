@@ -4,7 +4,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminNhanHieuController;
 use App\Http\Controllers\Admin\AdminLoaiSanPhamController;
 use App\Http\Controllers\Admin\AdminSanPhamController;
+use App\Http\Controllers\Admin\AdminBaiVietController;
 use App\Http\Controllers\SanPhamController;
+use App\Http\Controllers\BaiVietController;
+use App\Http\Controllers\SanphamChitietController;
+use App\Http\Controllers\IndexController;
+
 
 
 /*
@@ -20,27 +25,18 @@ use App\Http\Controllers\SanPhamController;
 
 
 // Trang chủ
+    Route::get('/', [IndexController::class, 'index'])->name('index');
 
-    Route::get('/', [SanPhamController::class, 'index'])->name('index');
+    //sản phẩm
+    Route::get('/san-pham', [SanPhamController::class, 'san_pham'])->name('san-pham');
 
-//sản phẩm
-Route::get('/san-pham', function () {
-    return view('sanpham.dssanpham');
-});
-
-Route::get('/chi-tiet-san-pham', function () {
-    return view('sanpham.chitietsanpham');
-});
+    // chi tiết sản phẩm
+    Route::get('/chi-tiet-san-pham/{id}', [SanphamChitietController::class, 'chi_tiet_san_pham'])->name('chi-tiet-san-pham');
 
 //bài viết
-Route::get('/bai-viet', function () {
-    return view('baiviet.dsbaiviet');
-});
+    Route::get('/bai-viet', [BaiVietController::class, 'index'])->name('bai-viet');
 
-Route::get('/chi-tiet-bai-viet', function () {
-    return view('baiviet.chitietbaiviet');
-});
-
+    Route::get('/chi-tiet-bai-viet',  [BaiVietController::class, 'chi-tiet-bai-viet'])->name('chi-tiet-bai-viet');
 //hóa đơn
 Route::get('/xuat-hoa-don', function () {
     return view('hoadon.xuathoadon');
@@ -93,7 +89,16 @@ Route::prefix('admin')->group(function(){
         Route::delete('/xoa-hinh-san-pham/{id}', [AdminSanPhamController::class, 'xoa_hinh_san_pham'])->name('xoa-hinh-san-pham');
 
         //bài viết
-        Route::get('/bai-viet', function () { return view('admin.baiviet.baiviet-ds');});
+        Route::get('/bai-viet', [AdminBaiVietController::class, 'bai_viet'])->name('bai-viet');
+        Route::get('/bai-viet-them', [AdminBaiVietController::class, 'get_them_bai_viet'])->name('get-bai-viet-them');
+        Route::post('/bai-viet-them', [AdminBaiVietController::class, 'post_them_bai_viet'])->name('post-bai-viet-them');
+        Route::get('/bai-viet-sua/{id}',[AdminBaiVietController::class, 'get_bai_viet_sua'])->name('get-bai-viet-sua');
+        Route::post('/bai-viet-sua/{id}',[AdminBaiVietController::class, 'post_bai_viet_sua'])->name('post-bai-viet-sua');
+        Route::delete('/bai-viet-xoa/{id}',[AdminBaiVietController::class, 'bai_viet_xoa'])->name('bai-viet-xoa');
+        Route::get('/chi-tiet-bai-viet/{id}', [AdminBaiVietController::class, 'chi_tiet_bai_viet'])->name('chi-tiet-bai-viet');
+        Route::post('/bai-viet-hien/{id}',[AdminBaiVietController::class, 'bai_viet_hien'])->name('bai-viet-hien');
+        Route::post('/bai-viet-moi/{id}',[AdminBaiVietController::class, 'bai_viet_moi'])->name('bai-viet-moi');
+        Route::post('/bai-viet-noi-bat/{id}',[AdminBaiVietController::class, 'bai_viet_noi_bat'])->name('bai-viet-noi-bat');
 
         // nhãn hiệu
         Route::get('/nhan-hieu', [AdminNhanHieuController::class, 'get_nhan_hieu'])->name('get-nhan-hieu');
@@ -116,6 +121,7 @@ Route::prefix('admin')->group(function(){
         Route::post('/loai-san-pham-hien/{id}',[AdminLoaiSanPhamController::class, 'loai_san_pham_hien'])->name('loai-san-pham-hien');
         Route::post('/loai-san-pham-moi/{id}',[AdminLoaiSanPhamController::class, 'loai_san_pham_moi'])->name('loai-san-pham-moi');
         Route::post('/loai-san-pham-noi-bat/{id}',[AdminLoaiSanPhamController::class, 'loai_san_pham_noi_bat'])->name('loai-san-pham-noi-bat');
+        Route::get('/thay-doi-chu/{str}',[AdminLoaiSanPhamController::class, 'vn_to_str'])->name('thay-doi-chu');
     });
 
         

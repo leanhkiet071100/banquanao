@@ -104,7 +104,12 @@
     </div>
     <!-- Contact Form End -->
 @endsection
-
-@section('content')
-    <p>This is my body content.</p>
+@section('js')
+    <script>
+        $(document).ready(function() {
+            $('#gioi-thieu').addClass('active');
+            
+        });
+    </script>
 @endsection
+

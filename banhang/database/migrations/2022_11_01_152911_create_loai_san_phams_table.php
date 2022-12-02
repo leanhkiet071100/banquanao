@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('loai_san_phams', function (Blueprint $table) {
             $table->id();
             $table->string('ten_loai_san_pham');
+            $table->string('tag_loai_san_pham')->nullable();
             $table->boolean('moi')->nullable();
             $table->boolean('noi_bat')->nullable();
             $table->boolean('hien')->nullable();

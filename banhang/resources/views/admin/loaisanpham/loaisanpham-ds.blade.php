@@ -154,9 +154,9 @@
 
 @section('js')
     <script type="text/javascript">
-        $(document).ready(function() {
+         $(document).ready(function() {
             $('#loai-san-pham').addClass('mm-active');
-            loadloaisanpham()
+             $('#li-san-pham').addClass('mm-active');
         });
 
         $(document).on('click', '.edit_loaisanpham', function(e) {
