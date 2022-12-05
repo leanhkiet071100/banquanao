@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\thong_tin_shop;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class logo extends Model
 {

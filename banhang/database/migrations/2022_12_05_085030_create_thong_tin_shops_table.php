@@ -23,6 +23,7 @@ return new class extends Migration
             $table->text('ban_do')->nullable();
             $table->time('thoi_gian_mo')->nullable();
             $table->time('thoi_gian_dong')->nullable();
+            $table->text('noi_dung')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

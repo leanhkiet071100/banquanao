@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\logo;
+use App\Models\logo;use Illuminate\Database\Eloquent\SoftDeletes;
 
 
 class thong_tin_shop extends Model
@@ -23,6 +23,7 @@ class thong_tin_shop extends Model
         'ban_do',
         'thoi_gian_mo',
         'thoi_gian_dong',
+        'noi_dung',
     ];
 
     protected $primayKey = 'id';

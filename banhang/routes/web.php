@@ -132,6 +132,7 @@ Route::prefix('admin')->group(function(){
         //logo
         Route::get('/logo',[AdminLogoController::class, 'logo'])->name('logo');
         Route::post('/logo-them',[AdminLogoController::class, 'logo_them'])->name('logo-them');
+        Route::post('/logo-sua/{id}',[AdminLogoController::class, 'logo_sua'])->name('logo-sua');
         //shop
         Route::get('/thong-tin-shop',[AdminshopController::class, 'thong_tin_shop'])->name('thong-tin-shop');
 

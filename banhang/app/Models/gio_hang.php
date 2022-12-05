@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\sanpham;
 use App\Models\nguoidung;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class gio_hang extends Model
 {
