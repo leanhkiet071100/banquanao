@@ -1530,8 +1530,13 @@
                                         </a>
                                     </li>
                                      <li>
-                                        <a href="{{ Route('admin.admin-gioi-thieu') }}" id="gioi-thieu">
-                                            <i class="metismenu-icon"></i>giới thiệu
+                                        <a href="{{ Route('admin.banner') }}" id="gioi-thieu">
+                                            <i class="metismenu-icon"></i>banner
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ Route('admin.slideshow') }}" id="gioi-thieu">
+                                            <i class="metismenu-icon"></i>slideshow
                                         </a>
                                     </li>
                                 </ul>

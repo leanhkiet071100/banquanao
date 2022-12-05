@@ -13,9 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('banners', function (Blueprint $table) {
+        Schema::create('slideshows', function (Blueprint $table) {
             $table->id();
-            $table->text('hinh_banner');
+            $table->text('hinh_slideshow');
             $table->text('link')->nullable();
             $table->boolean('hien')->nullable();
             $table->boolean('noi_bat')->nullable();
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('banners');
+        Schema::dropIfExists('slideshows');
     }
 };

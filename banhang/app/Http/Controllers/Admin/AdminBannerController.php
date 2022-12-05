@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class AdminBannerController extends Controller
 {
     
-    public function admin_gioi_thieu(){
-        return view('admin.static.gioi-thieu');
+    public function banner(){
+        return view('admin.hinhanh.banner');
     }
 }

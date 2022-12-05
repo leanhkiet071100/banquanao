@@ -17,6 +17,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('ma_shop')->nullable();
             $table->text('hinh_logo')->nullable();
+            $table->text('hinh_banner')->nullable();
+            $table->boolean('hien_logo')->nullable();
+            $table->boolean('hien_banner')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

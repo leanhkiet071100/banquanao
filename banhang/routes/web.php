@@ -140,7 +140,10 @@ Route::prefix('admin')->group(function(){
         
 
         //banner
-        Route::get('/gioi-thieu',[AdminbannerController::class, 'admin_gioi_thieu'])->name('admin-gioi-thieu');
+        Route::get('/banner',[AdminBannerController::class, 'banner'])->name('admin-banner');
+
+        //
+         Route::get('/slideshow',[AdminslideshowController::class, 'slideshow'])->name('admin-slideshow');
     });
 
         

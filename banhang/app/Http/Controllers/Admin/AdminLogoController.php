@@ -29,7 +29,7 @@ class AdminLogoController extends Controller
     // }
     public function logo(){
         $logo = logo::orderBy('id')->first();
-        return view('admin.static.logo')->with(['logo'=>$logo]);
+        return view('admin.hinhanh.logo')->with(['logo'=>$logo]);
     }
 
     public function logo_them(Request $request){
