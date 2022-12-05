@@ -29,10 +29,12 @@ class SanphamController extends Controller
     
 
     public function san_pham(){
-        $lsloaisanpham = loai_san_pham::where('hien','=',1)->get();
+      
         $lsmau = sanpham_chitiet::select('mau')->distinct('mau')->get();
         $lssize = sanpham_chitiet::select('kich_thuoc')->distinct('kich_thuoc')->get();
-        return view('sanpham.dssanpham')->with(['lsloaisanpham'=>$lsloaisanpham,'lsmau'=>$lsmau,'lssize'=>$lssize]);
+        $lssanphamsale = sanpham::where('tien_giam','>',0)->orderBy('tien_giam','DESC')->paginate(8);
+        $lssanpham = sanpham::where('hien','=',1)->paginate(12);
+        return view('sanpham.dssanpham')->with(['lsmau'=>$lsmau,'lssize'=>$lssize,'lssanphamsale'=>$lssanphamsale,'lssanpham'=>$lssanpham]);
     }
     /**
      * Show the form for creating a new resource.

@@ -20,7 +20,7 @@
              @if ($lsbaivietmoi->count() != null)
                  <div class="blog__sidebar__recent">
                      @foreach ($lsbaivietmoi as $key => $value)
-                         <a href="#" class="blog__sidebar__recent__item">
+                         <a href="{{route('chi-tiet-bai-viet',["id"=>$value->id])}}" class="blog__sidebar__recent__item">
                              <div class="blog__sidebar__recent__item__pic bai-viet-moi">
                                  <img src="{{ URL($value->hinh_anh) }}" alt="">
                              </div>

@@ -157,6 +157,7 @@
          $(document).ready(function() {
             $('#loai-san-pham').addClass('mm-active');
              $('#li-san-pham').addClass('mm-active');
+             loadloaisanpham();
         });
 
         $(document).on('click', '.edit_loaisanpham', function(e) {

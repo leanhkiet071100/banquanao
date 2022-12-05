@@ -9,6 +9,8 @@ use App\Http\Controllers\SanPhamController;
 use App\Http\Controllers\BaiVietController;
 use App\Http\Controllers\SanphamChitietController;
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\ShopController;
+
 
 
 
@@ -36,16 +38,16 @@ use App\Http\Controllers\IndexController;
 //bài viết
     Route::get('/bai-viet', [BaiVietController::class, 'index'])->name('bai-viet');
 
-    Route::get('/chi-tiet-bai-viet',  [BaiVietController::class, 'chi-tiet-bai-viet'])->name('chi-tiet-bai-viet');
+    Route::get('/chi-tiet-bai-viet/{id}',  [BaiVietController::class, 'chi_tiet_bai_viet'])->name('chi-tiet-bai-viet');
+
+    Route::get('/menu-bai-viet', [BaiVietController::class, 'menu_bai_viet'])->name('menu_bai_viet');
 //hóa đơn
-Route::get('/xuat-hoa-don', function () {
-    return view('hoadon.xuathoadon');
-});
+    Route::get('/xuat-hoa-don', function () {
+        return view('hoadon.xuathoadon');
+    });
 
 //giới thiệu
-Route::get('/gioi-thieu', function () {
-    return view('thongtinshop.gioithieu');
-});
+Route::get('/gioi-thieu', [ShopController::class, 'gioi_thieu'])->name('gioi-thieu');
 
 // giỏ hàng
 Route::get('/gio-hang', function () {
@@ -122,6 +124,11 @@ Route::prefix('admin')->group(function(){
         Route::post('/loai-san-pham-moi/{id}',[AdminLoaiSanPhamController::class, 'loai_san_pham_moi'])->name('loai-san-pham-moi');
         Route::post('/loai-san-pham-noi-bat/{id}',[AdminLoaiSanPhamController::class, 'loai_san_pham_noi_bat'])->name('loai-san-pham-noi-bat');
         Route::get('/thay-doi-chu/{str}',[AdminLoaiSanPhamController::class, 'vn_to_str'])->name('thay-doi-chu');
+
+        //logo
+        Route::get('/logo',[ShopController::class, 'logo'])->name('logo');
+        Route::get('/thong-tin-shop',[ShopController::class, 'thong_tin_shop'])->name('thong-tin-shop');
+        Route::get('/gioi-thieu',[ShopController::class, 'admin_gioi_thieu'])->name('admin-gioi-thieu');
     });
 
         

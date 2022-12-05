@@ -108,7 +108,7 @@
     <script>
         $(document).ready(function() {
             $('#gioi-thieu').addClass('active');
-            
+            $('#home').removeClass('active');
         });
     </script>
 @endsection

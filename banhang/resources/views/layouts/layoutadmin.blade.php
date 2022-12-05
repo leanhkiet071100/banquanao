@@ -1478,7 +1478,7 @@
 
                             <li class="" id="li-san-pham">
                                 <a href="#">
-                                    <i class="metismenu-icon pe-7s-plugin"></i>Sản phẩm
+                                    <i class="metismenu-icon pe-7s-plugin"></i>Quản lí sản phẩm
                                     <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                                 </a>
                                 <ul>
@@ -1492,12 +1492,17 @@
                                             <i class="metismenu-icon"></i>Sản phẩm
                                         </a>
                                     </li>
+                                    <li>
+                                        <a href="{{ Route('admin.san-pham') }}" id="binh-luan-san-pham">
+                                            <i class="metismenu-icon"></i>Bình luận
+                                        </a>
+                                    </li>
 
                                 </ul>
                             </li>
                             <li class="" id="li-bai-viet">
                                 <a href="#">
-                                    <i class="metismenu-icon pe-7s-plugin"></i>Bài viết
+                                    <i class="metismenu-icon pe-7s-plugin"></i>Quản lí bài viết
                                     <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                                 </a>
                                 <ul>
@@ -1506,12 +1511,39 @@
                                             <i class="metismenu-icon"></i>Bài viết
                                         </a>
                                     </li>
-
+                                    <li>
+                                        <a href="{{ Route('admin.san-pham') }}" id="binh-luan-bai-viet">
+                                            <i class="metismenu-icon"></i>Bình luận
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="" id="li-trang-tinh">
+                                <a href="#">
+                                    <i class="metismenu-icon pe-7s-plugin"></i>Quản lí Trang tĩnh
+                                    <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                                </a>
+                                <ul>
+                                    <li>
+                                        <a href="{{ Route('admin.logo') }}" id="logo">
+                                            <i class="metismenu-icon"></i>logo
+                                        </a>
+                                    </li>
+                                     <li>
+                                        <a href="{{ Route('admin.admin-gioi-thieu') }}" id="gioi-thieu">
+                                            <i class="metismenu-icon"></i>giới thiệu
+                                        </a>
+                                    </li>
                                 </ul>
                             </li>
                             <li class="">
                                 <a href="{{ Route('admin.get-nhan-hieu') }}" class="" id="nhan-hieu">
                                     <i class="metismenu-icon pe-7s-plugin"></i>Nhãn Hiệu
+                                </a>
+                            </li>
+                            <li class="">
+                                <a href="{{ Route('admin.thong-tin-shop') }}" class="" id="thong-tin-shop">
+                                    <i class="metismenu-icon pe-7s-plugin"></i>Thông tin của shop
                                 </a>
                             </li>
 

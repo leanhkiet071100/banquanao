@@ -100,6 +100,7 @@ class AdminSanPhamController extends Controller
         $trongluong = $request->input('trongluong');
         $tag = $request->input('tag');
         $SKU = $request->input('sku');
+        $gia = str_replace(',', '', $gia);
         $sanphammoi = new sanpham;
         $sanphammoi->fill([
             'ma_nhan_hieu'=> $nhanhieu_id,
@@ -369,7 +370,7 @@ class AdminSanPhamController extends Controller
             'tensp' => 'required',
             // 'mota' => 'required',
             // 'noidung' => 'required',
-            'giasp' => 'required|numeric',
+            'giasp' => 'required',
             'soluongkho' => 'required|numeric',
             'trongluong' => 'required|numeric',
             'sku' =>'required|numeric',
@@ -409,7 +410,7 @@ class AdminSanPhamController extends Controller
         $trongluong = $request->input('trongluong');
         $tag = $request->input('tag');
         $SKU = $request->input('sku');
-
+        $gia = str_replace(',', '', $gia);
         $sanpham = sanpham::find($id);
         $sanpham->fill([
             'ma_nhan_hieu'=> $nhanhieu_id,

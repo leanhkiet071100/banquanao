@@ -93,7 +93,7 @@
                             <div class="position-relative row form-group">
                                 <label for="phude" class="col-md-3 text-md-right col-form-label">Giá</label>
                                 <div class="col-md-9 col-xl-8">
-                                    <input required name="phude" id="phude" placeholder="Phụ đề" type="text"
+                                    <input  name="phude" id="phude" placeholder="Phụ đề" type="text"
                                         class="form-control" value="{{ old('phude') }}">
                                     <div class="text-center">
                                         @error('phude')

@@ -56,7 +56,7 @@
                                 </ul>
                             </li> --}}
                             <li id="bai-viet"><a href="{{route('bai-viet')}}">Bài Viết</a></li>
-                            <li id="gioi-thieu"><a href="./contact.html">Giới thiệu</a></li>
+                            <li id="gioi-thieu"><a href="{{route('gioi-thieu')}}">Giới thiệu</a></li>
                         </ul>
                     </nav>
                 </div>

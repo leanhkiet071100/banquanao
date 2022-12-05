@@ -37,9 +37,9 @@
                                                 <li><i class="fa fa-calendar-o"></i>{{ $value->create_at }}</li>
                                                 <li><i class="fa fa-comment-o"></i> 5</li>
                                             </ul>
-                                            <h5><a href="#">{{ $value->tieu_de }}</a></h5>
+                                            <h5><a href="{{route('chi-tiet-bai-viet',["id"=>$value->id])}}">{{ $value->tieu_de }}</a></h5>
                                             <p>{{ $value->phu_de }}</p>
-                                            <a href="#" class="blog__btn">XEM THÊM <span
+                                            <a href="{{route('chi-tiet-bai-viet',["id"=>$value->id])}}" class="blog__btn">XEM THÊM <span
                                                     class="arrow_right"></span></a>
                                         </div>
                                     </div>

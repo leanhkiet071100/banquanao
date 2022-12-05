@@ -18,17 +18,20 @@ use Illuminate\Support\Facades\Redirect;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+//chia sẻ dữ liệu nhiều view
 
 class BaivietController extends Controller
 {
     public $lsloaisanpham ;
     public $loaibaiviet;
     public $lsbaivietmoi;
-    public function __contruct()
+
+    public function menu_bai_viet()
     {
         $lsloaisanpham = loai_san_pham::where('hien','=',1)->get();
         $loaibaiviet = baiviet::select('loai_bai_viet')->distinct('loai_bai_viet')->get();
-        $lsbaivietmoi = baiviet::where('hien','=',1)->where('moi','=',1)->orderBy('create_at', 'DESC')->paginate(3);
+        $lsbaivietmoi = baiviet::where('hien','=',1)->where('moi','=',1)->orderBy('created_at', 'DESC')->paginate(3);
+        return view('baiviet.menubaiviet')->with(['lsloaisanpham'=>$lsloaisanpham,'loaibaiviet'=>$loaibaiviet,'lsbaivietmoi'=>$lsbaivietmoi]);
     }
 
     /**
@@ -38,12 +41,10 @@ class BaivietController extends Controller
      */
     public function index()
     {
-        $lsloaisanpham = loai_san_pham::where('hien','=',1)->get();
-        $loaibaiviet = baiviet::select('loai_bai_viet')->distinct('loai_bai_viet')->get();
-        $lsbaivietmoi = baiviet::where('hien','=',1)->where('moi','=',1)->orderBy('created_at', 'DESC')->paginate(3);
+
         $lsbaiviet = baiviet::where('hien','=',1)->paginate(6);
-        $lsbaivietnb = baiviet::where('hien','=',1)->where('noi_bat','=',1)->orderBy('created_at', 'DESC')->paginate(3);
-        return view('baiviet.dsbaiviet')->with(['lsbaiviet'=>$lsbaiviet,'lsloaisanpham'=>$lsloaisanpham,'loaibaiviet'=>$loaibaiviet,'lsbaivietmoi'=>$lsbaivietmoi,'lsbaivietnb'=>$lsbaivietnb]);
+        $lsbaivietnb = baiviet::where('hien','=',1)->where('noi_bat','=',1)->orderBy('created_at', 'DESC')->limit(3)->get();
+        return view('baiviet.dsbaiviet')->with(['lsbaiviet'=>$lsbaiviet,'lsbaivietnb'=>$lsbaivietnb]);
     }
 
     /**
@@ -51,9 +52,10 @@ class BaivietController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function chi_tiet_bai_viet($id)
     {
-        //
+        $baiviet = baiviet::join('nguoidungs','nguoidungs.id','=','baiviets.ma_nguoi_dung')->select('baiviets.*','nguoidungs.ten','nguoidungs.hinh_dai_dien')->find($id);
+        return view('baiviet.chitietbaiviet')->with(['baiviet'=>$baiviet]);
     }
 
     /**

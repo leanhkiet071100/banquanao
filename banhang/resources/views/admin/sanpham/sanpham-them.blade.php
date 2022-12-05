@@ -102,7 +102,7 @@
                                 <label for="trongluong" class="col-md-3 text-md-right col-form-label">Trọng lượng</label>
                                 <div class="col-md-9 col-xl-7">
                                     <input required name="trongluong" id="trongluong" placeholder="Trọng lượng"
-                                        type="number" class="form-control" value="{{ old('trongluong') }}">
+                                        type="text" class="form-control" value="{{ old('trongluong') }}">
                                     <div class="text-center">
                                         @error('trongluong')
                                             <span style="color:red"> {{ $message }}</span>
@@ -119,7 +119,7 @@
                             <div class="position-relative row form-group">
                                 <label for="giamgia" class="col-md-3 text-md-right col-form-label">Giảm giá</label>
                                 <div class="col-md-9 col-xl-7">
-                                    <input required name="giamgia" id="giamgia" placeholder="giảm giá" type="text"
+                                    <input  name="giamgia" id="giamgia" placeholder="giảm giá" type="text"
                                         class="form-control" value="{{ old('giamgia') }}">
                                     <div class="text-center">
                                         @error('giamgia')
