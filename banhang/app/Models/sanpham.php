@@ -11,6 +11,7 @@ use App\Models\sanpham_binhluan;
 use App\Models\nhan_hieu;
 use App\Models\loai_san_pham;
 use App\Models\hoadon_chitiet;
+use App\Models\gio_hang;
 
 class sanpham extends Model
 {
@@ -68,5 +69,10 @@ class sanpham extends Model
     //khóa ngoại loại sản phẩm 6
     public function loai_san_pham(){
         return $this->hasMany(loai_san_pham::class, 'ma_loai_san_pham', 'id');
+    }
+
+    //khoa  ngoại giỏ hàng
+    public function gio_hang(){
+        return $this->belongsTo(gio_hang::class, 'ma_san_pham', 'id');
     }
 }

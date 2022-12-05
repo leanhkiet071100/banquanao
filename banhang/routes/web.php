@@ -5,11 +5,15 @@ use App\Http\Controllers\Admin\AdminNhanHieuController;
 use App\Http\Controllers\Admin\AdminLoaiSanPhamController;
 use App\Http\Controllers\Admin\AdminSanPhamController;
 use App\Http\Controllers\Admin\AdminBaiVietController;
+use App\Http\Controllers\Admin\AdminBannerController;
+use App\Http\Controllers\Admin\AdminShopController;
+use App\Http\Controllers\Admin\AdminLogoController;
 use App\Http\Controllers\SanPhamController;
 use App\Http\Controllers\BaiVietController;
 use App\Http\Controllers\SanphamChitietController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ShopController;
+
 
 
 
@@ -126,9 +130,13 @@ Route::prefix('admin')->group(function(){
         Route::get('/thay-doi-chu/{str}',[AdminLoaiSanPhamController::class, 'vn_to_str'])->name('thay-doi-chu');
 
         //logo
-        Route::get('/logo',[ShopController::class, 'logo'])->name('logo');
-        Route::get('/thong-tin-shop',[ShopController::class, 'thong_tin_shop'])->name('thong-tin-shop');
-        Route::get('/gioi-thieu',[ShopController::class, 'admin_gioi_thieu'])->name('admin-gioi-thieu');
+        Route::get('/logo',[AdminLogoController::class, 'logo'])->name('logo');
+        Route::post('/logo-them',[AdminLogoController::class, 'logo_them'])->name('logo-them');
+        //shop
+        Route::get('/thong-tin-shop',[AdminshopController::class, 'thong_tin_shop'])->name('thong-tin-shop');
+
+        //banner
+        Route::get('/gioi-thieu',[AdminbannerController::class, 'admin_gioi_thieu'])->name('admin-gioi-thieu');
     });
 
         
