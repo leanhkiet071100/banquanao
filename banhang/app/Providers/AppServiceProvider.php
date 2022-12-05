@@ -37,6 +37,7 @@ class AppServiceProvider extends ServiceProvider
         $lsbaivietmoi = baiviet::where('hien','=',1)->where('moi','=',1)->orderBy('created_at', 'DESC')->paginate(3);
         $logo = $logo = logo::orderBy('id')->first();
         $shop = thong_tin_shop::orderBy('id')->first();
+        
         View::share(['lsloaisanpham'=>$lsloaisanpham,'loaibaiviet'=>$loaibaiviet,'lsbaivietmoi'=>$lsbaivietmoi,'logo'=>$logo,'shop'=>$shop]);
     }
 }

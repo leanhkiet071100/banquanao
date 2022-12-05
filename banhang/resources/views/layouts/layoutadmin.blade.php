@@ -1530,12 +1530,12 @@
                                         </a>
                                     </li>
                                      <li>
-                                        <a href="{{ Route('admin.banner') }}" id="gioi-thieu">
+                                        <a href="{{ Route('admin.banner') }}" id="banner">
                                             <i class="metismenu-icon"></i>banner
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="{{ Route('admin.slideshow') }}" id="gioi-thieu">
+                                        <a href="{{ Route('admin.slideshow') }}" id="slideshow">
                                             <i class="metismenu-icon"></i>slideshow
                                         </a>
                                     </li>

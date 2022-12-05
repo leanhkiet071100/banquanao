@@ -17,6 +17,9 @@ class logo extends Model
     protected $fillable = [
         'ma_shop',
         'hinh_logo',
+        'hinh_banner',
+        'hien_logo',
+        'hien_banner',
     ];
 
     public function thong_tin_shop()

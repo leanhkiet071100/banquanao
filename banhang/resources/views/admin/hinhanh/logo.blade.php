@@ -39,7 +39,7 @@
 
                                                     <img style="width: 100%; cursor: pointer;" class="thumbnail"
                                                         data-toggle="tooltip" title="Click to add image"
-                                                        data-placement="bottom" src="{{URL($logo->hinh_logo)}}"
+                                                        data-placement="bottom" src="{{URL(($logo->hinh_logo)??'admin/assets/images/add-image-icon.jpg')}}"
                                                         alt="Add Image">
 
                                                     <input name="image" type="file" onchange="changeImg(this);"

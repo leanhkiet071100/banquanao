@@ -17,6 +17,8 @@
         </div>
     </section>
     <!-- Breadcrumb Section End -->
+    @if ($shop !=null)
+        
 
     <!-- Contact Section Begin -->
     <section class="contact spad">
@@ -72,7 +74,7 @@
         </div>
     </div>
     <!-- Map End -->
-
+        @endif
     <!-- Contact Form Begin -->
     <div class="contact-form spad">
         <div class="container">

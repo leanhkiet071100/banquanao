@@ -167,3 +167,7 @@ li#hinh-anh-san-pham {
 a.btn-shadow.btn-hover-shine.mr-3.btn.btn-primary {
     color: white;
 }
+
+li a{
+    text-transform: capitalize;
+}

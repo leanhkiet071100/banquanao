@@ -32,10 +32,12 @@
                             <div class="hero__search__phone__icon">
                                 <i class="fa fa-phone"></i>
                             </div>
-                            <div class="hero__search__phone__text">
-                                <h5>{{$shop->so_dien_thoai}}</h5>
-                                <span>support 24/7 time</span>
-                            </div>
+                            @if ($shop != null)
+                                <div class="hero__search__phone__text">
+                                    <h5>{{$shop->so_dien_thoai}}</h5>
+                                    <span>support 24/7 time</span>
+                                </div>
+                            @endif
                         </div>
                     </div>
                     <div class="hero__item set-bg banner" id="banner" data-setbg="{{ URL ('assets/img/hero/banner.jpg')}}">

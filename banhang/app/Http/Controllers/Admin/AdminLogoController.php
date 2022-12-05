@@ -52,8 +52,8 @@ class AdminLogoController extends Controller
             $logo = new logo;
             $file_name = $date.$hinh_logo->getClientoriginalName();
                 // move:  di chuyển hình ảnh; public_path: tạo  thư mục ; $file_name: tên file 
-            $imagePath = $hinh_logo->move(public_path('hinh_logo/'), $file_name);
-            $logo->hinh_logo = 'hinh_logo/'.$file_name;
+            $imagePath = $hinh_logo->move(public_path('quan_li_hinh_anh/'.'hinh_logo/'), $file_name);
+            $logo->hinh_logo = 'quan_li_hinh_anh/'.'hinh_logo/'.$file_name;
             $logo->save();
             return Redirect::route('admin.logo')->with('success','thêm thành công');
         }
@@ -81,8 +81,8 @@ class AdminLogoController extends Controller
             $logo = logo::find($id);
             $file_name = $date.$hinh_logo->getClientoriginalName();
                 // move:  di chuyển hình ảnh; public_path: tạo  thư mục ; $file_name: tên file 
-            $imagePath = $hinh_logo->move(public_path('hinh_logo/'), $file_name);
-            $logo->hinh_logo = 'hinh_logo/'.$file_name;
+            $imagePath = $hinh_logo->move(public_path('quan_li_hinh_anh/'.'hinh_logo/'), $file_name);
+            $logo->hinh_logo = 'quan_li_hinh_anh/'.'hinh_logo/'.$file_name;
             $logo->save();
             return Redirect::route('admin.logo')->with('success','Sửa thành công');
         }

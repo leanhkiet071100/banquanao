@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\AdminBaiVietController;
 use App\Http\Controllers\Admin\AdminBannerController;
 use App\Http\Controllers\Admin\AdminShopController;
 use App\Http\Controllers\Admin\AdminLogoController;
+use App\Http\Controllers\Admin\AdminSlideshowController;
 use App\Http\Controllers\SanPhamController;
 use App\Http\Controllers\BaiVietController;
 use App\Http\Controllers\SanphamChitietController;
@@ -140,10 +141,12 @@ Route::prefix('admin')->group(function(){
         
 
         //banner
-        Route::get('/banner',[AdminBannerController::class, 'banner'])->name('admin-banner');
+        Route::get('/banner',[AdminBannerController::class, 'banner'])->name('banner');
+        Route::post('/banner-them',[AdminBannerController::class, 'banner_them'])->name('banner-them');
+        Route::post('/banner-sua/{id}',[AdminBannerController::class, 'banner_sua'])->name('banner-sua');
 
         //
-         Route::get('/slideshow',[AdminslideshowController::class, 'slideshow'])->name('admin-slideshow');
+         Route::get('/slideshow',[AdminslideshowController::class, 'slideshow'])->name('slideshow');
     });
 
         
