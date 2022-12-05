@@ -135,6 +135,9 @@ Route::prefix('admin')->group(function(){
         Route::post('/logo-sua/{id}',[AdminLogoController::class, 'logo_sua'])->name('logo-sua');
         //shop
         Route::get('/thong-tin-shop',[AdminshopController::class, 'thong_tin_shop'])->name('thong-tin-shop');
+        Route::post('/thong-tin-shop-them',[AdminshopController::class, 'thong_tin_shop_them'])->name('thong-tin-shop-them');
+        Route::post('/thong-tin-shop-sua/{id}',[AdminshopController::class, 'thong_tin_shop_sua'])->name('thong-tin-shop-sua');
+        
 
         //banner
         Route::get('/gioi-thieu',[AdminbannerController::class, 'admin_gioi_thieu'])->name('admin-gioi-thieu');

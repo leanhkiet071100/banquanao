@@ -18,7 +18,7 @@ class thong_tin_shop extends Model
         'ten_shop',
         'so_dien_thoai',
         'zalo',
-        'eamil',
+        'email',
         'dia_chi',
         'ban_do',
         'thoi_gian_mo',

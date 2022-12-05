@@ -3617,3 +3617,11 @@ ol {
 	background-color: #7fad39;
 	border-color: #7fad39;
 }
+
+.arrow_carrot-down:before {
+	content: "";
+}
+
+.banner{
+	display: none;
+}

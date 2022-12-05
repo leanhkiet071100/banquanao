@@ -13,16 +13,4 @@ class ShopController extends Controller
         return view('thongtinshop.gioithieu'); 
     }
 
-    //admin
-    public function logo(){
-        return view('admin.static.logo');
-    }
-
-    public function thong_tin_shop(Request  $request){
-        return view('admin.thongtinshop.thong-tin-cua-shop');
-    }
-
-    public function admin_gioi_thieu(){
-        return view('admin.static.gioi-thieu');
-    }
 }
