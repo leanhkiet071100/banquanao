@@ -3880,7 +3880,8 @@ ol {
 	justify-content: center;
 	flex-wrap: wrap;
 }
-.social:hover{
+
+.social:hover {
 	background: #7fad39;
 }
 
@@ -3890,4 +3891,16 @@ ol {
 
 .col_4 {
 	margin: 0 -5px;
+}
+
+.avatar {
+	width: 30px;
+	height: 30px;
+	margin-right: 10px;
+}
+.header__logo img{
+	max-width: 120px;
+	max-height: 50px;
+	width: 120px;
+	height: 120px;
 }

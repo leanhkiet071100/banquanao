@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Foundation\Auth\nguoidung as Authenticatable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\nguoidung_diachi;
@@ -14,7 +14,7 @@ use App\Models\baiviet_binhluan;
 use App\Models\gio_hang;
 
 
-class nguoidung extends Model
+class nguoidung extends Authenticatable
 {
     use HasFactory;
     use SoftDeletes;

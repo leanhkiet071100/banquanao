@@ -44,24 +44,23 @@ use App\Http\Controllers\ShopController;
     // chi tiết sản phẩm
     Route::get('/chi-tiet-san-pham/{id}', [SanphamChitietController::class, 'chi_tiet_san_pham'])->name('chi-tiet-san-pham');
 
-//bài viết
+    //bài viết
     Route::get('/bai-viet', [BaiVietController::class, 'index'])->name('bai-viet');
 
     Route::get('/chi-tiet-bai-viet/{id}',  [BaiVietController::class, 'chi_tiet_bai_viet'])->name('chi-tiet-bai-viet');
 
     Route::get('/menu-bai-viet', [BaiVietController::class, 'menu_bai_viet'])->name('menu_bai_viet');
-//hóa đơn
+
+    //hóa đơn
     Route::get('/xuat-hoa-don', function () {
         return view('hoadon.xuathoadon');
     });
 
-//giới thiệu
-Route::get('/gioi-thieu', [ShopController::class, 'gioi_thieu'])->name('gioi-thieu');
+    //giới thiệu
+    Route::get('/gioi-thieu', [ShopController::class, 'gioi_thieu'])->name('gioi-thieu');
 
-// giỏ hàng
-Route::get('/gio-hang', function () {
-    return view('giohang.giohang');
-});
+    // giỏ hàng
+    Route::get('/gio-hang', [ShopController::class, 'gio_hang'])->name('gio-hang');
 
 //middlewware  kiểm tra đăng nhập hay chưa
 Route::middleware('auth')->group(function(){});

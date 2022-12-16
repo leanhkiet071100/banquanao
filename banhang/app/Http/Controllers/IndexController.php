@@ -75,7 +75,7 @@ class IndexController extends Controller
                     $request->session()->regenerate();
                     Auth::login($nguoidung);
                    
-                    //$request->session()->put('LoggedUser', $nguoidung->id);
+                    $request->session()->put('LoggedUser', $nguoidung->id);
                     return redirect()->route('index');
                 }
                 else{

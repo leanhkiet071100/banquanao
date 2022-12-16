@@ -109,7 +109,7 @@
                                 <div class="position-relative row form-group">
                                     <label for="thoi-gian-mo" class="col-md-3 text-md-right col-form-label">Thời gian
                                         mở</label>
-                                    <div class="col-md-9 col-xl-7">
+                                    <div class="col-md-9 col-xl-6">
                                         <input required name="thoi-gian-mo" id="thoi-gian-mo" placeholder="Thời gian mở"
                                             type="text" class="form-control"
                                             value="{{ old('thoi-gian-mo') ?? date('H:i', strtotime($shop->thoi_gian_mo)); }}"
@@ -121,7 +121,7 @@
                                             @enderror
                                         </div>
                                     </div>
-                                    <div class="col-md-1 ">
+                                    <div class="col-md-2 ">
                                         <input disabled placeholder="00:00" type="text" class="form-control text-center"
                                             value="{{  date('H:i', strtotime($shop->thoi_gian_mo)) }}" id="value-thoi-gian-mo">
                                     </div>
@@ -130,10 +130,10 @@
                                 <div class="position-relative row form-group">
                                     <label for="thoi-gian-dong" class="col-md-3 text-md-right col-form-label">Thời gian
                                         đóng</label>
-                                    <div class="col-md-9 col-xl-7">
+                                    <div class="col-md-9 col-xl-6">
                                         <input required name="thoi-gian-dong" id="thoi-gian-dong"
                                             placeholder="Thời gian đóng" type="text" class="form-control"
-                                            value="{{ old('thoi-gian-dong') ??  date('H:i', strtotime($shop->thoi_gian_mo)) }}"
+                                            value="{{ old('thoi-gian-dong') ??  date('H:i', strtotime($shop->thoi_gian_dong)) }}"
                                             onfocus="(this.type='time')" id="thoi-gian-dong" onchange="thoi_gian_dong()">
                                         <div class="text-center">
                                             @error('thoi-gian-dong')
@@ -141,7 +141,7 @@
                                             @enderror
                                         </div>
                                     </div>
-                                    <div class="col-md-1 ">
+                                    <div class="col-md-2 ">
                                         <input disabled placeholder="00:00" type="text"
                                             class="form-control text-center" value="{{  date('H:i', strtotime($shop->thoi_gian_mo)) }}"
                                             id="value-thoi-gian-dong">
@@ -164,7 +164,7 @@
                                     <label for="nhung-ban-do" class="col-md-3 text-md-right col-form-label">Nhúng bản
                                         đồ</label>
                                     <div class="col-md-9 col-xl-8">
-                                        <textarea required class="form-control ckeditor1" id="nhung-ban-do" name="nhung-ban-do" placeholder="Mô tả"
+                                        <textarea class="form-control ckeditor1" id="nhung-ban-do" name="nhung-ban-do" placeholder="Bản đồ"
                                             value="">{{ old('nhung-ban-do') ?? $shop->ban_do }}</textarea>
                                         <div class="text-center">
                                             @error('nhung-ban-do')
@@ -333,7 +333,7 @@
                                     <label for="nhung-ban-do" class="col-md-3 text-md-right col-form-label">Nhúng bản
                                         đồ</label>
                                     <div class="col-md-9 col-xl-8">
-                                        <textarea required class="form-control ckeditor1" id="nhung-ban-do" name="nhung-ban-do" placeholder="Mô tả"
+                                        <textarea class="form-control ckeditor1" id="nhung-ban-do" name="nhung-ban-do" placeholder="Bản đồ"
                                             value="">{{ old('nhung-ban-do') }}</textarea>
                                         <div class="text-center">
                                             @error('nhung-ban-do')

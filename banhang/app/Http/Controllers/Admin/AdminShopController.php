@@ -24,7 +24,7 @@ class AdminShopController extends Controller
     public function thong_tin_shop_them(Request  $request){
         $rule = [
             'ten-shop' => 'required',
-            'so-dien-thoai'=>'required',
+            'so-dien-thoai'=>'required|numeric',
             'zalo' => 'numeric',
             'email' => 'required|email',
             'dia-chi' => 'required',
@@ -88,7 +88,7 @@ class AdminShopController extends Controller
      public function thong_tin_shop_sua(Request  $request, $id){
         $rule = [
             'ten-shop' => 'required',
-            'so-dien-thoai'=>'required',
+            'so-dien-thoai'=>'required|numeric',
             'zalo' => 'numeric',
             'email' => 'required|email',
             'dia-chi' => 'required',
