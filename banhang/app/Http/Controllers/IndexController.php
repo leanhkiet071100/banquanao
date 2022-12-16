@@ -7,10 +7,9 @@ use App\Models\sanpham_chitiet;
 use App\Models\nhan_hieu;
 use App\Models\loai_san_pham;
 use App\Models\baiviet;
-use App\Http\Requests\StoresanphamRequest;
-use App\Http\Requests\UpdatesanphamRequest;
+use App\Models\nguoidung;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Auth;
+Use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Extension\check;
@@ -39,6 +38,7 @@ class IndexController extends Controller
                             ->where('sanphams.moi','=',1)
                             ->get();
         $lsbaivietnb = baiviet::where('hien','=',1)->where('noi_bat','=',1)->orderBy('created_at', 'DESC')->paginate(3);
+
         return view('trangchu.index')->with(['lsloaisanpham'=> $lsloaisanpham,
                                              'lsnhanhieu'=>$lsnhanhieu,
                                              'lsloaisanphamnoibat'=>$lsloaisanphamnoibat,
@@ -46,4 +46,59 @@ class IndexController extends Controller
                                              'lssanphammoi'=>$lssanphammoi,
                                              'lsbaivietnb'=>$lsbaivietnb]);
     }
+
+    public function dang_nhap()
+    {
+        return view('dangnhap-dangki.dangnhap')->with(['email'=> null,'mat_khau'=>null]);
+    }
+
+    public function post_dang_nhap(Request $request){
+        $this->validate($request,
+            [
+                'email' => 'required|email|max:255',
+                'mat-khau' => 'required|min:6'
+            ],
+            [
+                'email.required' => 'Vui lòng nhập email',
+                'email.email' => 'Không đúng định dạng email',
+                'email.regex' => 'Email phải có dạng: caothang.edu.vn',
+                'mat-khau.required' => 'Vui lòng nhập mật khẩu',
+                'mat-khau.min' => 'Mật khẩu ít nhất 6 ký tự',
+            ]);
+        $email = $request->email;
+        $mat_khau = $request->input('mat-khau');
+        $nguoidung = nguoidung::where('email', $email)->first();
+        // dd($nguoidung,$request->matkhau,Hash::check($request->matkhau,$nguoidung->password));
+        if($nguoidung!=null){
+            if($nguoidung->trang_thai == 1){
+                if(Hash::check($request->input('mat-khau'),$nguoidung->mat_khau)){
+                    $request->session()->regenerate();
+                    Auth::login($nguoidung);
+                   
+                    //$request->session()->put('LoggedUser', $nguoidung->id);
+                    return redirect()->route('index');
+                }
+                else{
+                    return view('dangnhap-dangki.dangnhap')->WithErrors(['error' => 'Sai mật khẩu'])->with(['email'=> $email,'mat_khau'=>$mat_khau]);
+                    //return redirect()->back()->WithErrors(['error' => 'Sai mật khẩu'])->with(['email'=> $email,'mat_khau'=>$mat_khau]);
+                }
+            }else{
+                    return view('dangnhap-dangki.dangnhap')->WithErrors(['error' => 'Tài khoản đã bị khóa'])->with(['email'=> $email,'mat_khau'=>$mat_khau]);
+            }
+        } else {
+            return view('dangnhap-dangki.dangnhap')->WithErrors(['error' => 'Địa chỉ email sai hoặc không tồn tại'])->with(['email'=> $email,'mat_khau'=>$mat_khau]);
+        }
+    }
+
+     public function dang_ki()
+    {
+        return view('dangnhap-dangki.dangki');
+    }
+
+     public function post_dang_ki()
+    {
+        return view('dangnhap-dangki.dangki');
+    }
+
+
 }

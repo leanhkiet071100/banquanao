@@ -30,8 +30,12 @@ use App\Http\Controllers\ShopController;
 |
 */
 
-
-// Trang chủ
+    //đăng nhập
+    Route::get('/dang-nhap', [IndexController::class, 'dang_nhap'])->name('dang-nhap');
+    Route::post('/dang-nhap', [IndexController::class, 'post_dang_nhap'])->name('post-dang-nhap');
+    Route::get('/dang-ki', [IndexController::class, 'dang_ki'])->name('dang-ki');
+    Route::post('/dang-ki', [IndexController::class, 'post_dang_ki'])->name('post-dang-ki');
+    // Trang chủ
     Route::get('/', [IndexController::class, 'index'])->name('index');
 
     //sản phẩm
@@ -145,8 +149,15 @@ Route::prefix('admin')->group(function(){
         Route::post('/banner-them',[AdminBannerController::class, 'banner_them'])->name('banner-them');
         Route::post('/banner-sua/{id}',[AdminBannerController::class, 'banner_sua'])->name('banner-sua');
 
-        //
-         Route::get('/slideshow',[AdminslideshowController::class, 'slideshow'])->name('slideshow');
+        //slideshow
+        Route::get('/slideshow',[AdminslideshowController::class, 'slideshow'])->name('slideshow');
+        Route::get('/slideshow-them',[AdminslideshowController::class, 'get_slideshow_them'])->name('get-slideshow-them');
+        Route::post('/slideshow-them',[AdminslideshowController::class, 'post_slideshow_them'])->name('post-slideshow-them');
+        Route::get('/slideshow-sua/{id}',[AdminslideshowController::class, 'get_slideshow_sua'])->name('get-slideshow-sua');
+        Route::post('/slideshow-sua/{id}',[AdminslideshowController::class, 'post_slideshow_sua'])->name('post-slideshow-sua');
+        Route::delete('/slideshow-xoa/{id}',[AdminslideshowController::class, 'slideshow_xoa'])->name('slideshow-xoa');
+        Route::post('/slideshow-hien/{id}',[AdminslideshowController::class, 'slideshow_hien'])->name('slideshow-hien');
+        Route::post('/slideshow-noi-bat/{id}',[AdminslideshowController::class, 'slideshow_noi_bat'])->name('slideshow-noi-bat');
     });
 
         

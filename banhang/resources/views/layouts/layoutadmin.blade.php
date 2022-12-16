@@ -1518,7 +1518,7 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li class="" id="li-trang-tinh">
+                            <li class="" id="li-hinh-anh">
                                 <a href="#">
                                     <i class="metismenu-icon pe-7s-plugin"></i>Quản lí Trang tĩnh
                                     <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>

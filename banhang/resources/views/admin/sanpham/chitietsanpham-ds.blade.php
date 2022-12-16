@@ -71,7 +71,7 @@
                         <table class="align-middle mb-0 table table-borderless table-striped table-hover">
                             <thead>
                                 <tr>
-                                    <th class="pl-4">Product Name</th>
+                                    <th class="pl-4">Tên sản phẩm</th>
                                     <th class="text-center">Màu</th>
                                     <th class="text-center">size</th>
                                     <th class="text-center">Số lượng kho</th>

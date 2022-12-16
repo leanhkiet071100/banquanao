@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->text('hinh_slideshow');
             $table->text('link')->nullable();
+            $table->string('tieu_de')->nullable();
             $table->boolean('hien')->nullable();
             $table->boolean('noi_bat')->nullable();
             $table->timestamps();

@@ -9,6 +9,7 @@ use App\Models\sanpham_chitiet;
 use App\Models\nhan_hieu;
 use App\Models\loai_san_pham;
 use App\Models\logo;
+use App\Models\slideshow;
 use App\Models\thong_tin_shop;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\View;
@@ -35,9 +36,9 @@ class AppServiceProvider extends ServiceProvider
         $lsloaisanpham = loai_san_pham::where('hien','=',1)->get();
         $loaibaiviet = baiviet::select('loai_bai_viet')->distinct('loai_bai_viet')->get();
         $lsbaivietmoi = baiviet::where('hien','=',1)->where('moi','=',1)->orderBy('created_at', 'DESC')->paginate(3);
-        $logo = $logo = logo::orderBy('id')->first();
+        $hinh_anh = logo::orderBy('id')->first();
         $shop = thong_tin_shop::orderBy('id')->first();
-        
-        View::share(['lsloaisanpham'=>$lsloaisanpham,'loaibaiviet'=>$loaibaiviet,'lsbaivietmoi'=>$lsbaivietmoi,'logo'=>$logo,'shop'=>$shop]);
+        $slideshownb = slideshow::where('hien','=',1)->where('noi_bat','=',1)->orderBy('created_at')->get();
+        View::share(['lsloaisanpham'=>$lsloaisanpham,'loaibaiviet'=>$loaibaiviet,'lsbaivietmoi'=>$lsbaivietmoi,'hinh_anh'=>$hinh_anh,'shop'=>$shop,'slideshownb'=>$slideshownb]);
     }
 }

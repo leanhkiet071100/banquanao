@@ -51,14 +51,14 @@
                             <i class="fa fa-star-half-o"></i>
                             <span>(18 reviews)</span>
                         </div>
-                        
+
                         @if ($sanpham->tien_giam > 0)
                             <div class="product__details__price">
                                 {{ number_format($sanpham->gia - $sanpham->gia * ($sanpham->tien_giam / 100), 2) }}đ
                             </div>
                         @else
                             <div class="product__details__price">{{ number_format($sanpham->gia, 2) }}</div>
-                        @endif 
+                        @endif
                         @if ($sanpham->mo_ta != null)
                             <div class="noi-dung-san-pham">
                                 {!! $sanpham->mo_ta !!}
@@ -142,6 +142,57 @@
 
     <!-- sản phẩm liên quan -->
     @if ($lssanphamlienquan->count() != null)
+        <section class="rate-product">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="section-title related__product__title">
+                            <h2>Đánh giá sản phẩm</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="coment-area">
+                        <ul class="we-comet">
+                            <li>
+                                <div class="comet-avatar">
+                                    <img src="{{ URL($hinh_anh->hinh_banner) }}" alt="">
+                                </div>
+                                <div class="we-comment">
+                                    <div class="coment-head">
+                                        <h5><a href="time-line.html" title="">Jason borne</a></h5>
+                                        <span>1 year ago</span>
+
+                                    </div>
+                                    <p>we are working for the dance and sing songs. this car is very awesome for the
+                                        youngster. please vote this car and like our post</p>
+                                </div>
+                                <ul>
+                                    <li>
+                                        <div class="comet-avatar">
+                                            <img src="{{ URL($hinh_anh->hinh_banner) }}" alt="">
+                                        </div>
+                                        <div class="we-comment">
+                                            <div class="coment-head">
+                                                <h5><a href="time-line.html" title="">alexendra dadrio</a></h5>
+                                                <span>1 month ago</span>
+
+                                            </div>
+                                            <p>yes, really very awesome car i see the features of this car in the
+                                                official website of <a href="#" title="">#Mercedes-Benz</a>
+                                                and really impressed :-)</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    @endif
+
+    @if ($lssanphamlienquan->count() != null)
         <section class="related-product">
             <div class="container">
                 <div class="row">
@@ -155,7 +206,8 @@
                     @foreach ($lssanphamlienquan as $key => $value)
                         <div class="col-lg-3 col-md-4 col-sm-6">
                             <div class="product__discount__item">
-                                <div class="product__discount__item__pic set-bg" data-setbg="{{ URL($value->hinh_anh) }}">
+                                <div class="product__discount__item__pic set-bg"
+                                    data-setbg="{{ URL($value->hinh_anh) }}">
                                     @if ($value->tien_giam > 0)
                                         <div class="product__discount__percent">-{{ $value->tien_giam }}%</div>
                                     @endif

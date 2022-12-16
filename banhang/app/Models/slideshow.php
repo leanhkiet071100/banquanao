@@ -13,8 +13,9 @@ class slideshow extends Model
     public $timestamps = true;
 
     protected $fillable = [
-        'hinh_banner',
+        'hinh_slideshow',
         'link',
+        'tieu_de',
         'hien',
         'noi_bat',
     ];

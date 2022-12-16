@@ -17,8 +17,6 @@
                                 </div>
                             </div>
                         @endforeach
-
-
                     </div>
                 </div>
             </div>
@@ -26,8 +24,6 @@
     @endif
     <!-- Categories Section End -->
     @if ($lssanphamnb->count() != null)
-
-
         <!-- Featured Section Begin -->
         <section class="featured spad">
             <div class="container">
@@ -85,7 +81,7 @@
         </section>
         <!-- Featured Section End -->
     @endif
-    {{-- <!-- Banner Begin -->
+     <!-- Banner Begin -->
     <div class="banner">
         <div class="container">
             <div class="row">
@@ -102,7 +98,7 @@
             </div>
         </div>
     </div>
-    <!-- Banner End --> --}}
+    <!-- Banner End --> 
     @if ($lssanphammoi->count() != null)
 
 
@@ -116,6 +112,7 @@
                             <div class="latest-product__slider owl-carousel">
                                 @foreach ($lssanphammoi as $key => $value)
                                     <div class="latest-prdouct__slider__item">
+
                                         <a href="{{ route('chi-tiet-san-pham', ['id' => $value->id]) }}"
                                             class="latest-product__item">
                                             <div class="latest-product__item__pic">
@@ -317,8 +314,8 @@
     <script>
         $(document).ready(function() {
             $('#home').addClass('active');
-            var banner = document.getElementById('banner');
-            banner.style.display = "block";
+            var slideshow = document.getElementById('slideshow');
+            slideshow.style.display = "block";
         });
     </script>
 @endsection

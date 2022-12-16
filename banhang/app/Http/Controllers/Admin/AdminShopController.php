@@ -81,8 +81,6 @@ class AdminShopController extends Controller
             'ban_do'=>$ban_do,
         ]);
         $shop->save();
-
-
         return Redirect::route('admin.thong-tin-shop')->with('success','Thêm dữ liệu thành công');
         
     }
@@ -151,4 +149,6 @@ class AdminShopController extends Controller
         return Redirect::route('admin.thong-tin-shop')->with('success','Sửa dữ liệu thành công');
         
     }
+
+
 }

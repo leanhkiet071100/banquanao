@@ -122,7 +122,7 @@
 @section('js')
     <script type="text/javascript">
         $(document).ready(function() {
-            $('#li-trang-tinh').addClass('mm-active');
+            $('#li-hinh-anh').addClass('mm-active');
             $('#banner').addClass('mm-active');
         });
     </script>
