@@ -15,17 +15,7 @@
     <!-- Disable tap highlight on IE -->
     <meta name="msapplication-tap-highlight" content="no">
 
-    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
-
-
-    <link href="{{ URL('admin/assets/css/main.css') }}" rel="stylesheet">
-    <link href="{{ URL('admin/assets/css/my_style.css') }}" rel="stylesheet">
-    <link href="{{ URL('assetsicon/Pe-icon-7-stroke.css') }}" rel="stylesheet">
-    <link href="{{ URL('assetsicon/style.css') }}" rel="stylesheet">
-
-    {{-- <link href="{{URL('bootstrap/css/bootstrap.min.css')}}" rel="stylesheet"> --}}
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
+        @include('thuvien/cssadmin')
 </head>
 
 <body>
@@ -905,8 +895,9 @@
                                                                         profile description</div>
                                                                 </div>
                                                                 <div class="widget-content-right mr-2">
-                                                                    <button
-                                                                        class="btn-pill btn-shadow btn-shine btn btn-focus">Logout</button>
+                                                                    <a href="{{route('admin.logout_admin')}}">
+                                                                        <button class="btn-pill btn-shadow btn-shine btn btn-focus">Đăng xuất</button>
+                                                                    </a>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -2792,14 +2783,9 @@
     <div class="app-drawer-overlay d-none animated fadeIn"></div>
 
 
-    <script src="{{ URL('admin/assets/scripts/jquery-3.2.1.min.js') }}"></script>
-    {{-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> --}}
-    <script href="{{ URL('assetsicon/demo-files/demo.js') }}" type="text/javascript"></script>
-    <script type="text/javascript" src="{{ URL('admin/assets/scripts/main.js') }}"></script>
-    <script type="text/javascript" src="{{ URL('admin/assets/scripts/my_script.js') }}"></script>
-    <script src="{{ URL('ckeditor/ckeditor.js') }}"></script>
-    
 
+    
+     @include('thuvien/jsadmin')
     <script>
         $(document).ready(function() {
             $url = window.location.href;

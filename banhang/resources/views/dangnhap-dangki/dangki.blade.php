@@ -15,26 +15,50 @@
                             <h4>Đăng kí tài khoản</h4>
                             <div class="line"></div>
                         </div>
-
-                        <form action="{{route('post-dang-ki')}}" method="post"  enctype="multipart/form-data">
+                        @if ($errors->has('error'))
+                            <div class="alert alert-danger">
+                                {{ $errors->first('error') }}
+                            </div>
+                        @endif
+                        <form action="{{ route('post-dang-ki') }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
                                 <input type="text" class="form-control" id="exampleInputEmail1" name="ho-ten"
-                                    placeholder="Họ và tên">
+                                    placeholder="Họ và tên" value="{{ old('ho-ten') ?? $ho_ten}}">
+                                <div class="text-center">
+                                    @error('ho-ten')
+                                        <span style="color:red"> {{ $message }}</span>
+                                    @enderror
+                                </div>
                             </div>
                             <div class="form-group">
                                 <input type="password" class="form-control" id="exampleInputPassword1" name="mat-khau"
-                                    placeholder="Password">
+                                    placeholder="mật khẩu"  value="{{ old('mat-khau') ?? $mat_khau }}">
+                                <div class="text-center">
+                                    @error('mat-khau')
+                                        <span style="color:red"> {{ $message }}</span>
+                                    @enderror
+                                </div>
                             </div>
                             <div class="form-group">
                                 <input type="email" class="form-control" id="exampleInputEmail1" name="email"
-                                    placeholder="Email">
+                                    placeholder="Email" value="{{ old('email') ?? $email}}">
+                                <div class="text-center">
+                                    @error('email')
+                                        <span style="color:red"> {{ $message }}</span>
+                                    @enderror
+                                </div>
                             </div>
                             <div class="form-group">
                                 <input type="text" class="form-control" id="exampleInputEmail1" name="sdt"
-                                    placeholder="Số điện thoại">
+                                    placeholder="Số điện thoại"  value="{{ old('sdt') ?? $sdt }}">
+                                <div class="text-center">
+                                    @error('sdt')
+                                        <span style="color:red"> {{ $message }}</span>
+                                    @enderror
+                                </div>
                             </div>
-                           
+
                             {{-- <div class="form-group">
                                 <div class="custom-control custom-checkbox mr-sm-2">
                                     <input type="checkbox" class="custom-control-input" id="customControlAutosizing">
@@ -49,10 +73,10 @@
                             </div>
                             <div class="form-group-register">
                                 <div class="register">
-                                    <p>Bạn đã có tài khoản?</p><a href="{{route('dang-nhap')}}">Đăng nhập</a>
+                                    <p>Bạn đã có tài khoản?</p><a href="{{ route('dang-nhap') }}">Đăng nhập</a>
                                 </div>
                             </div>
-                            <button type="submit" class="btn vizew-btn w-100 mt-30">Login</button>
+                            <button type="submit" class="btn vizew-btn w-100 mt-30">ĐĂNG KÍ</button>
                         </form>
                         <div class="login-social">
                             <div class="login-other">
@@ -69,7 +93,7 @@
                                         facebook
                                     </div>
                                 </button>
-                                 <button class="social">
+                                <button class="social">
                                     <div class="img-social">
                                         <img src="{{ URL('assets/img/social/goggle.jpg') }}" alt="">
                                     </div>

@@ -100,8 +100,6 @@
     </div> --}}
     <!-- Banner End --> 
     @if ($lssanphammoi->count() != null)
-
-
         <!-- Latest Product Section Begin -->
         <section class="latest-product spad">
             <div class="container">

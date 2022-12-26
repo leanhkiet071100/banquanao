@@ -9,12 +9,15 @@ use App\Http\Controllers\Admin\AdminBannerController;
 use App\Http\Controllers\Admin\AdminShopController;
 use App\Http\Controllers\Admin\AdminLogoController;
 use App\Http\Controllers\Admin\AdminSlideshowController;
+use App\Http\Controllers\Admin\AdminLoginController;
 use App\Http\Controllers\SanPhamController;
 use App\Http\Controllers\BaiVietController;
 use App\Http\Controllers\SanphamChitietController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ShopController;
-
+use App\Http\Controllers\GioHangController;
+use App\Http\Controllers\HoadonController;
+use App\Models\gio_hang;
 
 
 
@@ -30,11 +33,23 @@ use App\Http\Controllers\ShopController;
 |
 */
 
+    //view composer
+    view()->composer(['*'], function ($view) {
+        if(Auth::user()!= null ){
+            $iduser = Auth::user()->id;
+            $count = gio_hang::where('ma_nguoi_dung','=',$iduser)->count();
+        }
+        else{ $count = null;}
+
+        $view->with('count',$count);
+    });
+
     //đăng nhập
     Route::get('/dang-nhap', [IndexController::class, 'dang_nhap'])->name('dang-nhap');
     Route::post('/dang-nhap', [IndexController::class, 'post_dang_nhap'])->name('post-dang-nhap');
     Route::get('/dang-ki', [IndexController::class, 'dang_ki'])->name('dang-ki');
     Route::post('/dang-ki', [IndexController::class, 'post_dang_ki'])->name('post-dang-ki');
+    Route::get('/dang-xuat', [AdminLoginController:: class,'dang_xuat'])->name('dang_xuat');
     // Trang chủ
     Route::get('/', [IndexController::class, 'index'])->name('index');
 
@@ -49,26 +64,30 @@ use App\Http\Controllers\ShopController;
 
     Route::get('/chi-tiet-bai-viet/{id}',  [BaiVietController::class, 'chi_tiet_bai_viet'])->name('chi-tiet-bai-viet');
 
-    Route::get('/menu-bai-viet', [BaiVietController::class, 'menu_bai_viet'])->name('menu_bai_viet');
-
-    //hóa đơn
-    Route::get('/xuat-hoa-don', function () {
-        return view('hoadon.xuathoadon');
-    });
+    Route::get('/menu-bai-viet', [BaiVietController::class, 'menu_bai_viet'])->name('menu-bai-viet');
 
     //giới thiệu
     Route::get('/gioi-thieu', [ShopController::class, 'gioi_thieu'])->name('gioi-thieu');
 
     // giỏ hàng
-    Route::get('/gio-hang', [ShopController::class, 'gio_hang'])->name('gio-hang');
+    Route::get('/gio-hang', [GioHangController::class, 'gio_hang'])->name('gio-hang');
+    Route::post('/them-gio-hang', [GioHangController::class, 'them_gio_hang'])->name('them-gio-hang');
 
-//middlewware  kiểm tra đăng nhập hay chưa
-Route::middleware('auth')->group(function(){});
+    
+    //hóa đơn
+    Route::get('/xuat-hoa-don', [HoadonController::class, 'xuat_hoa_don'])->name('xuat-hoa-don');
 
-//admin
+    //middlewware  kiểm tra đăng nhập hay chưa
+    Route::middleware('auth')->group(function(){});
 
+
+    //admin
 Route::prefix('admin')->group(function(){
     Route::name('admin.')->group(function(){ 
+        //login 
+        Route::get('/login', [AdminLoginController::class, 'login_admin'])->name('login-admin');
+        Route::post('/login', [AdminLoginController::class, 'post_login_admin'])->name('post-login-admin');
+        Route::get('/logout', [AdminLoginController:: class,'logout_admin'])->name('logout_admin');
 
         //sản phẩm
         Route::get('/san-pham', [AdminSanPhamController::class, 'san_pham'])->name('san-pham');

@@ -3,9 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\hoadon;
-use App\Http\Requests\StorehoadonRequest;
-use App\Http\Requests\UpdatehoadonRequest;
-
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Hash;
+use App\Http\Controllers\Extension\check;
+use Illuminate\Support\Facades\Redirect;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Request;
 class HoadonController extends Controller
 {
     /**
@@ -13,9 +19,9 @@ class HoadonController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function xuat_hoa_don()
     {
-        //
+        return view('hoadon.xuathoadon');
     }
 
     /**

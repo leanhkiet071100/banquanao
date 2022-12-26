@@ -8,6 +8,7 @@ use App\Models\nhan_hieu;
 use App\Models\loai_san_pham;
 use App\Models\baiviet;
 use App\Models\nguoidung;
+use App\Models\gio_hang;
 use Illuminate\Support\Str;
 Use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -19,9 +20,22 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
 class IndexController extends Controller
-{
+{  
+    public function count_gio_hang(){
+        if(Auth::user()!= null ){
+            $iduser = Auth::user()->id;
+            $count = gio_hang::where('ma_nguoi_dung','=',$iduser)->count();
+        }
+        else{ $count = null;}
+
+        return $count;
+    }
+   
     public function index()
     {
+       
+        $count = $this->count_gio_hang();
+        
         $lsloaisanpham = loai_san_pham::where('hien','=',1)->get();
         $lsnhanhieu = nhan_hieu::where('hien','=',1)->get();
         $lsloaisanphamnoibat = loai_san_pham::where('hien','=',1)
@@ -38,13 +52,14 @@ class IndexController extends Controller
                             ->where('sanphams.moi','=',1)
                             ->get();
         $lsbaivietnb = baiviet::where('hien','=',1)->where('noi_bat','=',1)->orderBy('created_at', 'DESC')->paginate(3);
-
+    
         return view('trangchu.index')->with(['lsloaisanpham'=> $lsloaisanpham,
                                              'lsnhanhieu'=>$lsnhanhieu,
                                              'lsloaisanphamnoibat'=>$lsloaisanphamnoibat,
                                              'lssanphamnb'=>$lssanphamnb,
                                              'lssanphammoi'=>$lssanphammoi,
-                                             'lsbaivietnb'=>$lsbaivietnb]);
+                                             'lsbaivietnb'=>$lsbaivietnb,
+                                             'count'=>$count]);
     }
 
     public function dang_nhap()
@@ -92,13 +107,39 @@ class IndexController extends Controller
 
      public function dang_ki()
     {
-        return view('dangnhap-dangki.dangki');
+        return view('dangnhap-dangki.dangki')->with(['email'=>null,'mat_khau'=>null,'ho_ten'=>null,'sdt'=>null]);
     }
 
-     public function post_dang_ki()
-    {
-        return view('dangnhap-dangki.dangki');
+     public function post_dang_ki(Request $request)
+    {   
+        $this->validate($request,
+            [
+                'email' => 'required|email|max:255',
+                'mat-khau' => 'required|min:6',
+                'ho-ten' => 'required',
+                'sdt' => 'required|numeric',
+            ],
+            [
+                'email.required' => 'Vui lòng nhập email',
+                'email.email' => 'Không đúng định dạng email',
+                'email.regex' => 'Email phải có dạng: caothang.edu.vn',
+                'mat-khau.required' => 'Vui lòng nhập mật khẩu',
+                'mat-khau.min' => 'Mật khẩu ít nhất 6 ký tự',
+                'ho-ten.required' => 'Vui lòng nhập họ tên',
+                'sdt.required' => 'Vui lòng nhập họ tên',
+                'sdt.numeric' => 'Số điện thoại phải là số',
+            ]);
+        $email = $request->email;
+        $mat_khau = $request->input('mat-khau');
+        $sdt = $request->input('sdt');
+        $ho_ten = $request->input('ho-ten');
+        return $ho_ten;
     }
 
+    public function logout(){
+        Auth::logout();
+        $request->session()->flush();
+        return redirect()->route('dang-nhap');
+    }
 
 }

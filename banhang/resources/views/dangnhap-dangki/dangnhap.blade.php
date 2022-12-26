@@ -55,10 +55,10 @@
                             </div>
                             <div class="form-group-register">
                                 <div class="register">
-                                    <p>Bạn chưa có tài khoản ư?</p><a href="">Đăng kí</a>
+                                    <p>Bạn chưa có tài khoản ư?</p><a href="{{route('dang-ki')}}">Đăng kí</a>
                                 </div>
                             </div>
-                            <button type="submit" class="btn vizew-btn w-100 mt-30">Login</button>
+                            <button type="submit" class="btn vizew-btn w-100 mt-30">ĐĂNG NHẬP</button>
                         </form>
                         <div class="login-social">
                             <div class="login-other">

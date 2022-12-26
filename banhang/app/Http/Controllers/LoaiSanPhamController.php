@@ -3,9 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\loai_san_pham;
-use App\Http\Requests\Storeloai_san_phamRequest;
-use App\Http\Requests\Updateloai_san_phamRequest;
-
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Hash;
+use App\Http\Controllers\Extension\check;
+use Illuminate\Support\Facades\Redirect;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Request;
 class LoaiSanPhamController extends Controller
 {
     /**

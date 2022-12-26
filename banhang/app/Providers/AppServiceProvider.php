@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Providers;
-
+    
 use Illuminate\Support\ServiceProvider;
 use App\Models\baiviet;
 use App\Models\sanpham;
@@ -13,6 +13,9 @@ use App\Models\slideshow;
 use App\Models\thong_tin_shop;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\IndexController;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -30,7 +33,7 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(IndexController $index)
     {
         Paginator::useBootstrapFive();
         $lsloaisanpham = loai_san_pham::where('hien','=',1)->get();
@@ -39,6 +42,15 @@ class AppServiceProvider extends ServiceProvider
         $hinh_anh = logo::orderBy('id')->first();
         $shop = thong_tin_shop::orderBy('id')->first();
         $slideshownb = slideshow::where('hien','=',1)->where('noi_bat','=',1)->orderBy('created_at')->get();
-        View::share(['lsloaisanpham'=>$lsloaisanpham,'loaibaiviet'=>$loaibaiviet,'lsbaivietmoi'=>$lsbaivietmoi,'hinh_anh'=>$hinh_anh,'shop'=>$shop,'slideshownb'=>$slideshownb]);
+     
+      
+        View::share(['lsloaisanpham'=>$lsloaisanpham,
+                    'loaibaiviet'=>$loaibaiviet,
+                    'lsbaivietmoi'=>$lsbaivietmoi,
+                    'hinh_anh'=>$hinh_anh,
+                    'shop'=>$shop,
+                    'slideshownb'=>$slideshownb,
+                    ]);
     }
+    
 }
