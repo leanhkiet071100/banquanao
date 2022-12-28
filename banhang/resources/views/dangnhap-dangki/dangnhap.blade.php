@@ -20,12 +20,17 @@
                                 {{ $errors->first('error') }}
                             </div>
                         @endif
+                        @if (session()->has('yes'))
+                            <div class="alert alert-warning">
+                                {{ session()->get('yes') }}
+                            </div>
+                        @endif
 
                         <form action="{{ route('post-dang-nhap') }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
                                 <input type="email" class="form-control" id="exampleInputEmail1" name="email"
-                                    value="{{ old('email') ?? $email}}" placeholder="Email">
+                                    value="{{ old('email') ?? $email }}" placeholder="Email">
                                 <div class="text-center">
                                     @error('email')
                                         <span style="color:red"> {{ $message }}</span>
@@ -55,7 +60,7 @@
                             </div>
                             <div class="form-group-register">
                                 <div class="register">
-                                    <p>Bạn chưa có tài khoản ư?</p><a href="{{route('dang-ki')}}">Đăng kí</a>
+                                    <p>Bạn chưa có tài khoản ư?</p><a href="{{ route('dang-ki') }}">Đăng kí</a>
                                 </div>
                             </div>
                             <button type="submit" class="btn vizew-btn w-100 mt-30">ĐĂNG NHẬP</button>

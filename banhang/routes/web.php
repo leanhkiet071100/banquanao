@@ -32,6 +32,15 @@ use App\Models\gio_hang;
 | contains the "web" middleware group. Now create something great!
 |
 */
+  Route::middleware('auth')->group(function(){
+         Route::get('/dang-ki', [IndexController::class, 'dang_ki'])->name('dang-ki');
+    });
+
+
+    //middlewware  kiểm tra đăng nhập hay chưa
+    // Route::middleware('login')->group(function(){
+    //     Route::get('/dang-ki', [IndexController::class, 'dang_ki'])->name('dang-ki');
+    // });
 
     //view composer
     view()->composer(['*'], function ($view) {
@@ -47,9 +56,14 @@ use App\Models\gio_hang;
     //đăng nhập
     Route::get('/dang-nhap', [IndexController::class, 'dang_nhap'])->name('dang-nhap');
     Route::post('/dang-nhap', [IndexController::class, 'post_dang_nhap'])->name('post-dang-nhap');
-    Route::get('/dang-ki', [IndexController::class, 'dang_ki'])->name('dang-ki');
+   
     Route::post('/dang-ki', [IndexController::class, 'post_dang_ki'])->name('post-dang-ki');
+    Route::get('/kich-hoat/{id}/{token}', [IndexController::class, 'kich_hoat'])->name('kich-hoat');
     Route::get('/dang-xuat', [AdminLoginController:: class,'dang_xuat'])->name('dang_xuat');
+
+    Route::get('/email', function(){
+        return view('email.dangki');
+    });
     // Trang chủ
     Route::get('/', [IndexController::class, 'index'])->name('index');
 
@@ -77,8 +91,6 @@ use App\Models\gio_hang;
     //hóa đơn
     Route::get('/xuat-hoa-don', [HoadonController::class, 'xuat_hoa_don'])->name('xuat-hoa-don');
 
-    //middlewware  kiểm tra đăng nhập hay chưa
-    Route::middleware('auth')->group(function(){});
 
 
     //admin

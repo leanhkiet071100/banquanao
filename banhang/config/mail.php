@@ -36,11 +36,11 @@ return [
     'mailers' => [
         'smtp' => [
             'transport' => 'smtp',
-            'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
-            'port' => env('MAIL_PORT', 587),
-            'encryption' => env('MAIL_ENCRYPTION', 'tls'),
-            'username' => env('MAIL_USERNAME'),
-            'password' => env('MAIL_PASSWORD'),
+            'host' =>  'smtp.gmail.com',
+            'port' => 587,
+            'encryption' => 'tls',
+            'username' =>  '0306191038@caothang.edu.vn',
+            'password' =>'vghrzyajqrsddktq',
             'timeout' => null,
             'local_domain' => env('MAIL_EHLO_DOMAIN'),
         ],
@@ -90,10 +90,12 @@ return [
     | used globally for all e-mails that are sent by your application.
     |
     */
+    //  tạo tài khoản đại diện gửi
+    // name: tên cửa hàng
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', '0365688058@caothang.edu.vn'),
-        'name' => env('CUA_HANG_QUAN_AO', 'Example'),
+        'address' => '0306191039@caothang.edu.vn',
+        'name' => '',
     ],
 
     /*

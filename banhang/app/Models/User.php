@@ -30,6 +30,7 @@ class User extends Authenticatable
         'remember_token',
         'hinh_dai_dien',
         'cap',
+        'trang_thai',
         'mo_ta',
         'hien',
         'noi_bat',
