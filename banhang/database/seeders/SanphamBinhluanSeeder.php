@@ -22,6 +22,9 @@ class SanphamBinhluanSeeder extends Seeder
                 //'ten' => 'Brandon Kelley',
                 'noi_dung' => 'Nice !',
                 'danh_gia' => 4,
+                'hien' => 1,
+                //'noi_bat' => 0,
+                'trang_thai'=>1,
             ],
             [
                 'ma_san_pham' => 1,
@@ -30,6 +33,9 @@ class SanphamBinhluanSeeder extends Seeder
                 //'name' => 'Roy Banks',
                 'noi_dung' => 'Nice !',
                 'danh_gia' => 4,
+                'hien' => 1,
+                //'noi_bat' => 0,
+                'trang_thai'=>1,
             ],
         ]);
     }

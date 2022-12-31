@@ -19,16 +19,32 @@ class LoaiSanPhamSeeder extends Seeder
     {
         DB::table("loai_san_phams")->insert([
             [
-                'ten_loai_san_pham' => 'Men',
-                'tag_loai_san_pham' => '.men',
+                'ten_loai_san_pham' => 'Quần',
+                'tag_loai_san_pham' => 'quan',
+                'hien' => 1,
+                'moi' => 1,
+                'noi_bat' => 1,
             ],
             [
-                'ten_loai_san_pham' => 'Women',
-                 'tag_loai_san_pham' => '.women',
+                'ten_loai_san_pham' => 'Áo',
+                 'tag_loai_san_pham' => 'ao',
+                 'hien' => 1,
+                'moi' => 1,
+                'noi_bat' => 1,
             ],
             [
-                'ten_loai_san_pham' => 'Kids',
-                 'tag_loai_san_pham' => '.kids',
+                'ten_loai_san_pham' => 'Nam',
+                'tag_loai_san_pham' => 'nam',
+                'hien' => 1,
+                'moi' => 0,
+                'noi_bat' => 0, 
+            ],
+            [
+                'ten_loai_san_pham' => 'Nữ',
+                'tag_loai_san_pham' => 'nu',
+                'hien' => 1,
+                'moi' => 0,
+                'noi_bat' => 0, 
             ],
         ]);
     }

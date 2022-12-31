@@ -4,17 +4,7 @@
 @section('sidebar')
     @parent
     <!-- Breadcrumb Section Begin -->
-    <section class="breadcrumb-section set-bg" data-setbg="{{ URL('assets/img/breadcrumb.jpg') }}">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <div class="breadcrumb__text">
-                        <h2>BÀI VIẾT</h2>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    @include('layouts.banner')
     <!-- Breadcrumb Section End -->
 
     <!-- Blog Section Begin -->
@@ -34,7 +24,10 @@
                                         </div>
                                         <div class="blog__item__text">
                                             <ul>
-                                                <li><i class="fa fa-calendar-o"></i>{{ $value->create_at }}</li>
+                                                @if ($value->create_at != null)
+                                                    <li><i class="fa fa-calendar-o"></i>{{ $value->create_at }}</li>
+                                                @endif
+                                                
                                                 <li><i class="fa fa-comment-o"></i> 5</li>
                                             </ul>
                                             <h5><a href="{{route('chi-tiet-bai-viet',["id"=>$value->id])}}">{{ $value->tieu_de }}</a></h5>
@@ -71,6 +64,8 @@
         $(document).ready(function() {
             $('#bai-viet').addClass('active');
             $('#home').removeClass('active');
+            //$('#nd-banner').html('');
+            // $('#nd-banner').append('<h2>Bài viết</h2>');
         });
     </script>
 @endsection

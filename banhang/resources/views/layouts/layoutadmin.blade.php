@@ -15,14 +15,22 @@
     <!-- Disable tap highlight on IE -->
     <meta name="msapplication-tap-highlight" content="no">
 
-        @include('thuvien/cssadmin')
+    @include('thuvien/cssadmin')
 </head>
 
 <body>
     <div class="app-container app-theme-white body-tabs-shadow fixed-header fixed-sidebar">
         <div class="app-header header-shadow">
             <div class="app-header__logo">
-                <div class="logo-src"></div>
+                @if ($shop != null)
+                    @if ($shop->hinh_logo)
+                        <div class="logo-src">
+                            <img src="{{ URL($shop->hinh_logo) }}" alt="">
+                        </div>
+                    @endif
+
+                @endif
+
                 <div class="header__pane ml-auto">
                     <div>
                         <button type="button" class="hamburger close-sidebar-btn hamburger--elastic"
@@ -895,8 +903,10 @@
                                                                         profile description</div>
                                                                 </div>
                                                                 <div class="widget-content-right mr-2">
-                                                                    <a href="{{route('admin.logout_admin')}}">
-                                                                        <button class="btn-pill btn-shadow btn-shine btn btn-focus">Đăng xuất</button>
+                                                                    <a href="{{ route('admin.logout_admin') }}">
+                                                                        <button
+                                                                            class="btn-pill btn-shadow btn-shine btn btn-focus">Đăng
+                                                                            xuất</button>
                                                                     </a>
                                                                 </div>
                                                             </div>
@@ -1520,7 +1530,7 @@
                                             <i class="metismenu-icon"></i>logo
                                         </a>
                                     </li>
-                                     <li>
+                                    <li>
                                         <a href="{{ Route('admin.banner') }}" id="banner">
                                             <i class="metismenu-icon"></i>banner
                                         </a>
@@ -1537,7 +1547,7 @@
                                     </li>
                                 </ul>
                             </li>
-                             <li class="" id="li-trang-tinh">
+                            <li class="" id="li-trang-tinh">
                                 <a href="#">
                                     <i class="metismenu-icon pe-7s-pin"></i>Quản lí trang tĩnh
                                     <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
@@ -1548,7 +1558,7 @@
                                             <i class="metismenu-icon"></i>footer
                                         </a>
                                     </li>
-                                     <li>
+                                    <li>
                                         <a href="{{ Route('admin.banner') }}" id="chinh-sach">
                                             <i class="metismenu-icon"></i>Chính sách
                                         </a>
@@ -2784,8 +2794,8 @@
 
 
 
-    
-     @include('thuvien/jsadmin')
+
+    @include('thuvien/jsadmin')
     <script>
         $(document).ready(function() {
             $url = window.location.href;

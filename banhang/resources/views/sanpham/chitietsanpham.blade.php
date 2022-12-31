@@ -167,9 +167,18 @@
                     <div class="coment-area">
                         <ul class="we-comet">
                             <li>
-                                <div class="comet-avatar">
-                                    <img src="{{ URL($hinh_anh->hinh_banner) }}" alt="">
-                                </div>
+                                @if ($shop!=null)
+                                    @if ($shop->hinh_banner != null)
+                                        <div class="comet-avatar">
+                                            <img src="{{ URL($shop->hinh_banner) }}" alt="">
+                                        </div> 
+                                    @else
+                                        <div class="comet-avatar">
+                                        <img src="{{ URL('hinh_test/blog.jpg') }}" alt="">
+                                        </div> 
+                                    @endif
+                                @endif
+                             
                                 <div class="we-comment">
                                     <div class="coment-head">
                                         <h5><a href="time-line.html" title="">Jason borne</a></h5>
@@ -182,7 +191,7 @@
                                 <ul>
                                     <li>
                                         <div class="comet-avatar">
-                                            <img src="{{ URL($hinh_anh->hinh_banner) }}" alt="">
+                                            {{-- <img src="{{ URL($shop->hinh_banner) }}" alt=""> --}}
                                         </div>
                                         <div class="we-comment">
                                             <div class="coment-head">

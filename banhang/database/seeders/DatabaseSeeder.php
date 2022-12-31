@@ -30,6 +30,8 @@ class DatabaseSeeder extends Seeder
             SanphamChitietSeeder::class,
             SanphamBinhluanSeeder::class,
             BaivietSeeder::class,
+            SlideshowSeeder::class,
+            ThongTinShopSeeder::class,
         ]);
         
     }

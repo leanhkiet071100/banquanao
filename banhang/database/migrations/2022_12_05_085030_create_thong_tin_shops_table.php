@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('shops', function (Blueprint $table) {
             $table->id();
-            $table->string('ten_shop');
-            $table->string('so_dien_thoai')->nullable();;
+            $table->string('ten_shop')->nullable();
+            $table->string('so_dien_thoai')->nullable();
             $table->string('zalo')->nullable();
             $table->string('email')->nullable();
             $table->text('dia_chi')->nullable();
@@ -24,6 +24,8 @@ return new class extends Migration
             $table->time('thoi_gian_mo')->nullable();
             $table->time('thoi_gian_dong')->nullable();
             $table->text('noi_dung')->nullable();
+            $table->text('hinh_logo')->nullable();
+            $table->text('hinh_banner')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

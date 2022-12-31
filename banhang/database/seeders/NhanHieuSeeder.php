@@ -18,19 +18,23 @@ class NhanHieuSeeder extends Seeder
         DB::table('nhan_hieus')->insert([
             [
                 'ten_nhan_hieu' => 'Calvin Klein',
-                'hinh_nhan_hieu'=>'hinh_test/test.jpg'
+                'hinh_nhan_hieu'=>'hinh_test/test_sp.jpg',
+                'hien' => 1,
             ],
             [
                 'ten_nhan_hieu' => 'Diesel',
-                'hinh_nhan_hieu'=>'hinh_test/test.jpg'
+                'hinh_nhan_hieu'=>'hinh_test/test_sp.jpg',
+                'hien' => 1,
             ],
             [
                 'ten_nhan_hieu' => 'Polo',
-                'hinh_nhan_hieu'=>'hinh_test/test.jpg'
+                'hinh_nhan_hieu'=>'hinh_test/test_sp.jpg',
+                'hien' => 1,
             ],
             [
                 'ten_nhan_hieu' => 'Tommy Hilfiger',
-                'hinh_nhan_hieu'=>'hinh_test/test.jpg'
+                'hinh_nhan_hieu'=>'hinh_test/test_sp.jpg',
+                'hien' => 0,
             ],
         ]);
     }

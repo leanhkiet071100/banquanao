@@ -39,15 +39,15 @@ class AppServiceProvider extends ServiceProvider
         $lsloaisanpham = loai_san_pham::where('hien','=',1)->get();
         $loaibaiviet = baiviet::select('loai_bai_viet')->distinct('loai_bai_viet')->get();
         $lsbaivietmoi = baiviet::where('hien','=',1)->where('moi','=',1)->orderBy('created_at', 'DESC')->paginate(3);
-        $hinh_anh = logo::orderBy('id')->first();
+        //$hinh_anh = logo::orderBy('id')->first();
         $shop = thong_tin_shop::orderBy('id')->first();
-        $slideshownb = slideshow::where('hien','=',1)->where('noi_bat','=',1)->orderBy('created_at')->get();
+        $slideshownb = slideshow::where('hien','=',1)->orderBy('created_at')->get();
      
       
         View::share(['lsloaisanpham'=>$lsloaisanpham,
                     'loaibaiviet'=>$loaibaiviet,
                     'lsbaivietmoi'=>$lsbaivietmoi,
-                    'hinh_anh'=>$hinh_anh,
+                    //'hinh_anh'=>$hinh_anh,
                     'shop'=>$shop,
                     'slideshownb'=>$slideshownb,
                     ]);

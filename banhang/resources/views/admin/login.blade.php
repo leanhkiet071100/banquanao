@@ -25,7 +25,7 @@
                         <div class="app-logo-inverse mx-auto mb-3"></div>
                         <div class="modal-dialog w-100 mx-auto">
                             <div class="modal-content">
-                                <form class="" action="{{ route('admin.post-login-admin') }}" method="post">
+                                <form class="" action="{{ route('post-login-admin') }}" method="post">
                                     @csrf
                                     <div class="modal-body">
                                         <div class="h5 modal-title text-center">

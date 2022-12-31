@@ -1723,7 +1723,7 @@ ol {
 	border: none;
 }
 
-.primary-btn:hover{
+.primary-btn:hover {
 	background: #ffffff;
 	color: #7fad39;
 }
@@ -2344,6 +2344,14 @@ ol {
 	border: 1px solid #b2b2b2;
 	padding: 14px 20px 12px;
 	border-radius: 25px;
+	transition: all 0.5s;
+}
+
+.blog__item__text .blog__btn:hover {
+	background-color: #7fad39;
+	color: white;
+	transition: 0.5s;
+
 }
 
 .blog__item__text .blog__btn span {
@@ -3673,7 +3681,7 @@ ol {
 .rate-product {
 	padding: 30px;
 	background-color: #f5f5f5;
-	margin: 0 120px;
+	margin: 0 10%;
 	background-size: cover;
 }
 
@@ -3918,7 +3926,7 @@ ol {
 	max-width: 120px;
 	max-height: 50px;
 	width: 120px;
-	height: 120px;
+	height: 50px;
 }
 
 .primary-btn.cart-btn:hover {
@@ -3928,4 +3936,11 @@ ol {
 
 .noi-dung-san-pham {
 	margin-bottom: 10px;
+}
+
+.kich-hoat-lai {
+	color: #721c24;
+	background-color: #f8d7da;
+	border-color: #f5c6cb;
+	text-decoration: revert;
 }

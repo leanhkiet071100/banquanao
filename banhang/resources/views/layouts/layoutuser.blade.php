@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="{{ URL('assets/css/owl.carousel.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ URL('assets/css/slicknav.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ URL('assets/css/style.css') }}" type="text/css">
-     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 
 <body>
@@ -33,12 +33,12 @@
     <!-- Humberger Begin  menu mobie-->
     @include('layouts/menumobie')
     <!-- Humberger End -->
-    
+
     <!-- Header Section Begin  menu-->
-   @include('layouts/menu')
+    @include('layouts/menu')
     <!-- Header Section End -->
 
-        <!-- Hero Section Begin -->
+    <!-- Hero Section Begin -->
     @include('layouts/timkiem')
     <!-- Hero Section End -->
     @section('sidebar')
@@ -49,9 +49,15 @@
             <div class="row">
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="footer__about">
-                        <div class="footer__about__logo">
-                            <a href="./index.html"><img src="{{ URL ('assets/img/logo.png')}}" alt=""></a>
-                        </div>
+                        @if ($shop != null)
+                            @if ($shop->hinh_logo != null)
+                                <div class="footer__about__logo">
+                                    <a href="./index.html"><img src="{{ URL($shop->hinh_logo) }}" alt=""></a>
+                                </div>
+                            @endif
+                        @endif
+
+
                         <ul>
                             <li>Address: 60-49 Road 11378 New York</li>
                             <li>Phone: +65 11.188.888</li>
@@ -100,10 +106,20 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="footer__copyright">
-                        <div class="footer__copyright__text"><p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p></div>
-                        <div class="footer__copyright__payment"><img src="{{ URL ('assets/img/payment-item.png')}}" alt=""></div>
+                        <div class="footer__copyright__text">
+                            <p>
+                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                Copyright &copy;
+                                <script>
+                                    document.write(new Date().getFullYear());
+                                </script> All rights reserved | This template is made with <i
+                                    class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com"
+                                    target="_blank">Colorlib</a>
+                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                            </p>
+                        </div>
+                        <div class="footer__copyright__payment"><img src="{{ URL('assets/img/payment-item.png') }}"
+                                alt=""></div>
                     </div>
                 </div>
             </div>
@@ -112,6 +128,7 @@
     <!-- Footer Section End -->
 
     <!-- Js Plugins -->
+    
     <script src="{{ URL('assets/js/jquery-3.3.1.min.js') }}"></script>
     <script src="{{ URL('assets/js/bootstrap.min.js') }}"></script>
     <script src="{{ URL('assets/js/jquery.nice-select.min.js') }}"></script>
@@ -120,6 +137,21 @@
     <script src="{{ URL('assets/js/mixitup.min.js') }}"></script>
     <script src="{{ URL('assets/js/owl.carousel.min.js') }}"></script>
     <script src="{{ URL('assets/js/main.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $url = window.location.href;
+            $('#nd-banner').html('');
+            if ($url == "{{ Route('san-pham') }}") {
+                 $('#nd-banner').append('<h2>Sản phẩm</h2>');
+            } else if ($url == "{{ Route('bai-viet') }}") {
+                 $('#nd-banner').append('<h2>Bài viết</h2>');
+            } else if ($url == "{{ Route('gioi-thieu') }}") {
+                 $('#nd-banner').append('<h2>Thông tin của shop</h2>');
+            } else if ($url == "{{ Route('gio-hang') }}") {
+                 $('#nd-banner').append('<h2>Giỏ hàng của bạn</h2>');
+            } 
+        });
+    </script>
     @yield('js')
 
 

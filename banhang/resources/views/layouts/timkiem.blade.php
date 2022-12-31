@@ -28,17 +28,22 @@
                              <button type="submit" class="site-btn">TÌM KIẾM</button>
                          </form>
                      </div>
-                     <div class="hero__search__phone">
-                         <div class="hero__search__phone__icon">
-                             <i class="fa fa-phone"></i>
-                         </div>
-                         @if ($shop != null)
-                             <div class="hero__search__phone__text">
-                                 <h5>{{ $shop->so_dien_thoai }}</h5>
-                                 <span>support 24/7 time</span>
+                     @if ($shop != null)
+                         @if ($shop->so_dien_thoai != null)
+                             <div class="hero__search__phone">
+                                 <div class="hero__search__phone__icon">
+                                     <i class="fa fa-phone"></i>
+                                 </div>
+
+                                 <div class="hero__search__phone__text">
+                                     <h5>{{ $shop->so_dien_thoai }}</h5>
+                                     <span>Hỗ trợ 24/7</span>
+                                 </div>
+
                              </div>
                          @endif
-                     </div>
+
+                     @endif
                  </div>
                  {{-- <div class="hero__item set-bg banner" id="banner" data-setbg="{{ URL ($hinh_anh->hinh_banner)}}">
                         <div class="hero__text">

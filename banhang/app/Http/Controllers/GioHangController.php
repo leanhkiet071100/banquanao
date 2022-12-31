@@ -26,7 +26,7 @@ class GioHangController extends Controller
    
         $iduser = Auth::user()->id;
         $gio_hang = gio_hang::join('sanphams','sanphams.id','=','gio_hangs.ma_san_pham')
-                    ->select('gio_hangs.*', 'sanphams.ten_san_pham','sanphams.hinh_anh','sanphams.gia')
+                    ->select('gio_hangs.*', 'sanphams.ten_san_pham','sanphams.hinh_anh','sanphams.gia','sanphams.tien_giam')
                     ->where('ma_nguoi_dung','=',$iduser)->get();
         // chia thành giỏ hàng yêu thích Cart::instance('wishlist')->content();
         // tổng tiền trong giỏ hàng Cart::total();

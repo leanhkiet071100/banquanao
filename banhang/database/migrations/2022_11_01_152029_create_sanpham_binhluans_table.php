@@ -20,7 +20,7 @@ return new class extends Migration
             $table->text('noi_dung')->nullable();
             $table->integer('danh_gia');
             $table->boolean('hien')->nullable();
-            $table->boolean('noi_bat')->nullable();
+            //$table->boolean('noi_bat')->nullable();
             $table->text('trang_thai')->nullable();
             $table->timestamps();
             $table->softDeletes();

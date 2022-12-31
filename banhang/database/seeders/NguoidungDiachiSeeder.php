@@ -14,6 +14,6 @@ class NguoidungDiachiSeeder extends Seeder
      */
     public function run()
     {
-        //
+        
     }
 }

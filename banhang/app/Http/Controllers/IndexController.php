@@ -23,7 +23,68 @@ use Illuminate\Http\Request;
 use Mail;
 
 class IndexController extends Controller
-{  
+{
+    public function __construct(){
+    
+    }
+
+    public function thong_tin_shop(){
+        $shop = thong_tin_shop::orderBy('id')->first();
+        $ten_shop = $shop->ten_shop;
+        $email_shop = $shop->email;
+        return $shop;
+        
+    }
+    //admin đăng nhập
+      public function login_admin(){
+        return view('admin.login')->with(['email'=> null,'mat_khau'=>null]);
+    }
+
+    public function post_login_admin(Request $request){
+        $this->validate($request,
+            [
+                'email' => 'required|email|max:255',
+                'mat-khau' => 'required|min:6'
+            ],
+            [
+                'email.required' => 'Vui lòng nhập email',
+                'email.email' => 'Không đúng định dạng email',
+                'email.regex' => 'Email phải có dạng: caothang.edu.vn',
+                'mat-khau.required' => 'Vui lòng nhập mật khẩu',
+                'mat-khau.min' => 'Mật khẩu ít nhất 6 ký tự',
+            ]);
+        $email = $request->email;
+        $mat_khau = $request->input('mat-khau');
+        $nguoidung = nguoidung::where('email', $email)->first();
+        // dd($nguoidung,$request->matkhau,Hash::check($request->matkhau,$nguoidung->password));
+        if($nguoidung!=null){
+            if($nguoidung->trang_thai == 1){
+                if(Hash::check($request->input('mat-khau'),$nguoidung->mat_khau)){
+                    if($nguoidung->cap == 1){
+                        $request->session()->regenerate();
+                        Auth::login($nguoidung);
+                    
+                        $request->session()->put('LoggedUser', $nguoidung->id);
+                        return redirect()->route('admin.thong-tin-shop');
+                    }
+                    else{
+                         return view('admin.login')->WithErrors(['error' => 'Xin lỗi bạn không có quyền hạn vào trang này'])->with(['email'=> $email,'mat_khau'=>$mat_khau]);
+                    }
+                   
+                }
+                else{
+                    return view('admin.login')->WithErrors(['error' => 'Sai mật khẩu'])->with(['email'=> $email,'mat_khau'=>$mat_khau]);
+                    //return redirect()->back()->WithErrors(['error' => 'Sai mật khẩu'])->with(['email'=> $email,'mat_khau'=>$mat_khau]);
+                }
+            }else{
+                    return view('admin.login')->WithErrors(['error' => 'Tài khoản đã bị khóa'])->with(['email'=> $email,'mat_khau'=>$mat_khau]);
+            }
+        } else {
+            return view('admin.login')->WithErrors(['error' => 'Địa chỉ email sai hoặc không tồn tại'])->with(['email'=> $email,'mat_khau'=>$mat_khau]);
+        }
+    }
+
+    // trang index
     public function count_gio_hang(){
         if(Auth::user()!= null ){
             $iduser = Auth::user()->id;
@@ -36,7 +97,6 @@ class IndexController extends Controller
    
     public function index()
     {
-       
         $count = $this->count_gio_hang();
         
         $lsloaisanpham = loai_san_pham::where('hien','=',1)->get();
@@ -65,9 +125,10 @@ class IndexController extends Controller
                                              'count'=>$count]);
     }
 
+    //đăng nhập user
     public function dang_nhap()
     {
-        return view('dangnhap-dangki.dangnhap')->with(['email'=> null,'mat_khau'=>null]);
+        return view('auth.dangnhap')->with(['email'=> null,'mat_khau'=>null]);
     }
 
     public function post_dang_nhap(Request $request){
@@ -91,11 +152,11 @@ class IndexController extends Controller
                 if(Hash::check($request->input('mat-khau'),$nguoidung->mat_khau)){
                     if($nguoidung->trang_thai == 0)
                     {
-                        return view('dangnhap-dangki.dangnhap')->WithErrors(['error' => 'Tài khoản của bạn chưa kích hoạt'])->with(['email'=> $email,'mat_khau'=>$mat_khau]);
+                        return view('auth.dangnhap')->WithErrors(['error' => 'Tài khoản của bạn chưa kích hoạt,'])->with(['email'=> $email,'mat_khau'=>$mat_khau,'kiet'=>'lê anh kiệt']);
                     }
                     elseif($nguoidung->trang_thai==2)
                     {
-                        return view('dangnhap-dangki.dangnhap')->WithErrors(['error' => 'Tài khoản của bạn bị khóa vui lòng liên hệ admin'])->with(['email'=> $email,'mat_khau'=>$mat_khau]);
+                        return view('auth.dangnhap')->WithErrors(['error' => 'Tài khoản của bạn bị khóa vui lòng liên hệ admin'])->with(['email'=> $email,'mat_khau'=>$mat_khau]);
                       
                     }
                     else{
@@ -106,20 +167,21 @@ class IndexController extends Controller
                     }
                 }
                 else{
-                    return view('dangnhap-dangki.dangnhap')->WithErrors(['error' => 'Sai mật khẩu'])->with(['email'=> $email,'mat_khau'=>$mat_khau]);
+                    return view('auth.dangnhap')->WithErrors(['error' => 'Sai mật khẩu'])->with(['email'=> $email,'mat_khau'=>$mat_khau]);
                     //return redirect()->back()->WithErrors(['error' => 'Sai mật khẩu'])->with(['email'=> $email,'mat_khau'=>$mat_khau]);
                 }
         } else {
-            return view('dangnhap-dangki.dangnhap')->WithErrors(['error' => 'Địa chỉ email sai hoặc không tồn tại'])->with(['email'=> $email,'mat_khau'=>$mat_khau]);
+            return view('auth.dangnhap')->WithErrors(['error' => 'Địa chỉ email sai hoặc không tồn tại'])->with(['email'=> $email,'mat_khau'=>$mat_khau]);
         }
     }
 
+    //đăng kí
      public function dang_ki()
     {
-        return view('dangnhap-dangki.dangki')->with(['email'=>null,'mat_khau'=>null,'ho_ten'=>null,'sdt'=>null]);
+        return view('auth.dangki')->with(['email'=>null,'mat_khau'=>null,'ho_ten'=>null,'sdt'=>null]);
     }
 
-     public function post_dang_ki(Request $request)
+    public function post_dang_ki(Request $request)
     {   
         $this->validate($request,
             [
@@ -139,12 +201,11 @@ class IndexController extends Controller
                 'sdt.numeric' => 'Số điện thoại phải là số',
             ]);
         
-            // thông tin của shop
+        // thông tin của shop
         $shop = thong_tin_shop::orderBy('id')->first();
         $ten_shop = $shop->ten_shop;
         $email_shop = $shop->email;
         $hinh_anh = logo::orderBy('id')->first();
-
         // thông tin người dung
         $sdt = $request->input('sdt');
         $ho_ten = $request->input('ho-ten');
@@ -165,7 +226,7 @@ class IndexController extends Controller
              
         // vd: Mail::send('email.dangki',['name'=>'test']);
       
-        Mail::send('email.dangki',compact('nguoidung'), function($email) use($ten_shop,$email_shop, $nguoidung,$hinh_anh){
+        Mail::send('email.dangki',compact('nguoidung'), function($email) use($shop, $nguoidung,$hinh_anh){
             // $email->to('địa chỉ email nhận','tên người nhận')
             //$email->subject('Xác nhận đăng kí tài khoản');
             // lấy file
@@ -173,8 +234,8 @@ class IndexController extends Controller
             //$email->attach('C:\laravel-master\laravel\public\uploads\test.txt');
             //email gửi
            
-            if($ten_shop != null && $email_shop != null){
-                $email->from($email_shop,$ten_shop);
+            if($shop != null){
+                $email->from($shop->email,$shop->ten_shop);
             }else{
                 $email->from('0306191038@caothang.edu.vn','cửa hàng quần áo');
             }
@@ -182,27 +243,36 @@ class IndexController extends Controller
             //$email->attach(public_path($hinh_anh->hinh_logo));
 
             // email nhận
-            $email->to('0306191038@caothang.edu.vn',$nguoidung->ten)->subject('XÁC NHẬN ĐĂNG KÍ TÀI KHOẢN');
+            $email->to($nguoidung->email,$nguoidung->ten)->subject('XÁC NHẬN ĐĂNG KÍ TÀI KHOẢN');
         });
         return Redirect::route('dang-nhap')->With(['yes' => 'Vui lòng check email để kích hoạt tài khoản']);
     }
 
-    public function kich_hoat($id, $token){
-       
+    public function kich_hoat($id, $token){ 
         $nguoidung = nguoidung::find($id);
         if($nguoidung->remember_token === $token){
-            $nguoidung->update(['trang_thai'=>1]);
-            return 'bạn đã xác nhận thành công';
+            $nguoidung->update(['trang_thai'=>1,'token'=>null]);
+            return view('auth.dangnhap')->with('success','Xác nhận thành công, bạn có hể đăng nhập');
         }else {
-            return "xác nhận không thành công";
+            return view('auth.dangnhap')->WithErrors(['error' => 'xác  nhận không thành công']);
         }
 
     }
 
-    public function logout(){
+    //đăng xuất
+    public function dang_xuat(Request $request){
         Auth::logout();
         $request->session()->flush();
         return redirect()->route('dang-nhap');
+    }
+
+    // quên mật khẩu
+    public function quen_mat_khau(){
+        return view('auth.quen-mat-khau')->with(['email'=> null]);
+    }
+     public function post_quen_mat_khau(){
+        $shop = $this->thong_tin_shop();
+        
     }
 
 }

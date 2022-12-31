@@ -4,6 +4,8 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+Use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class CheckLogin
 {
@@ -18,6 +20,14 @@ class CheckLogin
     {
         
         // echo 'middle';
+        //chưa đăng nhập
+        if(!Auth::check()){
+            return redirect()->route('login-admin');
+        }elseif(Auth::user()->cap == 1 ){
+            return $next($request);
+        }elseif(Auth::user()->cap == 2 ){
+            return redirect()->route('index')->with('yes','bạn không có quyền hạn vào trang admin');
+        }
         return $next($request);
     }
 }

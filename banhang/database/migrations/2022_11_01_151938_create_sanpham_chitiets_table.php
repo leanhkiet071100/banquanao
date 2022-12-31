@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string('mau');
             $table->string('kich_thuoc'); // size
             $table->integer('so_luong_kho');
-            $table->boolean('moi')->nullable();
-            $table->boolean('noi_bat')->nullable();
+            // $table->boolean('moi')->nullable();
+            // $table->boolean('noi_bat')->nullable();
             $table->boolean('hien')->nullable();
             $table->text('trang_thai')->nullable();
             $table->timestamps();

@@ -3,17 +3,8 @@
  @section('title', 'mạng xã hội')
  @section('sidebar')
      @parent
-     <section class="breadcrumb-section set-bg" data-setbg="{{ URL('assets/img/breadcrumb.jpg') }}">
-         <div class="container">
-             <div class="row">
-                 <div class="col-lg-12 text-center">
-                     <div class="breadcrumb__text">
-                         <h2>Sản phẩm của shop</h2>
-                     </div>
-                 </div>
-             </div>
-         </div>
-     </section>
+
+    @include('layouts.banner')
      <section class="product spad">
          <div class="container">
              <div class="row">
@@ -267,6 +258,10 @@
          $(document).ready(function() {
              $('#san-pham').addClass('active');
              $('#home').removeClass('active');
+             //$('#nd-banner').html('');
+             //$('#nd-banner').append('<h2>Sản phẩm</h2>');
+             //$nd_banner.append('sản phẩm');
          });
+         
      </script>
  @endsection

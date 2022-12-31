@@ -19,46 +19,57 @@ class SanphamHinhanhSeeder extends Seeder
             [
                 'ma_san_pham' => 1,
                 'hinh_san_pham' => 'hinh_test/test.jpg',
+                'hien' => 1 
             ],
             [
                 'ma_san_pham' => 1,
                 'hinh_san_pham' => 'hinh_test/test.jpg',
+                'hien' => 1 
             ],
             [
                 'ma_san_pham' => 1,
                 'hinh_san_pham' => 'hinh_test/test.jpg',
+                'hien' => 1 
             ],
             [
                 'ma_san_pham' => 2,
                 'hinh_san_pham' => 'hinh_test/test.jpg',
+                'hien' => 1 
             ],
             [
                 'ma_san_pham' => 3,
                 'hinh_san_pham' => 'hinh_test/test.jpg',
+                'hien' => 1 
             ],
             [
                 'ma_san_pham' => 4,
                 'hinh_san_pham' => 'hinh_test/test.jpg',
+                'hien' => 1 
             ],
             [
                 'ma_san_pham' => 5,
                 'hinh_san_pham' => 'hinh_test/test.jpg',
+                'hien' => 1 
             ],
             [
                 'ma_san_pham' => 6,
                 'hinh_san_pham' => 'hinh_test/test.jpg',
+                'hien' => 1 
             ],
             [
                 'ma_san_pham' => 7,
                 'hinh_san_pham' => 'hinh_test/test.jpg',
+                'hien' => 1 
             ],
             [
                 'ma_san_pham' => 8,
                 'hinh_san_pham' => 'hinh_test/test.jpg',
+                'hien' => 1 
             ],
             [
                 'ma_san_pham' => 9,
                 'hinh_san_pham' => 'hinh_test/test.jpg',
+                'hien' => 1 
             ],
         ]);
     }

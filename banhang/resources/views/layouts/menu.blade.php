@@ -5,11 +5,14 @@
                  <div class="col-lg-6 col-md-6">
                      <div class="header__top__left">
                          <ul>
-                            @if ($shop->email != null)
-                                <li><i class="fa fa-envelope"></i>{{$shop->email}} </li>
-                            @endif
-                             
-                                <li>Giao hàng miễn phí cho tất cả đơn hàng $99</li>
+                             @if ($shop != null)
+                                 @if ($shop->email != null)
+                                     <li><i class="fa fa-envelope"></i>{{ $shop->email }} </li>
+                                 @endif
+
+                             @endif
+
+                             <li>Giao hàng miễn phí cho tất cả đơn hàng $99</li>
                          </ul>
                      </div>
                  </div>
@@ -32,12 +35,14 @@
                                 </ul>
                             </div> --}}
                          @if (Auth::user() != null)
-                             <div class="header__top__right__auth"> 
-                                @if (Auth::user()->hinh_dai_dien != null)
-                                   <a href=""> <img src="{{ URL(Auth::user()->hinh_dai_dien) }}" class="img-radius rounded-circle avatar" alt="User-Profile-Image">{{ Auth::user()->ten }}</a>
-                                @else   
-                                    <a href=""><i class="fa fa-user"></i>{{ Auth::user()->ten }}</a>
-                                @endif
+                             <div class="header__top__right__auth">
+                                 @if (Auth::user()->hinh_dai_dien != null)
+                                     <a href=""> <img src="{{ URL(Auth::user()->hinh_dai_dien) }}"
+                                             class="img-radius rounded-circle avatar"
+                                             alt="User-Profile-Image">{{ Auth::user()->ten }}</a>
+                                 @else
+                                     <a href=""><i class="fa fa-user"></i>{{ Auth::user()->ten }}</a>
+                                 @endif
                              </div>
                          @else
                              <div class="header__top__right__auth">
@@ -52,12 +57,15 @@
      <div class="container">
          <div class="row">
              <div class="col-lg-3">
-                @if ($hinh_anh->hinh_logo !=null)
-                <div class="header__logo">
-                     <a href="{{route('index')}}"><img src="{{ URL($hinh_anh->hinh_logo) }}" alt=""></a>
-                </div>
-                @endif
-                 
+                 @if ($shop != null)
+                     @if ($shop->hinh_logo != null)
+                         <div class="header__logo">
+                             <a href="{{ route('index') }}"><img src="{{ URL($shop->hinh_logo) }}" alt=""></a>
+                         </div>
+                     @endif
+
+                 @endif
+
              </div>
              <div class="col-lg-6">
                  <nav class="header__menu">
@@ -80,15 +88,16 @@
              <div class="col-lg-3">
                  <div class="header__cart">
                      <ul>
-                         <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
+                         {{-- <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li> --}}
                          @if ($count != null)
-                             <li><a href="{{route('gio-hang')}}"><i class="fa fa-shopping-bag"></i> <span>{{$count}}</span></a></li>
+                             <li><a href="{{ route('gio-hang') }}"><i class="fa fa-shopping-bag"></i>
+                                     <span>{{ $count }}</span></a></li>
                          @else
-                             <li><a href="{{route('gio-hang')}}"><i class="fa fa-shopping-bag"></i> </a></li>
+                             <li><a href="{{ route('gio-hang') }}"><i class="fa fa-shopping-bag"></i> </a></li>
                          @endif
-                         
+
                      </ul>
-                     <div class="header__cart__price">item: <span>$150.00</span></div>
+                     {{-- <div class="header__cart__price">item: <span>$150.00</span></div> --}}
                  </div>
              </div>
          </div>

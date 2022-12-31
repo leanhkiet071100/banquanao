@@ -3,6 +3,11 @@
 @section('title', 'mạng xã hội')
 @section('sidebar')
     @parent
+    @if (session()->has('yes'))
+        <script>
+            alert('{{ session()->get('yes') }}')
+        </script>
+    @endif
 
     <!-- Categories Section Begin -->
     @if ($lsnhanhieu != null)
@@ -281,7 +286,10 @@
                                 </div>
                                 <div class="blog__item__text">
                                     <ul>
-                                        <li><i class="fa fa-calendar-o"></i> {{ date("$value->created_at") }}</li>
+                                        @if ($value->create_at != null)
+                                                <li><i class="fa fa-calendar-o"></i> {{ date("$value->created_at") }}</li>
+                                        @endif
+                                    
                                         <li><i class="fa fa-comment-o"></i> 5</li>
                                     </ul>
                                     <h5><a

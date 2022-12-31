@@ -21,30 +21,34 @@ class NguoidungSeeder extends Seeder
          DB::table('nguoidungs')->insert([
             [
                 
-                'ten' => 'CodeLean',
-                'email' => 'CodeLean@gmail.com',
-                'mat_khau' => Hash::make('123456'),
-                'hinh_dai_dien' => null,
-                'cap' => 0,
-                'mo_ta' => null,
-            ],
-            [
-                
                 'ten' => 'admin',
                 'email' => 'admin@gmail.com',
                 'mat_khau' => Hash::make('123456'),
                 'hinh_dai_dien' => null,
-                'cap' => 0,
+                'cap' => 1,
                 'mo_ta' => null,
+                'trang_thai'=>1,
             ],
+            [
+                
+                'ten' => 'CodeLean',
+                'email' => 'CodeLean@gmail.com',
+                'mat_khau' => Hash::make('123456'),
+                'hinh_dai_dien' => null,
+                'cap' => 2,
+                'mo_ta' => null,
+                'trang_thai'=>1,
+            ],
+
             [
                 
                 'ten' => 'Shane Lynch',
                 'email' => 'ShaneLynch@gmail.com',
                 'mat_khau' => Hash::make('123456'),
                 'hinh_dai_dien' => 'hinh_test/test.jpg',
-                'cap' => 1,
-                'mo_ta' => 'Aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum bore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud amodo'
+                'cap' => 2,
+                'mo_ta' => 'Aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum bore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud amodo',
+                'trang_thai'=>0,
             ],
             [
                 
@@ -52,8 +56,9 @@ class NguoidungSeeder extends Seeder
                 'email' => 'BrandonKelley@gmail.com',
                 'mat_khau' => Hash::make('123456'),
                 'hinh_dai_dien' => 'hinh_test/test.jpg',
-                'cap' => 1,
+                'cap' => 2,
                 'mo_ta' => null,
+                'trang_thai'=>0,
             ],
             [
                 
@@ -61,8 +66,9 @@ class NguoidungSeeder extends Seeder
                 'email' => 'RoyBanks@gmail.com',
                 'mat_khau' => Hash::make('123456'),
                 'hinh_dai_dien' => 'hinh_test/test.jpg',
-                'cap' => 1,
+                'cap' => 0,
                 'mo_ta' => null,
+                'trang_thai'=>2,
             ],
         ]);
     }
