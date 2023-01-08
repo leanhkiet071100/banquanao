@@ -26,7 +26,7 @@
                              </div>
                              <div class="blog__sidebar__recent__item__text">
                                  <h6>{{$value->tieu_de}} </h6>
-                                 <span>{{$value->created_at}}</span>
+                                 <span>{{date('j/m/Y', strtotime($value->created_at))}}</span>
                              </div>
                          </a>
                      @endforeach

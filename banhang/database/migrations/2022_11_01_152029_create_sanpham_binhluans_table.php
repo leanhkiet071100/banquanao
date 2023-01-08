@@ -17,7 +17,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('ma_san_pham');
             $table->foreignId('ma_nguoi_dung');
+            $table->foreignId('id_binh_luan_cha')->nullable();
             $table->text('noi_dung')->nullable();
+           
             $table->integer('danh_gia');
             $table->boolean('hien')->nullable();
             //$table->boolean('noi_bat')->nullable();

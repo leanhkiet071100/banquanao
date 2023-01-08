@@ -71,26 +71,28 @@ class AdminBaiVietController extends Controller
         $loaibaiviet = $request->input('loaibaiviet');
         $phude = $request->input('phude');
         $noidung = $request->input('noidung');
+        $baivietmoi = new baiviet;
         $tieude = $request->input('tieude');
-        if($hinhbaiviet != null){
-            $file_name = time().Str::random(10).'.'.$hinhbaiviet->getClientOriginalExtension();
-            $imagePath = $hinhbaiviet->move(public_path('hinh_bai_viet/'), $file_name);
-            $ten_file = 'hinh_bai_viet/'.$file_name;
-            $baivietmoi = new baiviet;
-            $baivietmoi->fill([
+                    $baivietmoi->fill([
                 'ma_nguoi_dung'=> 1,
                 'tieu_de'=> $tieude,
                 'phu_de'=> $phude,
-                'hinh_anh'=>$ten_file,
+                // 'hinh_anh'=>$ten_file,
                 'loai_bai_viet'=>$loaibaiviet,
                 'noi_dung'=>$noidung,
                 'moi'=> 1,
                 'noi_bat'=> 1,
                 'hien'=> 1,
-            ]);
+         ]);
+         $baivietmoi->save();
+        if($hinhbaiviet != null){
+            $file_name = time().Str::random(10).'.'.$hinhbaiviet->getClientOriginalExtension();
+            $imagePath = $hinhbaiviet->move(public_path('hinh_bai_viet/'), $file_name);
+            $ten_file = 'hinh_bai_viet/'.$file_name;
+            $baiviet->hinh_anh = $ten_file;
             $baivietmoi->save();
-            return Redirect::route('admin.bai-viet')->with('success','Thêm thành công');
         }
+         return Redirect::route('admin.bai-viet')->with('success','Thêm thành công');
 
         
     }
@@ -111,7 +113,7 @@ class AdminBaiVietController extends Controller
 
     public function post_bai_viet_sua(Request $request,$id){
          $rule = [
-            'hinhbaiviet' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'hinhbaiviet' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'loaibaiviet'=>'required',
             'tieude' => 'required',
             'phude' => '',
@@ -140,25 +142,27 @@ class AdminBaiVietController extends Controller
         $phude = $request->input('phude');
         $noidung = $request->input('noidung');
         $tieude = $request->input('tieude');
-        if($hinhbaiviet != null){
-            $file_name = time().Str::random(10).'.'.$hinhbaiviet->getClientOriginalExtension();
-            $imagePath = $hinhbaiviet->move(public_path('hinh_bai_viet/'), $file_name);
-            $ten_file = 'hinh_bai_viet/'.$file_name;
-            $baivietmoi = baiviet::find($id);
-            $baivietmoi->fill([
+        $baiviet = baiviet::find($id);
+        $baiviet->fill([
                 'ma_nguoi_dung'=> 1,
                 'tieu_de'=> $tieude,
                 'phu_de'=> $phude,
-                'hinh_anh'=>$ten_file,
                 'loai_bai_viet'=>$loaibaiviet,
                 'noi_dung'=>$noidung,
                 'moi'=> 1,
                 'noi_bat'=> 1,
                 'hien'=> 1,
             ]);
-            $baivietmoi->save();
-            return Redirect::route('admin.bai-viet')->with('success','sửa thành công');
+          
+        if($hinhbaiviet != null){
+            $file_name = time().Str::random(10).'.'.$hinhbaiviet->getClientOriginalExtension();
+            $imagePath = $hinhbaiviet->move(public_path('hinh_bai_viet/'), $file_name);
+            $ten_file = 'hinh_bai_viet/'.$file_name;
+            $baiviet->hinh_anh = $ten_file;
+            $baiviet->save();
         }
+        $baiviet->save();
+        return Redirect::route('admin.bai-viet')->with('success','sửa thành công');
     }
     
     //xóa bài viết

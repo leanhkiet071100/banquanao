@@ -22,7 +22,7 @@ class CheckLogin
         // echo 'middle';
         //chưa đăng nhập
         if(!Auth::check()){
-            return redirect()->route('login-admin');
+            return redirect()->route('login-admin')->with('yes','Bạn vui lòng đăng nhập để thực hiện chức năng');
         }elseif(Auth::user()->cap == 1 ){
             return $next($request);
         }elseif(Auth::user()->cap == 2 ){

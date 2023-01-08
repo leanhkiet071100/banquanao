@@ -24,11 +24,11 @@
                                         </div>
                                         <div class="blog__item__text">
                                             <ul>
-                                                @if ($value->create_at != null)
-                                                    <li><i class="fa fa-calendar-o"></i>{{ $value->create_at }}</li>
+                                                @if ($value->created_at != null)
+                                                    <li><i class="fa fa-calendar-o"></i>{{date('j/m/Y', strtotime($value->created_at))}}</li>
                                                 @endif
                                                 
-                                                <li><i class="fa fa-comment-o"></i> 5</li>
+                                                {{-- <li><i class="fa fa-comment-o"></i> 5</li> --}}
                                             </ul>
                                             <h5><a href="{{route('chi-tiet-bai-viet',["id"=>$value->id])}}">{{ $value->tieu_de }}</a></h5>
                                             <p>{{ $value->phu_de }}</p>

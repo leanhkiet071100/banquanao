@@ -22,7 +22,7 @@
                         @endif
                         @if ($errors->has('error'))
                             <div class="alert alert-danger">
-                                {{ $errors->first('error') }} <a class="kich-hoat-lai" href="">Ấn vào để kích hoạt</a>
+                                {{ $errors->first('error') }}
                             </div>
                         @endif
                         

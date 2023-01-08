@@ -1635,11 +1635,11 @@ ol {
 	height: 30px;
 	border: 1px solid #b2b2b2;
 	font-size: 14px;
-	color: #b2b2b2;
+	color: #000;
 	font-weight: 700;
 	line-height: 28px;
 	text-align: center;
-	margin-right: 16px;
+	margin-right: 10px;
 	-webkit-transition: all, 0.3s;
 	-moz-transition: all, 0.3s;
 	-ms-transition: all, 0.3s;
@@ -2329,6 +2329,13 @@ ol {
 	font-size: 20px;
 	color: #1c1c1c;
 	font-weight: 700;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: normal;
+	display: -webkit-box;
+	text-align: justify;
 }
 
 .blog__item__text p {
@@ -2474,6 +2481,13 @@ ol {
 	color: #333333;
 	line-height: 20px;
 	margin-bottom: 5px;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: normal;
+	display: -webkit-box;
+	text-align: justify;
 }
 
 .blog__sidebar__recent__item__text span {
@@ -2552,7 +2566,7 @@ ol {
 
 .blog-details {
 	padding-bottom: 75px;
-	border-bottom: 1px solid #e1e1e1;
+	/* border-bottom: 1px solid #e1e1e1; */
 }
 
 .blog__details__text {
@@ -3943,4 +3957,93 @@ ol {
 	background-color: #f8d7da;
 	border-color: #f5c6cb;
 	text-decoration: revert;
+}
+
+.rate-commment {
+	margin: 30px 0;
+}
+
+/* bình luận */
+.binhluan {
+	width: 100%;
+	height: auto;
+	/* display: flex; */
+	/* align-items: center; */
+}
+
+.post-comt-box {
+	/* display: inline-block; */
+	padding-left: 15px;
+	position: relative;
+	/* width: 100%; */
+}
+
+.add-smiles {
+	position: absolute;
+	right: 15px;
+	width: auto;
+	display: flex;
+	align-items: center;
+	bottom: 10px;
+}
+
+.add-smiles>div {
+	margin: 0 5px;
+	align-items: center;
+}
+
+.avatar-binhluan {
+	/* display: flex; */
+	/* margin: 15px 15px 0 0; */
+	position: relative;
+	/* align-items: center; */
+}
+
+.btnbinhluan {
+	border: none;
+	background: none;
+}
+
+.post-comt-box textarea {
+	background: #f3f3f3 none repeat scroll 0 0;
+	border-color: transparent;
+	border-radius: 3px;
+	color: #000000;
+	font-size: 13.5px;
+	font-weight: 500;
+	line-height: 16px;
+	padding: 20px;
+	width: 100%;
+	height: 100px;
+	clear: left;
+	max-height: 100px;
+	min-height: 100px;
+	resize: none;
+}
+
+.we-comment-binhluan {
+	position: relative;
+}
+
+.we-reply {
+	border: none;
+	background: none;
+	color: #7fad39;
+}
+
+.rep-commment {
+	display: none;
+}
+
+.btnbinhluan:hover {
+	color: #7fad39;
+}
+
+.phan-trang {
+	margin: 10px;
+}
+
+.active-phan-trang {
+	color: white;
+	background-color: #7fad39;
 }

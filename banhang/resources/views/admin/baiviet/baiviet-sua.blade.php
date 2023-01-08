@@ -91,9 +91,9 @@
                             </div>
 
                             <div class="position-relative row form-group">
-                                <label for="phude" class="col-md-3 text-md-right col-form-label">Giá</label>
+                                <label for="phude" class="col-md-3 text-md-right col-form-label">Phụ đề</label>
                                 <div class="col-md-9 col-xl-8">
-                                    <input required name="phude" id="phude" placeholder="Phụ đề" type="text"
+                                    <input  name="phude" id="phude" placeholder="Phụ đề" type="text"
                                         class="form-control" value="{{ old('phude') ?? $baiviet->phu_de }}">
                                     <div class="text-center">
                                         @error('phude')

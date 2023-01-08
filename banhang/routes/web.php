@@ -84,6 +84,9 @@ use App\Models\gio_hang;
     Route::get('/bai-viet', [BaiVietController::class, 'index'])->name('bai-viet');
     Route::get('/chi-tiet-bai-viet/{id}',  [BaiVietController::class, 'chi_tiet_bai_viet'])->name('chi-tiet-bai-viet');
     Route::get('/menu-bai-viet', [BaiVietController::class, 'menu_bai_viet'])->name('menu-bai-viet');
+    //bình luận bài viết
+    Route::post('/binh-luan-bai-viet/{id}',[BaiVietController::class, 'binh_luan_bai_viet'])->name('binh-luan-bai-viet');
+    Route::post('/load-binh-luan-bai-viet',[BaiVietController::class, 'load_binh_luan'])->name('load-binh-luan-bai-viet');
 
     //giới thiệu
     Route::get('/gioi-thieu', [ShopController::class, 'gioi_thieu'])->name('gioi-thieu');

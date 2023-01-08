@@ -72,7 +72,8 @@
                             <div class="product__details__quantity">
                                 <div class="quantity">
                                     <div class="pro-qty">
-                                        <input type="number" value="{{old('so_luong')?? 1}}" name="so_luong" min="1"  required>
+                                        <input type="number" value="{{ old('so_luong') ?? 1 }}" name="so_luong"
+                                            min="1" required>
                                     </div>
                                 </div>
                             </div>
@@ -150,69 +151,66 @@
             </div>
         </section>
     </form>
-    <!-- Kết thúc sản  phẩm  chi tiết -->
-
-    <!-- sản phẩm liên quan -->
-    @if ($lssanphamlienquan->count() != null)
-        <section class="rate-product">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="section-title related__product__title">
-                            <h2>Đánh giá sản phẩm</h2>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="coment-area">
-                        <ul class="we-comet">
-                            <li>
-                                @if ($shop!=null)
-                                    @if ($shop->hinh_banner != null)
-                                        <div class="comet-avatar">
-                                            <img src="{{ URL($shop->hinh_banner) }}" alt="">
-                                        </div> 
-                                    @else
-                                        <div class="comet-avatar">
-                                        <img src="{{ URL('hinh_test/blog.jpg') }}" alt="">
-                                        </div> 
-                                    @endif
-                                @endif
-                             
-                                <div class="we-comment">
-                                    <div class="coment-head">
-                                        <h5><a href="time-line.html" title="">Jason borne</a></h5>
-                                        <span>1 year ago</span>
-
-                                    </div>
-                                    <p>we are working for the dance and sing songs. this car is very awesome for the
-                                        youngster. please vote this car and like our post</p>
-                                </div>
-                                <ul>
-                                    <li>
-                                        <div class="comet-avatar">
-                                            {{-- <img src="{{ URL($shop->hinh_banner) }}" alt=""> --}}
-                                        </div>
-                                        <div class="we-comment">
-                                            <div class="coment-head">
-                                                <h5><a href="time-line.html" title="">alexendra dadrio</a></h5>
-                                                <span>1 month ago</span>
-
-                                            </div>
-                                            <p>yes, really very awesome car i see the features of this car in the
-                                                official website of <a href="#" title="">#Mercedes-Benz</a>
-                                                and really impressed :-)</p>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
+    {{-- bình luận sản phẩm --}}
+    <section class="rate-product">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title related__product__title">
+                        <h2>Đánh giá sản phẩm</h2>
                     </div>
                 </div>
             </div>
-        </section>
-    @endif
+            <div class="row">
+                <div class="coment-area">
+                    <ul class="we-comet">
+                        <li>
+                            @if ($shop != null)
+                                @if ($shop->hinh_banner != null)
+                                    <div class="comet-avatar">
+                                        <img src="{{ URL($shop->hinh_banner) }}" alt="">
+                                    </div>
+                                @else
+                                    <div class="comet-avatar">
+                                        <img src="{{ URL('hinh_test/blog.jpg') }}" alt="">
+                                    </div>
+                                @endif
+                            @endif
 
+                            <div class="we-comment">
+                                <div class="coment-head">
+                                    <h5><span>Jason borne</span></h5>
+                                    <span>1 year ago</span>
+
+                                </div>
+                                <p>we are working for the dance and sing songs. this car is very awesome for the
+                                    youngster. please vote this car and like our post</p>
+                            </div>
+                            <ul>
+                                <li>
+                                    <div class="comet-avatar">
+                                        {{-- <img src="{{ URL($shop->hinh_banner) }}" alt=""> --}}
+                                    </div>
+                                    <div class="we-comment">
+                                        <div class="coment-head">
+                                            <h5><a href="time-line.html" title="">alexendra dadrio</a></h5>
+                                            <span>1 month ago</span>
+
+                                        </div>
+                                        <p>yes, really very awesome car i see the features of this car in the
+                                            official website of <a href="#" title="">#Mercedes-Benz</a>
+                                            and really impressed :-)</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    {{-- kết thúc bình luận sản phẩm --}}
+    {{-- sản phẩm liên quan --}}
     @if ($lssanphamlienquan->count() != null)
         <section class="related-product">
             <div class="container">

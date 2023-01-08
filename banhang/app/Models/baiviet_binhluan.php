@@ -19,6 +19,10 @@ class baiviet_binhluan extends Model
         'ma_bai_viet',
         'ma_nguoi_dung',
         'noi_dung',
+        'id_binh_luan_cha',
+        'hien',
+        'noi_bat',
+        'trang_thai',
     ];
 
     public function baiviet(){
