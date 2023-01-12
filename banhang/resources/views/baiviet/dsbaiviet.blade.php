@@ -11,7 +11,7 @@
     <section class="blog spad">
         <div class="container">
             <div class="row">
-               @include('baiviet.menubaiviet')
+                @include('baiviet.menubaiviet')
 
                 @if ($lsbaiviet->count() != null)
                     <div class="col-lg-8 col-md-7">
@@ -25,22 +25,26 @@
                                         <div class="blog__item__text">
                                             <ul>
                                                 @if ($value->created_at != null)
-                                                    <li><i class="fa fa-calendar-o"></i>{{date('j/m/Y', strtotime($value->created_at))}}</li>
+                                                    <li><i
+                                                            class="fa fa-calendar-o"></i>{{ date('j/m/Y', strtotime($value->created_at)) }}
+                                                    </li>
                                                 @endif
-                                                
+
                                                 {{-- <li><i class="fa fa-comment-o"></i> 5</li> --}}
                                             </ul>
-                                            <h5><a href="{{route('chi-tiet-bai-viet',["id"=>$value->id])}}">{{ $value->tieu_de }}</a></h5>
+                                            <h5><a
+                                                    href="{{ route('chi-tiet-bai-viet', ['id' => $value->id]) }}">{{ $value->tieu_de }}</a>
+                                            </h5>
                                             <p>{{ $value->phu_de }}</p>
-                                            <a href="{{route('chi-tiet-bai-viet',["id"=>$value->id])}}" class="blog__btn">XEM THÊM <span
-                                                    class="arrow_right"></span></a>
+                                            <a href="{{ route('chi-tiet-bai-viet', ['id' => $value->id]) }}"
+                                                class="blog__btn">XEM THÊM <span class="arrow_right"></span></a>
                                         </div>
                                     </div>
                                 </div>
                             @endforeach
                             <div class="col-lg-12">
                                 <div class="product__pagination blog__pagination ds-bai-viet">
-                                     {{ $lsbaiviet->appends(request()->all())->links('phantrang.phantrang') }}
+                                    {{ $lsbaiviet->appends(request()->all())->links('phantrang.phantrang') }}
                                 </div>
                             </div>
                         </div>
@@ -69,4 +73,3 @@
         });
     </script>
 @endsection
-

@@ -3813,20 +3813,19 @@ ol {
 }
 
 .form-control {
-	position: relative;
-	z-index: 2;
-	height: 48px;
+	display: block;
 	width: 100%;
-	background-color: #393c3d;
-	font-size: 12px;
-	margin-bottom: 15px;
-	padding: 10px 30px;
-	color: #ffffff;
-	-webkit-transition-duration: 500ms;
-	-o-transition-duration: 500ms;
-	transition-duration: 500ms;
-	border: none;
-	border-radius: 0;
+	height: calc(2.25rem + 2px);
+	padding: 0.375rem 0.75rem;
+	font-size: 1rem;
+	font-weight: 400;
+	line-height: 1.5;
+	color: #495057;
+	background-color: #fff;
+	background-clip: padding-box;
+	border: 1px solid #ced4da;
+	border-radius: 0.25rem;
+	transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
 .vizew-btn {
@@ -4046,4 +4045,354 @@ ol {
 .active-phan-trang {
 	color: white;
 	background-color: #7fad39;
+}
+
+/* tài khoản cá nhân */
+
+.info_user {
+	padding: 15px 0;
+	border-bottom: 1px solid #7fad39;
+}
+
+.info-user-avatar {
+	display: inline-block;
+	position: relative;
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	border: 0.0625rem solid rgba(0, 0, 0, .09);
+	box-sizing: border-box;
+}
+
+.info-user-avatar img {
+	border-radius: 50%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	display: block;
+
+}
+
+.info-name {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	min-height: 1rem;
+	font-weight: 600;
+	margin-bottom: 5px;
+	color: #333;
+}
+
+.info {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding-left: 15px;
+	overflow: hidden;
+}
+
+.info-edit a {
+	color: #888;
+	text-transform: capitalize;
+	text-decoration: none;
+}
+
+/* tài khoản cá nhân menu */
+section.time-line-user {
+	padding-bottom: 70px;
+}
+
+.app-sidebar .scrollbar-sidebar {
+	z-index: 15;
+	width: 100%;
+}
+
+.scrollbar-sidebar,
+.scrollbar-container {
+	position: relative;
+	height: 100%;
+}
+
+.ps {
+	overflow: hidden !important;
+	overflow-anchor: none;
+	touch-action: auto;
+}
+
+.app-sidebar .app-sidebar__inner {
+	padding: 20px 0;
+}
+
+.vertical-nav-menu {
+	margin: 0;
+	padding: 0;
+	position: relative;
+	list-style: none;
+}
+
+.vertical-nav-menu ul {
+	transition: padding 300ms;
+}
+
+.vertical-nav-menu ul {
+	margin: 0;
+	padding: 0;
+	position: relative;
+	list-style: none;
+	line-height: 2rem;
+}
+
+.vertical-nav-menu li.mm-active>a {
+	font-weight: bold;
+}
+
+.vertical-nav-menu li a {
+	/* display: block; */
+	position: relative;
+	border-radius: 0.25rem;
+	/* white-space: nowrap; */
+	transition: all .2s;
+	/* margin: 0.1rem 0; */
+	color: #000;
+}
+
+.vertical-nav-menu ul>li>a {
+	color: #6c757d;
+	height: 2rem;
+	line-height: 1.5rem;
+	padding: 0px 15px;
+	margin: 0;
+}
+
+
+.vertical-nav-menu::after {
+	content: " ";
+	pointer-events: none;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	top: 0;
+}
+
+.vertical-nav-menu ul:before {
+	content: '';
+	height: 100%;
+	opacity: 1;
+	width: 2px;
+	background: #e0f3ff;
+	position: absolute;
+	left: 0px;
+	top: 0;
+	border-radius: 15px;
+}
+
+/* chi tiết tài khoản */
+.detail-info {
+	position: relative;
+	flex-grow: 1;
+	width: 100%;
+	box-sizing: border-box;
+	margin-left: 2.6875rem;
+	min-width: 0;
+	background: #fff;
+	box-shadow: 0 1px 2px 0 rgb(0 0 0 / 43%);
+	border-radius: 0.125rem;
+	padding: 15px;
+}
+
+.detail-info-menu {
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	min-height: 100%;
+	/* background: red; */
+}
+
+.detail-info-title .title {
+	margin: 0;
+	font-size: 1.125rem;
+	font-weight: 500;
+	line-height: 1.5rem;
+	text-transform: capitalize;
+	color: #333;
+}
+
+.detail-info-title {
+	border-bottom: 0.0625rem solid #7fad39;
+	padding: 1.125rem 0;
+}
+
+.detail-info-title .slogan {
+	margin-top: 0.1875rem;
+	font-size: .875rem;
+	line-height: 1.0625rem;
+	color: #555;
+}
+
+.detail-info-content .content {
+	margin-top: 15px;
+}
+
+.anh-dai-dien img {
+	width: 100px;
+	height: 100px;
+	max-width: 100px;
+	max-height: 100px;
+	border-radius: 50%;
+}
+
+.thay-doi {
+	border: 0;
+	outline: none;
+	background: none;
+	color: #05a;
+	font-size: .8125rem;
+	text-transform: capitalize;
+	text-decoration: underline;
+	display: inline-block;
+}
+
+
+.ma-xac-nhan {
+	display: inline-block;
+	width: 100%;
+	font-size: 1rem;
+	font-weight: 400;
+	line-height: 1.5;
+	color: #495057;
+	background-color: #fff;
+	height: 38px;
+}
+
+.btn-ma-xac-nhan {
+	padding: 5px 0;
+	height: 100%;
+	background: #7fad39;
+	color: white;
+	font-size: 20px;
+	border: none;
+}
+
+.dia-chi {
+	padding: 1.5rem;
+	justify-content: space-between;
+}
+
+.btn-add-dia-chi {
+	height: 40px;
+	padding: 0 20px;
+	font-size: .875rem;
+	font-weight: 400;
+	position: relative;
+	overflow: visible;
+	outline: 0;
+	background: #7fad39;
+	color: white;
+	border: none;
+	line-height: 100%;
+}
+
+/* địa chỉ người dùng */
+
+.dia-chi-nguoi-dung {
+	padding: 18px 0 20px;
+	border-bottom: 1px solid rgb(127 173 57);
+}
+
+.chi-tiet-dia-chi {
+	margin: 0;
+	justify-content: space-between;
+	width: 100%;
+	padding-top: 20px;
+}
+
+.dia-chi-thong-tin {
+	margin-right: 8px;
+	display: flex;
+}
+
+.dia-chi-thong-tin .ho-ten {
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	-webkit-line-clamp: 1;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	width: 100%;
+}
+
+.dia-chi-thong-tin .duong-ke {
+	border-left: 0.5px solid rgba(0, 0, 0, .26);
+	margin: 0 8px;
+}
+
+.dia-chi-thong-tin .so-dien-thoai {
+	font-size: .875rem;
+	line-height: 1.5rem;
+	color: rgba(0, 0, 0, .54);
+	white-space: nowrap;
+	width: 100%;
+	-webkit-line-clamp: 1;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+
+.dia-chi-thong-tin .span {
+	color: rgba(0, 0, 0, .87);
+	font-size: 1rem;
+	line-height: 1.5rem;
+	width: 100%;
+}
+
+.btn-dia-chi {
+	/* flex-basis: 40px; */
+}
+
+.btn-dia-chi .edit-dia-chi {
+	border: 0;
+	background: none;
+	outline: none;
+	padding: 4px;
+	color: #7fad39;
+}
+
+.hien-dia-chi {
+	justify-content: space-between;
+	display: flex;
+}
+
+.show-dia-chi {
+	font-size: .875rem;
+	line-height: 1.25rem;
+	color: rgba(0, 0, 0, .54);
+}
+
+.thiet-lap {
+	padding-top: 4px;
+}
+
+.thiet-lap .btn-thiet-lap {
+	font-size: .875rem;
+	line-height: 1.25rem;
+	padding: 4px 12px;
+	height: 28px;
+	min-width: 0;
+	color: rgba(0, 0, 0, .87);
+	border: 1px solid rgba(0, 0, 0, .26);
+	box-shadow: 0 1px 1px rgb(0 0 0 / 3%);
+}
+
+.mac-dinh {
+	margin-top: 20px;
+}
+
+.mac-dinh span {
+	color: #7fad39;
+	border-color: #7fad39;
+	border-radius: 1px;
+	padding: 2px 4px;
+	border: 0.5px solid;
 }

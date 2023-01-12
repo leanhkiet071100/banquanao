@@ -15,6 +15,7 @@ use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\GioHangController;
 use App\Http\Controllers\HoadonController;
+use App\Http\Controllers\NguoidungController;
 use App\Models\gio_hang;
 
 
@@ -37,8 +38,6 @@ use App\Models\gio_hang;
 
     //middlewware  kiểm tra quyền 
    
-       
-  
 
     //view composer
     view()->composer(['*'], function ($view) {
@@ -51,10 +50,13 @@ use App\Models\gio_hang;
         $view->with('count',$count);
     });
 
+    
+
+
     //admin đăng nhập 
     Route::get('/admin', [IndexController::class, 'login_admin'])->name('admin');
     Route::get('/admin/login', [IndexController::class, 'login_admin'])->name('login-admin');
-    Route::post('/login', [IndexController::class, 'post_login_admin'])->name('post-login-admin');
+    Route::post('/admin/login', [IndexController::class, 'post_login_admin'])->name('post-login-admin');
     
     //đăng nhập
     Route::get('/dang-nhap', [IndexController::class, 'dang_nhap'])->name('dang-nhap');
@@ -70,6 +72,18 @@ use App\Models\gio_hang;
     Route::post('/quen-mat-khau', [IndexController::class, 'post_quen_mat_khau'])->name('post-quen-mat-khau');
     //đăng xuất
     Route::get('/dang-xuat', [IndexController:: class,'dang_xuat'])->name('dang_xuat');
+
+    //trang cá nhân
+    Route::prefix('tai-khoan')->group(function(){
+        Route::name('tai-khoan.')->group(function(){ 
+            Route::get('/', [NguoidungController::class, 'index'])->name('tai-khoan');
+            Route::post('/', [NguoidungController::class, 'thay_doi_tai_khoan'])->name('post-tai-khoan');
+            Route::get('/doi-mat-khau', [NguoidungController::class, 'doi_mat_khau'])->name('doi-mat-khau');
+            Route::post('/doi-mat-khau', [NguoidungController::class, 'post_doi_mat_khau'])->name('post-doi-mat-khau');
+            Route::get('/dia-chi', [NguoidungController::class, 'dia_chi'])->name('dia-chi');
+            
+        }); 
+    });
 
     // Trang chủ
     Route::get('/', [IndexController::class, 'index'])->name('index');
@@ -94,7 +108,6 @@ use App\Models\gio_hang;
     // giỏ hàng
     Route::get('/gio-hang', [GioHangController::class, 'gio_hang'])->name('gio-hang');
     Route::post('/them-gio-hang', [GioHangController::class, 'them_gio_hang'])->name('them-gio-hang');
-
     
     //hóa đơn
     Route::get('/xuat-hoa-don', [HoadonController::class, 'xuat_hoa_don'])->name('xuat-hoa-don');
@@ -104,7 +117,6 @@ use App\Models\gio_hang;
     Route::prefix('admin')->group(function(){
         Route::name('admin.')->group(function(){ 
             //login 
-
             Route::get('/logout', [AdminLoginController:: class,'logout_admin'])->name('logout_admin');
 
             //sản phẩm

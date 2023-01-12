@@ -37,11 +37,11 @@
                          @if (Auth::user() != null)
                              <div class="header__top__right__auth">
                                  @if (Auth::user()->hinh_dai_dien != null)
-                                     <a href=""> <img src="{{ URL(Auth::user()->hinh_dai_dien) }}"
+                                     <a href="{{route('tai-khoan.tai-khoan')}}"> <img src="{{ URL(Auth::user()->hinh_dai_dien) }}"
                                              class="img-radius rounded-circle avatar"
                                              alt="User-Profile-Image">{{ Auth::user()->ten }}</a>
                                  @else
-                                     <a href=""><i class="fa fa-user"></i>{{ Auth::user()->ten }}</a>
+                                     <a href="{{route('tai-khoan.tai-khoan')}}"><i class="fa fa-user"></i>{{ Auth::user()->ten }}</a>
                                  @endif
                              </div>
                          @else

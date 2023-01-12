@@ -120,7 +120,37 @@
         </div>
     </section>
     {{-- kết thúc bình luận --}}
-
+    <!-- Related Blog Section Begin -->
+    <section class="related-blog spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title related-blog-title">
+                        <h2>Bài viết nổi bật</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-6">
+                    <div class="blog__item">
+                        <div class="blog__item__pic">
+                            <img src="{{URL('img/blog/blog-1.jpg')}}" alt="">
+                        </div>
+                        <div class="blog__item__text">
+                            <ul>
+                                <li><i class="fa fa-calendar-o"></i> May 4,2019</li>
+                                <li><i class="fa fa-comment-o"></i> 5</li>
+                            </ul>
+                            <h5><a href="#">Cooking tips make cooking simple</a></h5>
+                            <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat </p>
+                        </div>
+                    </div>
+                </div>
+               
+            </div>
+        </div>
+    </section>
+    <!-- Related Blog Section End -->
 @endsection
 
 @section('js')
@@ -143,7 +173,7 @@
 
             var formData = new FormData();
             formData.append('noidung', noi_dung);
-           
+
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -161,10 +191,10 @@
                     console.log(data);
                     if (data.status == 400) {
                         alert(data.errors.noidung[0])
-                        
-                    }else if (data.status == 401) {
+
+                    } else if (data.status == 401) {
                         alert(data.errors)
-                    }else {
+                    } else {
                         alert(data.mess);
                         $('#noidungbinhluan').val('');
                         load_binh_luan(1);
@@ -210,7 +240,7 @@
         function load_binh_luan(page) {
             var url = "{{ route('load-binh-luan-bai-viet') }}"
             var id_bai_viet = $('#id-bai-viet').val();
-       
+
             var formData = new FormData();
             formData.append('idbaiviet', id_bai_viet);
 
