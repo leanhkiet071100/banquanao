@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\baiviet;
+use App\Models\baiviet_binhluan;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -16,7 +17,8 @@ use Validator;
 
 class AdminBaiVietController extends Controller
 {
-     //Bài viết
+    
+    //Quản lí bài viết
     public function bai_viet(){
         $data = baiviet::orderBy('created_at','DESC')->get();
         //dd($data);
@@ -230,4 +232,13 @@ class AdminBaiVietController extends Controller
             'mess'=>  'sửa thành công',
         ]);
     }
+
+    // kết quản lí bài viết
+
+    // quản lí lí bình luận bài viết
+    public function binh_luan_bai_viet(){
+        $lsbinhluan = baiviet_binhluan::all();
+        return view('admin.baiviet.baiviet-binhluan')->with(['lsbinhluan',$lsbinhluan]);
+    }
+    // kết thúc quản lí bình luận bài viết
 }

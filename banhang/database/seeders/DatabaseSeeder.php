@@ -32,6 +32,7 @@ class DatabaseSeeder extends Seeder
             BaivietSeeder::class,
             SlideshowSeeder::class,
             ThongTinShopSeeder::class,
+            DiaChiSeeder::class,
         ]);
         
     }

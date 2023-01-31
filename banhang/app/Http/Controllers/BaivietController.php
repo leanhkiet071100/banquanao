@@ -207,7 +207,8 @@ class BaivietController extends Controller
     public function load_binh_luan( Request $request){
         $id_bai_viet = $request->idbaiviet;
         $trang = $request->page;
-
+           
+        
         $lsbinhluancha =  baiviet_binhluan::join('nguoidungs','nguoidungs.id','=','baiviet_binhluans.ma_nguoi_dung')
                             ->select('nguoidungs.ten','nguoidungs.hinh_dai_dien','baiviet_binhluans.*')
                             ->where('baiviet_binhluans.ma_bai_viet','=',$id_bai_viet)
@@ -220,7 +221,7 @@ class BaivietController extends Controller
                             ->select('nguoidungs.ten','nguoidungs.hinh_dai_dien','baiviet_binhluans.*')
                             ->where('baiviet_binhluans.ma_bai_viet','=',$id_bai_viet)
                             ->where('id_binh_luan_cha','!=', null)->get();
- 
+
         return  view('baiviet.binh-luan-bai-viet')->with(['lsbinhluancha'=>$lsbinhluancha,
                                                           'lsbinhluancon'=>$lsbinhluancon,
                                                           'id_bai_viet'=>$id_bai_viet,

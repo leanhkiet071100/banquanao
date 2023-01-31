@@ -26,8 +26,9 @@
 
 <body>
     <!-- Page Preloder -->
-    <div id="preloder">
-        <div class="loader"></div>
+    <div id="prelod">
+        {{-- <div class="loader"></div> --}}
+        <div class="load"></div>
     </div>
 
     <!-- Humberger Begin  menu mobie-->
@@ -153,6 +154,8 @@
         });
     </script>
     @yield('js')
+    @yield('js-menu-tai-khoan')
+
 
 
 </body>

@@ -314,6 +314,7 @@
         </section>
     @endif
     <!-- Blog Section End -->
+  
 @endsection
 
 @section('js')

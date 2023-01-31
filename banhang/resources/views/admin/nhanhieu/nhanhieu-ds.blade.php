@@ -227,7 +227,6 @@
                     url: url,
                     type: "DELETE",
                     success: function(data) {
-
                         alert(data.mess);
                         loadnhanhieu();
                     }
@@ -372,4 +371,6 @@
             }
         });
     }
+
+    
 </script>

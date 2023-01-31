@@ -184,17 +184,19 @@ ol {
 
 /* Preloder */
 
-#preloder {
+#prelod {
+	display: none;
 	position: fixed;
 	width: 100%;
 	height: 100%;
 	top: 0;
 	left: 0;
-	z-index: 999999;
-	background: #000;
+	z-index: 100;
+	background: rgba(0, 0, 0, .4);
 }
 
 .loader {
+
 	width: 40px;
 	height: 40px;
 	position: absolute;
@@ -4103,6 +4105,7 @@ ol {
 /* tài khoản cá nhân menu */
 section.time-line-user {
 	padding-bottom: 70px;
+	position: relative;
 }
 
 .app-sidebar .scrollbar-sidebar {
@@ -4395,4 +4398,50 @@ section.time-line-user {
 	border-radius: 1px;
 	padding: 2px 4px;
 	border: 0.5px solid;
+}
+
+.tinh-huyen-xa {
+	justify-content: space-between;
+	padding: 0 15px;
+}
+
+.btn-luu-dia-chi {
+	/* padding: 0 15px; */
+	justify-content: end;
+}
+
+.btn-luu-dia-chi button {
+	margin: 0 15px;
+	color: #555;
+}
+
+.btn-huy-dia-chi {
+	border: none;
+	background: white;
+	text-align: center;
+}
+
+.btn-huy-dia-chi:hover {
+	color: #fff;
+	background: red;
+}
+
+
+
+.form-dia-chi {
+	display: none;
+	background: #fff;
+	width: 875px;
+	max-width: 875px;
+	padding: 20px;
+	position: absolute;
+	left: 0;
+	top: -20%;
+	z-index: 101;
+	box-shadow: 0 0 10px 10px #EDEDED;
+}
+
+.tinh-huyen-xa select {
+	width: 200px;
+	max-width: 200px;
 }

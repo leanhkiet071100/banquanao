@@ -20,11 +20,11 @@ class nguoidung_diachi extends Model
         'tinh',
         'huyen',
         'xa',
-        'dia_chi_noi_chon',
-        'noi',
-        'hien',
-        'noi_bat',
-        'moi',
+        'dia_chi_cu_the',
+        'ho_ten',
+        'so_dien_thoai',
+        'mac_dinh',
+        'trang_thai',
     ];
 
     public function nguoidung(){

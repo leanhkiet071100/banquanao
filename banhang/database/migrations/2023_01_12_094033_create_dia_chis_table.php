@@ -13,8 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('logos', function ($table) {      
-            $table->foreign('ma_shop')->references('id')->on('shops');
+        Schema::create('dia_chis', function (Blueprint $table) {
+            $table->id();
+            $table->string('ten')->nullable();
+            $table->foreignId('parent_id')->nullable();
+            $table->tinyInteger('loai')->nullable(); // 1: tỉnh, 2: huyện, 3:xã
+            $table->timestamps();
+            $table->softDeletes(); 
         });
     }
 
@@ -25,8 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-         Schema::table('gio_hangs', function (Blueprint $table) {
-            $table->dropForeign('logos_ma_shop_foreign');
-        });
+        Schema::dropIfExists('dia_chis');
     }
 };

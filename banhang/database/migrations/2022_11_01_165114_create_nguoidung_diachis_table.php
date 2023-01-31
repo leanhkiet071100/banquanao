@@ -19,12 +19,13 @@ return new class extends Migration
             $table->string('tinh')->nullable();
             $table->string('huyen')->nullable();
             $table->string('xa')->nullable();
-            $table->string('dia_chi_noi_tron')->nullable();
+            $table->string('dia_chi_cu_the')->nullable();
+            $table->string('ho_ten')->nullable();
             $table->string('so_dien_thoai')->nullable();
             $table->boolean('mac_dinh')->nullable();
             $table->string('trang_thai')->nullable();
             $table->timestamps();
-            $table->softDeletes();
+            $table->softDeletes(); 
         });
     }
 

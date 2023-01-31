@@ -9,26 +9,19 @@
                         <h4>Địa chỉ mới</h4>
                         <div class="line"></div>
                     </div>
-                    @if (session()->has('success'))
-                        <div class="alert alert-success success text-center" id="success">
-                            {{ session()->get('success') }}
-                        </div>
-                    @endif
-
                     <form id="post-dia-chi" class="post-dia-chi" method="post" enctype="multipart/form-data"
-                        data-url="{{ route('tai-khoan.post-dia-chi') }}">
+                        data-url="{{ route('tai-khoan.post-dia-chi-sua',['id'=>$dia_chi->id]) }}">
                         @csrf
-                        <input type="hidden">
                         <div class="form-group">
                             <input type="text" class="form-control" id="ho-ten" name="ho_ten"
-                                value="{{ old('ho-ten') }}" placeholder="Họ tên">
+                                value="{{ old('ho-ten') ?? $dia_chi->ho_ten }}" placeholder="Họ tên">
                             <div class="text-center " id="error-ho-ten" style="color:red">
 
                             </div>
                         </div>
                         <div class="form-group">
                             <input type="text" class="form-control" id="so-dien-thoai" name="so_dien_thoai"
-                                value="{{ old('so-dien-thoai') }}" placeholder="Số điện thoại">
+                                value="{{ old('so-dien-thoai') ?? $dia_chi->so_dien_thoai }}" placeholder="Số điện thoại">
                             <div class="text-center" id="error-so-dien-thoai" style="color:red">
 
                             </div>
@@ -38,7 +31,7 @@
                                 <div class="">
                                     <select class="form-select js-location" aria-label="Default select example"
                                         data-type="tinh" id="js-location-tinh">
-                                        <option selected>Tỉnh</option>
+                                        <option selected value="{{$id_tinh}}">{{$dia_chi->tinh}}</option>
                                         @foreach ($tinh as $key => $value)
                                             <option value="{{ $value->id }}">{{ $value->ten }}</option>
                                         @endforeach
@@ -51,7 +44,7 @@
                                 <div class="huyen">
                                     <select disabled id="js-location-huyen" class="form-select js-location"
                                         aria-label="Default select example" data-type="huyen">
-                                        <option selected>Huyện</option>
+                                        <option selected value="{{$id_huyen}}">{{$dia_chi->huyen}}</option>
                                     </select>
                                     <div class="text-center" id="error-huyen" style="color:red">
 
@@ -60,7 +53,7 @@
                                 <div class="xa">
                                     <select disabled class="form-select js-location-xa"
                                         aria-label="Default select example" data-type="xa" id="js-location-xa">
-                                        <option selected>Xã</option>
+                                        <option selected value="{{$id_xa}}">{{$dia_chi->xa}}</option>
                                     </select>
                                     <div class="text-center" id="error-xa" style="color:red">
 
@@ -70,7 +63,7 @@
                         </div>
                         <div class="form-group">
                             <input type="text" class="form-control" id="dia-chi-cu-the" name="dia-chi-cu-the"
-                                value="{{ old('dia-chi-cu-the') }}" placeholder="Địa chỉ cụ thể">
+                                value="{{ old('dia-chi-cu-the') ?? $dia_chi->dia_chi_cu_the }}" placeholder="Địa chỉ cụ thể">
                             @error('dia_chi_cu_the')
                                 <span style="color:red"> {{ $message }}</span>
                             @enderror
@@ -78,12 +71,14 @@
 
                             </div>
                         </div>
+                        
                         <div class="form-check mac-dinh">
-                            <input class="form-check-input" type="checkbox" value="" id="mac-dinh">
+                            <input class="form-check-input" type="checkbox" value="" id="mac-dinh"  @if ($dia_chi->mac_dinh == 1) checked @endif>
                             <label class="form-check-label" for="flexCheckDefault">
                                 Cài làm mặc định
                             </label>
                         </div>
+                      
                         <div class="btn-luu-dia-chi row">
                             <button class="btn-huy-dia-chi vizew-btn w-40 mt-30 ">Hủy</button>
                             <button type="submit" class="btn vizew-btn w-40 mt-30">Lưu</button>
@@ -127,6 +122,7 @@
             formData.append('xa', xa);
             formData.append('dia_chi_cu_the', dia_chi_cu_the);
             formData.append('mac_dinh', mac_dinh);
+          
             // formData.append('hinhnhanhieu', hinhnhanhieu);
             // for (const value of formData.values()) {
             //     console.log(value);
@@ -147,7 +143,7 @@
                 success: function(data) {
                     //window.location.reload(); load lại trang
                     //console.log(data.errors.hinhnhanhieu);
-
+                    //console.log(data);
                     if (data.status == 400) {
                         $('#error-ho-ten').html("");
                         $('#error-ho-ten').append(data.errors.ho_ten[0]);
@@ -158,17 +154,16 @@
                         $('#error-huyen').html("");
                         $('#error-huyen').append(data.errors.huyen[0]);
                         $('#error-xa').html("");
-                        $('#error-xa').append(data.errors.xa[0]);
+                        $('#error-xa').append(data.errors.xa);
                         $('#error-dia-chi-cu-the').html("");
                         $('#error-dia-chi-cu-the').append(data.errors.dia_chi_cu_the[0]);
-                        // $.each(data.errors, function(key, err_value){
-                        //     $('#saveform_errList').append('<li style="color: red">'+err_value+'</li>');    
-                        // });
-                        //console.log(data.error.tennhanhieu);
+                    
                     } else {
-                        alert(data.mess);
-                        huy();
-                        window.location.reload();
+                        console.log(data);
+
+                        // alert(data.mess);
+                        // huy();
+                        // window.location.reload();
                     }
 
                 }
@@ -239,7 +234,6 @@
         })
 
         function huy() {
-
             var form_dia_chi = document.getElementById('form-dia-chi');
             form_dia_chi.style.display = "none";
             var prelod = document.getElementById('prelod');

@@ -41,6 +41,7 @@ use App\Models\gio_hang;
 
     //view composer
     view()->composer(['*'], function ($view) {
+        // Đếm số lượng giỏ hàng
         if(Auth::user()!= null ){
             $iduser = Auth::user()->id;
             $count = gio_hang::where('ma_nguoi_dung','=',$iduser)->count();
@@ -49,9 +50,6 @@ use App\Models\gio_hang;
 
         $view->with('count',$count);
     });
-
-    
-
 
     //admin đăng nhập 
     Route::get('/admin', [IndexController::class, 'login_admin'])->name('admin');
@@ -76,24 +74,37 @@ use App\Models\gio_hang;
     //trang cá nhân
     Route::prefix('tai-khoan')->group(function(){
         Route::name('tai-khoan.')->group(function(){ 
+            // load trang người dung
             Route::get('/', [NguoidungController::class, 'index'])->name('tai-khoan');
+            // thay đổi thông tin tài khoản
             Route::post('/', [NguoidungController::class, 'thay_doi_tai_khoan'])->name('post-tai-khoan');
+            // đổi  mật khẩu
             Route::get('/doi-mat-khau', [NguoidungController::class, 'doi_mat_khau'])->name('doi-mat-khau');
             Route::post('/doi-mat-khau', [NguoidungController::class, 'post_doi_mat_khau'])->name('post-doi-mat-khau');
+            // load địa chỉ
             Route::get('/dia-chi', [NguoidungController::class, 'dia_chi'])->name('dia-chi');
-            
+            //load form thêm địa chỉ
+            Route::get('/get-dia-chi', [NguoidungController::class, 'get_dia_chi'])->name('get-dia-chi');
+            // thêm địa chỉ
+            Route::post('/post-dia-chi', [NguoidungController::class, 'post_dia_chi'])->name('post-dia-chi');
+            //load form sửa địa chỉ
+            Route::get('/get-dia-chi-sua/{id}', [NguoidungController::class, 'get_dia_chi_sua'])->name('get-dia-chi-sua');
+            //sửa địa chỉ
+            Route::post('/post-dia-chi-sua/{id}', [NguoidungController::class, 'post_dia_chi_sua'])->name('post-dia-chi-sua');
+            //thiết lập địa chỉ mặc định
+            Route::post('/thiet-lap-dia-chi', [NguoidungController::class, 'thiet_lap_dia_chi'])->name('thiet-lap-dia-chi');
+            //load tỉnh thành Việt Nam
+            Route::post('/get-load-huyen', [NguoidungController::class, 'get_load_huyen'])->name('get-load-huyen');
+            Route::post('/get-load-xa', [NguoidungController::class, 'get_load_xa'])->name('get-load-xa');
         }); 
     });
 
     // Trang chủ
     Route::get('/', [IndexController::class, 'index'])->name('index');
-
     //sản phẩm
     Route::get('/san-pham', [SanPhamController::class, 'san_pham'])->name('san-pham');
-
     // chi tiết sản phẩm
     Route::get('/chi-tiet-san-pham/{id}', [SanphamChitietController::class, 'chi_tiet_san_pham'])->name('chi-tiet-san-pham');
-
     //bài viết
     Route::get('/bai-viet', [BaiVietController::class, 'index'])->name('bai-viet');
     Route::get('/chi-tiet-bai-viet/{id}',  [BaiVietController::class, 'chi_tiet_bai_viet'])->name('chi-tiet-bai-viet');
@@ -101,14 +112,11 @@ use App\Models\gio_hang;
     //bình luận bài viết
     Route::post('/binh-luan-bai-viet/{id}',[BaiVietController::class, 'binh_luan_bai_viet'])->name('binh-luan-bai-viet');
     Route::post('/load-binh-luan-bai-viet',[BaiVietController::class, 'load_binh_luan'])->name('load-binh-luan-bai-viet');
-
     //giới thiệu
     Route::get('/gioi-thieu', [ShopController::class, 'gioi_thieu'])->name('gioi-thieu');
-
     // giỏ hàng
     Route::get('/gio-hang', [GioHangController::class, 'gio_hang'])->name('gio-hang');
     Route::post('/them-gio-hang', [GioHangController::class, 'them_gio_hang'])->name('them-gio-hang');
-    
     //hóa đơn
     Route::get('/xuat-hoa-don', [HoadonController::class, 'xuat_hoa_don'])->name('xuat-hoa-don');
 
@@ -158,7 +166,8 @@ use App\Models\gio_hang;
             Route::post('/bai-viet-hien/{id}',[AdminBaiVietController::class, 'bai_viet_hien'])->name('bai-viet-hien');
             Route::post('/bai-viet-moi/{id}',[AdminBaiVietController::class, 'bai_viet_moi'])->name('bai-viet-moi');
             Route::post('/bai-viet-noi-bat/{id}',[AdminBaiVietController::class, 'bai_viet_noi_bat'])->name('bai-viet-noi-bat');
-
+            // bình luận bài viết
+            Route::get('/binh-luan-bai-viet', [AdminBaiVietController::class, 'binh_luan_bai_viet'])->name('binh-luan-bai-viet');
             // nhãn hiệu
             Route::get('/nhan-hieu', [AdminNhanHieuController::class, 'get_nhan_hieu'])->name('get-nhan-hieu');
             Route::get('/load-nhan-hieu', [AdminNhanHieuController::class, 'load_nhan_hieu'])->name('load-nhan-hieu');
@@ -186,12 +195,12 @@ use App\Models\gio_hang;
             Route::get('/logo',[AdminShopController::class, 'logo'])->name('logo');
             Route::post('/logo-them',[AdminShopController::class, 'logo_them'])->name('logo-them');
             Route::post('/logo-sua/{id}',[AdminShopController::class, 'logo_sua'])->name('logo-sua');
+
             //shop
             Route::get('/thong-tin-shop',[AdminshopController::class, 'thong_tin_shop'])->name('thong-tin-shop');
             Route::post('/thong-tin-shop-them',[AdminshopController::class, 'thong_tin_shop_them'])->name('thong-tin-shop-them');
             Route::post('/thong-tin-shop-sua/{id}',[AdminshopController::class, 'thong_tin_shop_sua'])->name('thong-tin-shop-sua');
             
-
             //banner
             Route::get('/banner',[AdminShopController::class, 'banner'])->name('banner');
             Route::post('/banner-them',[AdminShopController::class, 'banner_them'])->name('banner-them');

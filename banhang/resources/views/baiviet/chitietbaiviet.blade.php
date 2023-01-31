@@ -258,7 +258,7 @@
                 processData: false,
                 success: function(data) {
                     //window.location.reload(); load lại trang
-                    //console.log(data);
+                    console.log(data);
                     $('#load-binh-luan').html('');
                     $('#load-binh-luan').append(data);
                     $('#page' + page).addClass('active-phan-trang');

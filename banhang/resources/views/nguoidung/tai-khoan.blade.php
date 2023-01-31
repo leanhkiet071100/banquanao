@@ -111,16 +111,6 @@
 @section('js')
     <script type="text/javascript">
         $('#home').removeClass('active');
-
-        $("#li-tai-khoan").on("click", "a", function() {
-            var menu_tai_khoan = document.getElementById('menu-tai-khoan');
-            if (menu_tai_khoan.style.display === "none") {
-                menu_tai_khoan.style.display = "block";
-            } else {
-                menu_tai_khoan.style.display = "none";
-            }
-        });
-
         function changeImg(input) {
             //Nếu như tồn thuộc tính file, đồng nghĩa người dùng đã chọn file mới
             if (input.files && input.files[0]) {
