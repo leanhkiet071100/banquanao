@@ -237,8 +237,56 @@ class AdminBaiVietController extends Controller
 
     // quản lí lí bình luận bài viết
     public function binh_luan_bai_viet(){
-        $lsbinhluan = baiviet_binhluan::all();
-        return view('admin.baiviet.baiviet-binhluan')->with(['lsbinhluan',$lsbinhluan]);
+        $lsbinhluan = baiviet_binhluan::join('nguoidungs','nguoidungs.id', '=','baiviet_binhluans.ma_nguoi_dung')
+                                        ->join('baiviets','baiviets.id', '=','baiviet_binhluans.ma_bai_viet')
+                                        ->select('baiviet_binhluans.*','nguoidungs.ten','baiviets.tieu_de')
+                                        ->paginate(1);
+        return view('admin.baiviet.baiviet-binhluan')->with(['lsbinhluan'=>$lsbinhluan]);
     }
+
+    public function binh_luan_bai_viet_hien(Request $request,$id){
+        $check = $request->check;
+        $baiviet = baiviet_binhluan::find($id);
+        if($check=="true"){
+            $baiviet->fill([
+                'hien'=>1
+            ]);
+        }else{
+            $baiviet->fill([
+                'hien'=>0
+            ]);
+        }
+        $baiviet->save();
+        return response()->json([
+            'status'=>200,
+            'mess'=>  'sửa thành công',
+        ]);
+    }
+    
+    public function binh_luan_bai_viet_noi_bat(Request $request,$id){
+        $check = $request->check;
+        $baiviet = baiviet_binhluan::find($id);
+        if($check=="true"){
+            $baiviet->fill([
+                'noi_bat'=>1
+            ]);
+        }else{
+            $baiviet->fill([
+                'noi_bat'=>0
+            ]);
+        }
+        $baiviet->save();
+        return response()->json([
+            'status'=>200,
+            'mess'=>  'sửa thành công',
+        ]);
+    }
+
+    public function binh_luan_bai_viet_xoa($id){
+        $binhluan_baiviet = baiviet_binhluan::find($id);
+        $binhluan_baiviet->delete();
+        return  Redirect::route('admin.binh-luan-bai-viet')->with('success','Xóa thành công');
+    }
+
     // kết thúc quản lí bình luận bài viết
 }

@@ -1513,7 +1513,7 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="{{ Route('admin.san-pham') }}" id="binh-luan-bai-viet">
+                                        <a href="{{ Route('admin.binh-luan-bai-viet') }}" id="binh-luan-bai-viet">
                                             <i class="metismenu-icon"></i>Bình luận
                                         </a>
                                     </li>

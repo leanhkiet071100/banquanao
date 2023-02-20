@@ -213,6 +213,7 @@ class BaivietController extends Controller
                             ->select('nguoidungs.ten','nguoidungs.hinh_dai_dien','baiviet_binhluans.*')
                             ->where('baiviet_binhluans.ma_bai_viet','=',$id_bai_viet)
                             ->where('id_binh_luan_cha','=', null)
+                            ->where('hien','=',1)
                             ->orderBy('id','DESC')
                             ->paginate($perPage = 10, $columns = ['*'], $pageName = 'lsbinhluancha',$page=$trang);
         $lastPage = $lsbinhluancha->lastPage();

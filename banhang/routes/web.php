@@ -166,8 +166,13 @@ use App\Models\gio_hang;
             Route::post('/bai-viet-hien/{id}',[AdminBaiVietController::class, 'bai_viet_hien'])->name('bai-viet-hien');
             Route::post('/bai-viet-moi/{id}',[AdminBaiVietController::class, 'bai_viet_moi'])->name('bai-viet-moi');
             Route::post('/bai-viet-noi-bat/{id}',[AdminBaiVietController::class, 'bai_viet_noi_bat'])->name('bai-viet-noi-bat');
+            
             // bình luận bài viết
             Route::get('/binh-luan-bai-viet', [AdminBaiVietController::class, 'binh_luan_bai_viet'])->name('binh-luan-bai-viet');
+            Route::post('/binh-luan-bai-viet-hien/{id}', [AdminBaiVietController::class, 'binh_luan_bai_viet_hien'])->name('binh-luan-bai-viet-hien');
+            Route::post('/binh-luan-bai-viet-noi-bat/{id}', [AdminBaiVietController::class, 'binh_luan_bai_viet_noi_bat'])->name('binh-luan-bai-viet-noi-bat');
+            Route::delete('/binh-luan-bai-viet-xoa/{id}',[AdminBaiVietController::class, 'binh_luan_bai_viet_xoa'])->name('binh-luan-bai-viet-xoa');
+            
             // nhãn hiệu
             Route::get('/nhan-hieu', [AdminNhanHieuController::class, 'get_nhan_hieu'])->name('get-nhan-hieu');
             Route::get('/load-nhan-hieu', [AdminNhanHieuController::class, 'load_nhan_hieu'])->name('load-nhan-hieu');
@@ -215,6 +220,9 @@ use App\Models\gio_hang;
             Route::delete('/slideshow-xoa/{id}',[AdminslideshowController::class, 'slideshow_xoa'])->name('slideshow-xoa');
             Route::post('/slideshow-hien/{id}',[AdminslideshowController::class, 'slideshow_hien'])->name('slideshow-hien');
             Route::post('/slideshow-noi-bat/{id}',[AdminslideshowController::class, 'slideshow_noi_bat'])->name('slideshow-noi-bat');
+        
+            //quản lí  hóa đơn
+            
         });
 
             

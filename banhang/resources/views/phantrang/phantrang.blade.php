@@ -2,15 +2,26 @@
     <!-- Pagination -->
     <div class="pull-right pagination">
         <ul class="pagination">
-            {{-- Previous Page Link --}}
-            @if ($paginator->onFirstPage())
+             @if ($paginator->onFirstPage())
                 <li class="disabled">
                     <a><i class="fa fa-angle-double-left"></i></a>
                 </li>
             @else
                 <li>
-                    <a href="{{ $paginator->previousPageUrl() }}">
+                    <a href="{{ $paginator->url(1) }}">
                         <span><i class="fa fa-angle-double-left"></i></span>
+                    </a>
+                </li>
+            @endif
+            {{-- Previous Page Link --}}
+            @if ($paginator->onFirstPage())
+                <li class="disabled">
+                    <a><i class="fa fa-angle-left"></i></a>
+                </li>
+            @else
+                <li>
+                    <a href="{{ $paginator->previousPageUrl() }}">
+                        <span><i class="fa fa-angle-left"></i></span>
                     </a>
                 </li>
             @endif
@@ -35,6 +46,18 @@
             @if ($paginator->hasMorePages())
                 <li>
                     <a href="{{ $paginator->nextPageUrl() }}">
+                        <span><i class="fa fa-angle-right"></i></span>
+                    </a>
+                </li>
+            @else
+                <li class="disabled">
+                    <a><i class="fa fa-angle-right"></i></a>
+                </li>
+            @endif
+            {{-- laspage --}}
+            @if ($paginator->hasMorePages())
+                <li>
+                    <a href="{{ $paginator->url($paginator->lastPage()) }}">
                         <span><i class="fa fa-angle-double-right"></i></span>
                     </a>
                 </li>
