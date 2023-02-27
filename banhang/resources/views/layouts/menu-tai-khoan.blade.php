@@ -69,7 +69,6 @@
 @section('js-menu-tai-khoan')
     <script type="text/javascript">
         $('#home').removeClass('active');
-
         $("#li-tai-khoan").on("click", "a", function() {
             var menu_tai_khoan = document.getElementById('menu-tai-khoan');
             if (menu_tai_khoan.style.display === "none") {

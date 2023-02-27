@@ -36,7 +36,7 @@ use App\Models\gio_hang;
 //     });
 
 
-    //middlewware  kiểm tra quyền 
+    //middlewware kiểm tra quyền 
    
 
     //view composer
@@ -117,6 +117,7 @@ use App\Models\gio_hang;
     // giỏ hàng
     Route::get('/gio-hang', [GioHangController::class, 'gio_hang'])->name('gio-hang');
     Route::post('/them-gio-hang', [GioHangController::class, 'them_gio_hang'])->name('them-gio-hang');
+    Route::post('/gio-hang-them-san-pham/{id}', [GioHangController::class, 'gio_hang_them_san_pham'])->name('gio-hang-them-san-pham');
     //hóa đơn
     Route::get('/xuat-hoa-don', [HoadonController::class, 'xuat_hoa_don'])->name('xuat-hoa-don');
 

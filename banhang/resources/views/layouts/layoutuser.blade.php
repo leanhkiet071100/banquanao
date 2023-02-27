@@ -21,6 +21,9 @@
     <link rel="stylesheet" href="{{ URL('assets/css/owl.carousel.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ URL('assets/css/slicknav.min.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ URL('assets/css/style.css') }}" type="text/css">
+    <script src="{{ URL('assets/js/sweetalert2.js') }}"></script>
+
+    @yield('css')
     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 
@@ -57,8 +60,6 @@
                                 </div>
                             @endif
                         @endif
-
-
                         <ul>
                             <li>Address: 60-49 Road 11378 New York</li>
                             <li>Phone: +65 11.188.888</li>

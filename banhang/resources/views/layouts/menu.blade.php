@@ -90,10 +90,10 @@
                      <ul>
                          {{-- <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li> --}}
                          @if ($count != null)
-                             <li><a href="{{ route('gio-hang') }}"><i class="fa fa-shopping-bag"></i>
+                             <li id="gio-hang"><a href="{{ route('gio-hang') }}"><i class="fa fa-shopping-bag"></i>
                                      <span>{{ $count }}</span></a></li>
                          @else
-                             <li><a href="{{ route('gio-hang') }}"><i class="fa fa-shopping-bag"></i> </a></li>
+                             <li id="gio-hang"><a href="{{ route('gio-hang') }}"><i class="fa fa-shopping-bag"></i> </a></li>
                          @endif
 
                      </ul>

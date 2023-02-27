@@ -79,59 +79,34 @@ class GioHangController extends Controller
         
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\Storegio_hangRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Storegio_hangRequest $request)
+    public function gio_hang_them_san_pham(Request $request, $id)
     {
-        //
+        $iduser = Auth::user()->id;
+        $ma_san_pham = $request->id;
+        $ma_nguoi_dung = Auth::user()->id;
+        $so_luong = $request->so_luong;
+        $gio_hang_user = gio_hang::where('ma_nguoi_dung','=',$iduser)
+                                   ->where('ma_san_pham','=',$ma_san_pham)->first();
+        if (isset($gio_hang_user)) {
+            $gio_hang_user->so_luong += 1;
+            $gio_hang_user->save();
+        }
+        else{
+            $gio_hang = new gio_hang;
+            $gio_hang->fill([
+            $gio_hang->ma_san_pham = $ma_san_pham,
+            $gio_hang->ma_nguoi_dung = $ma_nguoi_dung,
+            $gio_hang->so_luong =  1,
+            ]);
+            $gio_hang->save();
+        }
+        $count = gio_hang::where('ma_nguoi_dung','=',$iduser)->count();
+        return response()->json([
+                'status'=>200,
+                'mess'=>  'sửa thành công',
+                'count_gio_hang'=> $count,
+            ]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\gio_hang  $gio_hang
-     * @return \Illuminate\Http\Response
-     */
-    public function show(gio_hang $gio_hang)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\gio_hang  $gio_hang
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(gio_hang $gio_hang)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\Updategio_hangRequest  $request
-     * @param  \App\Models\gio_hang  $gio_hang
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Updategio_hangRequest $request, gio_hang $gio_hang)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\gio_hang  $gio_hang
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(gio_hang $gio_hang)
-    {
-        //
-    }
+ 
 }

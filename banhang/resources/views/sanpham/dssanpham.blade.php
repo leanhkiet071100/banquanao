@@ -222,7 +222,7 @@
                                              <ul class="product__item__pic__hover">
                                                  <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                                  <li><a href="{{route('chi-tiet-san-pham',['id'=>$value->id])}}"><i class="fa fa-retweet"></i></a></li>
-                                                 <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                                 <li><a type="button" id="them-san-pham" class="them-san-pham" data-url="{{ route('gio-hang-them-san-pham', ['id' => $value->id]) }}"><i class="fa fa-shopping-cart"></i></a></li>
                                              </ul>
                                          </div>
                                          <div class="product__discount__item__text">
@@ -262,6 +262,46 @@
              //$('#nd-banner').append('<h2>Sản phẩm</h2>');
              //$nd_banner.append('sản phẩm');
          });
-         
+           $('.them-san-pham').click(function() {
+            let url = $(this).attr('data-url');
+            console.log(url);
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                url: url,
+                type: 'POST',
+                //data: formData,
+                contentType: false,
+                processData: false,
+                success: function(data) {
+                    //window.location.reload(); load lại trang
+                    //console.log(data.errors.hinhnhanhieu);
+
+                    if (data.status == 400) {
+                        $('#error-tennhanhieu').html("");
+                        $('#error-tennhanhieu').append(data.errors.tennhanhieu[0]);
+                        $('#error-hinhnhanhieu').html("");
+                        $('#error-hinhnhanhieu').append(data.errors.hinhnhanhieu[0]);
+                        // $.each(data.errors, function(key, err_value){
+                        //     $('#saveform_errList').append('<li style="color: red">'+err_value+'</li>');    
+                        // });
+                        //console.log(data.error.tennhanhieu);
+                    } else {
+                        $('#gio-hang').html("");
+                        $('#gio-hang').append('<li id="gio-hang"><a href="{{ route('gio-hang') }}"><i class="fa fa-shopping-bag"></i><span>' + data.count_gio_hang + '</span></a></li>');
+                        Swal.fire(
+                            'Thêm sản phẩm thành công',
+                            '',
+                            'success'
+                        )
+                    }
+
+                }
+            });
+            
+        });
      </script>
  @endsection

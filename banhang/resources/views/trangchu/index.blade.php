@@ -1,6 +1,9 @@
 @extends('layouts.layoutuser')
 
 @section('title', 'mạng xã hội')
+@section('css')
+
+@endsection
 @section('sidebar')
     @parent
     @if (session()->has('yes'))
@@ -60,7 +63,9 @@
                                         <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                         <li><a href="{{ route('chi-tiet-san-pham', ['id' => $value->id]) }}"><i
                                                     class="fa fa-retweet"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                        <li><a type="button" id="them-san-pham" class="them-san-pham"
+                                                data-url="{{ route('gio-hang-them-san-pham', ['id' => $value->id]) }}"><i
+                                                    class="fa fa-shopping-cart"></i></a></li>
                                     </ul>
                                 </div>
                                 <div class="product__discount__item__text">
@@ -86,7 +91,7 @@
         </section>
         <!-- Featured Section End -->
     @endif
-     <!-- Banner Begin -->
+    <!-- Banner Begin -->
     {{-- <div class="banner">
         <div class="container">
             <div class="row">
@@ -103,7 +108,7 @@
             </div>
         </div>
     </div> --}}
-    <!-- Banner End --> 
+    <!-- Banner End -->
     @if ($lssanphammoi->count() != null)
         <!-- Latest Product Section Begin -->
         <section class="latest-product spad">
@@ -287,9 +292,9 @@
                                 <div class="blog__item__text">
                                     <ul>
                                         @if ($value->create_at != null)
-                                                <li><i class="fa fa-calendar-o"></i> {{ date("$value->created_at") }}</li>
+                                            <li><i class="fa fa-calendar-o"></i> {{ date("$value->created_at") }}</li>
                                         @endif
-                                    
+
                                         <li><i class="fa fa-comment-o"></i> 5</li>
                                     </ul>
                                     <h5><a
@@ -314,15 +319,59 @@
         </section>
     @endif
     <!-- Blog Section End -->
-  
+
 @endsection
 
 @section('js')
+
     <script>
+        // Alert Modal Type
         $(document).ready(function() {
             $('#home').addClass('active');
             var slideshow = document.getElementById('slideshow');
             slideshow.style.display = "block";
+        });
+
+        $('.them-san-pham').click(function() {
+            let url = $(this).attr('data-url');
+            console.log(url);
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                url: url,
+                type: 'POST',
+                //data: formData,
+                contentType: false,
+                processData: false,
+                success: function(data) {
+                    //window.location.reload(); load lại trang
+                    //console.log(data.errors.hinhnhanhieu);
+
+                    if (data.status == 400) {
+                        $('#error-tennhanhieu').html("");
+                        $('#error-tennhanhieu').append(data.errors.tennhanhieu[0]);
+                        $('#error-hinhnhanhieu').html("");
+                        $('#error-hinhnhanhieu').append(data.errors.hinhnhanhieu[0]);
+                        // $.each(data.errors, function(key, err_value){
+                        //     $('#saveform_errList').append('<li style="color: red">'+err_value+'</li>');    
+                        // });
+                        //console.log(data.error.tennhanhieu);
+                    } else {
+                        $('#gio-hang').html("");
+                        $('#gio-hang').append('<li id="gio-hang"><a href="{{ route('gio-hang') }}"><i class="fa fa-shopping-bag"></i><span>' + data.count_gio_hang + '</span></a></li>');
+                        Swal.fire(
+                            'Thêm sản phẩm thành công',
+                            '',
+                            'success'
+                        )
+                    }
+
+                }
+            });
+            
         });
     </script>
 @endsection
