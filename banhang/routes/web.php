@@ -71,6 +71,7 @@ use App\Models\gio_hang;
     //đăng xuất
     Route::get('/dang-xuat', [IndexController:: class,'dang_xuat'])->name('dang_xuat');
 
+    Route::middleware('auth')->group(function(){ //kiểm tra đăng nhập
     //trang cá nhân
     Route::prefix('tai-khoan')->group(function(){
         Route::name('tai-khoan.')->group(function(){ 
@@ -96,8 +97,20 @@ use App\Models\gio_hang;
             //load tỉnh thành Việt Nam
             Route::post('/get-load-huyen', [NguoidungController::class, 'get_load_huyen'])->name('get-load-huyen');
             Route::post('/get-load-xa', [NguoidungController::class, 'get_load_xa'])->name('get-load-xa');
-        }); 
-    });
+            //Đăng xuất
+            Route::get('/logout-user', [NguoidungController::class, 'logout_user'])->name('logout-user');
+            }); 
+        });
+            // giỏ hàng
+            Route::get('/gio-hang', [GioHangController::class, 'gio_hang'])->name('gio-hang');
+            Route::post('/them-gio-hang', [GioHangController::class, 'them_gio_hang'])->name('them-gio-hang');
+            Route::post('/gio-hang-them-san-pham/{id}', [GioHangController::class, 'gio_hang_them_san_pham'])->name('gio-hang-them-san-pham');
+            Route::post('/gio-hang-cap-nhat-so-luong', [GioHangController::class, 'gio_hang_cap_nhat_so_luong'])->name('gio-hang-cap-nhat-so-luong');
+            //xóa giỏ hàng
+            Route::get('/gio-hang-xoa-san-pham/{id}', [GioHangController::class, 'gio_hang_xoa_san_pham'])->name('gio-hang-xoa-san-pham');
+            //hóa đơn
+            Route::get('/xuat-hoa-don', [HoadonController::class, 'xuat_hoa_don'])->name('xuat-hoa-don');
+     });
 
     // Trang chủ
     Route::get('/', [IndexController::class, 'index'])->name('index');
@@ -114,18 +127,14 @@ use App\Models\gio_hang;
     Route::post('/load-binh-luan-bai-viet',[BaiVietController::class, 'load_binh_luan'])->name('load-binh-luan-bai-viet');
     //giới thiệu
     Route::get('/gioi-thieu', [ShopController::class, 'gioi_thieu'])->name('gioi-thieu');
-    // giỏ hàng
-    Route::get('/gio-hang', [GioHangController::class, 'gio_hang'])->name('gio-hang');
-    Route::post('/them-gio-hang', [GioHangController::class, 'them_gio_hang'])->name('them-gio-hang');
-    Route::post('/gio-hang-them-san-pham/{id}', [GioHangController::class, 'gio_hang_them_san_pham'])->name('gio-hang-them-san-pham');
-    //hóa đơn
-    Route::get('/xuat-hoa-don', [HoadonController::class, 'xuat_hoa_don'])->name('xuat-hoa-don');
 
- //Route::middleware('login')->group(function(){
+    
+
+ Route::middleware('login')->group(function(){
     //admin
     Route::prefix('admin')->group(function(){
         Route::name('admin.')->group(function(){ 
-            //login 
+            //logout
             Route::get('/logout', [AdminLoginController:: class,'logout_admin'])->name('logout_admin');
 
             //sản phẩm
@@ -228,5 +237,5 @@ use App\Models\gio_hang;
 
             
     });
- // });
+ });
 

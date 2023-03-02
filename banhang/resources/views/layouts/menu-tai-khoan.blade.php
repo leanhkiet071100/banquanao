@@ -52,11 +52,18 @@
                                     </a>
                                 </li>
 
+
                             </ul>
                         </li>
                         <li class="" id="li-don-hang">
                             <a href="#">
                                 <i class="fa fa-credit-card"></i> Đơn hàng
+                                {{-- <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i> --}}
+                            </a>
+                        </li>
+                         <li class="" id="li-dang-xuat">
+                            <a href="{{ Route('tai-khoan.logout-user') }}">
+                                <i class="fa fa-credit-card"></i> Đăng xuất
                                 {{-- <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i> --}}
                             </a>
                         </li>

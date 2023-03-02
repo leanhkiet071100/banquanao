@@ -4446,4 +4446,10 @@ section.time-line-user {
 	max-width: 200px;
 }
 
-/* thanh thông báo */
+.shoping_cart_item_close{
+	color: #000;
+}
+
+.shoping_cart_item_close:hover{
+	color: red;
+}

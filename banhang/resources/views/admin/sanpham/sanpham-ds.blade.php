@@ -101,7 +101,7 @@
                                                 </div>
                                             </div>
                                         </td>
-                                        <td class="text-center">{{ number_format($value->gia, 2) }}</td>
+                                        <td class="text-center">{{ number_format($value->gia, 2, ',', '.') }}</td>
                                         <td class="text-center">{{ $value->so_luong_kho }}</td>
                                         {{-- <td class="text-center">
                                         <div class="badge badge-success mt-2">

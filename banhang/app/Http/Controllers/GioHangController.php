@@ -37,11 +37,7 @@ class GioHangController extends Controller
         // Xóa một item trong giỏ hàng Cart::remove($rowId);
         return view('giohang.giohang')->with(['gio_hang'=>$gio_hang]);
     }
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function them_gio_hang( Request $request)
     {
         $rule = [
@@ -106,6 +102,28 @@ class GioHangController extends Controller
                 'mess'=>  'sửa thành công',
                 'count_gio_hang'=> $count,
             ]);
+    }
+
+    public function gio_hang_xoa_san_pham(Request $request, $id){
+        $gio_hang = gio_hang::find($id);
+        $gio_hang->delete();
+        return Redirect::route('gio-hang')->with('success','Xóa thành công');
+    }
+
+    public function gio_hang_cap_nhat_so_luong(Request $request){
+        $ma_san_pham = $request->ma_san_pham;
+        $so_luong = $request->so_luong;
+        $gio_hang = gio_hang::where('id','=',$ma_san_pham)->first();
+        //$gio_hang = gio_hang::where('id','=',$ma_san_pham)->update(['so_luong' => $so_luong]);
+        $gio_hang->update(['so_luong' => $so_luong]);
+        $san_pham = sanpham::where('id','=',$gio_hang->ma_san_pham)->first();
+        $tong_tien_san_pham = number_format(($san_pham->gia - $san_pham->gia * ($san_pham->tien_giam / 100)) * $gio_hang->so_luong,2, ',', '.');
+        return  response()->json([
+                'status'=>200,
+                'mess'=>'thêm thành công',
+               'san_pham'=>$san_pham,
+               'tong_tien_san_pham'=>$tong_tien_san_pham,
+        ]);
     }
 
  

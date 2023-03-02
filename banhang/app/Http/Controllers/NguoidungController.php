@@ -334,5 +334,11 @@ class NguoidungController extends Controller
       return response()->json(['data' => $lsxa]);
     }
 
+    public function logout_user(Request $request){
+        Auth::logout();
+        $request->session()->flush();
+        return redirect()->route('dang-nhap');
+    }
+
 
 }

@@ -74,11 +74,11 @@
                                     </h5>
                                     @if ($value->tien_giam > 0)
                                         <div class="product__item__price">
-                                            {{ $value->gia - $value->gia * ($value->tien_giam / 100) }}
-                                            đ<span>{{ $value->gia }}</span>
+                                            {{ number_format($value->gia - $value->gia * ($value->tien_giam / 100),2,',','.') }}
+                                            đ<span>{{number_format( $value->gia,2,',','.') }}</span>
                                         </div>
                                     @else
-                                        <h5 style="font-weight: bold">{{ $value->gia }} đ</h5>
+                                        <h5 style="font-weight: bold">{{ number_format($value->gia,2,',','.') }} đ</h5>
                                     @endif
 
                                 </div>
@@ -128,7 +128,7 @@
                                             </div>
                                             <div class="latest-product__item__text">
                                                 <h6>{{ $value->ten_san_pham }}</h6>
-                                                <span>{{ $value->gia }}</span>
+                                                <span>{{number_format( ($value->gia), 2, ',', '.') }}</span>
                                             </div>
                                         </a>
                                     </div>
