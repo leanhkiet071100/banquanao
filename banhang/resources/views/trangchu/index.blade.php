@@ -349,26 +349,13 @@
                 success: function(data) {
                     //window.location.reload(); load lại trang
                     //console.log(data.errors.hinhnhanhieu);
-
-                    if (data.status == 400) {
-                        $('#error-tennhanhieu').html("");
-                        $('#error-tennhanhieu').append(data.errors.tennhanhieu[0]);
-                        $('#error-hinhnhanhieu').html("");
-                        $('#error-hinhnhanhieu').append(data.errors.hinhnhanhieu[0]);
-                        // $.each(data.errors, function(key, err_value){
-                        //     $('#saveform_errList').append('<li style="color: red">'+err_value+'</li>');    
-                        // });
-                        //console.log(data.error.tennhanhieu);
-                    } else {
                         $('#gio-hang').html("");
-                        $('#gio-hang').append('<li id="gio-hang"><a href="{{ route('gio-hang') }}"><i class="fa fa-shopping-bag"></i><span>' + data.count_gio_hang + '</span></a></li>');
+                        $('#gio-hang').append('<a href="{{ route('gio-hang') }}"><i class="fa fa-shopping-bag"></i><span>' + data.count_gio_hang + '</span></a>');
                         Swal.fire(
                             'Thêm sản phẩm thành công',
                             '',
                             'success'
                         )
-                    }
-
                 }
             });
             

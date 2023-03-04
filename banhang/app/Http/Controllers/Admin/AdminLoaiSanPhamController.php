@@ -107,7 +107,7 @@ class AdminLoaiSanPhamController extends Controller
                 return response()->json([
                     'status'=>200,
                     'mess'=>'sửa thành công',
-                ]);;
+                ]);
         }
 
     }

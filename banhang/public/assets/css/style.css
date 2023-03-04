@@ -4446,10 +4446,16 @@ section.time-line-user {
 	max-width: 200px;
 }
 
-.shoping_cart_item_close{
+.shoping_cart_item_close {
 	color: #000;
 }
 
-.shoping_cart_item_close:hover{
+.shoping_cart_item_close:hover {
 	color: red;
+}
+
+.check-gio-hang {
+	vertical-align: middle;
+	padding-bottom: 25px;
+	padding-left: 0;
 }

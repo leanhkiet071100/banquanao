@@ -143,7 +143,7 @@
                                                          <ul class="product__item__pic__hover">
                                                              <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                                              <li><a href="{{route('chi-tiet-san-pham',['id'=>$value->id])}}"><i class="fa fa-retweet"></i></a></li>
-                                                             <li><a href="#"><i class="fa fa-shopping-cart"></i></a>
+                                                             <li><a type="button" id="them-san-pham" class="them-san-pham" data-url="{{ route('gio-hang-them-san-pham', ['id' => $value->id]) }}"><i class="fa fa-shopping-cart"></i></a></li>
                                                              </li>
                                                          </ul>
                                                      </div>

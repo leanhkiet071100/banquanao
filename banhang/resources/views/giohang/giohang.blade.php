@@ -24,17 +24,19 @@
                         <table>
                             <thead>
                                 <tr>
-                                    <th class="shoping__product">Sản phẩm</th>
-                                    <th>Giá</th>
-                                    <th>Số lượng</th>
-                                    <th>Tổng</th>
+                                   
+                                    <th class="shoping__product" width="60%">Sản phẩm</th>
+                                    <th width="15%">Giá</th>
+                                    <th width="10%">Số lượng</th>
+                                    <th width="15%">Tổng</th>
                                     <th></th>
                                 </tr>
                             </thead>
                             <tbody>
+                              
                                 @foreach ($gio_hang as $key => $value)
-                                    <tr>
-
+                                    <tr id="tr-gio-hang{{$value->id}}">
+                                       
                                         <td class="shoping__cart__item">
                                             <img src="{{ URL($value->hinh_anh) }}" alt="">
                                             <h5>{{ $value->ten_san_pham }}</h5>
@@ -46,13 +48,13 @@
                                             <div class="quantity">
                                                 <div class="pro-qty" >
                                                     <span class="dec qtybtn" ma-san-pham="{{$value->id}}">-</span>
-                                                    <input id="so-luong-san-pham{{$value->id}}" class="so-luong-san-pham" type="text" value="{{ $value->so_luong }}" ma-san-pham="{{$value->id}}" onchange="cap_nhat_so_luong_gio_hang({{$value->id}},$(this).val())">
+                                                    <input onkeypress="return isNumberKey(event)" id="so-luong-san-pham{{$value->id}}" class="so-luong-san-pham" type="text" value="{{ $value->so_luong }}" ma-san-pham="{{$value->id}}" onchange="cap_nhat_so_luong_gio_hang({{$value->id}},$(this).val())" title="Số lượng cần mua">
                                                     <span class="inc qtybtn" ma-san-pham="{{$value->id}}">+</span>
                                                 </div>
                                             </div>
                                         </td>
                                         <td class="shoping__cart__total" id="shoping__cart__total{{$value->id}}">
-                                            {{number_format(($value->gia - $value->gia * ($value->tien_giam / 100)) * $value->so_luong )}}
+                                            {{number_format(($value->gia - $value->gia * ($value->tien_giam / 100)) * $value->so_luong, 2, ',', '.' )}}
                                         </td>
                                         <td class="shoping__cart__item__close">
                                             <a onclick="return confirm('bạn có chắc muốn xoá ')"
@@ -87,10 +89,11 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="shoping__checkout">
-                        <h5>Tổng tiền giỏ hàng</h5>
+                        <h5>Tổng tiền giỏ hàng <span>({{$count}} sản phẩm)</span></h5>
                         <ul>
-                            <li>Subtotal <span>$454.98</span></li>
-                            <li>Total <span>$454.98</span></li>
+                            <li>Tiền sản phẩm <span id="tong_tien_gio_hang">{{number_format($tong_tien_gio_hang,2, ',', '.')}}</span></li>
+                            {{-- <li>Mã giảm giá <span>$454.98</span></li> --}}
+                            {{-- <li>Tổng tiền <span>$454.98</span></li> --}}
                         </ul>
                         <a href="#" class="primary-btn">PROCEED TO CHECKOUT</a>
                     </div>
@@ -119,7 +122,7 @@
             var $button = $(this);
             var oldValue = $button.parent().find('input').val();
             var ma_san_pham = $(this).attr('ma-san-pham');
-            console.log(ma_san_pham);
+         
             if ($button.hasClass('inc')) {
                 var newVal = parseFloat(oldValue) + 1;
                  
@@ -138,35 +141,82 @@
         
         function cap_nhat_so_luong_gio_hang(ma_san_pham, so_luong) {
             let url = "{{route('gio-hang-cap-nhat-so-luong')}}";
-           
-           var formData = new FormData();
+            var formData = new FormData();
             formData.append('ma_san_pham', ma_san_pham);
             formData.append('so_luong', so_luong);
-       
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
-            $.ajax({
-                url: url,
-                type: 'POST',
-                data: formData,
-                contentType: false,
-                processData: false,
-                success: function(data) {
-                    //window.location.reload(); load lại trang
-                    //console.log(data.errors.hinhnhanhieu);
-                    var gia = data.san_pham.gia;
-                    var tien_giam = data.san_pham.tien_giam;
-                    var tong_tien_san_pham = (gia - gia * (tien_giam / 100)) * so_luong;
-                    $('#shoping__cart__total'+ ma_san_pham).html('');
-                    $('#shoping__cart__total' + ma_san_pham).append(data.tong_tien_san_pham);
-                    console.log(data.san_pham.gia);
-                }
-            });
+            if(so_luong ==0){
+                Swal.fire({
+                    title: 'Bạn có chắc muốn xóa sản phẩm này?',
+                    text: "Khi xóa sẽ không còn sản phẩm trong giỏ hàng!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Chấp nhận'
+                    }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: url,
+                            type: 'POST',
+                            data: formData,
+                            contentType: false,
+                            processData: false,
+                            success: function(data) {
+                                console.log(data);
+                                Swal.fire(
+                                    'Xóa thành công!',
+                                    '',
+                                    'success'
+                                )
+                                $('#tr-gio-hang' + ma_san_pham).html("");
+                                $('#tong_tien_gio_hang').html('');
+                                $('#tong_tien_gio_hang').append(data.tong_tien_gio_hang);
+                                $('#gio-hang').html("");
+                                $('#gio-hang').append('<li id="gio-hang"><a href="{{ route('gio-hang') }}"><i class="fa fa-shopping-bag"></i><span>' + data.count_gio_hang + '</span></a></li>');
+                                //window.location.reload(); //load lại trang
+                            }
+                        });
+                       
+                    }else{
+                      $('#so-luong-san-pham' + ma_san_pham).val(1);
+                        cap_nhat_so_luong_gio_hang(ma_san_pham, 1)
+                    }
+                })
+            }else{
+                $.ajax({
+                    url: url,
+                    type: 'POST',
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function(data) {
+                        //window.location.reload(); load lại trang
+                        //console.log(data.errors.hinhnhanhieu);
+                        if (data.status == 400) {
+                            alert(data.errors.so_luong)
+                        }else{
+                        $('#shoping__cart__total'+ ma_san_pham).html('');
+                        $('#shoping__cart__total' + ma_san_pham).append(data.tong_tien_san_pham);
+                        $('#tong_tien_gio_hang').html('');
+                        $('#tong_tien_gio_hang').append(data.tong_tien_gio_hang);
+                        $('#gio-hang').html("");
+                        $('#gio-hang').append('<li id="gio-hang"><a href="{{ route('gio-hang') }}"><i class="fa fa-shopping-bag"></i><span>' + data.count_gio_hang + '</span></a></li>');
+                        }
+                    }
+                });
+            }
         }
 
-        
+        function isNumberKey(e) {
+            var charCode = (e.which) ? e.which : e.keyCode;
+            if (charCode > 31 && (charCode < 48 || charCode > 57))
+                return false;
+            return true;
+        }
     </script>
 @endsection
