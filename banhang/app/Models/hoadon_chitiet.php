@@ -20,6 +20,7 @@ class hoadon_chitiet extends Model
         'ma_san_pham',
         'so_luong',
         'tong_tien',
+        'trang_thai',
         
     ];
 

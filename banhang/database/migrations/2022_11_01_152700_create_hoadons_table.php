@@ -18,6 +18,10 @@ return new class extends Migration
             $table->foreignId('ma_nguoi_dung');
             $table->foreignId('ma_giam_gia')->nullable();
             $table->double('tien_hoa_don')->nullable();
+            $table->string('ho_ten')->nullable();
+            $table->string('so_dien_thoai')->nullable();
+            $table->text('dia_chi_cu_the')->nullable();
+            $table->text('ghi_chu')->nullable();
             $table->boolean('moi')->nullable();
             $table->string('trang_thai')->nullable();
             $table->timestamps();

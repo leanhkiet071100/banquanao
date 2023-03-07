@@ -76,6 +76,7 @@
                             Upadate Cart</a> --}}
                     </div>
                 </div>
+                @if($gio_hang->count()!=null)
                 <div class="col-lg-6">
                     <div class="shoping__continue">
                         <div class="shoping__discount">
@@ -87,6 +88,7 @@
                         </div>
                     </div>
                 </div>
+                
                 <div class="col-lg-6">
                     <div class="shoping__checkout">
                         <h5>Tổng tiền giỏ hàng <span>({{$count}} sản phẩm)</span></h5>
@@ -95,9 +97,10 @@
                             {{-- <li>Mã giảm giá <span>$454.98</span></li> --}}
                             {{-- <li>Tổng tiền <span>$454.98</span></li> --}}
                         </ul>
-                        <a href="#" class="primary-btn">PROCEED TO CHECKOUT</a>
+                        <a href="{{route('xuat-hoa-don')}}" class="primary-btn">THANH TOÁN</a>
                     </div>
                 </div>
+                @endif
             </div>
         </div>
     </section>

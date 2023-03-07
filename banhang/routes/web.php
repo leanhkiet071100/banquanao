@@ -110,6 +110,7 @@ use App\Models\gio_hang;
             Route::get('/gio-hang-xoa-san-pham/{id}', [GioHangController::class, 'gio_hang_xoa_san_pham'])->name('gio-hang-xoa-san-pham');
             //hóa đơn
             Route::get('/xuat-hoa-don', [HoadonController::class, 'xuat_hoa_don'])->name('xuat-hoa-don');
+            Route::post('/thanh-toan-hoa-don', [HoadonController::class, 'thanh_toan_hoa_don'])->name('thanh-toan-hoa-don');
      });
 
     // Trang chủ

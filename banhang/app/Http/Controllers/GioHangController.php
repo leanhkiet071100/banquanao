@@ -18,10 +18,7 @@ class GioHangController extends Controller
     public function gio_hang()
     {
    
-        $iduser = Auth::user()->id;
-        $gio_hang = gio_hang::join('sanphams','sanphams.id','=','gio_hangs.ma_san_pham')
-                    ->select('gio_hangs.*', 'sanphams.ten_san_pham','sanphams.hinh_anh','sanphams.gia','sanphams.tien_giam')
-                    ->where('ma_nguoi_dung','=',$iduser)->get();
+        $gio_hang = $this->gio_hang_ca_nhan();
         // chia thành giỏ hàng yêu thích Cart::instance('wishlist')->content();
         // tổng tiền trong giỏ hàng Cart::total();
         // tổng tiền phụ trong giỏ hàng ko có thể Cart::subtotal()
@@ -93,7 +90,7 @@ class GioHangController extends Controller
             ]);
             $gio_hang->save();
         }
-        $count = gio_hang::where('ma_nguoi_dung','=',$iduser)->count();
+        $count = $this->so_sp_gio_hang();
         return response()->json([
                 'status'=>200,
                 'mess'=>  'sửa thành công',
@@ -161,10 +158,11 @@ class GioHangController extends Controller
 
     //tổng tiền trong iỏ hàng
     function tong_tien_gio_hang(){
-        $iduser = Auth::user()->id;
-        $gio_hang = gio_hang::join('sanphams','sanphams.id','=','gio_hangs.ma_san_pham')
-                    ->select('gio_hangs.*', 'sanphams.ten_san_pham','sanphams.hinh_anh','sanphams.gia','sanphams.tien_giam')
-                    ->where('ma_nguoi_dung','=',$iduser)->get();
+        // $iduser = Auth::user()->id;
+        // $gio_hang = gio_hang::join('sanphams','sanphams.id','=','gio_hangs.ma_san_pham')
+        //             ->select('gio_hangs.*', 'sanphams.ten_san_pham','sanphams.hinh_anh','sanphams.gia','sanphams.tien_giam')
+        //             ->where('ma_nguoi_dung','=',$iduser)->get();
+        $gio_hang = $this->gio_hang_ca_nhan();
         // chia thành giỏ hàng yêu thích Cart::instance('wishlist')->content();
         // tổng tiền trong giỏ hàng Cart::total();
         // tổng tiền phụ trong giỏ hàng ko có thể Cart::subtotal()
@@ -183,9 +181,16 @@ class GioHangController extends Controller
     //số sản phẩm có trong giỏ hàng
      function so_sp_gio_hang(){
         $iduser = Auth::user()->id;
-     
         $count = gio_hang::where('ma_nguoi_dung','=',$iduser)->count();
         return $count;
+     }
+     //danh sách giỏ hàng
+    function gio_hang_ca_nhan(){
+        $iduser = Auth::user()->id;
+        $gio_hang = gio_hang::join('sanphams','sanphams.id','=','gio_hangs.ma_san_pham')
+                    ->select('gio_hangs.*', 'sanphams.ten_san_pham','sanphams.hinh_anh','sanphams.gia','sanphams.tien_giam')
+                    ->where('ma_nguoi_dung','=',$iduser)->get();
+                    return $gio_hang;
      }
 
  
