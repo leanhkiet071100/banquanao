@@ -1540,7 +1540,7 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="{{ Route('admin.slideshow') }}" id="slideshow">
+                                        <a href="{{ Route('admin.mang-xa-hoi') }}" id="mang-xa-hoi">
                                             <i class="metismenu-icon"></i>mạng xã hội
                                         </a>
                                     </li>
@@ -1553,17 +1553,17 @@
                                 </a>
                                 <ul>
                                     <li>
-                                        <a href="{{ Route('admin.logo') }}" id="footer">
+                                        <a href="{{ Route('admin.footer') }}" id="footer">
                                             <i class="metismenu-icon"></i>footer
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="{{ Route('admin.banner') }}" id="chinh-sach">
+                                        <a href="{{ Route('admin.chinh-sach') }}" id="chinh-sach">
                                             <i class="metismenu-icon"></i>Chính sách
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="{{ Route('admin.slideshow') }}" id="slogan">
+                                        <a href="{{ Route('admin.slogan') }}" id="slogan">
                                             <i class="metismenu-icon"></i>slogan
                                         </a>
                                     </li>

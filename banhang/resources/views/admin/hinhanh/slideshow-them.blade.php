@@ -93,12 +93,7 @@
                                
                             </div>
 
-                            <div class="position-relative row form-group">
-                                <label for="link" class="col-md-3 text-md-right col-form-label">Nổi bật</label>
-                                 <div class="col-md-9 col-xl-8">
-                                    <input class="form-check-input them-slideshow-check" type="checkbox" value="" id="" name="check-noi-bat">
-                                </div>
-                            </div>
+                           
                             <div class="position-relative row form-group mb-1">
                                 <div class="col-md-9 col-xl-8 offset-md-2">
                                     <a href="{{ route('admin.slideshow') }}" class="border-0 btn btn-outline-danger mr-1">

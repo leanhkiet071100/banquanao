@@ -25,7 +25,7 @@
                 </div>
 
                 <div class="page-title-actions">
-                    <a href="{{ route('admin.get-slideshow-them') }}" class="btn-shadow btn-hover-shine mr-3 btn btn-primary">
+                    <a href="{{ route('admin.get-mang-xa-hoi-them') }}" class="btn-shadow btn-hover-shine mr-3 btn btn-primary">
                         <span class="btn-icon-wrapper pr-2 opacity-7">
                             <i class="fa fa-plus fa-w-20"></i>
                         </span>
@@ -71,14 +71,13 @@
                                     <th class="text-center"  >tiêu đề</th>
                                     {{-- <th class="text-center"   >link</th> --}}
                                     <th class="text-center"  >Hiện</th>
-                                    <th class="text-center"  >Nổi bật</th>
                                     {{-- <th class="text-center">Featured</th> --}}
                                     <th class="text-center">Chức năng</th>
                                 </tr>
                             </thead>
 
                             <tbody>
-                                @foreach ($lsslideshow as $key => $value)
+                                @foreach ($ls_mang_xa_hoi as $key => $value)
                                     <tr>
                                         <td class="text-center text-muted">{{ $key + 1 }}</td>
                                         <td>
@@ -88,7 +87,7 @@
                                                         <div class="widget-content-left text-center">
                                                             <img style="height: 60px; width:60px;" data-toggle="tooltip"
                                                                 title="Image" data-placement="bottom"
-                                                                src="{{ URL($value->hinh_slideshow) }}" alt="">
+                                                                src="{{ URL($value->hinh_anh) }}" alt="">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -103,25 +102,16 @@
                                                 <input class="" type="checkbox" value=""
                                                     id="check-hien{{ $value->id }}"
                                                     @if ($value->hien == 1) checked @endif
-                                                    onchange="slideshow_hien({{ $value->id }})">
+                                                    onchange="mang_xa_hoi_hien({{ $value->id }})">
                                             </div>
                                         </td>
-                                        <td class="td-radio">
-                                            <div class=" check-magana text-center td-radio">
-                                                {{-- <input class="form-check-input" type="checkbox" value=""\
-                                                    id="defaultCheck1"> --}}
-                                                <input class="" type="checkbox" value=""
-                                                    id="check-noi-bat{{ $value->id }}"
-                                                    @if ($value->noi_bat == 1) checked @endif
-                                                    onchange="slideshow_noi_bat({{ $value->id }})">
-                                            </div>
-                                        </td>
+                                    
                                         <td class="text-center">
                                              <a href="{{$value->link}}"
                                                 class="btn btn-hover-shine btn-outline-primary border-0 btn-sm">
                                                 Link
                                             </a>
-                                            <a href="{{ route('admin.get-slideshow-sua', ['id' => $value->id]) }}"
+                                            <a href="{{ route('admin.get-mang-xa-hoi-sua', ['id' => $value->id]) }}"
                                                 data-toggle="tooltip" title="Edit" data-placement="bottom"
                                                 class="btn btn-outline-warning border-0 btn-sm">
                                                 <span class="btn-icon-wrapper opacity-8">
@@ -129,7 +119,7 @@
                                                 </span>
                                             </a>
                                             <form class="d-inline"
-                                                action="{{ route('admin.slideshow-xoa', ['id' => $value->id]) }}"
+                                                action="{{ route('admin.mang-xa-hoi-xoa', ['id' => $value->id]) }}"
                                                 method="POST">
                                                 @method('DELETE')
                                                 @csrf
@@ -164,14 +154,14 @@
 @section('js')
     <script type="text/javascript">
         $(document).ready(function() {
-            $('#slideshow').addClass('mm-active');
+            $('#mang-xa-hoi').addClass('mm-active');
             $('#li-hinh-anh').addClass('mm-active');
         });
 
-        function slideshow_hien($id) {
+        function mang_xa_hoi_hien($id) {
             var check = document.getElementById("check-hien" + $id).checked;
             var formData = new FormData();
-            var url = "{{ route('admin.slideshow-hien', '') }}" + '/' + $id;
+            var url = "{{ route('admin.mang-xa-hoi-hien', '') }}" + '/' + $id;
             formData.append('check', check);
             $.ajaxSetup({
                 headers: {
@@ -191,27 +181,7 @@
             });
         }
 
-        function slideshow_noi_bat($id) {
-            var check = document.getElementById("check-noi-bat" + $id).checked;
-            var formData = new FormData();
-            var url = "{{ route('admin.slideshow-noi-bat', '') }}" + '/' + $id;
-            formData.append('check', check);
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-            $.ajax({
-                url: url,
-                type: 'POST',
-                data: formData,
-                contentType: false,
-                processData: false,
-                success: function(data) {
-                    //window.location.reload(); load lại trang
-                    console.log(data)
-                }
-            });
-        }
+       
+        
     </script>
 @endsection

@@ -4,7 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\logo;use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\logo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 
 class thong_tin_shop extends Model

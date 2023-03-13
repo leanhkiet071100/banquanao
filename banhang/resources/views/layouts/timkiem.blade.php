@@ -53,18 +53,19 @@
                             <a href="#" class="primary-btn">SHOP NOW</a>   
                         </div>
                     </div> --}}
+
                  {{-- sldieshow --}}
 
-                 @if ($slideshownb->count() != null)
+                 @if ($slideshow->count() != null)
 
 
                      <div class="latest-product__text slideshow" id="slideshow">
                          <div class="latest-product__slider owl-carousel">
-                             @foreach ($slideshownb as $key => $value)
+                             @foreach ($slideshow as $key => $value)
                                  <div class="latest-slideshow__slider__item">
                                      <a href="{{ $value->link }}" class="latest-slideshow__item">
                                          <div class="carousel-item active">
-                                             <img src="{{ URL($value->hinh_slideshow) }}" class="d-block w-100"
+                                             <img src="{{ URL($value->hinh_anh) }}" class="d-block w-100"
                                                  alt="{{ $value->tieu_de }}">
                                          </div>
                                      </a>

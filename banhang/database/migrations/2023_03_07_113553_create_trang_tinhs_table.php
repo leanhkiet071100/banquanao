@@ -13,13 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('hinh_anhs', function (Blueprint $table) {
+        Schema::create('trang_tinhs', function (Blueprint $table) {
             $table->id();
-            $table->text('hinh_anh')->nullable();;
-            $table->text('link')->nullable();
             $table->string('tieu_de')->nullable();
-            $table->string('loai')->nullable(); //1: slideshow 2: mạng xã hội 
-            $table->boolean('hien')->nullable();
+            $table->text('noi_dung')->nullable();
+            $table->string('loai')->nullable();
+            $table->text('hinh_anh')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -32,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('hinh_anhs');
+        Schema::dropIfExists('trang_tinhs');
     }
 };

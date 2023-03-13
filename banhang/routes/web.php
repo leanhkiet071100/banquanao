@@ -7,7 +7,9 @@ use App\Http\Controllers\Admin\AdminSanPhamController;
 use App\Http\Controllers\Admin\AdminBaiVietController;
 use App\Http\Controllers\Admin\AdminShopController;
 use App\Http\Controllers\Admin\AdminSlideshowController;
+use App\Http\Controllers\Admin\AdminMangXaHoiController;
 use App\Http\Controllers\Admin\AdminLoginController;
+use App\Http\Controllers\Admin\AdminTrangTinhController;
 use App\Http\Controllers\SanPhamController;
 use App\Http\Controllers\BaiVietController;
 use App\Http\Controllers\SanphamChitietController;
@@ -230,10 +232,33 @@ use App\Models\gio_hang;
             Route::post('/slideshow-sua/{id}',[AdminslideshowController::class, 'post_slideshow_sua'])->name('post-slideshow-sua');
             Route::delete('/slideshow-xoa/{id}',[AdminslideshowController::class, 'slideshow_xoa'])->name('slideshow-xoa');
             Route::post('/slideshow-hien/{id}',[AdminslideshowController::class, 'slideshow_hien'])->name('slideshow-hien');
-            Route::post('/slideshow-noi-bat/{id}',[AdminslideshowController::class, 'slideshow_noi_bat'])->name('slideshow-noi-bat');
         
-            //quản lí  hóa đơn
-            
+            //Mạng xã hội
+            Route::get('/mang-xa-hoi',[AdminMangXaHoiController::class, 'mang_xa_hoi'])->name('mang-xa-hoi');
+            Route::get('/mang-xa-hoi-them',[AdminMangXaHoiController::class, 'get_mang_xa_hoi_them'])->name('get-mang-xa-hoi-them');
+            Route::post('/mang-xa-hoi-them',[AdminMangXaHoiController::class, 'post_mang_xa_hoi_them'])->name('post-mang-xa-hoi-them');
+            Route::get('/mang-xa-hoi-sua/{id}',[AdminMangXaHoiController::class, 'get_mang_xa_hoi_sua'])->name('get-mang-xa-hoi-sua');
+            Route::post('/mang-xa-hoi-sua/{id}',[AdminMangXaHoiController::class, 'post_mang_xa_hoi_sua'])->name('post-mang-xa-hoi-sua');
+            Route::delete('/mang-xa-hoi-xoa/{id}',[AdminMangXaHoiController::class, 'mang_xa_hoi_xoa'])->name('mang-xa-hoi-xoa');
+            Route::post('/mang-xa-hoi-hien/{id}',[AdminMangXaHoiController::class, 'mang_xa_hoi_hien'])->name('mang-xa-hoi-hien');
+
+            //trang tính
+            //footer
+            Route::get('/footer',[AdminTrangTinhController::class, 'footer'])->name('footer');
+            Route::post('/footer-them',[AdminTrangTinhController::class, 'footer_them'])->name('footer-them');
+            Route::post('/footer-sua/{id}',[AdminTrangTinhController::class, 'footer_sua'])->name('footer-sua');
+            Route::get('/footer-xoa/{id}',[AdminTrangTinhController::class, 'footer_xoa'])->name('footer-xoa');
+
+            //chính sách
+            Route::get('/chinh-sach',[AdminTrangTinhController::class, 'chinh_sach'])->name('chinh-sach');
+            Route::post('/chinh-sach-them',[AdminTrangTinhController::class, 'chinh_sach_them'])->name('chinh-sach-them');
+            Route::post('/chinh-sach-sua/{id}',[AdminTrangTinhController::class, 'chinh_sach_sua'])->name('chinh-sach-sua');
+            Route::get('/chinh-sach-xoa/{id}',[AdminTrangTinhController::class, 'chinh_sach_xoa'])->name('chinh-sach-xoa');
+            //slogan
+            Route::get('/slogan',[AdminTrangTinhController::class, 'slogan'])->name('slogan');
+            Route::post('/slogan-them',[AdminTrangTinhController::class, 'slogan_them'])->name('slogan-them');
+            Route::post('/sloan-sua/{id}',[AdminTrangTinhController::class, 'slogan_sua'])->name('slogan-sua');
+            Route::get('/sloan-xoa/{id}',[AdminTrangTinhController::class, 'slogan_xoa'])->name('slogan-xoa');
         });
 
             

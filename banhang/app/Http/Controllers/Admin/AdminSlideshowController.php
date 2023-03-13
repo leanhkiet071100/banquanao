@@ -12,12 +12,12 @@ use App\Http\Controllers\Extension\check;
 use Illuminate\Support\Facades\Redirect;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
-use App\Models\slideshow;
+use App\Models\hinh_anh;
 
 class AdminSlideshowController extends Controller
 {
     public function slideshow(){
-        $lsslideshow = slideshow::all();
+        $lsslideshow = hinh_anh::where('loai',1)->get();
         return view('admin.hinhanh.slideshow')->with(['lsslideshow'=>$lsslideshow]);
     }
     public function get_slideshow_them(){
@@ -57,27 +57,27 @@ class AdminSlideshowController extends Controller
         {
             $date = Carbon::now();
             $date = $date->format('dmy');
-            $slideshow = new slideshow;
+            $slideshow = new hinh_anh;
             $slideshow->fill([
                     'link'=>$link,
                     'tieu_de'=>$tieu_de,
+                    'loai'=>1,
                     'hien'=>$hien,
-                    'noi_bat'=>$noi_bat,
-                    'hinh_slideshow'=>$hinh_anh,
+                    'hinh_anh'=>$hinh_anh,
             ]);
             $slideshow->save();
             $file_name = $date.$hinh_anh->getClientoriginalName();
                 // move:  di chuyển hình ảnh; public_path: tạo  thư mục ; $file_name: tên file 
             $imagePath = $hinh_anh->move(public_path('quan_li_hinh_anh/'.'hinh_slideshow/'.$slideshow->id.'/'), $file_name);
-            $slideshow->hinh_slideshow = 'quan_li_hinh_anh/'.'hinh_slideshow/'.$slideshow->id.'/'.$file_name;
-             $slideshow->save();
+            $slideshow->hinh_anh = 'quan_li_hinh_anh/'.'hinh_slideshow/'.$slideshow->id.'/'.$file_name;
+            $slideshow->save();
         }
 
         return Redirect::route('admin.slideshow')->with('success','Thêm dữ liệu thành công');
     }
 
      public function get_slideshow_sua($id){
-        $slideshow = slideshow::find($id);
+        $slideshow = hinh_anh::where('loai','=',1)->find($id);
         return view('admin.hinhanh.slideshow-sua')->with('slideshow',$slideshow);
     }
 
@@ -114,22 +114,22 @@ class AdminSlideshowController extends Controller
         {
             $date = Carbon::now();
             $date = $date->format('dmy');
-            $slideshow = slideshow::find($id);
+            $slideshow = hinh_anh::where('loai','=',1)->find($id);
+            unlink($slideshow->hinh_anh);
             $slideshow->fill([
                     'link'=>$link,
                     'tieu_de'=>$tieu_de,
                     'hien'=>$hien,
-                    'noi_bat'=>$noi_bat,
-                    'hinh_slideshow'=>$hinh_anh,
+                    'hinh_anh'=>$hinh_anh,
             ]);
             $file_name = $date.$hinh_anh->getClientoriginalName();
                 // move:  di chuyển hình ảnh; public_path: tạo  thư mục ; $file_name: tên file 
             $imagePath = $hinh_anh->move(public_path('quan_li_hinh_anh/'.'hinh_slideshow/'.$slideshow->id.'/'), $file_name);
-            $slideshow->hinh_slideshow = 'quan_li_hinh_anh/'.'hinh_slideshow/'.$slideshow->id.'/'.$file_name;
-             $slideshow->save();
+            $slideshow->hinh_anh = 'quan_li_hinh_anh/'.'hinh_slideshow/'.$slideshow->id.'/'.$file_name;
+            $slideshow->save();
         }
         else {
-            $slideshow = slideshow::find($id);
+            $slideshow = hinh_anh::find($id);
             $slideshow->fill([
                     'link'=>$link,
                     'tieu_de'=>$tieu_de,
@@ -143,14 +143,14 @@ class AdminSlideshowController extends Controller
     }
 
     public function slideshow_xoa($id){
-        $slideshow = slideshow::find($id);
+        $slideshow = hinh_anh::find($id);
         $slideshow->delete();
         return Redirect::route('admin.slideshow')->with('success','Xóa dữ liệu thành công');
     }
 
     public function slideshow_noi_bat(Request $request,$id){
         $check = $request->check;
-        $slideshow = slideshow::find($id);
+        $slideshow = hinh_anh::find($id);
         if($check=="true"){
             $slideshow->fill([
                 'noi_bat'=>1
@@ -169,7 +169,7 @@ class AdminSlideshowController extends Controller
 
     public function slideshow_hien(Request $request,$id){
         $check = $request->check;
-        $slideshow = slideshow::find($id);
+        $slideshow = hinh_anh::find($id);
         if($check=="true"){
             $slideshow->fill([
                 'hien'=>1

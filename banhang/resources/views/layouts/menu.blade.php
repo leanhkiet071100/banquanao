@@ -11,19 +11,22 @@
                                  @endif
 
                              @endif
-
-                             <li>Giao hàng miễn phí cho tất cả đơn hàng $99</li>
+                            @if ($slogan != null)
+                                <li>{{$slogan->noi_dung}}</li>
+                            @endif
+                            
                          </ul>
                      </div>
                  </div>
                  <div class="col-lg-6 col-md-6">
                      <div class="header__top__right">
-                         <div class="header__top__right__social">
-                             <a href="#"><i class="fa fa-facebook"></i></a>
-                             <a href="#"><i class="fa fa-twitter"></i></a>
-                             <a href="#"><i class="fa fa-linkedin"></i></a>
-                             <a href="#"><i class="fa fa-pinterest-p"></i></a>
-                         </div>
+                        @if ($mang_xa_hoi->count() != null)
+                            <div class="header__top__right__social">
+                                @foreach ($mang_xa_hoi as $key=>$value )
+                                    <a href="{{$value->link}}"><img src="{{$value->hinh_anh}}" alt="" class="hinh-mang-xa-hoi"></a>
+                                @endforeach
+                            </div>
+                         @endif
                          {{-- Ngôn ngữ --}}
                          {{-- <div class="header__top__right__language">
                                 <img src="{{ URL ('assets/img/language.png')}}" alt="">

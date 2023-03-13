@@ -38,10 +38,10 @@
 
                                             <div style="width: 100%; max-height: 100%; overflow: hidden;"
                                                 class="hinh-slideshow">
-                                                @if ($slideshow->hinh_slideshow != null)
+                                                @if ($slideshow->hinh_anh != null)
                                                     <img style="width: 100%; cursor: pointer;" class="thumbnail"
                                                         data-toggle="tooltip" title="Click to add image"
-                                                        data-placement="bottom" src="{{ URL($slideshow->hinh_slideshow) }}"
+                                                        data-placement="bottom" src="{{ URL($slideshow->hinh_anh) }}"
                                                         alt="Add Image">
                                                 @else
                                                     <img style="width: 100%; cursor: pointer;" class="thumbnail"
@@ -105,14 +105,7 @@
 
                             </div>
 
-                            <div class="position-relative row form-group">
-                                <label for="link" class="col-md-3 text-md-right col-form-label">Nổi bật</label>
-                                <div class="col-md-9 col-xl-8">
-                                    <input class="form-check-input them-slideshow-check" type="checkbox" value=""
-                                        id="" name="check-noi-bat"
-                                        @if ($slideshow->noi_bat == 1) checked @endif>
-                                </div>
-                            </div>
+                            
                             <div class="position-relative row form-group mb-1">
                                 <div class="col-md-9 col-xl-8 offset-md-2">
                                     <a href="{{ route('admin.slideshow') }}" class="border-0 btn btn-outline-danger mr-1">

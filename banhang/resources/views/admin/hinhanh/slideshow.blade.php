@@ -71,7 +71,6 @@
                                     <th class="text-center"  >tiêu đề</th>
                                     {{-- <th class="text-center"   >link</th> --}}
                                     <th class="text-center"  >Hiện</th>
-                                    <th class="text-center"  >Nổi bật</th>
                                     {{-- <th class="text-center">Featured</th> --}}
                                     <th class="text-center">Chức năng</th>
                                 </tr>
@@ -88,7 +87,7 @@
                                                         <div class="widget-content-left text-center">
                                                             <img style="height: 60px; width:60px;" data-toggle="tooltip"
                                                                 title="Image" data-placement="bottom"
-                                                                src="{{ URL($value->hinh_slideshow) }}" alt="">
+                                                                src="{{ URL($value->hinh_anh) }}" alt="">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -106,16 +105,7 @@
                                                     onchange="slideshow_hien({{ $value->id }})">
                                             </div>
                                         </td>
-                                        <td class="td-radio">
-                                            <div class=" check-magana text-center td-radio">
-                                                {{-- <input class="form-check-input" type="checkbox" value=""\
-                                                    id="defaultCheck1"> --}}
-                                                <input class="" type="checkbox" value=""
-                                                    id="check-noi-bat{{ $value->id }}"
-                                                    @if ($value->noi_bat == 1) checked @endif
-                                                    onchange="slideshow_noi_bat({{ $value->id }})">
-                                            </div>
-                                        </td>
+                                    
                                         <td class="text-center">
                                              <a href="{{$value->link}}"
                                                 class="btn btn-hover-shine btn-outline-primary border-0 btn-sm">
@@ -191,27 +181,7 @@
             });
         }
 
-        function slideshow_noi_bat($id) {
-            var check = document.getElementById("check-noi-bat" + $id).checked;
-            var formData = new FormData();
-            var url = "{{ route('admin.slideshow-noi-bat', '') }}" + '/' + $id;
-            formData.append('check', check);
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-            $.ajax({
-                url: url,
-                type: 'POST',
-                data: formData,
-                contentType: false,
-                processData: false,
-                success: function(data) {
-                    //window.location.reload(); load lại trang
-                    console.log(data)
-                }
-            });
-        }
+       
+        
     </script>
 @endsection
