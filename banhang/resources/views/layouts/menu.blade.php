@@ -23,7 +23,7 @@
                         @if ($mang_xa_hoi->count() != null)
                             <div class="header__top__right__social">
                                 @foreach ($mang_xa_hoi as $key=>$value )
-                                    <a href="{{$value->link}}"><img src="{{$value->hinh_anh}}" alt="" class="hinh-mang-xa-hoi"></a>
+                                    <a href="{{$value->link}}"><img src="{{URL($value->hinh_anh)}}" alt="" class="hinh-mang-xa-hoi"></a>
                                 @endforeach
                             </div>
                          @endif

@@ -23,7 +23,6 @@
                         thông tin</a>
                 </div>
             </div>
-
         </div>
 
         <div class="info-menu app-sidebar sidebar-shadow">
@@ -35,7 +34,7 @@
                                 <i class="fa fa-user"></i> Tài khoản của tôi
                                 {{-- <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i> --}}
                             </a>
-                            <ul class="mm-collapse mm-show" id="menu-tai-khoan">
+                            <ul class="mm-collapse mm-show menu-tai-khoan" id="menu-tai-khoan" style="display: none;">
                                 <li>
                                     <a href="{{ route('tai-khoan.tai-khoan') }}" id="thong-tin-tai-khoan">
                                         <i class="metismenu-icon"></i>Thông tin cá nhân
@@ -56,14 +55,14 @@
                             </ul>
                         </li>
                         <li class="" id="li-don-hang">
-                            <a href="#">
+                            <a href="{{ Route('tai-khoan.don-hang') }}">
                                 <i class="fa fa-credit-card"></i> Đơn hàng
                                 {{-- <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i> --}}
                             </a>
                         </li>
                          <li class="" id="li-dang-xuat">
                             <a href="{{ Route('tai-khoan.logout-user') }}">
-                                <i class="fa fa-credit-card"></i> Đăng xuất
+                                <i class="fa fa-window-close-o"></i> Đăng xuất
                                 {{-- <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i> --}}
                             </a>
                         </li>

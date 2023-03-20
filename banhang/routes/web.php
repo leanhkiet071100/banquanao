@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\AdminSlideshowController;
 use App\Http\Controllers\Admin\AdminMangXaHoiController;
 use App\Http\Controllers\Admin\AdminLoginController;
 use App\Http\Controllers\Admin\AdminTrangTinhController;
+use App\Http\Controllers\Admin\AdmimHoadonController;
 use App\Http\Controllers\SanPhamController;
 use App\Http\Controllers\BaiVietController;
 use App\Http\Controllers\SanphamChitietController;
@@ -101,6 +102,15 @@ use App\Models\gio_hang;
             Route::post('/get-load-xa', [NguoidungController::class, 'get_load_xa'])->name('get-load-xa');
             //Đăng xuất
             Route::get('/logout-user', [NguoidungController::class, 'logout_user'])->name('logout-user');
+            //Đơn hàng
+            Route::get('/don-hang', [NguoidungController::class, 'don_hang'])->name('don-hang');
+            Route::get('/don-hang-cho-xac-nhan',[NguoidungController::class, 'don_hang_cho_xac_nhan'])->name('don-hang-cho-xac-nhan');
+            Route::get('/don-hang-van-chuyen',[NguoidungController::class, 'don_hang_van_chuyen'])->name('don-hang-van-chuyen');
+            Route::get('/don-hang-dang-giao',[NguoidungController::class, 'don_hang_dang_giao'])->name('don-hang-dang-giao');
+            Route::get('/don-hang-hoan-thanh',[NguoidungController::class, 'don_hang_hoan_thanh'])->name('don-hang-hoan-thanh');
+            Route::get('/don-hang-huy',[NguoidungController::class, 'don_hang_huy'])->name('don-hang-huy');
+            Route::get('/don-hang-tra-hang',[NguoidungController::class, 'don_hang_tra_hang'])->name('don-hang-tra-hang');
+            Route::get('/don-hang-chi-tiet/{id}',[NguoidungController::class, 'don_hang_chi_tiet'])->name('don-hang-chi-tiet');
             }); 
         });
             // giỏ hàng
@@ -259,6 +269,18 @@ use App\Models\gio_hang;
             Route::post('/slogan-them',[AdminTrangTinhController::class, 'slogan_them'])->name('slogan-them');
             Route::post('/sloan-sua/{id}',[AdminTrangTinhController::class, 'slogan_sua'])->name('slogan-sua');
             Route::get('/sloan-xoa/{id}',[AdminTrangTinhController::class, 'slogan_xoa'])->name('slogan-xoa');
+
+            // hóa đơn, Đơn hàng
+            Route::get('/don-hang-all',[AdmimHoadonController::class, 'don_hang_all'])->name('don-hang-all');
+            Route::get('/don-hang-cho-xac-nhan',[AdmimHoadonController::class, 'don_hang_cho_xac_nhan'])->name('don-hang-cho-xac-nhan');
+            Route::get('/don-hang-van-chuyen',[AdmimHoadonController::class, 'don_hang_van_chuyen'])->name('don-hang-van-chuyen');
+            Route::get('/don-hang-dang-giao',[AdmimHoadonController::class, 'don_hang_dang_giao'])->name('don-hang-dang-giao');
+            Route::get('/don-hang-hoan-thanh',[AdmimHoadonController::class, 'don_hang_hoan_thanh'])->name('don-hang-hoan-thanh');
+            Route::get('/don-hang-bi-huy',[AdmimHoadonController::class, 'don_hang_bi_huy'])->name('don-hang-bi-huy');
+            Route::get('/don-hang-tra-hang',[AdmimHoadonController::class, 'don_hang_tra_hang'])->name('don-hang-tra-hang');
+            Route::get('/don-hang-chi-tiet/{id}',[AdmimHoadonController::class, 'don_hang_chi_tiet'])->name('don-hang-chi-tiet');
+            Route::post('/don-hang-huy/{id}',[AdmimHoadonController::class, 'don_hang_huy'])->name('don-hang-huy');
+            Route::post('/don-hang-chuc-nang/{id}',[AdmimHoadonController::class, 'don_hang_chuc_nang'])->name('don-hang-chuc-nang');
         });
 
             

@@ -122,7 +122,14 @@
 
 @section('js')
     <script type="text/javascript">
-        $('#home').removeClass('active');
+        $(document).ready(function() {
+            $('#doi-mat-khau').addClass('tk-active');
+            $('#li-tai-khoan').addClass('tk-active');
+            $('#home').removeClass('active');
+            var menu_tai_khoan = document.getElementById('menu-tai-khoan');
+            menu_tai_khoan.style.display = "block";
+        });
+       
     </script>
 
 @endsection

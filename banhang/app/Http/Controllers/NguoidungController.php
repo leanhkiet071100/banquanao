@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\nguoidung;
-
 use App\Models\nguoidung_diachi;
 use App\Models\dia_chi;
+use App\Models\hoadon;
+use App\Models\hoadon_chitiet;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -176,7 +177,7 @@ class NguoidungController extends Controller
 
 
     // sửa địa chỉ
-      public function get_dia_chi_sua($id){
+    public function get_dia_chi_sua($id){
         $dia_chi = nguoidung_diachi::find($id);
         $tinh = dia_chi::where('loai','=',1)->orderBy('ten')->get();
         $id_tinh = dia_chi::where('ten','=',$dia_chi->tinh)->first()->id;
@@ -333,12 +334,81 @@ class NguoidungController extends Controller
       $lsxa = dia_chi::where('loai',3)->where('parent_id',$parent_id)->orderBy('ten')->get();
       return response()->json(['data' => $lsxa]);
     }
-
+    
+    // đăng xuất
     public function logout_user(Request $request){
         Auth::logout();
         $request->session()->flush();
         return redirect()->route('dang-nhap');
     }
 
+
+    // quản lí đơn hàng
+    public function don_hang(Request $request){
+        $iduser = Auth::user()->id;
+        $don_hang = hoadon::where('ma_nguoi_dung','=',$iduser)
+                            ->orderByRaw('id DESC')
+                            ->get();
+        $don_hang_chi_tiet = hoadon_chitiet::join('sanphams','sanphams.id', '=','hoadon_chitiets.ma_san_pham')
+                            ->select('hoadon_chitiets.*','sanphams.ten_san_pham','sanphams.gia','sanphams.hinh_anh','sanphams.tien_giam')
+                            ->get();
+        return view('nguoidung.donhang.don-hang-all')->with(['don_hang'=>$don_hang,'don_hang_chi_tiet'=>$don_hang_chi_tiet]);
+    }
+    public function don_hang_cho_xac_nhan(Request $request){
+        $iduser = Auth::user()->id;
+        $don_hang = hoadon::where('ma_nguoi_dung','=',$iduser)->where('trang_thai','=',1)
+                            ->orderByRaw('id DESC')->get();
+        $don_hang_chi_tiet = hoadon_chitiet::join('sanphams','sanphams.id', '=','hoadon_chitiets.ma_san_pham')
+                            ->select('hoadon_chitiets.*','sanphams.ten_san_pham','sanphams.gia','sanphams.hinh_anh','sanphams.tien_giam')
+                            ->get();
+        return view('nguoidung.donhang.don-hang-cho-xac-nhan')->with(['don_hang'=>$don_hang,'don_hang_chi_tiet'=>$don_hang_chi_tiet]);
+    }
+    public function don_hang_dang_giao(Request $request){
+        $iduser = Auth::user()->id;
+        $don_hang = hoadon::where('ma_nguoi_dung','=',$iduser)->where('trang_thai','=',3)
+                            ->orderByRaw('id DESC')->get();
+        $don_hang_chi_tiet = hoadon_chitiet::join('sanphams','sanphams.id', '=','hoadon_chitiets.ma_san_pham')
+                            ->select('hoadon_chitiets.*','sanphams.ten_san_pham','sanphams.gia','sanphams.hinh_anh','sanphams.tien_giam')
+                            ->get();
+        return view('nguoidung.donhang.don-hang-dang-giao')->with(['don_hang'=>$don_hang,'don_hang_chi_tiet'=>$don_hang_chi_tiet]);
+    }
+    public function don_hang_hoan_thanh(Request $request){
+        $iduser = Auth::user()->id;
+        $don_hang = hoadon::where('ma_nguoi_dung','=',$iduser)->where('trang_thai','=',4)
+                            ->orderByRaw('id DESC')->get();
+        $don_hang_chi_tiet = hoadon_chitiet::join('sanphams','sanphams.id', '=','hoadon_chitiets.ma_san_pham')
+                            ->select('hoadon_chitiets.*','sanphams.ten_san_pham','sanphams.gia','sanphams.hinh_anh','sanphams.tien_giam')
+                            ->get();
+        return view('nguoidung.donhang.don-hang-hoan-thanh')->with(['don_hang'=>$don_hang,'don_hang_chi_tiet'=>$don_hang_chi_tiet]);
+    }
+    public function don_hang_huy(Request $request){
+        $iduser = Auth::user()->id;
+        $don_hang = hoadon::where('ma_nguoi_dung','=',$iduser)->where('trang_thai','=',0)
+                            ->orderByRaw('id DESC')->get();
+        $don_hang_chi_tiet = hoadon_chitiet::join('sanphams','sanphams.id', '=','hoadon_chitiets.ma_san_pham')
+                            ->select('hoadon_chitiets.*','sanphams.ten_san_pham','sanphams.gia','sanphams.hinh_anh','sanphams.tien_giam')
+                            ->get();
+        return view('nguoidung.donhang.don-hang-huy')->with(['don_hang'=>$don_hang,'don_hang_chi_tiet'=>$don_hang_chi_tiet]);
+    }
+    public function don_hang_tra_hang(Request $request){
+        $iduser = Auth::user()->id;
+        $don_hang = hoadon::where('ma_nguoi_dung','=',$iduser)->where('trang_thai','=',5)
+                            ->orderByRaw('id DESC')->get();
+        $don_hang_chi_tiet = hoadon_chitiet::join('sanphams','sanphams.id', '=','hoadon_chitiets.ma_san_pham')
+                            ->select('hoadon_chitiets.*','sanphams.ten_san_pham','sanphams.gia','sanphams.hinh_anh','sanphams.tien_giam')
+                            ->get();
+        return view('nguoidung.donhang.don-hang-tra-hang')->with(['don_hang'=>$don_hang,'don_hang_chi_tiet'=>$don_hang_chi_tiet]);
+    }
+    public function don_hang_van_chuyen(Request $request){
+        $iduser = Auth::user()->id;
+        $don_hang = hoadon::where('ma_nguoi_dung','=',$iduser)->where('trang_thai','=',2)
+                            ->orderByRaw('id DESC')->get();
+        $don_hang_chi_tiet = hoadon_chitiet::join('sanphams','sanphams.id', '=','hoadon_chitiets.ma_san_pham')
+                            ->select('hoadon_chitiets.*','sanphams.ten_san_pham','sanphams.gia','sanphams.hinh_anh','sanphams.tien_giam')
+                            ->get();
+        return view('nguoidung.donhang.dong-hang-van-chuyen')->with(['don_hang'=>$don_hang,'don_hang_chi_tiet'=>$don_hang_chi_tiet]);
+    }
+    // kết thúc quản lí hóa đơn hàng
+    
 
 }

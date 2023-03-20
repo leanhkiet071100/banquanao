@@ -21,8 +21,8 @@ class hoadon extends Model
         'so_dien_Thoai',
         'dia_chi_cu_the',
         'ghi_chu',
-        'hien',
-        'noi_bat',
+        'trang_thai',
+
         'moi',
     ];
 

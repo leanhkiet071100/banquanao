@@ -74,6 +74,12 @@
 
 @section('js')
     <script type="text/javascript">
+        $(document).ready(function() {
+            $('#dia-chi').addClass('tk-active');
+            $('#li-tai-khoan').addClass('tk-active');
+            var menu_tai_khoan = document.getElementById('menu-tai-khoan');
+            menu_tai_khoan.style.display = "block";
+        });
         function changeImg(input) {
             //Nếu như tồn thuộc tính file, đồng nghĩa người dùng đã chọn file mới
             if (input.files && input.files[0]) {

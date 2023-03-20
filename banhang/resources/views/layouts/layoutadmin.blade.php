@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Language" content="en">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Admin - CodeLean eShop</title>
+    <title>Admin - {{$shop->ten_shop}}</title>
     <meta name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
     <meta name="description"
@@ -1569,30 +1569,45 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li class="" id="li-hoa-don">
+                            <li class="" id="li-don-hang">
                                 <a href="#">
-                                    <i class="metismenu-icon pe-7s-cash"></i>Quản lí hóa đơn
+                                    <i class="metismenu-icon pe-7s-cash"></i>Quản lí đơn hàng
                                     <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                                 </a>
                                 <ul>
                                     <li>
-                                        <a href="{{ Route('admin.logo') }}" id="footer">
-                                            <i class="metismenu-icon"></i>Dánh sách hóa đơn
+                                        <a href="{{ Route('admin.don-hang-all') }}" id="don-hang">
+                                            <i class="metismenu-icon"></i>Dánh sách đơn hàng
                                         </a>
                                     </li>
                                      <li>
-                                        <a href="{{ Route('admin.logo') }}" id="footer">
+                                        <a href="{{ Route('admin.don-hang-cho-xac-nhan') }}" id="cho-xac-nhan">
+                                            <i class="metismenu-icon"></i>Đơn hàng chờ xác nhận
+                                        </a>
+                                    </li>
+                                     <li>
+                                        <a href="{{ Route('admin.don-hang-van-chuyen') }}" id="van-chuyen">
+                                            <i class="metismenu-icon"></i>Đơn hàng vận chuyển
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ Route('admin.don-hang-dang-giao') }}" id="dang-giao">
                                             <i class="metismenu-icon"></i>Đơn hàng đang giao
                                         </a>
                                     </li>
-                                     <li>
-                                        <a href="{{ Route('admin.logo') }}" id="footer">
-                                            <i class="metismenu-icon"></i>Đơn hàng đã được giao
+                                    <li>
+                                        <a href="{{ Route('admin.don-hang-hoan-thanh') }}" id="hoan-thanh">
+                                            <i class="metismenu-icon"></i>Đơn hàng hoàn thành
                                         </a>
                                     </li>
                                      <li>
-                                        <a href="{{ Route('admin.logo') }}" id="footer">
+                                        <a href="{{ Route('admin.don-hang-bi-huy') }}" id="bi-huy">
                                             <i class="metismenu-icon"></i>Đơn hàng bị hủy
+                                        </a>
+                                    </li>
+                                     <li>
+                                        <a href="{{ Route('admin.don-hang-tra-hang') }}" id="tra-hang">
+                                            <i class="metismenu-icon"></i>Đơn hàng bị trả
                                         </a>
                                     </li>
                                    

@@ -69,34 +69,7 @@ class HoadonController extends Controller
             $hoadon_chitiet->save();
             $value->forceDelete();
         }
-        
-        
        
-        return "theme hoas  don thanh cong";
-    }
-
-    public function store(StorehoadonRequest $request)
-    {
-        
-    }
-
-    public function show(hoadon $hoadon)
-    {
-        //
-    }
-
-    public function edit(hoadon $hoadon)
-    {
-        //
-    }
-
-    public function update(UpdatehoadonRequest $request, hoadon $hoadon)
-    {
-        //
-    }
-
-    public function destroy(hoadon $hoadon)
-    {
-        //
+        return Redirect::route('tai-khoan.don-hang');
     }
 }
