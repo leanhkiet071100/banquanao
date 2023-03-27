@@ -9,6 +9,8 @@ use App\Models\nhan_hieu;
 use App\Models\loai_san_pham;
 use App\Models\sanpham_chitiet;
 use App\Models\sanpham_hinhanh;
+use App\Models\sanpham_binhluan;
+use App\Models\sanpham_binhluan_hinhanh;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -142,7 +144,7 @@ class AdminSanPhamController extends Controller
         return view('admin.sanpham.chitietsanpham-them')->with(['sanpham'=>$sanpham]);
     }
 
-     public function post_chi_tiet_san_pham_them(Request $request,$id){
+    public function post_chi_tiet_san_pham_them(Request $request,$id){
          $rule = [
             'mau' => 'required',
             'size'=>'required',
@@ -494,6 +496,106 @@ class AdminSanPhamController extends Controller
             'mess'=>  'sửa thành công',
         ]);
     }
+
+    // quản lí lí bình luận bài viết
+    public function binh_luan_san_pham(){
+        $lsbinhluan = sanpham_binhluan::join('nguoidungs','nguoidungs.id', '=','sanpham_binhluans.ma_nguoi_dung')
+                                        ->join('sanphams','sanphams.id', '=','sanpham_binhluans.ma_san_pham')
+                                        ->select('sanpham_binhluans.*','nguoidungs.ten','sanphams.ten_san_pham')
+                                        ->paginate(10);
+        return view('admin.sanpham.sanpham-binhluan')->with(['lsbinhluan'=>$lsbinhluan]);
+    }
+
+    public function binh_luan_san_pham_hien(Request $request,$id){
+        $check = $request->check;
+        $baiviet = sanpham_binhluan::find($id);
+        if($check=="true"){
+            $baiviet->fill([
+                'hien'=>1
+            ]);
+        }else{
+            $baiviet->fill([
+                'hien'=>0
+            ]);
+        }
+        $baiviet->save();
+        return response()->json([
+            'status'=>200,
+            'mess'=>  'sửa thành công',
+        ]);
+    }
+
+    public function binh_luan_san_pham_xoa($id){
+        $binhluan_baiviet = sanpham_binhluan::find($id);
+        $binhluan_baiviet->delete();
+        return  Redirect::route('admin.binh-luan-san-pham')->with('success','Xóa thành công');
+    }
+
+    public function binh_luan_san_pham_chi_tiet($id){
+        $binh_luan_san_pham = sanpham_binhluan::join('nguoidungs','nguoidungs.id', '=','sanpham_binhluans.ma_nguoi_dung')
+                                        ->join('sanphams','sanphams.id', '=','sanpham_binhluans.ma_san_pham')
+                                        ->join('loai_san_phams','loai_san_phams.id', '=','sanphams.ma_loai_san_pham')
+                                        ->select('sanpham_binhluans.*','nguoidungs.ten','sanphams.ten_san_pham','loai_san_phams.ten_loai_san_pham')
+                                        ->where('sanpham_binhluans.id','=',$id)
+                                        ->first();
+        $hinh_binh_luan = sanpham_binhluan_hinhanh::where('ma_binh_luan','=',$id)->get();
+        return view('admin.sanpham.sanpham-binhluan-chitiet')->with(['binh_luan_san_pham'=>$binh_luan_san_pham,
+                                                                'hinh_binh_luan'=>$hinh_binh_luan,]);
+    }
+
+    public function hien_form_tra_loi_binh_luan($id){
+        $binh_luan_san_pham = sanpham_binhluan::join('nguoidungs','nguoidungs.id', '=','sanpham_binhluans.ma_nguoi_dung')
+                                        ->join('sanphams','sanphams.id', '=','sanpham_binhluans.ma_san_pham')
+                                        ->join('loai_san_phams','loai_san_phams.id', '=','sanphams.ma_loai_san_pham')
+                                        ->select('sanpham_binhluans.*','nguoidungs.ten','sanphams.ten_san_pham','loai_san_phams.ten_loai_san_pham','sanphams.hinh_anh')
+                                        ->where('sanpham_binhluans.id','=',$id)
+                                        ->first();
+        return view('admin.sanpham.sanpham-binhluan-traloi')->with(['binh_luan_san_pham'=>$binh_luan_san_pham,]);
+    }
+
+    public function post_form_tra_loi_binh_luan(Request $request,$id){
+        $validator = Validator::make($request->all(), [
+            'noi_dung' => 'required',
+        ], $messages = [
+            'required' => 'Tên nhãn hiệu không được bỏ trống',
+        ]);
+
+        if($validator->fails())
+        {
+            return response()->json([
+                'status'=>400,
+                'errors'=>$validator->messages(),
+            ]);
+        }else{
+        $binh_luan_san_pham = sanpham_binhluan::join('nguoidungs','nguoidungs.id', '=','sanpham_binhluans.ma_nguoi_dung')
+                                        ->join('sanphams','sanphams.id', '=','sanpham_binhluans.ma_san_pham')
+                                        ->join('loai_san_phams','loai_san_phams.id', '=','sanphams.ma_loai_san_pham')
+                                        ->select('sanpham_binhluans.*','nguoidungs.ten','sanphams.ten_san_pham','loai_san_phams.ten_loai_san_pham','sanphams.hinh_anh')
+                                        ->where('sanpham_binhluans.id','=',$id)
+                                        ->first();
+        $id_user = Auth::user()->id;
+        $noi_dung = $request->noi_dung;
+        $ma_san_pham = $binh_luan_san_pham->ma_san_pham;
+        $sanpham_binhluan = new sanpham_binhluan;
+        $sanpham_binhluan->fill([
+            'ma_san_pham'=> $ma_san_pham,
+            'ma_nguoi_dung'=>$id_user,
+            'id_binh_luan_cha'=>$id,
+            'noi_dung'=>$noi_dung,
+            'danh_gia'=>null,
+            'hien'=>1,
+            'trang_thai'=>1,
+        ]);
+        $sanpham_binhluan->save();
+        return response()->json([
+                'status' => 200,
+                'mess'=>'Trả lời bình luận thành công'
+                ]);
+            }
+    }
+
+
+    // kết thúc quản lí bình luận bài viết
 
 
 }

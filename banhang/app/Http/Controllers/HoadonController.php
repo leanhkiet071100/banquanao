@@ -57,12 +57,13 @@ class HoadonController extends Controller
         foreach($gio_hang as $key=>$value)
         {
             $tong_tien_sp =( $value->gia - $value->gia * ($value->tien_giam / 100)) * $value->so_luong;
-           
+            $tien_sp = $value->gia - $value->gia * ($value->tien_giam / 100);
             $hoadon_chitiet = new hoadon_chitiet;
             $hoadon_chitiet->fill([
                 $hoadon_chitiet->ma_hoa_don = $hoadon->id,
                 $hoadon_chitiet->ma_san_pham = $value->ma_san_pham,
                 $hoadon_chitiet->so_luong = $value->so_luong,
+                $hoadon_chitiet->gia_san_pham = $tien_sp,
                 $hoadon_chitiet->tong_tien = $tong_tien_sp,
                 $hoadon_chitiet->trang_thai = 1,
             ]);

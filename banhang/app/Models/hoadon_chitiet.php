@@ -19,6 +19,7 @@ class hoadon_chitiet extends Model
         'ma_hoa_don',
         'ma_san_pham',
         'so_luong',
+        'gia_san_pham',
         'tong_tien',
         'trang_thai',
         

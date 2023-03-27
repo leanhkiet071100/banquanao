@@ -28,12 +28,12 @@ class AdminBaiVietController extends Controller
         if($key == null)
         {  
             $lsbaiviet = baiviet::orderBy('created_at','DESC')
-                    ->paginate(5);
+                    ->paginate(10);
             
         }else{
             $lsbaiviet = baiviet::where('tieu_de','like','%'.$key.'%')
                     ->orderBy('created_at','DESC')
-                    ->paginate(5);
+                    ->paginate(10);
         }
         return view('admin.baiviet.baiviet-ds')->with(['lsbaiviet'=>$lsbaiviet]);
     }
@@ -240,7 +240,7 @@ class AdminBaiVietController extends Controller
         $lsbinhluan = baiviet_binhluan::join('nguoidungs','nguoidungs.id', '=','baiviet_binhluans.ma_nguoi_dung')
                                         ->join('baiviets','baiviets.id', '=','baiviet_binhluans.ma_bai_viet')
                                         ->select('baiviet_binhluans.*','nguoidungs.ten','baiviets.tieu_de')
-                                        ->paginate(1);
+                                        ->paginate(10);
         return view('admin.baiviet.baiviet-binhluan')->with(['lsbinhluan'=>$lsbinhluan]);
     }
 

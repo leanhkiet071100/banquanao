@@ -144,8 +144,7 @@
                                                 @default
                                             @endswitch
                                             <a
-                                                href="{{ route('admin.don-hang-chi-tiet', ['id' => $value->id]) }}"class="btn btn-hover-shine btn-outline-primary border-0 btn-sm">Chi
-                                                tiết </a>
+                                                href="{{ route('admin.don-hang-chi-tiet', ['id' => $value->id]) }}"class="btn btn-hover-shine btn-outline-primary border-0 btn-sm">Chi tiết </a>
                                             @if ($value->trang_thai != 0 && $value->trang_thai != 4)
                                                 <button onclick="don_hang_huy({{ $value->id }})"
                                                     class="btn btn-hover-shine btn-outline-danger border-0 btn-sm">Hủy</button>

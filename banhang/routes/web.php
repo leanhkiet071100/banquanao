@@ -111,6 +111,9 @@ use App\Models\gio_hang;
             Route::get('/don-hang-huy',[NguoidungController::class, 'don_hang_huy'])->name('don-hang-huy');
             Route::get('/don-hang-tra-hang',[NguoidungController::class, 'don_hang_tra_hang'])->name('don-hang-tra-hang');
             Route::get('/don-hang-chi-tiet/{id}',[NguoidungController::class, 'don_hang_chi_tiet'])->name('don-hang-chi-tiet');
+            //Đánh giá sản phẩm
+            Route::get('/danh-gia-san-pham/{id}',[NguoidungController::class, 'danh_gia_san_pham'])->name('danh-gia-san-pham');
+            Route::post('/post-danh-gia-san-pham/{id}',[NguoidungController::class, 'post_danh_gia_san_pham'])->name('post-danh-gia-san-pham');
             }); 
         });
             // giỏ hàng
@@ -162,6 +165,14 @@ use App\Models\gio_hang;
             Route::post('/san-pham-moi/{id}',[AdminSanPhamController::class, 'san_pham_moi'])->name('san-pham-moi');
             Route::post('/san-pham-noi-bat/{id}',[AdminSanPhamController::class, 'san_pham_noi_bat'])->name('san-pham-noi-bat');
             
+             // bình luận sản phẩm
+            Route::get('/binh-luan-san-pham', [AdminSanPhamController::class, 'binh_luan_san_pham'])->name('binh-luan-san-pham');
+            Route::post('/binh-luan-san-pham-hien/{id}', [AdminSanPhamController::class, 'binh_luan_san_pham_hien'])->name('binh-luan-san-pham-hien');
+            Route::delete('/binh-luan-san-pham-xoa/{id}',[AdminSanPhamController::class, 'binh_luan_san_pham_xoa'])->name('binh-luan-san-pham-xoa');
+            Route::get('/binh-luan-san-pham-chi-tiet/{id}',[AdminSanPhamController::class, 'binh_luan_san_pham_chi_tiet'])->name('binh-luan-san-pham-chi-tiet');
+            Route::get('/hien-form-tra-loi-binh-luan/{id}', [AdminSanPhamController::class, 'hien_form_tra_loi_binh_luan'])->name('hien-form-tra-loi-binh-luan');
+            Route::post('/post-form-tra-loi-binh-luan/{id}', [AdminSanPhamController::class, 'post_form_tra_loi_binh_luan'])->name('post-form-tra-loi-binh-luan');
+
             //chi tiết sản phẩm
             Route::get('/chi-tiet-san-pham/{id}', [AdminSanPhamController::class, 'chi_tiet_san_pham'])->name('chi-tiet-san-pham');
             Route::get('/chi-tiet-san-pham-ds/{id}',[AdminSanPhamController::class, 'chi_tiet_san_pham_ds'])->name('chi-tiet-san-pham-ds');

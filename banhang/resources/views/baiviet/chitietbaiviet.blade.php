@@ -121,7 +121,7 @@
     </section>
     {{-- kết thúc bình luận --}}
     <!-- Related Blog Section Begin -->
-    <section class="related-blog spad">
+    {{-- <section class="related-blog spad">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -134,7 +134,7 @@
                 <div class="col-lg-4 col-md-4 col-sm-6">
                     <div class="blog__item">
                         <div class="blog__item__pic">
-                            <img src="{{URL('img/blog/blog-1.jpg')}}" alt="">
+                            <img src="" alt="">
                         </div>
                         <div class="blog__item__text">
                             <ul>
@@ -149,7 +149,7 @@
                
             </div>
         </div>
-    </section>
+    </section> --}}
     <!-- Related Blog Section End -->
 @endsection
 

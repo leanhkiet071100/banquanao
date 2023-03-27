@@ -328,8 +328,8 @@
         // Alert Modal Type
         $(document).ready(function() {
             $('#home').addClass('active');
-            var slideshow = document.getElementById('slideshow');
-            slideshow.style.display = "block";
+            // var slideshow = document.getElementById('slideshow');
+            // slideshow.style.display = "block";
         });
 
         $('.them-san-pham').click(function() {

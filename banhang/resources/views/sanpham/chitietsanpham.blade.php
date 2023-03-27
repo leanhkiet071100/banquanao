@@ -165,44 +165,58 @@
                 <div class="coment-area">
                     <ul class="we-comet">
                         <li>
-                            @if ($shop != null)
-                                @if ($shop->hinh_banner != null)
-                                    <div class="comet-avatar">
-                                        <img src="{{ URL($shop->hinh_banner) }}" alt="">
-                                    </div>
-                                @else
-                                    <div class="comet-avatar">
-                                        <img src="{{ URL('hinh_test/blog.jpg') }}" alt="">
-                                    </div>
-                                @endif
-                            @endif
-
-                            <div class="we-comment">
-                                <div class="coment-head">
-                                    <h5><span>Jason borne</span></h5>
-                                    <span>1 year ago</span>
-
+                            @foreach ($ls_binh_luan as $key => $value)
+                                <div class="comet-avatar">
+                                    <img src="{{ URL($value->hinh_dai_dien) }}" alt="">
                                 </div>
-                                <p>we are working for the dance and sing songs. this car is very awesome for the
-                                    youngster. please vote this car and like our post</p>
-                            </div>
-                            <ul>
-                                <li>
-                                    <div class="comet-avatar">
-                                        {{-- <img src="{{ URL($shop->hinh_banner) }}" alt=""> --}}
-                                    </div>
-                                    <div class="we-comment">
-                                        <div class="coment-head">
-                                            <h5><a href="time-line.html" title="">alexendra dadrio</a></h5>
-                                            <span>1 month ago</span>
 
+                                <div class="we-comment">
+                                    <div class="coment-head">
+                                        <h5><span>{{ $value->ten }}</span></h5>
+                                        <span>{{ date('d/m/Y', strtotime($value->created_at)) }}</span>
+                                        <div class='rating-stars'>
+                                            <ul id='stars-binh-luan' class="stars-binh-luan">
+                                                <li class='star'>
+                                                    @for ($i = 0; $i < 5; $i++)
+                                                        @if ($i < $value->danh_gia)
+                                                            <i class='fa fa-star fa-fw sao-active'></i>
+                                                        @else
+                                                            <i class='fa fa-star fa-fw'></i>
+                                                        @endif
+                                                    @endfor
+                                                </li>
+                                            </ul>
                                         </div>
-                                        <p>yes, really very awesome car i see the features of this car in the
-                                            official website of <a href="#" title="">#Mercedes-Benz</a>
-                                            and really impressed :-)</p>
                                     </div>
-                                </li>
-                            </ul>
+                                    <p> {{ $value->noi_dung }}</p>
+                                    <div class="hinh-anh-binh-luan">
+                                        @foreach ($ls_binh_luan_hinh_anh as $key1 => $value1)
+                                            @if ($value->id == $value1->ma_binh_luan)
+                                                <img src="{{ URL($value1->ten_file) }}" alt=""
+                                                    class="img-binh-luan">
+                                            @endif
+                                        @endforeach
+                                    </div>
+                                </div>
+
+                                <ul>
+                                    {{-- <li>
+                                        <div class="comet-avatar">
+                                            <img src="{{ URL($value->hinh_dai_dien) }}" alt="">
+                                        </div>
+                                        <div class="we-comment">
+                                            <div class="coment-head">
+                                                <h5><a href="time-line.html" title="">alexendra dadrio</a></h5>
+                                                <span>1 month ago</span>
+
+                                            </div>
+                                            <p>yes, really very awesome car i see the features of this car in the
+                                                official website of <a href="#" title="">#Mercedes-Benz</a>
+                                                and really impressed :-)</p>
+                                        </div>
+                                    </li> --}}
+                                </ul>
+                            @endforeach
                         </li>
                     </ul>
                 </div>
@@ -235,7 +249,9 @@
                                         <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                         <li><a href="{{ route('chi-tiet-san-pham', ['id' => $value->id]) }}"><i
                                                     class="fa fa-retweet"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                        <li><a type="button" id="them-san-pham" class="them-san-pham"
+                                                data-url="{{ route('gio-hang-them-san-pham', ['id' => $value->id]) }}"><i
+                                                    class="fa fa-shopping-cart"></i></a></li>
                                     </ul>
                                 </div>
                                 <div class="product__discount__item__text">
@@ -271,6 +287,49 @@
         $(document).ready(function() {
             $('#san-pham').addClass('active');
             $('#home').removeClass('active');
+        });
+        $('.them-san-pham').click(function() {
+            let url = $(this).attr('data-url');
+            console.log(url);
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                url: url,
+                type: 'POST',
+                //data: formData,
+                contentType: false,
+                processData: false,
+                success: function(data) {
+                    //window.location.reload(); load lại trang
+                    //console.log(data.errors.hinhnhanhieu);
+
+                    if (data.status == 400) {
+                        $('#error-tennhanhieu').html("");
+                        $('#error-tennhanhieu').append(data.errors.tennhanhieu[0]);
+                        $('#error-hinhnhanhieu').html("");
+                        $('#error-hinhnhanhieu').append(data.errors.hinhnhanhieu[0]);
+                        // $.each(data.errors, function(key, err_value){
+                        //     $('#saveform_errList').append('<li style="color: red">'+err_value+'</li>');    
+                        // });
+                        //console.log(data.error.tennhanhieu);
+                    } else {
+                        $('#gio-hang').html("");
+                        $('#gio-hang').append(
+                            '<li id="gio-hang"><a href="{{ route('gio-hang') }}"><i class="fa fa-shopping-bag"></i><span>' +
+                            data.count_gio_hang + '</span></a></li>');
+                        Swal.fire(
+                            'Thêm sản phẩm thành công',
+                            '',
+                            'success'
+                        )
+                    }
+
+                }
+            });
+
         });
     </script>
 @endsection

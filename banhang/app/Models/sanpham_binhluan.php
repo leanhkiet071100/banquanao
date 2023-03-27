@@ -18,13 +18,17 @@ class sanpham_binhluan extends Model
         'ma_san_pham',
         'ma_nguoi_dung',
         'noi_dung',
+        'id_binh_luan_cha',
         'danh_gia',
         'hien',
-        'noi_bat',
-        'moi',
+        'trang_thai',
     ];
 
     public function sanpham(){
         return $this->hasMany(sanpham::class, 'ma_san_pham', 'id');
+    }
+
+    public function sanpham_binhluan(){
+        return $this->belongsTo(sanpham_binhluan_hinhanh::class, 'ma_san_pham', 'id');
     }
 }

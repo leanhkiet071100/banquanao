@@ -3,4 +3,5 @@
     <script href="{{ URL('assetsicon/demo-files/demo.js') }}" type="text/javascript"></script>
     <script type="text/javascript" src="{{ URL('admin/assets/scripts/main.js') }}"></script>
     <script type="text/javascript" src="{{ URL('admin/assets/scripts/my_script.js') }}"></script>
+    <script type="text/javascript" src="{{ URL('admin/assets/scripts/sweetalert2.js') }}"></script>
     <script src="{{ URL('ckeditor/ckeditor.js') }}"></script>

@@ -36,7 +36,7 @@
                             </a>
                             <ul class="mm-collapse mm-show menu-tai-khoan" id="menu-tai-khoan" style="display: none;">
                                 <li>
-                                    <a href="{{ route('tai-khoan.tai-khoan') }}" id="thong-tin-tai-khoan">
+                                    <a href="{{ route('tai-khoan.tai-khoan') }}" id="thong-tin-ca-nhan">
                                         <i class="metismenu-icon"></i>Thông tin cá nhân
                                     </a>
                                 </li>

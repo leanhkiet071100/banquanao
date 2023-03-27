@@ -17,8 +17,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('ma_hoa_don');
             $table->foreignId('ma_san_pham');
-            $table->double('so_luong');
-            $table->double('tong_tien');
+            $table->double('so_luong')->nullable();
+            $table->double('gia_san_pham')->nullable();
+            $table->double('tong_tien')->nullable();
             $table->string('trang_thai')->nullable();
             $table->timestamps();
             $table->softDeletes();

@@ -37,8 +37,8 @@
                                                 data-toggle="tooltip" title="Click to add image" data-placement="bottom"
                                                 src="{{ URL($sanpham->hinh_anh) }}" alt="Add Image">
 
-                                            <input name="hinhanhsp" type="file" onchange="changeImg(this);"  id="hinhanhsp"
-                                                accept="image/x-png,image/gif,image/jpeg" id="hinhnhanhieu"
+                                            <input name="hinhanhsp" type="file" onchange="changeImg(this);"
+                                                id="hinhanhsp" accept="image/x-png,image/gif,image/jpeg" id="hinhnhanhieu"
                                                 class="image form-control-file nhan-hieu-hinh" style="display: none;">
                                         </div>
                                     </li>
@@ -64,7 +64,8 @@
                         <div class="position-relative row form-group">
                             <label for="brand_id" class="col-md-3 text-md-right col-form-label">Danh sách hình ảnh</label>
                             <div class="col-md-9 col-xl-8">
-                                <p><a href="{{ route('admin.chi-tiet-san-pham-hinh-anh', ['id' => $sanpham->id]) }}">Quản lí hình ảnh</a></p>
+                                <p><a href="{{ route('admin.chi-tiet-san-pham-hinh-anh', ['id' => $sanpham->id]) }}">Quản lí
+                                        hình ảnh</a></p>
                             </div>
                         </div>
 
@@ -192,7 +193,7 @@
         function huy() {
             location.reload();
         }
-        
+
         $(document).on('click', '.hinhanhsp', function(e) {
             e.preventDefault();
             var url = $(this).attr('data-url');

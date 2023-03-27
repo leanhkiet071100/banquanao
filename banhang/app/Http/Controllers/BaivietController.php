@@ -33,11 +33,6 @@ class BaivietController extends Controller
         return view('baiviet.menubaiviet')->with(['lsloaisanpham'=>$lsloaisanpham,'loaibaiviet'=>$loaibaiviet,'lsbaivietmoi'=>$lsbaivietmoi]);
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $lsbaiviet = baiviet::where('hien','=',1)->paginate(6);
@@ -45,12 +40,6 @@ class BaivietController extends Controller
         return view('baiviet.dsbaiviet')->with(['lsbaiviet'=>$lsbaiviet,'lsbaivietnb'=>$lsbaivietnb]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    //chi tiết bài viết
     public function chi_tiet_bai_viet($id)
     {
         $baiviet = baiviet::join('nguoidungs','nguoidungs.id','=','baiviets.ma_nguoi_dung')
@@ -207,21 +196,19 @@ class BaivietController extends Controller
     public function load_binh_luan( Request $request){
         $id_bai_viet = $request->idbaiviet;
         $trang = $request->page;
-           
-        
         $lsbinhluancha =  baiviet_binhluan::join('nguoidungs','nguoidungs.id','=','baiviet_binhluans.ma_nguoi_dung')
                             ->select('nguoidungs.ten','nguoidungs.hinh_dai_dien','baiviet_binhluans.*')
                             ->where('baiviet_binhluans.ma_bai_viet','=',$id_bai_viet)
-                            ->where('id_binh_luan_cha','=', null)
-                            ->where('hien','=',1)
+                            ->where('baiviet_binhluans.id_binh_luan_cha','=', null)
+                            ->where('baiviet_binhluans.hien','=',1)
                             ->orderBy('id','DESC')
                             ->paginate($perPage = 10, $columns = ['*'], $pageName = 'lsbinhluancha',$page=$trang);
-        $lastPage = $lsbinhluancha->lastPage();
 
+        $lastPage = $lsbinhluancha->lastPage();
         $lsbinhluancon = baiviet_binhluan::join('nguoidungs','nguoidungs.id','=','baiviet_binhluans.ma_nguoi_dung')
                             ->select('nguoidungs.ten','nguoidungs.hinh_dai_dien','baiviet_binhluans.*')
                             ->where('baiviet_binhluans.ma_bai_viet','=',$id_bai_viet)
-                            ->where('id_binh_luan_cha','!=', null)->get();
+                            ->where('baiviet_binhluans.id_binh_luan_cha','!=', null)->get();
 
         return  view('baiviet.binh-luan-bai-viet')->with(['lsbinhluancha'=>$lsbinhluancha,
                                                           'lsbinhluancon'=>$lsbinhluancon,

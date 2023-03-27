@@ -162,8 +162,8 @@
                         console.log(data);
 
                         // alert(data.mess);
-                        // huy();
-                        // window.location.reload();
+                        huy();
+                        window.location.reload();
                     }
 
                 }

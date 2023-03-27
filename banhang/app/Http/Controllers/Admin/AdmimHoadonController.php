@@ -91,7 +91,9 @@ class AdmimHoadonController extends Controller
                             ->select('hoadon_chitiets.*','sanphams.ten_san_pham','sanphams.gia','sanphams.hinh_anh','sanphams.tien_giam')
                             ->where('ma_hoa_don','=',$id)
                             ->get();
-        $don_hang = hoadon::find($id);
+        $don_hang = hoadon::join('nguoidungs','nguoidungs.id', '=','hoadons.ma_nguoi_dung')
+                        ->select('hoadons.*', 'nguoidungs.email')    
+                        ->find($id);
         return view('admin.donhang.donhang-chitiet')->with(['donhang_chitiet'=>$donhang_chitiet,  'don_hang'=>$don_hang]);
     }
 

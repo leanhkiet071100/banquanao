@@ -71,7 +71,7 @@
                                                 </div>
                                             </div>
                                             <div class="price-product">
-                                                {{ number_format($value2->gia - $value2->gia * ($value2->tien_giam / 100), 2, ',', '.') }}
+                                                {{ number_format($value2->gia_san_pham, 2, ',', '.') }}
                                             </div>
                                         </div>
                                     @endif
@@ -87,11 +87,11 @@
                                     </div>
                                 </div>
                                 <div class="chuc-nang">
-                                    <div class="danh-gia">
+                                    {{-- <div class="danh-gia">
                                         <button class="btn-danh-gia">Đánh giá</button>
-                                    </div>
+                                    </div> --}}
                                     <div class="chi-tiet">
-                                        <button class="btn-chi-tiet">Chi tiết</button>
+                                        <button class="btn-chi-tiet"><a href="{{route('tai-khoan.don-hang-chi-tiet',['id'=>$value->id])}}">Chi tiết</a></button>
                                     </div>
                                 </div>
                             </div>

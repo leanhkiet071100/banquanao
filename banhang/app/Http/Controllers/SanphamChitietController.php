@@ -7,6 +7,8 @@ use App\Models\nhan_hieu;
 use App\Models\loai_san_pham;
 use App\Models\sanpham;
 use App\Models\sanpham_hinhanh;
+use App\Models\sanpham_binhluan;
+use App\Models\sanpham_binhluan_hinhanh;
 use App\Http\Requests\Storesanpham_chitietRequest;
 use App\Http\Requests\Updatesanpham_chitietRequest;
 use Illuminate\Support\Str;
@@ -48,72 +50,16 @@ class SanphamChitietController extends Controller
                     ->inRandomOrder()
                     ->limit(4)
                     ->get();
-        return view('sanpham.chitietsanpham')->with(['lsloaisanpham'=>$lsloaisanpham,'sanpham'=>$sanpham,'lshinhanh'=>$lshinhanh,'lssanphamlienquan'=>$lssanphamlienquan]);
+        $ls_binh_luan = sanpham_binhluan::join('nguoidungs','nguoidungs.id', '=','sanpham_binhluans.ma_nguoi_dung')
+                                        ->select('sanpham_binhluans.*','nguoidungs.ten','nguoidungs.hinh_dai_dien','nguoidungs.cap')
+                                        ->where('ma_san_pham','=',$id)->where('sanpham_binhluans.hien','=',1)->get();
+        $ls_binh_luan_hinh_anh = sanpham_binhluan_hinhanh::join('sanpham_binhluans','sanpham_binhluans.id', '=','sanpham_binhluan_hinhanhs.ma_binh_luan')
+                                                        ->select('sanpham_binhluan_hinhanhs.*')
+                                                        ->where('sanpham_binhluans.ma_san_pham','=',$id)->get();
+        return view('sanpham.chitietsanpham')->with(['lsloaisanpham'=>$lsloaisanpham,'sanpham'=>$sanpham,'lshinhanh'=>$lshinhanh,
+                                                    'lssanphamlienquan'=>$lssanphamlienquan,
+                                                    'ls_binh_luan'=>$ls_binh_luan,
+                                                    'ls_binh_luan_hinh_anh'=>$ls_binh_luan_hinh_anh]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\Storesanpham_chitietRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Storesanpham_chitietRequest $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\sanpham_chitiet  $sanpham_chitiet
-     * @return \Illuminate\Http\Response
-     */
-    public function show(sanpham_chitiet $sanpham_chitiet)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\sanpham_chitiet  $sanpham_chitiet
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(sanpham_chitiet $sanpham_chitiet)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\Updatesanpham_chitietRequest  $request
-     * @param  \App\Models\sanpham_chitiet  $sanpham_chitiet
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Updatesanpham_chitietRequest $request, sanpham_chitiet $sanpham_chitiet)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\sanpham_chitiet  $sanpham_chitiet
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(sanpham_chitiet $sanpham_chitiet)
-    {
-        //
-    }
 }

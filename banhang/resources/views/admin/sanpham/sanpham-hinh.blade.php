@@ -13,7 +13,7 @@
                         <i class="pe-7s-ticket icon-gradient bg-mean-fruit"></i>
                     </div>
                     <div>
-                        Product Images
+                        Hình ảnh sản phẩm
                         <div class="page-title-subheading">
                             View, create, update, delete and manage.
                         </div>
@@ -39,7 +39,6 @@
                             <label for="" class="col-md-3 text-md-right col-form-label">Hình sản phẩm</label>
                             <div class="col-md-9 col-xl-8">
                                 <ul class="text-nowrap" id="images">
-
 
                                 </ul>
                                 <li class="float-left d-inline-block mr-2 mb-2" style="width: 32%;">

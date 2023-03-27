@@ -150,7 +150,7 @@
                                                      <div class="product__discount__item__text">
                                                          <h5><a href="{{route('chi-tiet-san-pham',['id'=>$value->id])}}">{{ $value->ten_san_pham }}</a></h5>
                                                          <div class="product__item__price">
-                                                             {{number_format( $value->gia - $value->gia * ($value->tien_giam / 100),2,',','.') }}<span>{{ $value->gia }}</span>
+                                                             {{number_format( $value->gia - $value->gia * ($value->tien_giam / 100),2,',','.') }}<span>{{number_format( $value->gia,2,',','.') }}</span>
                                                          </div>
                                                      </div>
                                                  </div>

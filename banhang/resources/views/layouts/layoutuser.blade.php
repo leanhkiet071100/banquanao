@@ -7,7 +7,7 @@
     <meta name="keywords" content="Ogani, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{$shop->ten_shop}}</title>
+    <title>{{ $shop->ten_shop }}</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
@@ -28,30 +28,33 @@
 </head>
 
 <body>
-    <!-- Page Preloder -->
-    <div id="prelod">
-        {{-- <div class="loader"></div> --}}
-        <div class="load"></div>
+    <div class="theme-layout"  id="theme-layout">
+        <!-- Page Preloder -->
+        <div id="prelod">
+            {{-- <div class="loader"></div> --}}
+            <div class="load"></div>
+        </div>
+
+        <!-- Humberger Begin  menu mobie-->
+        @include('layouts/menumobie')
+        <!-- Humberger End -->
+
+        <!-- Header Section Begin  menu-->
+        @include('layouts/menu')
+        <!-- Header Section End -->
+
+        <!-- Hero Section Begin -->
+        @include('layouts/timkiem')
+        <!-- Hero Section End -->
+        @section('sidebar')
+        @show
+        <!-- Footer Section Begin -->
+        @include('layouts.footer-user')
+        <!-- Footer Section End -->
+        <!-- Js Plugins -->
+
     </div>
 
-    <!-- Humberger Begin  menu mobie-->
-    @include('layouts/menumobie')
-    <!-- Humberger End -->
-
-    <!-- Header Section Begin  menu-->
-    @include('layouts/menu')
-    <!-- Header Section End -->
-
-    <!-- Hero Section Begin -->
-    @include('layouts/timkiem')
-    <!-- Hero Section End -->
-    @section('sidebar')
-    @show
-     <!-- Footer Section Begin -->
-    @include('layouts.footer-user')
-        <!-- Footer Section End -->
-    <!-- Js Plugins -->
-    
     <script src="{{ URL('assets/js/jquery-3.3.1.min.js') }}"></script>
     <script src="{{ URL('assets/js/bootstrap.min.js') }}"></script>
     <script src="{{ URL('assets/js/jquery.nice-select.min.js') }}"></script>
@@ -65,19 +68,26 @@
             $url = window.location.href;
             $('#nd-banner').html('');
             if ($url == "{{ Route('san-pham') }}") {
-                 $('#nd-banner').append('<h2>Sản phẩm</h2>');
+                $('#nd-banner').append('<h2>Sản phẩm</h2>');
             } else if ($url == "{{ Route('bai-viet') }}") {
-                 $('#nd-banner').append('<h2>Bài viết</h2>');
+                $('#nd-banner').append('<h2>Bài viết</h2>');
             } else if ($url == "{{ Route('gioi-thieu') }}") {
-                 $('#nd-banner').append('<h2>Thông tin của shop</h2>');
+                $('#nd-banner').append('<h2>Thông tin của shop</h2>');
             } else if ($url == "{{ Route('gio-hang') }}") {
-                 $('#nd-banner').append('<h2>Giỏ hàng của bạn</h2>');
-            } 
+                $('#nd-banner').append('<h2>Giỏ hàng của bạn</h2>');
+            }
         });
+
+        function add_them_layout(){
+             $(".theme-layout").addClass('active');
+        }
+
+        function remove_them_layout(){
+            $(".theme-layout").removeClass('active');
+        }
     </script>
     @yield('js')
     @yield('js-menu-tai-khoan')
-
 
 
 </body>
