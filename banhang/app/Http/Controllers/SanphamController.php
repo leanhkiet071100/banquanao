@@ -22,13 +22,6 @@ use Illuminate\Http\Request;
 
 class SanphamController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    
-
     public function san_pham(){
       
         $lsmau = sanpham_chitiet::select('mau')->distinct('mau')->get();
@@ -38,69 +31,5 @@ class SanphamController extends Controller
         $shop = thong_tin_shop::orderBy('id')->first();
         return view('sanpham.dssanpham')->with(['lsmau'=>$lsmau,'lssize'=>$lssize,'lssanphamsale'=>$lssanphamsale,'lssanpham'=>$lssanpham]);
     }
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoresanphamRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoresanphamRequest $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\sanpham  $sanpham
-     * @return \Illuminate\Http\Response
-     */
-    public function show(sanpham $sanpham)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\sanpham  $sanpham
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(sanpham $sanpham)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdatesanphamRequest  $request
-     * @param  \App\Models\sanpham  $sanpham
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdatesanphamRequest $request, sanpham $sanpham)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\sanpham  $sanpham
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(sanpham $sanpham)
-    {
-        //
-    }
+   
 }

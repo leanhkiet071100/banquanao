@@ -166,9 +166,16 @@
                     <ul class="we-comet">
                         <li>
                             @foreach ($ls_binh_luan as $key => $value)
-                                <div class="comet-avatar">
-                                    <img src="{{ URL($value->hinh_dai_dien) }}" alt="">
-                                </div>
+                                @if ($value->hinh_dai_dien != null)
+                                    <div class="comet-avatar">
+                                        <img src="{{ URL($value->hinh_dai_dien) }}" alt="">
+                                    </div>
+                                @else
+                                    <div class="comet-avatar">
+                                        <img src="{{ URL('hinh_test/avatar.png') }}" alt="">
+                                    </div>
+                                @endif
+
 
                                 <div class="we-comment">
                                     <div class="coment-head">
@@ -200,21 +207,32 @@
                                 </div>
 
                                 <ul>
-                                    {{-- <li>
-                                        <div class="comet-avatar">
-                                            <img src="{{ URL($value->hinh_dai_dien) }}" alt="">
-                                        </div>
-                                        <div class="we-comment">
-                                            <div class="coment-head">
-                                                <h5><a href="time-line.html" title="">alexendra dadrio</a></h5>
-                                                <span>1 month ago</span>
+                                    @foreach ($ls_tra_loi as $key1 => $value1)
+                                        @if ($value1->id_binh_luan_cha == $value->id)
+                                            <li>
+                                                @if ($value1->hinh_dai_dien != null)
+                                                    <div class="comet-avatar">
+                                                        <img src="{{ URL($value1->hinh_dai_dien) }}" alt="">
+                                                    </div>
+                                                @else
+                                                    <div class="comet-avatar">
+                                                        <img src="{{ URL('hinh_test/avatar.png') }}" alt="">
+                                                    </div>
+                                                @endif
 
-                                            </div>
-                                            <p>yes, really very awesome car i see the features of this car in the
-                                                official website of <a href="#" title="">#Mercedes-Benz</a>
-                                                and really impressed :-)</p>
-                                        </div>
-                                    </li> --}}
+                                                <div class="we-comment">
+                                                    <div class="coment-head">
+                                                        <h5><a href="time-line.html"
+                                                                title="">{{ $value1->ten }}</a>
+                                                        </h5>
+                                                        <span>{{ date('d/m/Y', strtotime($value1->created_at)) }}</span>
+
+                                                    </div>
+                                                    <p>{{ $value1->noi_dung }}</p>
+                                                </div>
+                                            </li>
+                                        @endif
+                                    @endforeach
                                 </ul>
                             @endforeach
                         </li>

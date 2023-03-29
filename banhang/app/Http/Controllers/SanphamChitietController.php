@@ -25,11 +25,6 @@ use Illuminate\Database\Eloquent\Random;
 
 class SanphamChitietController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function chi_tiet_san_pham($id)
     {
         $sanpham =  sanpham::join('loai_san_phams','loai_san_phams.id', '=','sanphams.ma_loai_san_pham')
@@ -52,14 +47,25 @@ class SanphamChitietController extends Controller
                     ->get();
         $ls_binh_luan = sanpham_binhluan::join('nguoidungs','nguoidungs.id', '=','sanpham_binhluans.ma_nguoi_dung')
                                         ->select('sanpham_binhluans.*','nguoidungs.ten','nguoidungs.hinh_dai_dien','nguoidungs.cap')
-                                        ->where('ma_san_pham','=',$id)->where('sanpham_binhluans.hien','=',1)->get();
+                                        ->where('ma_san_pham','=',$id)
+                                        ->where('sanpham_binhluans.hien','=',1)
+                                        ->where('sanpham_binhluans.id_binh_luan_cha','=',null)
+                                        ->get();
         $ls_binh_luan_hinh_anh = sanpham_binhluan_hinhanh::join('sanpham_binhluans','sanpham_binhluans.id', '=','sanpham_binhluan_hinhanhs.ma_binh_luan')
                                                         ->select('sanpham_binhluan_hinhanhs.*')
                                                         ->where('sanpham_binhluans.ma_san_pham','=',$id)->get();
+        $ls_tra_loi = sanpham_binhluan::join('nguoidungs','nguoidungs.id', '=','sanpham_binhluans.ma_nguoi_dung')
+                                        ->select('sanpham_binhluans.*','nguoidungs.ten','nguoidungs.hinh_dai_dien','nguoidungs.cap')
+                                        ->where('ma_san_pham','=',$id)
+                                        ->where('sanpham_binhluans.hien','=',1)
+                                        ->where('sanpham_binhluans.id_binh_luan_cha','!=',null)
+                                        ->get();
+                               
         return view('sanpham.chitietsanpham')->with(['lsloaisanpham'=>$lsloaisanpham,'sanpham'=>$sanpham,'lshinhanh'=>$lshinhanh,
                                                     'lssanphamlienquan'=>$lssanphamlienquan,
                                                     'ls_binh_luan'=>$ls_binh_luan,
-                                                    'ls_binh_luan_hinh_anh'=>$ls_binh_luan_hinh_anh]);
+                                                    'ls_binh_luan_hinh_anh'=>$ls_binh_luan_hinh_anh,
+                                                    'ls_tra_loi'=>$ls_tra_loi,]);
     }
 
 }
