@@ -4916,7 +4916,7 @@ ul#stars-binh-luan {
 	font-size: 8px;
 }
 
-i.fa.fa-star.fa-fw.sao-active{
+i.fa.fa-star.fa-fw.sao-active {
 	color: #7fad39;
 }
 
@@ -4935,4 +4935,40 @@ i.fa.fa-star.fa-fw.sao-active{
 	width: calc(25% - 10px);
 	margin: 5px;
 	max-height: 140px;
+}
+
+/* chi tiết sản phẩm */
+button.product-variation {
+	overflow: visible;
+	cursor: pointer;
+	min-width: 5rem;
+	min-height: 2.125rem;
+	box-sizing: border-box;
+	padding: 0 0.5rem;
+	margin: 0 8px 8px 0;
+	color: rgba(0, 0, 0, .8);
+	text-align: left;
+	border-radius: 2px;
+	border: 1px solid rgba(0, 0, 0, .09);
+	position: relative;
+	background: #fff;
+	outline: 0;
+	word-break: break-word;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+}
+
+button.product-variation:hover {
+	color: #7fad39;
+	color: var(--brand-primary-color, #7fad39);
+	border-color: #7fad39;
+	border-color: var(--brand-primary-color, #7fad39);
+}
+
+button.product-variation.active {
+	color: #7fad39;
+	color: var(--brand-primary-color, #7fad39);
+	border-color: #7fad39;
+	border-color: var(--brand-primary-color, #7fad39);
 }

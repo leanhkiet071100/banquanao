@@ -15,7 +15,7 @@
                     <div>
                         MẠNG XÃ HỘI
                         <div class="page-title-subheading">
-                            View, create, update, delete and manage.
+                            Cập nhật mạng xã hội
                         </div>
                     </div>
                 </div>

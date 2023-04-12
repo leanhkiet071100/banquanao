@@ -38,7 +38,7 @@ class AdminNhanHieuController extends Controller
     }
 
     public function load_nhan_hieu(){
-        $lsnhanhieu = nhan_hieu::get();
+        $lsnhanhieu = nhan_hieu::orderByRaw('id DESC')->get();
         return response()->json(['lsnhanhieu' => $lsnhanhieu]);
     }
 
@@ -113,6 +113,7 @@ class AdminNhanHieuController extends Controller
                 $nhanhieu->fill([
                     'ten_nhan_hieu'=>$tennhanhieu,
                     'hinh_nhan_hieu'=>'',
+                    'hien'=>1,
                 ]);
                 $nhanhieu->save();
                 $idnhanhieu = $nhanhieu->id;

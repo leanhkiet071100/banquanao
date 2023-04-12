@@ -137,10 +137,9 @@
                                         </td>
 
                                         <td class="text-center">
-                                            <a href=""
-                                                class="btn btn-hover-shine btn-outline-primary border-0 btn-sm">
+                                            <button  class="btn btn-hover-shine btn-outline-primary border-0 btn-sm" onclick="hien_form_tra_loi_binh_luan({{ $value->id }})">
                                                 Trả lời
-                                            </a>
+                                            </button>
                                              <a href="{{ route('admin.binh-luan-san-pham-chi-tiet', ['id' => $value->id]) }}"
                                                 class="btn btn-hover-shine btn-outline-secondary border-0 btn-sm">
                                                 Chi tiết
@@ -166,8 +165,6 @@
                             </tbody>
                         </table>
                     </div>
-
-
                     <div class="d-block card-footer">
                        {{ $lsbinhluan->appends(request()->all())->links('phantrang.phantrang') }}
                     </div>
@@ -177,6 +174,11 @@
         </div>
     </div>
     <!-- End Main -->
+    @section('create')
+        <div id="form-danh-gia" style="" class="form-danh-gia" style="display: none">
+
+    </div>
+    @endsection
 @endsection
 @section('js')
     <script>
@@ -208,5 +210,22 @@
             });
         }
 
+         function hien_form_tra_loi_binh_luan(id) {
+             var form_danh_gia = document.getElementById("form-danh-gia");
+            var url = "{{ route('admin.hien-form-tra-loi-binh-luan', '') }}" + '/' + id;
+            $.ajax({
+                url: url,
+                type: 'GET',
+                contentType: false,
+                processData: false,
+                success: function(data) {
+                  
+                    form_danh_gia.style.display = "block";
+                      add_them_layout();
+                    $('#form-danh-gia').html("");
+                    $('#form-danh-gia').append(data);
+                }
+            });
+        }
     </script>
 @endsection

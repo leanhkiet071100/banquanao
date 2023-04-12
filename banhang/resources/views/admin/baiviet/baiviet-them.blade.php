@@ -13,9 +13,9 @@
                         <i class="pe-7s-ticket icon-gradient bg-mean-fruit"></i>
                     </div>
                     <div>
-                        Product
+                        Thêm bài viết
                         <div class="page-title-subheading">
-                            View, create, update, delete and manage.
+                            Thêm bài viết mới
                         </div>
                     </div>
                 </div>

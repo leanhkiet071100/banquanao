@@ -79,7 +79,7 @@
                                 <span class="btn-icon-wrapper pr-2 opacity-8">
                                     <i class="fa fa-reply fa-w-20"></i>
                                 </span>
-                                <span>Trả lời 1</span>
+                                <span>Trả lời</span>
                             </button>
                         </div>
                     </div>

@@ -195,10 +195,11 @@
                 </div>
             </div>
         </div>
-
+        @section('create')
         <div class="create-nhan-hieu" id="create-nhan-hieu">
 
         </div>
+        @endsection
     </div>
     <!-- End Main -->
 @endsection
@@ -255,13 +256,13 @@
                     create_nhan_hieu.style.display = "block";
                     $('#create-nhan-hieu').html('');
                     $('#create-nhan-hieu').append(data);
+                    add_them_layout();
                 }
             });
         });
-    </script>
-@endsection
+ 
 
-<script type="text/javascript">
+
     function hienformthemnhanhieu() {
         //  var formData = new FormData();
         //  formData.append('idpost', idpost);
@@ -282,6 +283,7 @@
                 create_nhan_hieu.style.display = "block";
                 $('#create-nhan-hieu').html('');
                 $('#create-nhan-hieu').append(data);
+                add_them_layout();
             }
         });
     }
@@ -289,6 +291,7 @@
     function huy() {
         var create_nhan_hieu = document.getElementById('create-nhan-hieu');
         create_nhan_hieu.style.display = "none";
+        remove_them_layout();
     }
 
     function loadnhanhieu() {
@@ -372,5 +375,5 @@
         });
     }
 
-    
-</script>
+   </script>
+@endsection

@@ -17,6 +17,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('ma_hoa_don');
             $table->foreignId('ma_san_pham');
+            $table->string('size')->nullable();
+            $table->string('mau')->nullable();
             $table->double('so_luong')->nullable();
             $table->double('gia_san_pham')->nullable();
             $table->double('tong_tien')->nullable();

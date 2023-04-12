@@ -78,7 +78,7 @@ class AdminTrangTinhController extends Controller
         return Redirect::route('admin.footer')->with('success','Sửa dữ liệu thành công');
     }
 
-     function footer_xoa($id){
+    function footer_xoa($id){
         $footer = trang_tinh::where('loai','=',1)->find($id);
         $footer->delete();
         return Redirect::route('admin.footer')->with('success','Xóa thành công');
@@ -208,6 +208,7 @@ class AdminTrangTinhController extends Controller
 
     function slogan_xoa($id){
         $slogan = trang_tinh::where('loai','=',3)->find($id);
+        $slogan->delete();
         return Redirect::route('admin.slogan')->with('success','Xóa thành công');
     }
 }

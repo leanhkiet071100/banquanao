@@ -2922,9 +2922,8 @@
             </div>
         </div>
     </div>
-        <div id="form-danh-gia" style="" class="form-danh-gia" style="display: none">
-
-    </div>
+    @yield('create')
+    
     <div class="app-drawer-overlay d-none animated fadeIn"></div>
     @include('thuvien/jsadmin')
     <script>
@@ -2943,12 +2942,20 @@
             // }
         });
 
-        function add_them_layout(){
-             $(".theme-layout").addClass('active');
+        function add_them_layout() {
+            $(".theme-layout").addClass('active');
         }
 
-        function remove_them_layout(){
+        function remove_them_layout() {
             $(".theme-layout").removeClass('active');
+        }
+
+        // không cho nhập kí tư vào input
+        function isNumberKey(e) {
+            var charCode = (e.which) ? e.which : e.keyCode;
+            if (charCode > 31 && (charCode < 48 || charCode > 57))
+                return false;
+            return true;
         }
     </script>
     {{-- <script src="//cdn.ckeditor.com/4.20.0/standard/ckeditor.js"></script> --}}

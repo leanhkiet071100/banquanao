@@ -12,9 +12,9 @@
                         <i class="pe-7s-ticket icon-gradient bg-mean-fruit"></i>
                     </div>
                     <div>
-                        Category
+                        Loại sản phẩm
                         <div class="page-title-subheading">
-                            View, create, update, delete and manage.
+                           Xem, tạo, cập nhật, xóa loại sản phẩm
                         </div>
                     </div>
                 </div>
@@ -43,7 +43,7 @@
                                 <span class="input-group-append">
                                     <button type="submit" class="btn btn-primary">
                                         <i class="fa fa-search"></i>&nbsp;
-                                        TÌM
+                                        TÌM KIẾM
                                     </button>
                                 </span>
                             </div>
@@ -146,22 +146,52 @@
         </div>
     </div>
     <!-- End Main -->
-
+@section('create')
     <div class="create" id="create">
 
     </div>
 @endsection
+@endsection
 
 @section('js')
-    <script type="text/javascript">
-         $(document).ready(function() {
-            $('#loai-san-pham').addClass('mm-active');
-             $('#li-san-pham').addClass('mm-active');
-             loadloaisanpham();
-        });
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#loai-san-pham').addClass('mm-active');
+        $('#li-san-pham').addClass('mm-active');
+        loadloaisanpham();
+    });
 
-        $(document).on('click', '.edit_loaisanpham', function(e) {
-            e.preventDefault();
+    $(document).on('click', '.edit_loaisanpham', function(e) {
+        e.preventDefault();
+        //var url = "{{ route('admin.xoa-nhan-hieu', '1') }}";
+        var url = $(this).attr('data-url');
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+            url: url,
+            type: 'GET',
+            //data: formData,
+            contentType: false,
+            processData: false,
+            success: function(data) {
+                //console.log(data);
+                var create_nhan_hieu = document.getElementById('create');
+                create_nhan_hieu.style.display = "block";
+                $('#create').html('');
+                $('#create').append(data);
+                add_them_layout()
+            }
+        });
+    });
+
+    $(document).on('click', '.delete_loaisanpham', function(e) {
+        e.preventDefault();
+        var r = confirm("Bạn có chắc chắn muốn xóa?");
+        if (r == true) {
+            var idnhanhieu = $(this).val();
             //var url = "{{ route('admin.xoa-nhan-hieu', '1') }}";
             var url = $(this).attr('data-url');
             $.ajaxSetup({
@@ -169,49 +199,18 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
+
             $.ajax({
                 url: url,
-                type: 'GET',
-                //data: formData,
-                contentType: false,
-                processData: false,
+                type: "DELETE",
                 success: function(data) {
-                    //console.log(data);
-                    var create_nhan_hieu = document.getElementById('create');
-                    create_nhan_hieu.style.display = "block";
-                    $('#create').html('');
-                    $('#create').append(data);
+                    alert(data.mess);
+                    loadloaisanpham();
                 }
             });
-        });
+        }
+    });
 
-        $(document).on('click', '.delete_loaisanpham', function(e) {
-            e.preventDefault();
-            var r = confirm("Bạn có chắc chắn muốn xóa?");
-            if (r == true) {
-                var idnhanhieu = $(this).val();
-                //var url = "{{ route('admin.xoa-nhan-hieu', '1') }}";
-                var url = $(this).attr('data-url');
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
-                });
-
-                $.ajax({
-                    url: url,
-                    type: "DELETE",
-                    success: function(data) {
-                        alert(data.mess);
-                        loadloaisanpham();
-                    }
-                });
-            }
-        });
-    </script>
-@endsection
-
-<script type="text/javascript">
     function loadloaisanpham() {
         $.ajax({
             url: "{{ route('admin.load-loai-san-pham') }}",
@@ -235,21 +234,27 @@
                                             <div class=" check-magana text-center td-radio">\
                                                 {{-- <input class="form-check-input" type="checkbox" value=""\
                                                     id="defaultCheck1"> --}}\
-                                                <input class="" type="checkbox" value="" id="check-noi-bat'+item.id+'" onchange="loai_san_pham_noi_bat(' + item.id + ')"  ' + (item.noi_bat == 1 ? "checked" : "") +'>\
+                                                <input class="" type="checkbox" value="" id="check-noi-bat' + item.id +
+                        '" onchange="loai_san_pham_noi_bat(' + item.id + ')"  ' + (item
+                            .noi_bat == 1 ? "checked" : "") + '>\
                                             </div>\
                                     </td>\
                                     <td class="td-radio">\
                                             <div class=" check-magana text-center td-radio">\
                                                 {{-- <input class="form-check-input" type="checkbox" value=""\
                                                     id="defaultCheck1"> --}}\
-                                                <input class="" type="checkbox" value="" id="check-moi'+item.id+'" onchange="loai_san_pham_moi(' + item.id + ')"  ' + (item.moi == 1 ? "checked" : "") +'>\
+                                                <input class="" type="checkbox" value="" id="check-moi' + item.id +
+                        '" onchange="loai_san_pham_moi(' + item.id + ')"  ' + (item.moi == 1 ?
+                            "checked" : "") + '>\
                                             </div>\
                                     </td>\
                                     <td class="td-radio">\
                                             <div class=" check-magana text-center td-radio">\
                                                 {{-- <input class="form-check-input" type="checkbox" value=""\
                                                     id="defaultCheck1"> --}}\
-                                                <input class="" type="checkbox" value="" id="check-hien'+item.id+'" onchange="loai_san_pham_hien(' + item.id + ')"  ' + (item.hien == 1 ? "checked" : "") +'>\
+                                                <input class="" type="checkbox" value="" id="check-hien' + item.id +
+                        '" onchange="loai_san_pham_hien(' + item.id + ')"  ' + (item.hien == 1 ?
+                            "checked" : "") + '>\
                                             </div>\
                                     </td>\
                                     <td class="text-center">\
@@ -262,7 +267,8 @@
                                         </a>\
                                         <form class="d-inline " action="" method="post">\
                                             <button class="delete_loaisanpham btn btn-hover-shine btn-outline-danger border-0 btn-sm"\
-                                                type="button" data-toggle="tooltip" title="Delete" data-placement="bottom" data-url="{{ route('admin.xoa-loai-san-pham', '') }}\/' + item
+                                                type="button" data-toggle="tooltip" title="Delete" data-placement="bottom" data-url="{{ route('admin.xoa-loai-san-pham', '') }}\/' +
+                        item
                         .id + '">\
                                                 <span class="btn-icon-wrapper opacity-8">\
                                                     <i class="fa fa-trash fa-w-20"></i>\
@@ -296,13 +302,24 @@
                 create_nhan_hieu.style.display = "block";
                 $('#create').html('');
                 $('#create').append(data);
+                add_them_layout();
             }
         });
+    }
+
+    function thoai(e) {
+        if (event.which == 13 || event.keyCode == 13) {
+            //code to execute here
+            return false;
+            alert('kiệt');
+        }
+        return true;
     }
 
     function huy() {
         var create_nhan_hieu = document.getElementById('create');
         create_nhan_hieu.style.display = "none";
+        remove_them_layout();
     }
 
     function loai_san_pham_hien($id) {
@@ -374,3 +391,4 @@
         });
     }
 </script>
+@endsection

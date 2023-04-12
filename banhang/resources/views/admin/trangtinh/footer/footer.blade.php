@@ -20,7 +20,7 @@
                     <div>
                         FOOTER
                         <div class="page-title-subheading">
-                            View, create, update, delete and manage.
+                            Quản lí footer trang web
                         </div>
                     </div>
                 </div>

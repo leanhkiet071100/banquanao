@@ -17,9 +17,9 @@
                         <i class="pe-7s-ticket icon-gradient bg-mean-fruit"></i>
                     </div>
                     <div>
-                        Product
+                        Mạng xã hội
                         <div class="page-title-subheading">
-                            View, create, update, delete and manage.
+                           Quản lí xem, thêm, cập nhật, xóa mạng xã hội
                         </div>
                     </div>
                 </div>

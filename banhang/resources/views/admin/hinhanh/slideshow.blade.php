@@ -17,9 +17,9 @@
                         <i class="pe-7s-ticket icon-gradient bg-mean-fruit"></i>
                     </div>
                     <div>
-                        Product
+                        Slideshow
                         <div class="page-title-subheading">
-                            View, create, update, delete and manage.
+                            Xem, thêm, cập nhật, xóa slideshow
                         </div>
                     </div>
                 </div>

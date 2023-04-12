@@ -20,7 +20,7 @@
                     <div>
                         SLOGAN
                         <div class="page-title-subheading">
-                            View, create, update, delete and manage.
+                            Quản lí slogan trang web
                         </div>
                     </div>
                 </div>

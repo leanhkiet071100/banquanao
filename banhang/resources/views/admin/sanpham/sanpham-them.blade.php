@@ -13,9 +13,9 @@
                         <i class="pe-7s-ticket icon-gradient bg-mean-fruit"></i>
                     </div>
                     <div>
-                        Product
+                        THÊM SẢN PHẨM
                         <div class="page-title-subheading">
-                            View, create, update, delete and manage.
+                           Quản lí xem thêm, cập nhât, xóa sản phẩm
                         </div>
                     </div>
                 </div>
@@ -84,8 +84,8 @@
                             <div class="position-relative row form-group">
                                 <label for="giasp" class="col-md-3 text-md-right col-form-label">Giá</label>
                                 <div class="col-md-9 col-xl-7">
-                                    <input required name="giasp" id="giasp" placeholder="giá" type="text"
-                                        class="form-control" value="{{ old('giasp') }}" onChange="format_curency(this);">
+                                    <input required name="giasp" id="giasp" placeholder="giá" type="text" 
+                                        class="form-control" value="{{ old('giasp') }}" onChange="format_curency(this);" onkeypress="return isNumberKey(event)">
                                     <div class="text-center">
                                         @error('giasp')
                                             <span style="color:red"> {{ $message }}</span>
@@ -99,7 +99,7 @@
                             </div>
 
                             <div class="position-relative row form-group">
-                                <label for="trongluong" class="col-md-3 text-md-right col-form-label">Trọng lượng</label>
+                                <label for="trongluong" class="col-md-3 text-md-right col-form-label" >Trọng lượng</label>
                                 <div class="col-md-9 col-xl-7">
                                     <input required name="trongluong" id="trongluong" placeholder="Trọng lượng"
                                         type="text" class="form-control" value="{{ old('trongluong') }}">
@@ -120,7 +120,7 @@
                                 <label for="giamgia" class="col-md-3 text-md-right col-form-label">Giảm giá</label>
                                 <div class="col-md-9 col-xl-7">
                                     <input  name="giamgia" id="giamgia" placeholder="giảm giá" type="text"
-                                        class="form-control" value="{{ old('giamgia') }}">
+                                        class="form-control" value="{{ old('giamgia') }}" onkeypress="return isNumberKey(event)">
                                     <div class="text-center">
                                         @error('giamgia')
                                             <span style="color:red"> {{ $message }}</span>
@@ -136,7 +136,7 @@
                                 <label for="soluongkho" class="col-md-3 text-md-right col-form-label">Số lượng kho</label>
                                 <div class="col-md-9 col-xl-8">
                                     <input required name="soluongkho" id="soluongkho" placeholder="Số lượng kho"
-                                        type="number" class="form-control" value="{{ old('soluongkho') }}">
+                                        type="number" class="form-control" value="{{ old('soluongkho') }}" onkeypress="return isNumberKey(event)" max="100" min="0">
                                     <div class="text-center">
                                         @error('soluongkho')
                                             <span style="color:red"> {{ $message }}</span>

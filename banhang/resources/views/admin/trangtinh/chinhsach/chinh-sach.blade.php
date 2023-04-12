@@ -20,7 +20,7 @@
                     <div>
                         CHÍNH SÁCH
                         <div class="page-title-subheading">
-                            View, create, update, delete and manage.
+                            quản lí chính sách trang web
                         </div>
                     </div>
                 </div>

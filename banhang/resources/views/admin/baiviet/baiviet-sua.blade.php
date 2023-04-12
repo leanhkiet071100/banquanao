@@ -13,9 +13,10 @@
                         <i class="pe-7s-ticket icon-gradient bg-mean-fruit"></i>
                     </div>
                     <div>
-                        Product
+                        Sửa bài viết
                         <div class="page-title-subheading">
-                            View, create, update, delete and manage.
+                            
+                            {{$baiviet->tieu_de}}
                         </div>
                     </div>
                 </div>

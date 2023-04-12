@@ -12,7 +12,7 @@
                         <i class="pe-7s-ticket icon-gradient bg-mean-fruit"></i>
                     </div>
                     <div>
-                        Tất cả đơn hàng
+                        Đơn hàng đang giao
                     </div>
                 </div>
 

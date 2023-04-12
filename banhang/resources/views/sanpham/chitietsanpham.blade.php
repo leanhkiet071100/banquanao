@@ -73,7 +73,7 @@
                                 <div class="quantity">
                                     <div class="pro-qty">
                                         <input type="number" value="{{ old('so_luong') ?? 1 }}" name="so_luong"
-                                            min="1" required>
+                                            min="1" max="100" required>
                                     </div>
                                 </div>
                             </div>
@@ -95,6 +95,19 @@
                                         <a href="#"><i class="fa fa-twitter"></i></a>
                                         <a href="#"><i class="fa fa-instagram"></i></a>
                                         <a href="#"><i class="fa fa-pinterest"></i></a>
+                                    </div>
+                                </li>
+
+                                <li><b>Màu</b>
+                                    <div class="share">
+                                        {{-- <button class="product-variation active">kiệt 1</button> --}}
+                                 
+                                    </div>
+                                </li>
+
+                                <li><b>size</b>
+                                    <div class="share">
+                                      
                                     </div>
                                 </li>
                             </ul>
@@ -125,7 +138,9 @@
                                             <li><b>Nhãn hiệu:</b> <span>{{ $sanpham->ten_nhan_hieu }}</span></li>
                                             <li><b>Loại sản phẩm:</b> <span>{{ $sanpham->ten_loai_san_pham }}</span></li>
                                             <li><b>Tên sản phẩm:</b> <span>{{ $sanpham->ten_san_pham }}</span></li>
-                                            <li><b>Giá:</b> <span>{{ $sanpham->gia }}</span></li>
+                                            <li><b>Giá:</b>
+                                                <span>{{ number_format($sanpham->gia - $sanpham->gia * ($sanpham->tien_giam / 100), 2) }}đ</span>
+                                            </li>
                                             <li><b>Trọng lượng:</b> <span>{{ $sanpham->trong_luong }}</span></li>
 
 

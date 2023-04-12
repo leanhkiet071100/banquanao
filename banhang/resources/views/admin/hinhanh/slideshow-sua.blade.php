@@ -15,7 +15,7 @@
                     <div>
                         SLIDESHOW
                         <div class="page-title-subheading">
-                            View, create, update, delete and manage.
+                            Sửa slideshow
                         </div>
                     </div>
                 </div>

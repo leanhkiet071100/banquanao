@@ -229,7 +229,7 @@ li a {
     padding: 20px;
     position: fixed;
     top: 5rem;
-    left: calc(100% - 60%);
+    left: calc(100% - 71%);
     width: 700px;
     z-index: 200;
     display: block;
@@ -437,4 +437,8 @@ back ground full
     transition: all 0.5s linear 0s;
     visibility: hidden;
     opacity: 0;
+}
+
+.app-page-title .page-title-heading{
+    text-transform: uppercase;
 }
