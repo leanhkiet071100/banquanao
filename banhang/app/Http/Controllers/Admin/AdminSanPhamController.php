@@ -19,6 +19,8 @@ use App\Http\Controllers\Extension\check;
 use Illuminate\Support\Facades\Redirect;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
+use App\Exports\XuatSanPham;
+use Maatwebsite\Excel\Facades\Excel;
 
 class AdminSanPhamController extends Controller
 {
@@ -30,12 +32,12 @@ class AdminSanPhamController extends Controller
         $key = request()->search;
 
         if($key == null)
-        {  
+        {
             $lssanpham = sanpham::join('loai_san_phams','loai_san_phams.id', '=','sanphams.ma_loai_san_pham')
                     ->select('sanphams.id','loai_san_phams.ten_loai_san_pham','sanphams.ten_san_pham','sanphams.gia','sanphams.so_luong_kho','sanphams.moi','sanphams.noi_bat','sanphams.hien','sanphams.hinh_anh')
                     ->orderBy('sanphams.created_at','DESC')
                     ->paginate(5);
-            
+
         }else{
             $lssanpham = sanpham::join('loai_san_phams','loai_san_phams.id', '=','sanphams.ma_loai_san_pham')
                     ->select('sanphams.id','loai_san_phams.ten_loai_san_pham','sanphams.ten_san_pham','sanphams.gia','sanphams.so_luong_kho','sanphams.moi','sanphams.noi_bat','sanphams.hien','sanphams.hinh_anh')
@@ -88,7 +90,7 @@ class AdminSanPhamController extends Controller
             'trongluong' => 'Trọng lượng',
             'sku' =>'SKU',
             'giamgia'=>'Giảm giá',
-         
+
         ];
 
         $request->validate($rule, $message, $attribute);
@@ -170,7 +172,7 @@ class AdminSanPhamController extends Controller
             'trongluong' => 'Trọng lượng',
             'sku' =>'SKU',
             'giamgia'=>'Giảm giá',
-         
+
         ];
 
         $request->validate($rule, $message, $attribute);
@@ -251,7 +253,7 @@ class AdminSanPhamController extends Controller
             'mau' => 'Màu',
             'size'=>'Kích thước',
             'soluongkho' => 'Số lượng kho',
-         
+
         ];
 
         $request->validate($rule, $message, $attribute);
@@ -350,7 +352,7 @@ class AdminSanPhamController extends Controller
         $sanphamhinh = sanpham_hinhanh::where('ma_san_pham','=',$id)->get();
         return response()->json(['sanphamhinh' => $sanphamhinh]);
     }
-    
+
     public function xoa_hinh_san_pham($id){
         $hinhsp  = sanpham_hinhanh::find($id);
         $hinhsp->delete();
@@ -359,14 +361,14 @@ class AdminSanPhamController extends Controller
             'mess'=> 'Xóa thành công',
         ]);
     }
-    
+
     //hình ảnh sản phẩm
     public function them_hinh_san_pham(Request $request){
         $validator = Validator::make($request->all(), [
             'hinhsp' => 'required',
         ], $messages = [
             'required' => 'Chưa có hình ảnh',
-           
+
         ]);
 
         if($validator->fails())
@@ -604,6 +606,11 @@ class AdminSanPhamController extends Controller
 
 
     // kết thúc quản lí bình luận bài viết
+
+    public function xuat_excel(){
+
+        return Excel::download(new XuatSanPham, 'users.xlsx');
+    }
 
 
 }

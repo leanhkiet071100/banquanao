@@ -18,6 +18,8 @@ return new class extends Migration
             $table->foreignId('ma_san_pham');
             $table->foreignId('ma_nguoi_dung');
             $table->integer('so_luong');
+            $table->string('size');
+            $table->string('mau');
             $table->timestamps();
             $table->softDeletes();
         });
