@@ -101,13 +101,13 @@
                                 <li><b>Màu</b>
                                     <div class="share">
                                         {{-- <button class="product-variation active">kiệt 1</button> --}}
-                                 
+
                                     </div>
                                 </li>
 
                                 <li><b>size</b>
                                     <div class="share">
-                                      
+
                                     </div>
                                 </li>
                             </ul>
@@ -345,7 +345,7 @@
                         $('#error-hinhnhanhieu').html("");
                         $('#error-hinhnhanhieu').append(data.errors.hinhnhanhieu[0]);
                         // $.each(data.errors, function(key, err_value){
-                        //     $('#saveform_errList').append('<li style="color: red">'+err_value+'</li>');    
+                        //     $('#saveform_errList').append('<li style="color: red">'+err_value+'</li>');
                         // });
                         //console.log(data.error.tennhanhieu);
                     } else {

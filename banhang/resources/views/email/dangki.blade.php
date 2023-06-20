@@ -38,7 +38,7 @@
         .kich-hoat-tai-khoan {
             display: flex;
             justify-content: center;
-            
+
         }
 
         .xac-nhan {

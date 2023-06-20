@@ -25,7 +25,7 @@ use Mail;
 class IndexController extends Controller
 {
     public function __construct(){
-    
+
     }
 
     public function thong_tin_shop(){
@@ -33,7 +33,7 @@ class IndexController extends Controller
         $ten_shop = $shop->ten_shop;
         $email_shop = $shop->email;
         return $shop;
-        
+
     }
     //admin đăng nhập
       public function login_admin(){
@@ -63,14 +63,14 @@ class IndexController extends Controller
                     if($nguoidung->cap == 1){
                         $request->session()->regenerate();
                         Auth::login($nguoidung);
-                    
+
                         $request->session()->put('LoggedUser', $nguoidung->id);
                         return redirect()->route('admin.thong-tin-shop');
                     }
                     else{
                          return view('admin.login')->WithErrors(['error' => 'Xin lỗi bạn không có quyền hạn vào trang này'])->with(['email'=> $email,'mat_khau'=>$mat_khau]);
                     }
-                   
+
                 }
                 else{
                     return view('admin.login')->WithErrors(['error' => 'Sai mật khẩu'])->with(['email'=> $email,'mat_khau'=>$mat_khau]);
@@ -94,11 +94,11 @@ class IndexController extends Controller
 
         return $count;
     }
-   
+
     public function index()
     {
         $count = $this->count_gio_hang();
-        
+
         $lsloaisanpham = loai_san_pham::where('hien','=',1)->get();
         $lsnhanhieu = nhan_hieu::where('hien','=',1)->get();
         $lsloaisanphamnoibat = loai_san_pham::where('hien','=',1)
@@ -115,7 +115,7 @@ class IndexController extends Controller
                             ->where('sanphams.moi','=',1)
                             ->get();
         $lsbaivietnb = baiviet::where('hien','=',1)->where('noi_bat','=',1)->orderBy('created_at', 'DESC')->paginate(3);
-    
+
         return view('trangchu.index')->with(['lsloaisanpham'=> $lsloaisanpham,
                                              'lsnhanhieu'=>$lsnhanhieu,
                                              'lsloaisanphamnoibat'=>$lsloaisanphamnoibat,
@@ -157,7 +157,7 @@ class IndexController extends Controller
                     elseif($nguoidung->trang_thai==2)
                     {
                         return view('auth.dangnhap')->WithErrors(['error' => 'Tài khoản của bạn bị khóa vui lòng liên hệ admin'])->with(['email'=> $email,'mat_khau'=>$mat_khau]);
-                      
+
                     }
                     else{
                         $request->session()->regenerate();
@@ -182,7 +182,7 @@ class IndexController extends Controller
     }
 
     public function post_dang_ki(Request $request)
-    {   
+    {
         $this->validate($request,
             [
                 'email' => 'required|email|max:255|unique:nguoidungs,email',
@@ -200,7 +200,7 @@ class IndexController extends Controller
                 'sdt.required' => 'Vui lòng nhập họ tên',
                 'sdt.numeric' => 'Số điện thoại phải là số',
             ]);
-        
+
         // thông tin của shop
         $shop = thong_tin_shop::orderBy('id')->first();
         $ten_shop = $shop->ten_shop;
@@ -212,7 +212,7 @@ class IndexController extends Controller
         $email = $request->email;
         $mat_khau = $request->input('mat-khau');
         $token = strtoupper(Str::random(10));
-        
+
         // mail::send('tenview',(['gắn biến'])
         $nguoidung = nguoidung::create([
                     'ten' => $ho_ten,
@@ -223,9 +223,9 @@ class IndexController extends Controller
                     'cap' => 2,
                     'trang_thai' => 0
                 ]);
-             
+
         // vd: Mail::send('email.dangki',['name'=>'test']);
-      
+
         Mail::send('email.dangki',compact('nguoidung'), function($email) use($shop, $nguoidung,$hinh_anh){
             // $email->to('địa chỉ email nhận','tên người nhận')
             //$email->subject('Xác nhận đăng kí tài khoản');
@@ -233,7 +233,7 @@ class IndexController extends Controller
             //$email->attach('C:\laravel-master\laravel\public\uploads\image.png');
             //$email->attach('C:\laravel-master\laravel\public\uploads\test.txt');
             //email gửi
-           
+
             if($shop != null){
                 $email->from($shop->email,$shop->ten_shop);
             }else{
@@ -248,7 +248,7 @@ class IndexController extends Controller
         return Redirect::route('dang-nhap')->With(['yes' => 'Vui lòng check email để kích hoạt tài khoản']);
     }
 
-    public function kich_hoat($id, $token){ 
+    public function kich_hoat($id, $token){
         $nguoidung = nguoidung::find($id);
         if($nguoidung->remember_token === $token){
             $nguoidung->update(['trang_thai'=>1,'token'=>null]);
@@ -272,7 +272,7 @@ class IndexController extends Controller
     }
      public function post_quen_mat_khau(){
         $shop = $this->thong_tin_shop();
-        
+
     }
 
 }
