@@ -18,7 +18,7 @@ class CheckLogin
      */
     public function handle(Request $request, Closure $next)
     {
-        
+
         // echo 'middle';
         //chưa đăng nhập
         if(!Auth::check()){

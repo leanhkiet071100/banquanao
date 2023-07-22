@@ -39,8 +39,8 @@ use App\Models\gio_hang;
 //     });
 
 
-    //middlewware kiểm tra quyền 
-   
+    //middlewware kiểm tra quyền
+
 
     //view composer
     view()->composer(['*'], function ($view) {
@@ -54,11 +54,11 @@ use App\Models\gio_hang;
         $view->with('count',$count);
     });
 
-    //admin đăng nhập 
+    //admin đăng nhập
     Route::get('/admin', [IndexController::class, 'login_admin'])->name('admin');
     Route::get('/admin/login', [IndexController::class, 'login_admin'])->name('login-admin');
     Route::post('/admin/login', [IndexController::class, 'post_login_admin'])->name('post-login-admin');
-    
+
     //đăng nhập
     Route::get('/dang-nhap', [IndexController::class, 'dang_nhap'])->name('dang-nhap');
     Route::post('/dang-nhap', [IndexController::class, 'post_dang_nhap'])->name('post-dang-nhap');
@@ -77,7 +77,7 @@ use App\Models\gio_hang;
     Route::middleware('auth')->group(function(){ //kiểm tra đăng nhập
     //trang cá nhân
     Route::prefix('tai-khoan')->group(function(){
-        Route::name('tai-khoan.')->group(function(){ 
+        Route::name('tai-khoan.')->group(function(){
             // load trang người dung
             Route::get('/', [NguoidungController::class, 'index'])->name('tai-khoan');
             // thay đổi thông tin tài khoản
@@ -114,7 +114,7 @@ use App\Models\gio_hang;
             //Đánh giá sản phẩm
             Route::get('/danh-gia-san-pham/{id}',[NguoidungController::class, 'danh_gia_san_pham'])->name('danh-gia-san-pham');
             Route::post('/post-danh-gia-san-pham/{id}',[NguoidungController::class, 'post_danh_gia_san_pham'])->name('post-danh-gia-san-pham');
-            }); 
+            });
         });
             // giỏ hàng
             Route::get('/gio-hang', [GioHangController::class, 'gio_hang'])->name('gio-hang');
@@ -144,12 +144,12 @@ use App\Models\gio_hang;
     //giới thiệu
     Route::get('/gioi-thieu', [ShopController::class, 'gioi_thieu'])->name('gioi-thieu');
 
-    
+
 
  Route::middleware('login')->group(function(){
     //admin
     Route::prefix('admin')->group(function(){
-        Route::name('admin.')->group(function(){ 
+        Route::name('admin.')->group(function(){
             //logout
             Route::get('/logout', [AdminLoginController:: class,'logout_admin'])->name('logout_admin');
 
@@ -164,7 +164,7 @@ use App\Models\gio_hang;
             Route::post('/san-pham-hien/{id}',[AdminSanPhamController::class, 'san_pham_hien'])->name('san-pham-hien');
             Route::post('/san-pham-moi/{id}',[AdminSanPhamController::class, 'san_pham_moi'])->name('san-pham-moi');
             Route::post('/san-pham-noi-bat/{id}',[AdminSanPhamController::class, 'san_pham_noi_bat'])->name('san-pham-noi-bat');
-            
+
              // bình luận sản phẩm
             Route::get('/binh-luan-san-pham', [AdminSanPhamController::class, 'binh_luan_san_pham'])->name('binh-luan-san-pham');
             Route::post('/binh-luan-san-pham-hien/{id}', [AdminSanPhamController::class, 'binh_luan_san_pham_hien'])->name('binh-luan-san-pham-hien');
@@ -182,7 +182,7 @@ use App\Models\gio_hang;
             Route::post('/chi-tiet-san-pham-sua/{id}',[AdminSanPhamController::class, 'post_chi_tiet_san_pham_sua'])->name('post-chi-tiet-san-pham-sua');
             Route::delete('/chi-tiet-san-pham-xoa/{id}',[AdminSanPhamController::class, 'chi_tiet_san_pham_xoa'])->name('chi-tiet-san-pham-xoa');
             Route::post('/chi-tiet-san-pham-hien/{id}',[AdminSanPhamController::class, 'chi_tiet_san_pham_hien'])->name('chi-tiet-san-pham-hien');
-            
+
             //sản phẩm hình ảnh
             Route::get('/chi-tiet-san-pham-hinh-anh/{id}',[AdminSanPhamController::class, 'chi_tiet_san_pham_hinh_anh'])->name('chi-tiet-san-pham-hinh-anh');
             Route::post('/san-pham-them-hinh',[AdminSanPhamController::class, 'them_hinh_san_pham'])->name('them-hinh-san-pham');
@@ -200,13 +200,13 @@ use App\Models\gio_hang;
             Route::post('/bai-viet-hien/{id}',[AdminBaiVietController::class, 'bai_viet_hien'])->name('bai-viet-hien');
             Route::post('/bai-viet-moi/{id}',[AdminBaiVietController::class, 'bai_viet_moi'])->name('bai-viet-moi');
             Route::post('/bai-viet-noi-bat/{id}',[AdminBaiVietController::class, 'bai_viet_noi_bat'])->name('bai-viet-noi-bat');
-            
+
             // bình luận bài viết
             Route::get('/binh-luan-bai-viet', [AdminBaiVietController::class, 'binh_luan_bai_viet'])->name('binh-luan-bai-viet');
             Route::post('/binh-luan-bai-viet-hien/{id}', [AdminBaiVietController::class, 'binh_luan_bai_viet_hien'])->name('binh-luan-bai-viet-hien');
             Route::post('/binh-luan-bai-viet-noi-bat/{id}', [AdminBaiVietController::class, 'binh_luan_bai_viet_noi_bat'])->name('binh-luan-bai-viet-noi-bat');
             Route::delete('/binh-luan-bai-viet-xoa/{id}',[AdminBaiVietController::class, 'binh_luan_bai_viet_xoa'])->name('binh-luan-bai-viet-xoa');
-            
+
             // nhãn hiệu
             Route::get('/nhan-hieu', [AdminNhanHieuController::class, 'get_nhan_hieu'])->name('get-nhan-hieu');
             Route::get('/load-nhan-hieu', [AdminNhanHieuController::class, 'load_nhan_hieu'])->name('load-nhan-hieu');
@@ -239,7 +239,7 @@ use App\Models\gio_hang;
             Route::get('/thong-tin-shop',[AdminshopController::class, 'thong_tin_shop'])->name('thong-tin-shop');
             Route::post('/thong-tin-shop-them',[AdminshopController::class, 'thong_tin_shop_them'])->name('thong-tin-shop-them');
             Route::post('/thong-tin-shop-sua/{id}',[AdminshopController::class, 'thong_tin_shop_sua'])->name('thong-tin-shop-sua');
-            
+
             //banner
             Route::get('/banner',[AdminShopController::class, 'banner'])->name('banner');
             Route::post('/banner-them',[AdminShopController::class, 'banner_them'])->name('banner-them');
@@ -253,7 +253,7 @@ use App\Models\gio_hang;
             Route::post('/slideshow-sua/{id}',[AdminslideshowController::class, 'post_slideshow_sua'])->name('post-slideshow-sua');
             Route::delete('/slideshow-xoa/{id}',[AdminslideshowController::class, 'slideshow_xoa'])->name('slideshow-xoa');
             Route::post('/slideshow-hien/{id}',[AdminslideshowController::class, 'slideshow_hien'])->name('slideshow-hien');
-        
+
             //Mạng xã hội
             Route::get('/mang-xa-hoi',[AdminMangXaHoiController::class, 'mang_xa_hoi'])->name('mang-xa-hoi');
             Route::get('/mang-xa-hoi-them',[AdminMangXaHoiController::class, 'get_mang_xa_hoi_them'])->name('get-mang-xa-hoi-them');
@@ -294,7 +294,7 @@ use App\Models\gio_hang;
             Route::post('/don-hang-chuc-nang/{id}',[AdmimHoadonController::class, 'don_hang_chuc_nang'])->name('don-hang-chuc-nang');
         });
 
-            
+
     });
  });
 

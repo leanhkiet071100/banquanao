@@ -318,7 +318,6 @@
         }
 
         function chuc_nang_update(trang_thai, id) {
-            console.log(trang_thai);
             $('#td-chuc-nang' + id).html("");
             switch (trang_thai) {
                 case 1:
